@@ -104,7 +104,8 @@ public class NetworkController : MonoBehaviour {
 			GameObject user = GameObject.Find("remote_"+userId);
 			
 			//If found - send him message with transform data
-			if (user) user.SendMessage("ReceiveTransform", data);
+			if (user&&data.GetString("object_name")==("client_"+user.name)) 
+				user.SendMessage("ReceiveTransform", data);
 		}
 	}
 	
