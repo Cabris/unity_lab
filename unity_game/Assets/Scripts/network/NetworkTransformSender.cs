@@ -15,7 +15,7 @@ public class NetworkTransformSender : MonoBehaviour {
 	}
 		
 	// We call it on local player to start sending his transform
-	void StartSending() {
+	public void StartSending() {
 		sendMode = true;
 	}
 	
@@ -37,7 +37,7 @@ public class NetworkTransformSender : MonoBehaviour {
 	}
 	
 	//This method is called when remote user forces us to send our transform
-	void ForceSendTransform() {
+	public void ForceSendTransform() {
 		lastState.DoSend();
 	}		
 }

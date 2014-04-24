@@ -23,7 +23,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 	private Queue queue = new Queue();  // Queue to store transform states for interpolations
 	
 	// We call it on remote player to start receiving his transform
-	void StartReceiving() {
+	public void StartReceiving() {
 		lastState = new NetworkTransform(this.gameObject);	
 		fpsStorage = GameObject.Find(" FPS").GetComponent(typeof(FPSStorage)) as FPSStorage;
 		receiveMode = true;

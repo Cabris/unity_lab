@@ -5,13 +5,16 @@ using System;
 using SmartFoxClientAPI;
 using SmartFoxClientAPI.Data;
 
-public class NetworkController : MonoBehaviour {
+public class ClientNetworkController : MonoBehaviour {
 	
 	private static SmartFoxClient smartFoxClient;
 	
 	public static SmartFoxClient GetClient() {
 		return SmartFox.Connection;
 	}
+
+	public NetworkTransformReceiver[] propsReceiver; 
+
 	
 	#region Events
 	
@@ -46,12 +49,27 @@ public class NetworkController : MonoBehaviour {
 		Application.runInBackground = true; // Let the application be running whyle the window is not active.
 		smartFoxClient = GetClient();
 		if (smartFoxClient==null) {
-			Application.LoadLevel("log_client");
+			Application.LoadLevel("login");
 			return;
 		}	
 		SubscribeEvents();
 		started = true;
 		smartFoxClient.JoinRoom("Central Square");
+		foreach(NetworkTransformReceiver r in propsReceiver){
+			r.StartReceiving();
+			ForceRemoteObjectToSendTransform(r.gameObject);
+		}
+	}
+
+	void ForceRemoteObjectToSendTransform (GameObject go)
+	{
+		SmartFoxClient client = ClientNetworkController.GetClient ();
+		SFSObject data = new SFSObject ();
+		data.Put ("_cmd", "f");  //We put _cmd = "f" here to know that this object contains "force send transform" demand
+		data.Put ("object_name", go.name); // Who this message is for
+		data.Put ("to_user", "scene"); // Who this message is for
+		client.SendObject (data);
+		Debug.Log("ForceRemoteObjectToSendTransform: "+go.name);
 	}
 	
 	// We should unsubscribe all delegates before quitting the application to avoid probleems.
@@ -86,7 +104,7 @@ public class NetworkController : MonoBehaviour {
 		String _cmd = data.GetString("_cmd");
 		switch (_cmd) {
 			case "t":  // "t" - means transform sync data
-				SendTransformToRemotePlayerObject(data, fromUser);
+				SendTransformToRemoteObject(data, fromUser);
 				break;
 			case "f":  // "f" - means force our local player to send his transform
 				ForceSendTransform(data);
@@ -96,19 +114,32 @@ public class NetworkController : MonoBehaviour {
 				break;
 		}
 	}
-	
-	private void SendTransformToRemotePlayerObject(SFSObject data, User fromUser) {
-		int userId = fromUser.GetId();
-		if (userId!=smartFoxClient.myUserId) {  // If it's not myself
+
+	private void SendTransformToRemoteObject(SFSObject data, User fromUser) {
+		int fromUserId = fromUser.GetId();
+		string objName= data.GetString("object_name");
+		if (fromUserId!=smartFoxClient.myUserId) {  // If it's not myself
 			//Find user object with such Id
-			GameObject user = GameObject.Find("remote_"+userId);
-			
+			GameObject user = GameObject.Find(objName);
 			//If found - send him message with transform data
-			if (user&&("remote_"+data.GetString("object_name"))==user.name) 
+			//Debug.Log(objName);
+			if (user!=null&&user.GetComponent<NetworkTransformReceiver>()!=null)
 				user.SendMessage("ReceiveTransform", data);
 		}
 	}
-	
+
+//	private void SendTransformToRemotePlayerObject(SFSObject data, User fromUser) {
+//		int userId = fromUser.GetId();
+//		if (userId!=smartFoxClient.myUserId) {  // If it's not myself
+//			//Find user object with such Id
+//			GameObject user = GameObject.Find("user_"+userId);
+//			
+//			//If found - send him message with transform data
+//			if (user&&data.GetString("object_name")==user.name) 
+//				user.SendMessage("ReceiveTransform", data);
+//		}
+//	}
+
 	private void ForceSendTransform(SFSObject data) {
 		//if this message is addressed to this user
 		if ((int)data.GetNumber("to_uid") == smartFoxClient.myUserId) {
@@ -118,6 +149,16 @@ public class NetworkController : MonoBehaviour {
 			if (user) user.SendMessage("ForceSendTransform");
 		}
 	}
+
+//	private void ForceSendTransform(SFSObject data) {
+//		//if this message is addressed to this user
+//		if ((int)data.GetNumber("to_uid") == smartFoxClient.myUserId) {
+//			// Find local player object
+//			GameObject user = GameObject.Find("localPlayer");
+//			// Send him message
+//			if (user) user.SendMessage("ForceSendTransform");
+//		}
+//	}
 	
 	private void SendAnimationMessageToRemotePlayerObject(SFSObject data, User fromUser) {
 		int userId = fromUser.GetId();

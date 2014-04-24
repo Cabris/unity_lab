@@ -40,7 +40,7 @@ public class AnimationSynchronizer : MonoBehaviour {
 	}	
 	
 	void SendAnimationMessage(string message) {
-		SmartFoxClient client = NetworkController.GetClient();
+		SmartFoxClient client = ClientNetworkController.GetClient();
 		SFSObject data = new SFSObject();
 		data.Put("_cmd", "a");  //We put _cmd = "a" here to know that this object contains animation message
 		data.Put("mes", message);

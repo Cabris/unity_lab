@@ -12,7 +12,10 @@ public class ServerNetworkController : MonoBehaviour {
 	public static SmartFoxClient GetClient() {
 		return SmartFox.Connection;
 	}
-	
+
+	public NetworkTransformSender[] propsSender; 
+
+
 	#region Events
 	
 	private bool started = false;
@@ -46,12 +49,16 @@ public class ServerNetworkController : MonoBehaviour {
 		Application.runInBackground = true; // Let the application be running whyle the window is not active.
 		smartFoxClient = GetClient();
 		if (smartFoxClient==null) {
-			Application.LoadLevel("log_server");
+			Application.LoadLevel("login");
 			return;
 		}	
 		SubscribeEvents();
 		started = true;
 		smartFoxClient.JoinRoom("Central Square");
+		foreach(NetworkTransformSender r in propsSender){
+			r.StartSending();
+			r.ForceSendTransform();
+		}
 	}
 	
 	// We should unsubscribe all delegates before quitting the application to avoid probleems.
@@ -86,38 +93,77 @@ public class ServerNetworkController : MonoBehaviour {
 		String _cmd = data.GetString("_cmd");
 		switch (_cmd) {
 		case "t":  // "t" - means transform sync data
-			SendTransformToRemotePlayerObject(data, fromUser);
+			SendTransformToRemoteObject(data, fromUser);
 			break;
-		case "f":  // "f" - means force our local player to send his transform
-			ForceSendTransform(data);
-			break;
+		//case "f":  // "f" - means force our local player to send his transform
+			//ForceSendTransform(data);
+		//	break;
 		case "a": // "a" - for animation message received
 			SendAnimationMessageToRemotePlayerObject(data, fromUser);
 			break;
+		case "m": // "a" - for animation message received
+			SendCommandToServerPlayerObject(data, fromUser);
+			break;
+		case "f": // "a" - for animation message received
+			ForceSendTransform(data);
+			Debug.Log("ForceSendTransform");
+			break;
 		}
+
 	}
 	
-	private void SendTransformToRemotePlayerObject(SFSObject data, User fromUser) {
+	private void SendTransformToRemoteObject(SFSObject data, User fromUser) {
 		int userId = fromUser.GetId();
+		string userName= data.GetString("object_name");
 		if (userId!=smartFoxClient.myUserId) {  // If it's not myself
 			//Find user object with such Id
-			GameObject user = GameObject.Find("remote_"+userId);
-			
+			GameObject user = GameObject.Find(userName);
 			//If found - send him message with transform data
-			if (user&&("remote_"+data.GetString("object_name"))==user.name) 
+			if (user!=null&&user.GetComponent<serverPlayerCommand>()!=null){
 				user.SendMessage("ReceiveTransform", data);
+
+			}
 		}
 	}
-	
+
+	private void SendCommandToServerPlayerObject(SFSObject data, User fromUser) {
+		int userId = fromUser.GetId();
+		string objName= data.GetString("object_name");
+		if (userId!=smartFoxClient.myUserId) {  // If it's not myself
+			//Find user object with such Id
+			GameObject user = GameObject.Find(objName);
+//			Debug.Log("SendCommandToServerPlayerObject: "+objName);
+			//If found - send him message with transform data
+			if (user!=null&&user.GetComponent<serverPlayerCommand>()!=null){
+				user.SendMessage("ReceiveCommand", data);
+				Debug.Log("SendCommandToServerPlayerObject: "+objName);
+			}
+		}
+	}
+
 	private void ForceSendTransform(SFSObject data) {
 		//if this message is addressed to this user
-		if ((int)data.GetNumber("to_uid") == smartFoxClient.myUserId) {
+		string objName= data.GetString("object_name");
+		if (data.GetString("to_user") == "scene") {
 			// Find local player object
-			GameObject user = GameObject.Find("localPlayer");
+			GameObject user = GameObject.Find(objName);
 			// Send him message
-			if (user) user.SendMessage("ForceSendTransform");
+			if (user) {
+				user.SendMessage("ForceSendTransform");
+				Debug.Log("ForceSendTransform: "+ objName);
+			}
 		}
 	}
+
+//	private void ForceSendTransform(SFSObject data) {
+//		//if this message is addressed to this user
+//		if ((int)data.GetNumber("to_uid") == smartFoxClient.myUserId) {
+//			// Find local player object
+//			GameObject user = GameObject.Find("localPlayer");
+//			// Send him message
+//			if (user) user.SendMessage("ForceSendTransform");
+//		}
+//	}
 	
 	private void SendAnimationMessageToRemotePlayerObject(SFSObject data, User fromUser) {
 		int userId = fromUser.GetId();

@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerInput : MonoBehaviour {
 
 	protected Animator animator;
-
+	bool isWalking=false;
 	public Transform character;
 	public float DirectionDampTime = .25f;
 	
@@ -12,6 +12,19 @@ public class PlayerInput : MonoBehaviour {
 	{
 		animator = GetComponent<Animator>();
 	}
+
+	public void Right(){character.Rotate(new Vector3(0,1,0)*90);}
+	public void Left(){character.Rotate(new Vector3(0,1,0)*-90);}
+	public void Back(){character.Rotate(new Vector3(0,1,0)*180);}
+
+	public void StartWalk(){
+		if(!isWalking)
+			isWalking=true;
+	}
+	public void EndWork(){
+		isWalking=false;
+	}
+
 	
 	void Update () 
 	{
@@ -34,24 +47,28 @@ public class PlayerInput : MonoBehaviour {
 			//float h = Input.GetAxis("Horizontal");
 			//float v = Input.GetAxis("Vertical");
 			float speed=0;
-			if(Input.GetKey(KeyCode.W)){
+			if(isWalking){
 				speed=5;
-			}
-			else if(Input.GetKeyDown(KeyCode.A)){//left
-				character.Rotate(new Vector3(0,1,0)*-90);
-			}
-			else if(Input.GetKeyDown(KeyCode.S)){
-				character.Rotate(new Vector3(0,1,0)*180);
-			}
-			else if(Input.GetKeyDown(KeyCode.D)){//right
-				character.Rotate(new Vector3(0,1,0)*90);
 			}
 			else{
 				speed=0;
 			}
-
+//			if(Input.GetKey(KeyCode.W)){
+//				speed=5;
+//			}
+//			else if(Input.GetKeyDown(KeyCode.A)){//left
+//				character.Rotate(new Vector3(0,1,0)*-90);
+//			}
+//			else if(Input.GetKeyDown(KeyCode.S)){
+//				character.Rotate(new Vector3(0,1,0)*180);
+//			}
+//			else if(Input.GetKeyDown(KeyCode.D)){//right
+//				character.Rotate(new Vector3(0,1,0)*90);
+//			}
+//			else{
+//				speed=0;
+//			}
 			animator.SetFloat("Speed", speed);
-
 			//set event parameters based on user input
 			//animator.SetFloat("Speed", h*h+v*v);
 			//animator.SetFloat("Direction", h, DirectionDampTime, Time.deltaTime);

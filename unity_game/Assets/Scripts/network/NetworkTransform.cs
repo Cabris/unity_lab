@@ -29,7 +29,7 @@ public class NetworkTransform {
 	
 	// Send transform to all other users
 	public void DoSend() {
-		SmartFoxClient client = NetworkController.GetClient();
+		SmartFoxClient client = ClientNetworkController.GetClient();
 		
 		SFSObject data = new SFSObject();
 		data.Put("_cmd", "t");  //We put _cmd = "t" here to know that this object contains transform sync data. 

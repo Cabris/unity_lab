@@ -14,22 +14,19 @@ public class gui_Login : MonoBehaviour {
 	public string zone = "city";
 	public bool debug = true;
 	public bool isServer=false;
-	 string targetScene="sc_City";
+	string targetScene="serverLab";
 	// variables used in script
 	private string statusMessage = "";
 	private string username = "";
 	
 	void Awake() {
-		Application.runInBackground = true; 	// Let the application be running while the window is not active.
-		
-		// Create SmartFox connection if not already available
+		Application.runInBackground = true; 	
+
 		if ( SmartFox.IsInitialized() ) {
 			Debug.Log("SmartFox is already initialized, reusing connection");
 			smartFox = SmartFox.Connection;
 		} else {
 			if( Application.platform == RuntimePlatform.WindowsWebPlayer ) {
-				// Only set this for the webplayer, it breaks pc standalone
-				// See http://answers.unity3d.com/questions/25122/ for details
 				Security.PrefetchSocketPolicy(serverIP, serverPort);
 			}
 			try {
@@ -58,8 +55,10 @@ public class gui_Login : MonoBehaviour {
 	}
 	
 	void OnGUI() {
+		isServer = GUI.Toggle(new Rect(10, 80, 250, 30), isServer, "isServer");
 		if(isServer){
 			targetScene="serverLab";
+			username="scene";
 		}else{
 			targetScene="clientLab";
 		}
@@ -74,12 +73,12 @@ public class gui_Login : MonoBehaviour {
 				Application.Quit();
 			}
 		}
-		
+
 		// Show login fields if connected and reconnect button if disconnect
 		if (smartFox.IsConnected()) {
 			GUI.Label(new Rect(10, 116, 100, 100), "Username: ");
 			username = GUI.TextField(new Rect(100, 116, 200, 20), username, 25);
-			if ( GUI.Button(new Rect(100, 166, 100, 24), "Login as "+targetScene)  || (Event.current.type == EventType.keyDown && Event.current.character == '\n')) {
+			if ( GUI.Button(new Rect(100, 166, 300, 24), "Login as "+targetScene)  || (Event.current.type == EventType.keyDown && Event.current.character == '\n')) {
 				smartFox.Login(zone, username, "");
 			}
 		} else {
@@ -148,18 +147,11 @@ public class gui_Login : MonoBehaviour {
 			statusMessage = "Login error: " + error;
 		}
 	}
-	
-	/*	
-	// We will not join a room in this level, the NetworkController in the next scene will take care of that
-	void OnJoinRoom(Room room)
-	{
-		Debug.Log("Room " + room.GetName() + " joined successfully");
-		smartFox.SendPublicMessage(smartFox.myUserName + " has joined");
-		// We can now move on to the next level
+
+	void OnApplicationQuit() {
+		smartFox.Disconnect();
 		UnregisterSFSSceneCallbacks();
-		Application.LoadLevel("sc_City");
 	}
-*/
 	
 	void OnRoomList(Hashtable roomList) {
 		try {
@@ -170,11 +162,6 @@ public class gui_Login : MonoBehaviour {
 				}
 				Debug.Log("Room id: " + roomId + " has name: " + room.GetName());
 			}
-			// Users always have to be in a room, but we'll do that in the next level
-			/*
-			if (smartFox.GetActiveRoom() == null) {
-				smartFox.JoinRoom("Central Square");
-			}*/	
 			UnregisterSFSSceneCallbacks();
 			Application.LoadLevel(targetScene);
 		}
