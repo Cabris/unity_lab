@@ -46,7 +46,7 @@ public class NetworkController : MonoBehaviour {
 		Application.runInBackground = true; // Let the application be running whyle the window is not active.
 		smartFoxClient = GetClient();
 		if (smartFoxClient==null) {
-			Application.LoadLevel("sc_Login");
+			Application.LoadLevel("log_client");
 			return;
 		}	
 		SubscribeEvents();
@@ -104,7 +104,7 @@ public class NetworkController : MonoBehaviour {
 			GameObject user = GameObject.Find("remote_"+userId);
 			
 			//If found - send him message with transform data
-			if (user&&data.GetString("object_name")==("client_"+user.name)) 
+			if (user&&("remote_"+data.GetString("object_name"))==user.name) 
 				user.SendMessage("ReceiveTransform", data);
 		}
 	}

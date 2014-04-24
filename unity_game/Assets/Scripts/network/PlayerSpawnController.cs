@@ -19,10 +19,12 @@ public class PlayerSpawnController : MonoBehaviour {
 	}
 	
 	private void SpawnLocalPlayer() {
+		SmartFoxClient client = NetworkController.GetClient(); 
 		int n = spawnPoints.Length;
 		Transform spawnPoint = spawnPoints[random.Next(n)];
 		localPlayerObject.transform.position = spawnPoint.transform.position;
 		localPlayerObject.transform.rotation = spawnPoint.transform.rotation;
+		localPlayerObject.name = ""+client.myUserId;
 		localPlayerObject.SendMessage("StartSending");  // Start sending our transform to other players
 	}
 	

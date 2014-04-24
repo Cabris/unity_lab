@@ -23,12 +23,12 @@ public class PlayerInput : MonoBehaviour {
 			//if we're in "Run" mode, respond to input for jump, and set the Jump parameter accordingly. 
 			if(stateInfo.nameHash == Animator.StringToHash("Base Layer.RunBT"))
 			{
-				if(Input.GetButton("Fire1")) 
-					animator.SetBool("Jump", true );
+//				if(Input.GetButton("Fire1")) 
+//					animator.SetBool("Jump", true );
 			}
 			else
 			{
-				animator.SetBool("Jump", false);				
+//				animator.SetBool("Jump", false);				
 			}
 			
 			//float h = Input.GetAxis("Horizontal");

@@ -13,7 +13,8 @@ public class gui_Login : MonoBehaviour {
 	private int serverPort = 9339;				// default = 9339
 	public string zone = "city";
 	public bool debug = true;
-	
+	public bool isServer=false;
+	 string targetScene="sc_City";
 	// variables used in script
 	private string statusMessage = "";
 	private string username = "";
@@ -57,7 +58,11 @@ public class gui_Login : MonoBehaviour {
 	}
 	
 	void OnGUI() {
-		
+		if(isServer){
+			targetScene="serverLab";
+		}else{
+			targetScene="clientLab";
+		}
 		// server IP in bottom left corner
 		GUI.Label(new Rect(10, Screen.height-25, 200, 24), "Server: " + serverIP);
 		
@@ -74,12 +79,12 @@ public class gui_Login : MonoBehaviour {
 		if (smartFox.IsConnected()) {
 			GUI.Label(new Rect(10, 116, 100, 100), "Username: ");
 			username = GUI.TextField(new Rect(100, 116, 200, 20), username, 25);
-			if ( GUI.Button(new Rect(100, 166, 100, 24), "Login")  || (Event.current.type == EventType.keyDown && Event.current.character == '\n')) {
+			if ( GUI.Button(new Rect(100, 166, 100, 24), "Login as "+targetScene)  || (Event.current.type == EventType.keyDown && Event.current.character == '\n')) {
 				smartFox.Login(zone, username, "");
 			}
 		} else {
 			if ( GUI.Button(new Rect(100, 166, 100, 24), "Reconnect")  || (Event.current.type == EventType.keyDown && Event.current.character == '\n')) {
-				Application.LoadLevel("sc_City");
+				Application.LoadLevel(targetScene);
 			}
 		}
 		
@@ -171,7 +176,7 @@ public class gui_Login : MonoBehaviour {
 				smartFox.JoinRoom("Central Square");
 			}*/	
 			UnregisterSFSSceneCallbacks();
-			Application.LoadLevel("sc_City");
+			Application.LoadLevel(targetScene);
 		}
 		catch (Exception e) {
 			Debug.Log("Room list error: "+e.Message+" "+e.StackTrace);
