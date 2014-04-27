@@ -9,7 +9,7 @@ public class ClientSpawnController : MonoBehaviour
 {
 	
 	public Transform localPlayerObject; //Note: we leave local player as object and do not instantiate it to keep existing Island Demo scripts working.
-	public Transform remotePlayerPrefab;
+	public GameObject remotePlayerPrefab;
 	public Transform[] spawnPoints;
 	private static System.Random random = new System.Random ();
 	
@@ -29,6 +29,7 @@ public class ClientSpawnController : MonoBehaviour
 		localPlayerObject.name = "user_" + client.myUserId;
 		//localPlayerObject.SendMessage ("StartSending");  // Start sending our transform to other players
 		localPlayerObject.SendMessage ("StartReceiving");
+		ClientNetworkController.ForceRemoteObjectToSendTransform(localPlayerObject.gameObject);
 	}
 	
 	//Get the remote user list and spawn all remote players that have already joinded before us
@@ -46,26 +47,27 @@ public class ClientSpawnController : MonoBehaviour
 	private void SpawnRemotePlayer (User user)
 	{
 		// Just spawn remote player at a very remote point
-		UnityEngine.Object remotePlayer = Instantiate (remotePlayerPrefab, new Vector3 (-10000, -10000, -10000), new Quaternion (0, 0, 0, 1));
+		GameObject remotePlayer = Instantiate(remotePlayerPrefab)as GameObject;
 		
 		//Give remote player a name like "remote_<id>" to easily find him then
 		remotePlayer.name = "user_" + user.GetId ();
 		
 		//Start receiving trasnform synchronization messages
-		(remotePlayer as Component).SendMessage ("StartReceiving");
+		remotePlayer.SendMessage ("StartReceiving");
 		
 		// Force this player to send us transform
-		ForceRemotePlayerToSendTransform (user);
+		ClientNetworkController.ForceRemoteObjectToSendTransform(remotePlayer);
+		//ForceRemotePlayerToSendTransform (user);
 	}
 	
-	void ForceRemotePlayerToSendTransform (User user)
-	{
-		SmartFoxClient client = ClientNetworkController.GetClient ();
-		SFSObject data = new SFSObject ();
-		data.Put ("_cmd", "f");  //We put _cmd = "f" here to know that this object contains "force send transform" demand
-		data.Put ("to_uid", user.GetId ()); // Who this message is for
-		client.SendObject (data);
-	}
+//	void ForceRemotePlayerToSendTransform (User user)
+//	{
+//		SmartFoxClient client = ClientNetworkController.GetClient ();
+//		SFSObject data = new SFSObject ();
+//		data.Put ("_cmd", "f");  //We put _cmd = "f" here to know that this object contains "force send transform" demand
+//		data.Put ("to_uid", user.GetId ()); // Who this message is for
+//		client.SendObject (data);
+//	}
 	
 	private void UserEnterRoom (User user)
 	{

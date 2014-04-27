@@ -4,7 +4,7 @@ using System.Collections;
 public class ButtonControl : MonoBehaviour {
 	
 	public bool isPress;
-
+public	Rigidbody c;
 
 
 	// Use this for initialization
@@ -16,6 +16,7 @@ public class ButtonControl : MonoBehaviour {
 	void Update () {
 		if(IsPress){
 			transform.localPosition=new Vector3(0,-6,0);
+			c.useGravity=true;
 		}
 		else{
 			transform.localPosition=new Vector3(0,0,0);

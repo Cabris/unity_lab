@@ -55,13 +55,10 @@ public class ClientNetworkController : MonoBehaviour {
 		SubscribeEvents();
 		started = true;
 		smartFoxClient.JoinRoom("Central Square");
-		foreach(NetworkTransformReceiver r in propsReceiver){
-			r.StartReceiving();
-			ForceRemoteObjectToSendTransform(r.gameObject);
-		}
+
 	}
 
-	void ForceRemoteObjectToSendTransform (GameObject go)
+	public static void ForceRemoteObjectToSendTransform (GameObject go)
 	{
 		SmartFoxClient client = ClientNetworkController.GetClient ();
 		SFSObject data = new SFSObject ();
@@ -78,11 +75,15 @@ public class ClientNetworkController : MonoBehaviour {
 		UnsubscribeEvents();
 		smartFoxClient.Disconnect();
 	}
-	
-	
+
 	private void OnJoinRoom(Room room) {
 		SendMessage("SpawnPlayers");
 		Debug.Log("Connected !");
+		foreach(NetworkTransformReceiver r in propsReceiver){
+			r.StartReceiving();
+			//Debug.Log("force t: "+r.gameObject.name);
+			ForceRemoteObjectToSendTransform(r.gameObject);
+		}
 	}
 	
 	// This will be invoked when remote player enters our room

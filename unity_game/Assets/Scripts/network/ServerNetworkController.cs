@@ -91,13 +91,11 @@ public class ServerNetworkController : MonoBehaviour {
 	private void OnObjectReceived(SFSObject data, User fromUser) {
 		//First determine the type of this object - what it contains ?
 		String _cmd = data.GetString("_cmd");
+		Debug.Log("OnObjectReceived: "+_cmd);
 		switch (_cmd) {
 		case "t":  // "t" - means transform sync data
 			SendTransformToRemoteObject(data, fromUser);
 			break;
-		//case "f":  // "f" - means force our local player to send his transform
-			//ForceSendTransform(data);
-		//	break;
 		case "a": // "a" - for animation message received
 			SendAnimationMessageToRemotePlayerObject(data, fromUser);
 			break;
@@ -106,7 +104,7 @@ public class ServerNetworkController : MonoBehaviour {
 			break;
 		case "f": // "a" - for animation message received
 			ForceSendTransform(data);
-			Debug.Log("ForceSendTransform");
+//			Debug.Log("ForceSendTransform");
 			break;
 		}
 
@@ -121,7 +119,6 @@ public class ServerNetworkController : MonoBehaviour {
 			//If found - send him message with transform data
 			if (user!=null&&user.GetComponent<serverPlayerCommand>()!=null){
 				user.SendMessage("ReceiveTransform", data);
-
 			}
 		}
 	}
@@ -148,7 +145,7 @@ public class ServerNetworkController : MonoBehaviour {
 			// Find local player object
 			GameObject user = GameObject.Find(objName);
 			// Send him message
-			if (user) {
+			if (user&&user.GetComponent<NetworkTransformSender>()!=null) {
 				user.SendMessage("ForceSendTransform");
 				Debug.Log("ForceSendTransform: "+ objName);
 			}
