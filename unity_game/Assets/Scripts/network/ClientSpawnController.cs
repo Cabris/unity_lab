@@ -11,7 +11,7 @@ public class ClientSpawnController : MonoBehaviour
 	public Transform localPlayerObject; //Note: we leave local player as object and do not instantiate it to keep existing Island Demo scripts working.
 	public GameObject remotePlayerPrefab;
 	public Transform[] spawnPoints;
-	private static System.Random random = new System.Random ();
+//	private static System.Random random = new System.Random ();
 	
 	void SpawnPlayers ()
 	{
