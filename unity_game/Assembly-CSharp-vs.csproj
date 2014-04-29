@@ -53,12 +53,14 @@
      <Compile Include="Assets\Scripts\SmartFox.cs" />
      <Compile Include="Assets\Scripts\gui_Login.cs" />
      <Compile Include="Assets\Scripts\network\AnimationSynchronizer.cs" />
+     <Compile Include="Assets\Scripts\network\ClientController.cs" />
      <Compile Include="Assets\Scripts\network\ClientNetworkController.cs" />
      <Compile Include="Assets\Scripts\network\ClientSpawnController.cs" />
      <Compile Include="Assets\Scripts\network\NetworkController.cs" />
      <Compile Include="Assets\Scripts\network\NetworkTransform.cs" />
      <Compile Include="Assets\Scripts\network\NetworkTransformReceiver.cs" />
      <Compile Include="Assets\Scripts\network\NetworkTransformSender.cs" />
+     <Compile Include="Assets\Scripts\network\ServerController.cs" />
      <Compile Include="Assets\Scripts\network\ServerNetworkController.cs" />
      <Compile Include="Assets\Scripts\network\ServerSpawnController.cs" />
      <Compile Include="Assets\Scripts\network\SmartFox.cs" />

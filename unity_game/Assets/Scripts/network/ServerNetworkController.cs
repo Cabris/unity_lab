@@ -26,13 +26,13 @@ public class ServerNetworkController : NetworkController {
 	}
 
 	protected override void OnJoinRoom(Room room) {
-		//SendMessage("SpawnPlayers");
+		base.OnJoinRoom(room);
 		Debug.Log("Scene Connected !");
 	}
 
 	// Here we process incoming SFS objects
 	protected  override void OnObjectReceived(SFSObject data, User fromUser) {
-		//First determine the type of this object - what it contains ?
+		base.OnObjectReceived(data,fromUser);
 		String _cmd = data.GetString("_cmd");
 		Debug.Log("OnObjectReceived: "+_cmd);
 		switch (_cmd) {
@@ -47,7 +47,6 @@ public class ServerNetworkController : NetworkController {
 			break;
 		case "f": // "a" - for animation message received
 			ForceSendTransform(data);
-//			Debug.Log("ForceSendTransform");
 			break;
 		}
 	}

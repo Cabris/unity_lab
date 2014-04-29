@@ -1,12 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\network\NetworkTransform.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\network\NetworkController.cs">
     <Files>
-      <File FileName="Assets\Scripts\network\NetworkController.cs" Line="30" Column="34" />
-      <File FileName="Assets\Scripts\network\ClientNetworkController.cs" Line="48" Column="43" />
-      <File FileName="Assets\Scripts\network\ServerNetworkController.cs" Line="71" Column="42" />
-      <File FileName="Assets\Scripts\network\ClientSpawnController.cs" Line="18" Column="22" />
-      <File FileName="Assets\Scripts\network\NetworkTransform.cs" Line="51" Column="36" />
+      <File FileName="Assets\Scripts\network\NetworkTransform.cs" Line="46" Column="104" />
+      <File FileName="Assets\Scripts\network\NetworkController.cs" Line="89" Column="3" />
+      <File FileName="Assets\Scripts\network\ClientNetworkController.cs" Line="38" Column="25" />
+      <File FileName="Assets\Scripts\network\ServerNetworkController.cs" Line="29" Column="25" />
+      <File FileName="Assets\Scripts\network\NetworkTransformSender.cs" Line="29" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

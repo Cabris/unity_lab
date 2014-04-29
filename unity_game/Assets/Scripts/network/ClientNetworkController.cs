@@ -35,6 +35,7 @@ public class ClientNetworkController : NetworkController {
 	}
 
 	protected  override void OnJoinRoom(Room room) {
+		base.OnJoinRoom(room);
 		SendMessage("SpawnPlayers");
 		Debug.Log("Connected !");
 		foreach(NetworkTransformReceiver r in propsReceiver){
@@ -46,6 +47,7 @@ public class ClientNetworkController : NetworkController {
 	
 	// Here we process incoming SFS objects
 	protected  override void OnObjectReceived(SFSObject data, User fromUser) {
+		base.OnObjectReceived(data,fromUser);
 		String _cmd = data.GetString("_cmd");
 		switch (_cmd) {
 			case "t":  // "t" - means transform sync data
