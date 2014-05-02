@@ -26,29 +26,31 @@ public class NetworkTransform {
 			return false;
 		}
 	}
-	
+
+	Hashtable GetData ()
+	{
+		Hashtable data = new Hashtable ();
+		//data.Put ("_cmd", "t");
+		//We put _cmd = "t" here to know that this object contains transform sync data. 
+		data.Add ("x", this.position.x);
+		data.Add ("y", this.position.y);
+		data.Add ("z", this.position.z);
+		data.Add ("rx", this.rotation.x);
+		data.Add ("ry", this.rotation.y);
+		data.Add ("rz", this.rotation.z);
+		data.Add ("w", this.rotation.w);
+		data.Add ("object_name", this.obj.name);
+		return data;
+	}
+
+
+
 	// Send transform to all other users
 	public void DoSend() {
 		SmartFoxClient client = ClientNetworkController.GetClient();
-		
-		SFSObject data = new SFSObject();
-		data.Put("_cmd", "t");  //We put _cmd = "t" here to know that this object contains transform sync data. 
-		data.Put("x", this.position.x);
-		data.Put("y", this.position.y);
-		data.Put("z", this.position.z);
-		
-		data.Put("rx", this.rotation.x);
-		data.Put("ry", this.rotation.y);
-		data.Put("rz", this.rotation.z);
-		data.Put("w", this.rotation.w);
-		data.Put("object_name",this.obj.name);
-		// We send data using SendObject method here. To optimize this you can use SendXtMessage method with custum formatted method
-		// Also an extension on the server side could decide which users really need to receive the transform
-		client.SendObject(data);
-
-//		Hashtable h=new Hashtable();
-//		h.Add("h0","sss");
-//		client.SendXtMessage("test","yo",h);
+		Hashtable h=GetData();
+	//	h.Add("h0","sss");
+		client.SendXtMessage("test","t-b",h);
 	}
 	
 	public void InitFromValues(Vector3 pos, Quaternion rot) {

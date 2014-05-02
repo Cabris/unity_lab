@@ -31,6 +31,7 @@ public class ClientNetworkController : NetworkController {
 		data.Put ("object_name", go.name); // Who this message is for
 		data.Put ("to_user", "scene"); // Who this message is for
 		client.SendObject (data);
+
 		Debug.Log("ForceRemoteObjectToSendTransform: "+go.name);
 	}
 
@@ -41,7 +42,24 @@ public class ClientNetworkController : NetworkController {
 		foreach(NetworkTransformReceiver r in propsReceiver){
 			r.StartReceiving();
 			//Debug.Log("force t: "+r.gameObject.name);
-			ForceRemoteObjectToSendTransform(r.gameObject);
+			//ForceRemoteObjectToSendTransform(r.gameObject);
+		}
+		Hashtable data = new Hashtable ();
+		data.Add("sceneName","lab1");
+		SmartFoxClient client = ClientNetworkController.GetClient();
+		client.SendXtMessage("test","clientOnline",data);
+
+	}
+
+	protected override void onExtensionResponse (object obj, string type)
+	{
+		//base.onExtensionResponse (obj, type);
+		SFSObject data=obj as SFSObject;
+		String _cmd = data.GetString("cmd");
+		switch (_cmd) {
+		case "t":  // "t" - means transform sync data
+			SendTransformToRemoteObject(data);
+			break;
 		}
 	}
 	
@@ -49,17 +67,14 @@ public class ClientNetworkController : NetworkController {
 	protected  override void OnObjectReceived(SFSObject data, User fromUser) {
 		base.OnObjectReceived(data,fromUser);
 		String _cmd = data.GetString("_cmd");
-		switch (_cmd) {
-			case "t":  // "t" - means transform sync data
-				SendTransformToRemoteObject(data, fromUser);
-				break;
-			case "f":  // "f" - means force our local player to send his transform
-				ForceSendTransform(data);
-				break;
-//			case "a": // "a" - for animation message received
-//				SendAnimationMessageToRemotePlayerObject(data, fromUser);
+//		switch (_cmd) {
+//			case "t":  // "t" - means transform sync data
+//				SendTransformToRemoteObject(data, fromUser);
 //				break;
-		}
+//			case "f":  // "f" - means force our local player to send his transform
+//				ForceSendTransform(data);
+//				break;
+//		}
 	}
 
 	private void SendTransformToRemoteObject(SFSObject data, User fromUser) {
@@ -70,6 +85,13 @@ public class ClientNetworkController : NetworkController {
 			if (user!=null&&user.GetComponent<NetworkTransformReceiver>()!=null)
 				user.SendMessage("ReceiveTransform", data);
 		}
+	}
+
+	private void SendTransformToRemoteObject(SFSObject data) {
+		string objName= data.GetString("object_name");
+			GameObject user = GameObject.Find(objName);
+			if (user!=null&&user.GetComponent<NetworkTransformReceiver>()!=null)
+				user.SendMessage("ReceiveTransform", data);
 	}
 
 	private void ForceSendTransform(SFSObject data) {

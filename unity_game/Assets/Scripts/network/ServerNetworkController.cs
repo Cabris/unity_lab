@@ -28,6 +28,31 @@ public class ServerNetworkController : NetworkController {
 	protected override void OnJoinRoom(Room room) {
 		base.OnJoinRoom(room);
 		Debug.Log("Scene Connected !");
+
+		Hashtable data = new Hashtable ();
+		data.Add("sceneName","lab1");
+		SmartFoxClient client = ClientNetworkController.GetClient();
+		client.SendXtMessage("test","sceneOnline",data);
+
+	}
+
+	protected override void onExtensionResponse (object obj, string type)
+	{
+		SFSObject data=obj as SFSObject;
+
+		String _cmd = data.GetString("cmd");
+		if(_cmd!=null)
+		switch (_cmd) {
+		case "getScene":  // "t" - means transform sync data
+			foreach(NetworkTransformSender r in propsSender){
+				//r.StartSending();
+				r.ForceSendTransform();
+			}
+			break;
+		}
+		string msg=data.GetString("#");
+		if(msg!=null)
+			Debug.Log(msg);
 	}
 
 	// Here we process incoming SFS objects
