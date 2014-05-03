@@ -8,8 +8,10 @@ using SmartFoxClientAPI.Data;
 public class NetworkTransformReceiver : MonoBehaviour {
 	
 	public float yAdjust = 0.0f; // Ajust y position when synchronizing the local and remote models.
-	public float interpolationPeriod = 0.1f;  // This value should be equal to the sendingPerion value of the Sender script
-	
+	public float interpolationPeriod = 0.01f;  // This value should be equal to the sendingPerion value of the Sender script
+	public int qc;
+	public long ts=0;
+
 	private bool receiveMode = false;
 	private NetworkTransform lastState; // Last received transform state
 	private NetworkTransform interpolateTo = null;  // Last state we interpolate to in receiving mode.
@@ -33,26 +35,36 @@ public class NetworkTransformReceiver : MonoBehaviour {
 		if (receiveMode) {
 			InterpolateTransform();
 		}
+		qc=queue.Count;
 	}
-	
+
+	public static Vector3 GetPos(SFSObject data){
+		Vector3 pos = new Vector3(Convert.ToSingle(data.GetNumber("x")), 
+		                          Convert.ToSingle(data.GetNumber("y")),
+		                          Convert.ToSingle(data.GetNumber("z"))
+		                          );
+		return pos;
+	}
+
+	public static Quaternion GetRot(SFSObject data){
+		Quaternion rot = new Quaternion(Convert.ToSingle(data.GetNumber("rx")), 
+		                                Convert.ToSingle(data.GetNumber("ry")),
+		                                Convert.ToSingle(data.GetNumber("rz")),
+		                                Convert.ToSingle(data.GetNumber("w"))
+		                                );
+		return rot;
+	}
+
 	//This method is called when receiving remote transform
 	// We update lastState here to know last received transform state
-	void ReceiveTransform(SFSObject data) {
+	public void ReceiveTransform(SFSObject data) {
 		if (receiveMode) {
-			Vector3 pos = new Vector3(Convert.ToSingle(data.GetNumber("x")), 
-			                          Convert.ToSingle(data.GetNumber("y"))+yAdjust,
-			                          Convert.ToSingle(data.GetNumber("z"))
-			                          );
-			
-			Quaternion rot = new Quaternion(Convert.ToSingle(data.GetNumber("rx")), 
-			                                Convert.ToSingle(data.GetNumber("ry")),
-			                                Convert.ToSingle(data.GetNumber("rz")),
-			                                Convert.ToSingle(data.GetNumber("w"))
-			                                
-			                                );
-			
+			Vector3 pos = GetPos(data);
+			pos.y+=yAdjust;
+			Quaternion rot = GetRot(data);
+
+
 			lastState.InitFromValues(pos, rot);
-			
 			// Adding next received state to the queue	
 			NetworkTransform nextState = new NetworkTransform(this.gameObject);
 			nextState.InitFromValues(pos, rot);
@@ -66,7 +78,8 @@ public class NetworkTransformReceiver : MonoBehaviour {
 		if (interpolationPoint < maxInterpolationPoints) {
 			interpolationPoint++;
 			float t = interpolationPoint*interpolationDelta;
-			if (t>1) t=1;
+			if (t>1) 
+				t=1;
 			transform.position = Vector3.Lerp(interpolateFrom.position, interpolateTo.position, t);
 			transform.rotation = Quaternion.Slerp(interpolateFrom.rotation, interpolateTo.rotation, t);
 		}
@@ -103,5 +116,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 			}
 		}	
 	}
+
+
 	
 }

@@ -135,7 +135,7 @@ public class gui_Login : MonoBehaviour {
 	}
 	
 	public void OnDebugMessage(string message) {
-		Debug.Log("[SFS DEBUG] " + message);
+		//Debug.Log("[SFS DEBUG] " + message);
 	}
 	
 	public void OnLogin(bool success, string name, string error) {
@@ -158,15 +158,15 @@ public class gui_Login : MonoBehaviour {
 			foreach (int roomId in roomList.Keys)	{					
 				Room room = (Room)roomList[roomId];
 				if (room.IsPrivate()) {
-					Debug.Log("Room id: " + roomId + " has name: " + room.GetName() + "(private)");
+					//Debug.Log("Room id: " + roomId + " has name: " + room.GetName() + "(private)");
 				}
-				Debug.Log("Room id: " + roomId + " has name: " + room.GetName());
+				//Debug.Log("Room id: " + roomId + " has name: " + room.GetName());
 			}
 			UnregisterSFSSceneCallbacks();
 			Application.LoadLevel(targetScene);
 		}
 		catch (Exception e) {
-			Debug.Log("Room list error: "+e.Message+" "+e.StackTrace);
+			//Debug.Log("Room list error: "+e.Message+" "+e.StackTrace);
 		}
 	}
 }

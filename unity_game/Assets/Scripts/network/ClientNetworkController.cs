@@ -8,7 +8,9 @@ using SmartFoxClientAPI.Data;
 public class ClientNetworkController : NetworkController {
 
 	public NetworkTransformReceiver[] propsReceiver; 
-	
+	public string sceneName;
+	ClientSpawnController spawn;
+	public string scene;
 	// We start working from here
 	void Start() {
 		Application.runInBackground = true; // Let the application be running whyle the window is not active.
@@ -19,89 +21,74 @@ public class ClientNetworkController : NetworkController {
 		}	
 		SubscribeEvents();
 		started = true;
+		spawn=GetComponent<ClientSpawnController>();
 		smartFoxClient.JoinRoom("Central Square");
-
 	}
 
-	public static void ForceRemoteObjectToSendTransform (GameObject go)
+	protected override void OnJoinRoom (Room room)
 	{
-		SmartFoxClient client = ClientNetworkController.GetClient ();
-		SFSObject data = new SFSObject ();
-		data.Put ("_cmd", "f");  //We put _cmd = "f" here to know that this object contains "force send transform" demand
-		data.Put ("object_name", go.name); // Who this message is for
-		data.Put ("to_user", "scene"); // Who this message is for
-		client.SendObject (data);
-
-		Debug.Log("ForceRemoteObjectToSendTransform: "+go.name);
-	}
-
-	protected  override void OnJoinRoom(Room room) {
-		base.OnJoinRoom(room);
-		SendMessage("SpawnPlayers");
-		Debug.Log("Connected !");
-		foreach(NetworkTransformReceiver r in propsReceiver){
-			r.StartReceiving();
-			//Debug.Log("force t: "+r.gameObject.name);
-			//ForceRemoteObjectToSendTransform(r.gameObject);
-		}
-		Hashtable data = new Hashtable ();
-		data.Add("sceneName","lab1");
+		base.OnJoinRoom (room);
+		Hashtable data = new Hashtable();
+		data.Add("sceneName","lab");
 		SmartFoxClient client = ClientNetworkController.GetClient();
 		client.SendXtMessage("test","clientOnline",data);
-
 	}
 
 	protected override void onExtensionResponse (object obj, string type)
 	{
-		//base.onExtensionResponse (obj, type);
+		base.onExtensionResponse (obj, type);
 		SFSObject data=obj as SFSObject;
-		String _cmd = data.GetString("cmd");
-		switch (_cmd) {
-		case "t":  // "t" - means transform sync data
-			SendTransformToRemoteObject(data);
-			break;
+		HandleReceiveData(data);
+	}
+
+	protected override void OnUserLeaveRoom (int roomId, int userId, string userName)
+	{
+		base.OnUserLeaveRoom (roomId, userId, userName);
+		spawn.UserLeaveRoom(userId);
+		if(userName==scene){//scene lost
+			Application.Quit();
+		}
+	}
+
+	protected override void OnObjectReceived (SFSObject data, User fromUser)
+	{
+		base.OnObjectReceived (data, fromUser);
+		HandleReceiveData(data);
+	}
+
+	void HandleReceiveData(SFSObject data){
+		string cmd=data.GetString("cmd");
+		if(cmd=="t"){
+			string object_name=data.GetString("object_name");
+			GameObject g=GameObject.Find(object_name);
+			if(g!=null){
+				NetworkTransformReceiver tr=g.GetComponent<NetworkTransformReceiver>();
+				if(tr!=null)
+					tr.ReceiveTransform(data);
+			}
+		}
+		if(cmd=="playerStatus"){
+			if(data.GetString("userName")==GetClient().myUserName)
+				spawn.SpawnLocalPlayer(data);
+			else
+				spawn.SpawnRemotePlayer(data);
+			scene=data.GetString("scene");
+		}
+	}
+
+	void OnGUI() {
+		if(spawn.localPlayer!=null)
+		GUI.Label(new Rect(10, 25, 500, 24), 
+		          "local player: " + 
+		          spawn.localPlayer.name+
+		          ", pos: "+spawn.localPlayer.transform.position );
+		for(int i=0;i<spawn.remotePlayers.Count;i++){
+			GameObject r=spawn.remotePlayers[i];
+			GUI.Label(new Rect(10, 50+25*i, 500, 24), 
+			          "remote player: " + 
+			          r.name+", pos: "+r.transform.position );
 		}
 	}
 	
-	// Here we process incoming SFS objects
-	protected  override void OnObjectReceived(SFSObject data, User fromUser) {
-		base.OnObjectReceived(data,fromUser);
-		String _cmd = data.GetString("_cmd");
-//		switch (_cmd) {
-//			case "t":  // "t" - means transform sync data
-//				SendTransformToRemoteObject(data, fromUser);
-//				break;
-//			case "f":  // "f" - means force our local player to send his transform
-//				ForceSendTransform(data);
-//				break;
-//		}
-	}
-
-	private void SendTransformToRemoteObject(SFSObject data, User fromUser) {
-		int fromUserId = fromUser.GetId();
-		string objName= data.GetString("object_name");
-		if (fromUserId!=smartFoxClient.myUserId) {
-			GameObject user = GameObject.Find(objName);
-			if (user!=null&&user.GetComponent<NetworkTransformReceiver>()!=null)
-				user.SendMessage("ReceiveTransform", data);
-		}
-	}
-
-	private void SendTransformToRemoteObject(SFSObject data) {
-		string objName= data.GetString("object_name");
-			GameObject user = GameObject.Find(objName);
-			if (user!=null&&user.GetComponent<NetworkTransformReceiver>()!=null)
-				user.SendMessage("ReceiveTransform", data);
-	}
-
-	private void ForceSendTransform(SFSObject data) {
-		//if this message is addressed to this user
-		if ((int)data.GetNumber("to_uid") == smartFoxClient.myUserId) {
-			// Find local player object
-			GameObject user = GameObject.Find("localPlayer");
-			// Send him message
-			if (user) user.SendMessage("ForceSendTransform");
-		}
-	}
 
 }

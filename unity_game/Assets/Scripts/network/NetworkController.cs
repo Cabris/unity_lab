@@ -8,7 +8,7 @@ public class NetworkController : MonoBehaviour
 {
 	
 	protected static SmartFoxClient smartFoxClient;
-	
+	public Connector connector=new Connector();
 	public static SmartFoxClient GetClient ()
 	{
 		return SmartFox.Connection;
@@ -40,14 +40,13 @@ public class NetworkController : MonoBehaviour
 	// This will be invoked when remote player enters our room
 	virtual protected void OnUserEnterRoom (int roomId, User user)
 	{
-		//We assume here that we have only one room - so no need to check roomId
-		SendMessage ("UserEnterRoom", user);
+
 	}
 	
 	// This will be invoked when a remote player lefts our room
 	virtual protected  void OnUserLeaveRoom (int roomId, int userId, string userName)
 	{
-		SendMessage ("UserLeaveRoom", userId);
+
 	}
 	
 	// Here we process incoming SFS objects
@@ -55,7 +54,14 @@ public class NetworkController : MonoBehaviour
 	{
 		
 	}
-	
+
+	public void Send(string to,SFSObject data){
+		SmartFoxClient client = GetClient ();
+		client.SendObject(data);
+	}
+
+
+
 	virtual public  void OnPublicMessage (string message, User fromUser, int roomId)
 	{
 		int userId = fromUser.GetId ();
@@ -71,24 +77,14 @@ public class NetworkController : MonoBehaviour
 			}
 		}
 	}
-	
-	virtual protected  void SendAnimationMessageToRemotePlayerObject (SFSObject data, User fromUser)
-	{
-		int userId = fromUser.GetId ();
-		if (userId != smartFoxClient.myUserId) {  // If it's not myself
-			//Find user object with such Id
-			GameObject user = GameObject.Find ("remote_" + userId);
-			//If found - send him animation message
-			if (user)
-				user.SendMessage ("PlayAnimation", data.GetString ("mes"));
-		}
-	}
 
 	virtual protected void onExtensionResponse(object obj,string type){
 		Debug.Log(type);
-
 		Debug.Log(obj.GetType());
 		Debug.Log("onExtensionResponse");
+
+
+		connector.OnReceive(obj as SFSObject);
 	}
 
 	#region Events

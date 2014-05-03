@@ -29,28 +29,30 @@ public class NetworkTransform {
 
 	Hashtable GetData ()
 	{
-		Hashtable data = new Hashtable ();
-		//data.Put ("_cmd", "t");
-		//We put _cmd = "t" here to know that this object contains transform sync data. 
-		data.Add ("x", this.position.x);
-		data.Add ("y", this.position.y);
-		data.Add ("z", this.position.z);
-		data.Add ("rx", this.rotation.x);
-		data.Add ("ry", this.rotation.y);
-		data.Add ("rz", this.rotation.z);
-		data.Add ("w", this.rotation.w);
+		Hashtable data = GetTransform(this.obj.transform);
 		data.Add ("object_name", this.obj.name);
+		data.Add ("cmd", "t");
 		return data;
 	}
 
-
+	public static Hashtable GetTransform (Transform t)
+	{
+		Hashtable data = new Hashtable ();
+		data.Add ("x", t.position.x);
+		data.Add ("y", t.position.y);
+		data.Add ("z", t.position.z);
+		data.Add ("rx", t.rotation.x);
+		data.Add ("ry", t.rotation.y);
+		data.Add ("rz", t.rotation.z);
+		data.Add ("w", t.rotation.w);
+		return data;
+	}
 
 	// Send transform to all other users
 	public void DoSend() {
 		SmartFoxClient client = ClientNetworkController.GetClient();
 		Hashtable h=GetData();
-	//	h.Add("h0","sss");
-		client.SendXtMessage("test","t-b",h);
+		client.SendXtMessage("test","b",h);
 	}
 	
 	public void InitFromValues(Vector3 pos, Quaternion rot) {

@@ -1,16 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\network\ServerNetworkController.cs">
-    <Files>
-      <File FileName="Assets\Scripts\network\NetworkTransform.cs" Line="52" Column="23" />
-      <File FileName="Assets\Scripts\network\NetworkTransformReceiver.cs" Line="40" Column="33" />
-      <File FileName="Assets\Scripts\network\NetworkController.cs" Line="44" Column="14" />
-      <File FileName="Assets\Scripts\network\ClientNetworkController.cs" Line="61" Column="31" />
-      <File FileName="Assets\Scripts\network\ServerNetworkController.cs" Line="36" Column="3" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Assets\Scripts\network\ClientNetworkController.cs" line="57" offsetX="394" offsetY="1344" expression="_cmd" liveUpdate="False" />
+    <Watch file="Assets\Scripts\network\ClientNetworkController.cs" line="57" offsetX="394" offsetY="1344" expression="_cmd" liveUpdate="False" />
+    <Watch file="Assets\Scripts\network\ClientNetworkController.cs" line="57" offsetX="394" offsetY="1344" expression="_cmd" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>
