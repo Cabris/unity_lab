@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SceneController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\network\SceneSpawnController.cs">
     <Files>
-      <File FileName="Assets\Scripts\SceneController.cs" Line="16" Column="46" />
-      <File FileName="Assets\Scripts\PrefabManager.cs" Line="6" Column="57" />
+      <File FileName="Assets\Scripts\network\SceneSpawnController.cs" Line="21" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

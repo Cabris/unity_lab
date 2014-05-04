@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 using SmartFoxClientAPI;
 using SmartFoxClientAPI.Data;
 
 public class SceneNetworkController : NetworkController {
-
-	public NetworkTransformSender[] propsSender;
+	
+	public SceneController sceneController;
 	SceneSpawnController spawn;
 	// We start working from here
 	void Start() {
@@ -35,6 +36,7 @@ public class SceneNetworkController : NetworkController {
 	{
 		base.OnUserEnterRoom (roomId, user);
 		spawn.SpawnServerPlayer(user);
+		SendSceneData(user);
 	}
 
 	protected override void OnObjectReceived (SFSObject data, User fromUser)
@@ -45,7 +47,6 @@ public class SceneNetworkController : NetworkController {
 
 	void HandleReceiveData(SFSObject data){
 		string cmd=data.GetString("cmd");
-//		Debug.Log("HandleReceiveData: "+cmd);
 		if(cmd=="m"){
 			string object_name=data.GetString("object_name");
 			GameObject g=GameObject.Find(object_name);
@@ -77,8 +78,21 @@ public class SceneNetworkController : NetworkController {
 			          s.name+", pos: "+s.transform.position );
 				i++;
 		}
-		
+	}
 
+	void SendSceneData(User toUser){
+		SceneObject[] sceneObjs=sceneController.GetComponentsInChildren<SceneObject>();
+		SmartFoxClient client = GetClient();
+		SFSObject data=new SFSObject();
+		data.Put("cmd","sceneData");
+		data.Put("toUser",toUser.GetName());
+		List<SFSObject> sdatas=new List<SFSObject>();
+		foreach(SceneObject s in sceneObjs){
+			SFSObject sdata=s.GetData();
+			sdatas.Add(sdata);
+		}
+		data.PutList("datas",sdatas);
+		client.SendObject(data);
 	}
 
 }

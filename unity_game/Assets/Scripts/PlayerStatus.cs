@@ -54,8 +54,7 @@ public class PlayerStatus : MonoBehaviour {
 		this.gameObject.name=data.GetString("name");
 		this.userName=data.GetString("userName");
 		SFSObject t=data.GetObj("transform");
-		transform.position=NetworkTransformReceiver.GetPos(t);
-		transform.rotation=NetworkTransformReceiver.GetRot(t);
+		NetworkTransformReceiver.SetTransform(transform,t);
 	} 
 
 }

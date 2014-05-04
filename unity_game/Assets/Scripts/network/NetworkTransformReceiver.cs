@@ -27,7 +27,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 	// We call it on remote player to start receiving his transform
 	public void StartReceiving() {
 		lastState = new NetworkTransform(this.gameObject);	
-		fpsStorage = GameObject.Find(" FPS").GetComponent(typeof(FPSStorage)) as FPSStorage;
+		fpsStorage = GameObject.Find("FPS").GetComponent(typeof(FPSStorage)) as FPSStorage;
 		receiveMode = true;
 	}
 	
@@ -38,7 +38,12 @@ public class NetworkTransformReceiver : MonoBehaviour {
 		qc=queue.Count;
 	}
 
-	public static Vector3 GetPos(SFSObject data){
+	public static void SetTransform(Transform t, SFSObject data){
+		t.position=GetPos(data);
+		t.rotation=GetRot(data);
+	}
+
+	public  static Vector3 GetPos(SFSObject data){
 		Vector3 pos = new Vector3(Convert.ToSingle(data.GetNumber("x")), 
 		                          Convert.ToSingle(data.GetNumber("y")),
 		                          Convert.ToSingle(data.GetNumber("z"))
@@ -46,7 +51,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 		return pos;
 	}
 
-	public static Quaternion GetRot(SFSObject data){
+	public  static Quaternion GetRot(SFSObject data){
 		Quaternion rot = new Quaternion(Convert.ToSingle(data.GetNumber("rx")), 
 		                                Convert.ToSingle(data.GetNumber("ry")),
 		                                Convert.ToSingle(data.GetNumber("rz")),
@@ -62,8 +67,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 			Vector3 pos = GetPos(data);
 			pos.y+=yAdjust;
 			Quaternion rot = GetRot(data);
-
-
+			Debug.Log("ReceiveTransform:"+gameObject.name);
 			lastState.InitFromValues(pos, rot);
 			// Adding next received state to the queue	
 			NetworkTransform nextState = new NetworkTransform(this.gameObject);

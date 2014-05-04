@@ -79,11 +79,9 @@ public class NetworkController : MonoBehaviour
 	}
 
 	virtual protected void onExtensionResponse(object obj,string type){
-		Debug.Log(type);
-		Debug.Log(obj.GetType());
-		Debug.Log("onExtensionResponse");
-
-
+		//Debug.Log(type);
+		//Debug.Log(obj.GetType());
+		//Debug.Log("onExtensionResponse");
 		connector.OnReceive(obj as SFSObject);
 	}
 

@@ -18,6 +18,7 @@ public class SceneSpawnController : MonoBehaviour {
 		int n = spawnPoints.Length;
 		Transform spawnPoint = spawnPoints [playerCount%n];
 		Vector3 relativePos = transform.position - spawnPoint.position;
+		relativePos.y=0;
 		Quaternion rotation = Quaternion.LookRotation(relativePos);
 		GameObject playerInServer = 
 			Instantiate(serverPlayerPrefab, spawnPoint.position, rotation) as GameObject;
@@ -48,7 +49,6 @@ public class SceneSpawnController : MonoBehaviour {
 		SmartFoxClient client = ClientNetworkController.GetClient();
 		SFSObject o=status.ToSFSObject();
 		o.Put("scene",client.myUserName);
-		o.Put("to",toUser.GetName());
 		client.SendObject(o);
 	}
 	

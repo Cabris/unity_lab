@@ -48,6 +48,19 @@ public class NetworkTransform {
 		return data;
 	}
 
+	public static SFSObject GetTransformAsSfs (Transform t)
+	{
+		SFSObject data = new SFSObject ();
+		data.Put ("x", t.position.x);
+		data.Put ("y", t.position.y);
+		data.Put ("z", t.position.z);
+		data.Put ("rx", t.rotation.x);
+		data.Put ("ry", t.rotation.y);
+		data.Put ("rz", t.rotation.z);
+		data.Put ("w", t.rotation.w);
+		return data;
+	}
+
 	// Send transform to all other users
 	public void DoSend() {
 		SmartFoxClient client = ClientNetworkController.GetClient();
