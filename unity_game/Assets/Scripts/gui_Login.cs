@@ -18,7 +18,31 @@ public class gui_Login : MonoBehaviour {
 	// variables used in script
 	private string statusMessage = "";
 	private string username = "";
-	
+
+	GUIContent[] comboBoxList;
+	private ComboBox comboBoxControl;// = new ComboBox();
+	private GUIStyle listStyle = new GUIStyle();
+
+	void Start()
+	{
+		comboBoxList = new GUIContent[5];
+		comboBoxList[0] = new GUIContent("Thing 1");
+		comboBoxList[1] = new GUIContent("Thing 2");
+		comboBoxList[2] = new GUIContent("Thing 3");
+		comboBoxList[3] = new GUIContent("Thing 4");
+		comboBoxList[4] = new GUIContent("Thing 5");
+		
+		listStyle.normal.textColor = Color.white; 
+		listStyle.onHover.background =
+			listStyle.hover.background = new Texture2D(2, 2);
+		listStyle.padding.left =
+			listStyle.padding.right =
+				listStyle.padding.top =
+				listStyle.padding.bottom = 4;
+		
+		comboBoxControl = new ComboBox(new Rect(100, 120, 100, 20), comboBoxList[0], comboBoxList, "button", "box", listStyle);
+	}
+
 	void Awake() {
 		Application.runInBackground = true; 	
 
@@ -55,13 +79,7 @@ public class gui_Login : MonoBehaviour {
 	}
 	
 	void OnGUI() {
-		isServer = GUI.Toggle(new Rect(10, 80, 250, 30), isServer, "isServer");
-		if(isServer){
-			targetScene="serverLab";
-			username="scene";
-		}else{
-			targetScene="clientLab";
-		}
+
 		// server IP in bottom left corner
 		GUI.Label(new Rect(10, Screen.height-25, 200, 24), "Server: " + serverIP);
 		
@@ -76,14 +94,31 @@ public class gui_Login : MonoBehaviour {
 
 		// Show login fields if connected and reconnect button if disconnect
 		if (smartFox.IsConnected()) {
-			GUI.Label(new Rect(10, 116, 100, 100), "Username: ");
-			username = GUI.TextField(new Rect(100, 116, 200, 20), username, 25);
-			if ( GUI.Button(new Rect(100, 166, 300, 24), "Login as "+targetScene)  || (Event.current.type == EventType.keyDown && Event.current.character == '\n')) {
+
+			isServer = GUI.Toggle(new Rect(10, 80, 250, 30), isServer, "isServer");
+
+			if(isServer){
+				targetScene="serverLab";
+				GUI.Label(new Rect(10, 120, 100, 100), "SceneName: ");
+				int i=comboBoxControl.Show();
+				//Debug.Log(i);
+				GUIContent c=comboBoxList[i];
+				username=c.text;
+
+			}else{
+				targetScene="clientLab";
+				GUI.Label(new Rect(10, 120, 100, 100), "Username: ");
+				username = GUI.TextField(new Rect(100, 120, 200, 20), username, 25);
+			}
+			if ( GUI.Button(new Rect(Screen.width/2-150, Screen.height/2, 300, 24), "Login as "+targetScene)  
+			    || (Event.current.type == EventType.keyDown && Event.current.character == '\n')) {
 				smartFox.Login(zone, username, "");
 			}
+
 		} else {
-			if ( GUI.Button(new Rect(100, 166, 100, 24), "Reconnect")  || (Event.current.type == EventType.keyDown && Event.current.character == '\n')) {
-				Application.LoadLevel(targetScene);
+			if ( GUI.Button(new Rect(Screen.width/2-50, Screen.height/2, 100, 24), "Reconnect")  
+			    || (Event.current.type == EventType.keyDown && Event.current.character == '\n')) {
+				Application.LoadLevel("login");
 			}
 		}
 		

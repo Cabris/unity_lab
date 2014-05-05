@@ -7,58 +7,49 @@ using SmartFoxClientAPI.Data;
 
 public class ClientPlayerCommand : MonoBehaviour
 {
-	public bool diff=false;
 	public bool isWalking=false;
 	public bool isTurnRight=false;
 	public bool isTurnLeft=false;
+	
+	bool isWalkingLast=false;
+	bool isTurnRightLast=false;
+	bool isTurnLeftLast=false;
+	
 	// Use this for initialization
 	void Start ()
 	{
 		
 	}
 	
-	// Update is called once per frame
 	void FixedUpdate ()
 	{ 
-		diff=false;
-		if (Input.GetKeyDown (KeyCode.W)) {
-			diff=true;	
+		isWalking=false;
+		isTurnRight=false;
+		isTurnLeft=false;
+		if (Input.GetKey (KeyCode.W)) {	
 			isWalking=true;
 		} 
-		if (Input.GetKeyUp (KeyCode.W)) {
-			diff=true;	
-			isWalking=false;
-		}
-		if (Input.GetKeyDown (KeyCode.A)) {//left
-			diff=true;	
+		if (Input.GetKey (KeyCode.A)) {//left
 			isTurnLeft=true;
 		} 
-		if (Input.GetKeyDown (KeyCode.D)) {//right
-			diff=true;	
+		if (Input.GetKey (KeyCode.D)) {//right	
 			isTurnRight=true;
 		}
-		if (Input.GetKeyUp (KeyCode.A)) {//left
-			diff=true;	
-			isTurnLeft=false;
-		} 
-		if (Input.GetKeyUp (KeyCode.D)) {//right
-			diff=true;	
-			isTurnRight=false;
+		
+		if(isTurnLeft!=isTurnLeftLast||isTurnRight!=isTurnRightLast||isWalking!=isWalkingLast){
+			isWalkingLast=isWalking;
+			isTurnLeftLast=isTurnLeft;
+			isTurnRightLast=isTurnRight;
+			SmartFoxClient client = ClientNetworkController.GetClient ();
+			
+			Hashtable data=new Hashtable();
+			data.Add("cmd", "m");
+			data.Add("isWalking", isWalking);
+			data.Add("isTurnLeft", isTurnLeft);
+			data.Add("isTurnRight", isTurnRight);
+			data.Add("object_name", this.name);
+			client.SendXtMessage("test","s",data);
 		}
-		
-		SmartFoxClient client = ClientNetworkController.GetClient ();
-		
-		SFSObject data = new SFSObject ();
-		data.Put ("cmd", "m");  //We put _cmd = "t" here to know that this object contains transform sync data. 
-		data.Put ("isWalking", isWalking);
-		data.Put ("isTurnLeft", isTurnLeft);
-		data.Put ("isTurnRight", isTurnRight);
-		data.Put ("object_name", this.name);
-		
-		if(diff){
-			client.SendObject (data);
-		}
-		
 		
 	}
 	

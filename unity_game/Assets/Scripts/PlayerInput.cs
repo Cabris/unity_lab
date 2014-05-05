@@ -14,10 +14,10 @@ public class PlayerInput : MonoBehaviour {
 	}
 
 	void Right(){
-		character.Rotate(new Vector3(0,1,0)*50*Time.deltaTime, Space.World);
+		character.Rotate(new Vector3(0,1,0)*80*Time.deltaTime, Space.World);
 	}
 	void Left(){
-		character.Rotate(new Vector3(0,1,0)*-50*Time.deltaTime, Space.World);
+		character.Rotate(new Vector3(0,1,0)*-80*Time.deltaTime, Space.World);
 	}
 
 	public void StartWalk(){

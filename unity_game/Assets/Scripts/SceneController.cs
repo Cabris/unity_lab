@@ -17,7 +17,7 @@ public class SceneController : MonoBehaviour {
 			g.AddComponent<NetworkTransformSender>();
 			NetworkTransformSender sender=g.GetComponent<NetworkTransformSender>();
 			sender.StartSending();
-			Debug.Log(g.name+", "+type+".");
+//			Debug.Log(g.name+", "+type+".");
 		}
 	}
 

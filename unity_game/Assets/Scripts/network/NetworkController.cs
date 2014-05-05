@@ -52,16 +52,14 @@ public class NetworkController : MonoBehaviour
 	// Here we process incoming SFS objects
 	virtual protected  void OnObjectReceived (SFSObject data, User fromUser)
 	{
-		
+		HandleReceiveData(data);
 	}
 
 	public void Send(string to,SFSObject data){
 		SmartFoxClient client = GetClient ();
 		client.SendObject(data);
 	}
-
-
-
+	
 	virtual public  void OnPublicMessage (string message, User fromUser, int roomId)
 	{
 		int userId = fromUser.GetId ();
@@ -79,10 +77,9 @@ public class NetworkController : MonoBehaviour
 	}
 
 	virtual protected void onExtensionResponse(object obj,string type){
-		//Debug.Log(type);
-		//Debug.Log(obj.GetType());
-		//Debug.Log("onExtensionResponse");
 		connector.OnReceive(obj as SFSObject);
+		SFSObject data=obj as SFSObject;
+		HandleReceiveData(data);
 	}
 
 	#region Events
@@ -108,6 +105,8 @@ public class NetworkController : MonoBehaviour
 		SFSEvent.onPublicMessage -= OnPublicMessage;
 		SFSEvent.onExtensionResponse-=onExtensionResponse;
 	}
+
+	virtual protected void HandleReceiveData(SFSObject data){}
 	
 	#endregion Events
 

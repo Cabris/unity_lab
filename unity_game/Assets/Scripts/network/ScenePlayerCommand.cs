@@ -11,6 +11,7 @@ public class ScenePlayerCommand : MonoBehaviour {
 	public bool isTurnRight=false;
 	public bool isTurnLeft=false;
 	private Queue queue = new Queue();
+	public int qc;
 	// Use this for initialization
 	void Start () {
 		input=GetComponent<PlayerInput>();
@@ -18,9 +19,6 @@ public class ScenePlayerCommand : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-//		isWalking=false;
-//		isTurnLeft=false;
-//		isTurnRight=false;
 		if(queue.Count>0){
 			SFSObject data=queue.Dequeue() as SFSObject;
 			HandleCommand(data);
@@ -42,9 +40,9 @@ public class ScenePlayerCommand : MonoBehaviour {
 			input.EndTurn("left");
 			input.EndTurn("right");
 		}
-	//	Debug.Log(isWalking+","+isTurnLeft+","+isTurnRight);
+		qc=queue.Count;
 	}
-	
+
 	public void ReceiveCommand(SFSObject data) {	
 		queue.Enqueue(data);
 	}
@@ -53,7 +51,5 @@ public class ScenePlayerCommand : MonoBehaviour {
 		isWalking=data.GetBool("isWalking");
 		isTurnLeft=data.GetBool("isTurnLeft");
 		isTurnRight=data.GetBool("isTurnRight");
-		
-
 	}
 }

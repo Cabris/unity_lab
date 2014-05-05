@@ -35,13 +35,6 @@ public class ClientNetworkController : NetworkController {
 		client.SendXtMessage("test","clientOnline",data);
 	}
 	
-	protected override void onExtensionResponse (object obj, string type)
-	{
-		base.onExtensionResponse (obj, type);
-		SFSObject data=obj as SFSObject;
-		HandleReceiveData(data);
-	}
-	
 	protected override void OnUserLeaveRoom (int roomId, int userId, string userName)
 	{
 		base.OnUserLeaveRoom (roomId, userId, userName);
@@ -51,13 +44,8 @@ public class ClientNetworkController : NetworkController {
 		}
 	}
 	
-	protected override void OnObjectReceived (SFSObject data, User fromUser)
-	{
-		base.OnObjectReceived (data, fromUser);
-		HandleReceiveData(data);
-	}
-	
-	void HandleReceiveData(SFSObject data){
+	protected override void HandleReceiveData(SFSObject data){
+		base.HandleReceiveData(data);
 		string cmd=data.GetString("cmd");
 		if(cmd=="t"){
 			string object_name=data.GetString("object_name");
@@ -98,8 +86,6 @@ public class ClientNetworkController : NetworkController {
 		}
 	}
 	
-	
-	
 	void OnGUI() {
 		if(spawn.localPlayer!=null){
 			NetworkTransformReceiver r=spawn.localPlayer.GetComponent<NetworkTransformReceiver>();
@@ -115,6 +101,16 @@ public class ClientNetworkController : NetworkController {
 			          r.name+", pos: "+r.transform.position );
 		}
 	}
-	
-	
+	int i=0;
+	void Update ()
+	{ 
+		if (Input.GetKey(KeyCode.B)) {
+			SmartFoxClient client = ClientNetworkController.GetClient ();
+			SFSObject data = new SFSObject ();
+			data.Put ("cmd", "#");
+			data.Put ("#", "i="+i);
+			client.SendObject (data);
+			i++;
+		} 
+	}
 }

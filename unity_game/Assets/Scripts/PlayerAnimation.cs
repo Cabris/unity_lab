@@ -9,13 +9,11 @@ public class PlayerAnimation : MonoBehaviour {
 	public bool isWalking=false;
 	public bool isSendmode;
 	private Queue queue = new Queue();
-	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	void FixedUpdate () {
 		if(animator)
 		{
 			AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);

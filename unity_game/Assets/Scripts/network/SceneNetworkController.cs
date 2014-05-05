@@ -39,13 +39,7 @@ public class SceneNetworkController : NetworkController {
 		SendSceneData(user);
 	}
 
-	protected override void OnObjectReceived (SFSObject data, User fromUser)
-	{
-		base.OnObjectReceived (data, fromUser);
-		HandleReceiveData(data);
-	}
-
-	void HandleReceiveData(SFSObject data){
+	protected override void HandleReceiveData(SFSObject data){
 		string cmd=data.GetString("cmd");
 		if(cmd=="m"){
 			string object_name=data.GetString("object_name");
@@ -53,13 +47,10 @@ public class SceneNetworkController : NetworkController {
 			ScenePlayerCommand c=g.GetComponent<ScenePlayerCommand>();
 			c.ReceiveCommand(data);
 		}
-	}
-
-	protected override void onExtensionResponse (object obj, string type)
-	{
-		base.onExtensionResponse (obj, type);
-		SFSObject data=obj as SFSObject;
-		HandleReceiveData(data);
+		if(cmd=="#"){
+			string msg=data.GetString("#");
+			Debug.Log(msg);
+		}
 	}
 
 	protected override void OnUserLeaveRoom (int roomId, int userId, string userName)
@@ -69,14 +60,16 @@ public class SceneNetworkController : NetworkController {
 	}
 
 	void OnGUI() {
+		GUI.Label(new Rect(10, 25, 500, 24), 
+		          "scene: "+GetClient().myUserName);
 		int i=0;
 		foreach (User u in spawn.scenePlayers.Keys){
 			GameObject s=spawn.scenePlayers[u];
-			GUI.Label(new Rect(10, 25+25*i, 500, 24), 
-			          "user: "+u.GetName()+
+			GUI.Label(new Rect(10, 60+25*i, 500, 24), 
+			         ""+(i+1)+". user: "+u.GetName()+
 			          ", scene player: " + 
 			          s.name+", pos: "+s.transform.position );
-				i++;
+			i++;
 		}
 	}
 
