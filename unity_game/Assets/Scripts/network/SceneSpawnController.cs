@@ -11,12 +11,11 @@ public class SceneSpawnController : MonoBehaviour {
 	public GameObject serverPlayerPrefab;
 	public Transform[] spawnPoints;
 	private static System.Random random = new System.Random();
-	public int playerCount=0;
 	public Dictionary<User,GameObject> scenePlayers=new Dictionary<User,GameObject>();
 
 	public void SpawnServerPlayer(User user) {
 		int n = spawnPoints.Length;
-		Transform spawnPoint = spawnPoints [playerCount%n];
+		Transform spawnPoint = spawnPoints [scenePlayers.Count%n];
 		Vector3 relativePos = transform.position - spawnPoint.position;
 		relativePos.y=0;
 		Quaternion rotation = Quaternion.LookRotation(relativePos);
@@ -27,9 +26,8 @@ public class SceneSpawnController : MonoBehaviour {
 
 
 		PlayerStatus ps=playerInServer.GetComponent<PlayerStatus>();
-		ps.color=cr(playerCount);
+		ps.color=cr(scenePlayers.Count);
 		ps.userName=user.GetName();
-		playerCount++;
 
 		//SendStatusToRemotePlayers(ps);//client to create local, other client to create remote 
 
@@ -76,6 +74,7 @@ public class SceneSpawnController : MonoBehaviour {
 
 	Color cr(int i){
 		Color c=Color.white;
+		i = i % 7;
 		switch(i){
 		case 0:
 			c=Color.red;
