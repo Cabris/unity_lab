@@ -8,7 +8,6 @@ public class NetworkController : MonoBehaviour
 {
 	
 	protected static SmartFoxClient smartFoxClient;
-	public Connector connector=new Connector();
 	public static SmartFoxClient GetClient ()
 	{
 		return SmartFox.Connection;
@@ -56,8 +55,8 @@ public class NetworkController : MonoBehaviour
 	}
 
 	public void Send(string to,SFSObject data){
-		SmartFoxClient client = GetClient ();
-		client.SendObject(data);
+	//	SmartFoxClient client = GetClient ();
+	//	client.SendObject(data);
 	}
 	
 	virtual public  void OnPublicMessage (string message, User fromUser, int roomId)
@@ -77,7 +76,6 @@ public class NetworkController : MonoBehaviour
 	}
 
 	virtual protected void onExtensionResponse(object obj,string type){
-		connector.OnReceive(obj as SFSObject);
 		SFSObject data=obj as SFSObject;
 		HandleReceiveData(data);
 	}

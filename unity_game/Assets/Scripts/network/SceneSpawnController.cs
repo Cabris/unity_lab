@@ -29,12 +29,11 @@ public class SceneSpawnController : MonoBehaviour {
 		ps.color=cr(scenePlayers.Count);
 		ps.userName=user.GetName();
 
-		//SendStatusToRemotePlayers(ps);//client to create local, other client to create remote 
-
+		//tell other client new player status
 		foreach(User u in scenePlayers.Keys){
 			SendStatusToRemotePlayer(u,ps);
 		}
-		SendStatusToRemotePlayer(user,ps);
+		SendStatusToRemotePlayer(user,ps);//create local player
 		foreach(GameObject g in scenePlayers.Values){//add p alre exist
 			PlayerStatus pps=g.GetComponent<PlayerStatus>();
 			SendStatusToRemotePlayer(user,pps);

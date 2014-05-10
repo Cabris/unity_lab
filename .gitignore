@@ -21,6 +21,11 @@
 # All platforms
 unity_game/Library
 unity_game/Temp
+Library
+Temp
+sfs/.metadata
+sfs/RemoteSystemsTempFiles
+sfs/MyExtension/bin
 *.csproj
 *.unityproj
 *.sln

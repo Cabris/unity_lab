@@ -67,7 +67,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 			Vector3 pos = GetPos(data);
 			pos.y+=yAdjust;
 			Quaternion rot = GetRot(data);
-			Debug.Log("ReceiveTransform:"+gameObject.name);
+//			Debug.Log("ReceiveTransform:"+gameObject.name);
 			lastState.InitFromValues(pos, rot);
 			// Adding next received state to the queue	
 			NetworkTransform nextState = new NetworkTransform(this.gameObject);

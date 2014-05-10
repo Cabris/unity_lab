@@ -13,7 +13,7 @@ public class gui_Login : MonoBehaviour {
 	private int serverPort = 9339;				// default = 9339
 	public string zone = "city";
 	public bool debug = true;
-	public bool isServer=false;
+	public bool isScene=false;
 	string targetScene="serverLab";
 	// variables used in script
 	private string statusMessage = "";
@@ -22,15 +22,14 @@ public class gui_Login : MonoBehaviour {
 	GUIContent[] comboBoxList;
 	private ComboBox comboBoxControl;// = new ComboBox();
 	private GUIStyle listStyle = new GUIStyle();
+	private string[] scenes={"serverLab","scene1"};
 
 	void Start()
 	{
-		comboBoxList = new GUIContent[5];
-		comboBoxList[0] = new GUIContent("Thing 1");
-		comboBoxList[1] = new GUIContent("Thing 2");
-		comboBoxList[2] = new GUIContent("Thing 3");
-		comboBoxList[3] = new GUIContent("Thing 4");
-		comboBoxList[4] = new GUIContent("Thing 5");
+		comboBoxList = new GUIContent[scenes.Length];
+		for(int i=0;i<scenes.Length;i++){
+			comboBoxList[i] = new GUIContent(scenes[i]);
+		}
 		
 		listStyle.normal.textColor = Color.white; 
 		listStyle.onHover.background =
@@ -95,14 +94,14 @@ public class gui_Login : MonoBehaviour {
 		// Show login fields if connected and reconnect button if disconnect
 		if (smartFox.IsConnected()) {
 
-			isServer = GUI.Toggle(new Rect(10, 80, 250, 30), isServer, "isServer");
+			isScene = GUI.Toggle(new Rect(10, 80, 250, 30), isScene, "isServer");
 
-			if(isServer){
-				targetScene="serverLab";
+			if(isScene){
 				GUI.Label(new Rect(10, 120, 100, 100), "SceneName: ");
 				int i=comboBoxControl.Show();
 				//Debug.Log(i);
 				GUIContent c=comboBoxList[i];
+				targetScene=scenes[i];
 				username=c.text;
 
 			}else{
@@ -193,9 +192,7 @@ public class gui_Login : MonoBehaviour {
 			foreach (int roomId in roomList.Keys)	{					
 				Room room = (Room)roomList[roomId];
 				if (room.IsPrivate()) {
-					//Debug.Log("Room id: " + roomId + " has name: " + room.GetName() + "(private)");
 				}
-				//Debug.Log("Room id: " + roomId + " has name: " + room.GetName());
 			}
 			UnregisterSFSSceneCallbacks();
 			Application.LoadLevel(targetScene);

@@ -12,6 +12,8 @@ public class ClientNetworkController : NetworkController {
 	public ClientController clientController;
 	public string scene;
 	ClientSpawnController spawn;
+	public static string hostSceneName="test";
+
 	// We start working from here
 	void Start() {
 		Application.runInBackground = true; // Let the application be running whyle the window is not active.
@@ -20,6 +22,10 @@ public class ClientNetworkController : NetworkController {
 			Application.LoadLevel("login");
 			return;
 		}	
+		if (hostSceneName.Length==0) {
+			Application.LoadLevel("SceneMenu");
+			return;
+		}
 		SubscribeEvents();
 		started = true;
 		spawn=GetComponent<ClientSpawnController>();
@@ -109,7 +115,7 @@ public class ClientNetworkController : NetworkController {
 			SFSObject data = new SFSObject ();
 			data.Put ("cmd", "#");
 			data.Put ("#", "i="+i);
-			client.SendObject (data);
+			//client.SendObject (data);
 			i++;
 		} 
 	}

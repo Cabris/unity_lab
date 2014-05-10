@@ -20,16 +20,21 @@ public class SceneNetworkController : NetworkController {
 		SubscribeEvents();
 		started = true;
 		spawn=GetComponent<SceneSpawnController>();
+
 		smartFoxClient.JoinRoom("Central Square");
+	}
+
+	protected void RegistScene(){
+		Hashtable data = new Hashtable();
+		data.Add("sceneName","lab");
+		SmartFoxClient client = ClientNetworkController.GetClient();
+		client.SendXtMessage("test","sceneOnline",data);
 	}
 
 	protected override void OnJoinRoom (Room room)
 	{
 		base.OnJoinRoom (room);
-		Hashtable data = new Hashtable();
-		data.Add("sceneName","lab");
-		SmartFoxClient client = ClientNetworkController.GetClient();
-		client.SendXtMessage("test","sceneOnline",data);
+		RegistScene();
 	}
 
 	protected override void OnUserEnterRoom (int roomId, User user)

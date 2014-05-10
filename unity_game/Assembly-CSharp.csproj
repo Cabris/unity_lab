@@ -56,14 +56,13 @@
      <Compile Include="Assets\Scripts\PlayerStatus.cs" />
      <Compile Include="Assets\Scripts\PrefabManager.cs" />
      <Compile Include="Assets\Scripts\SceneController.cs" />
+     <Compile Include="Assets\Scripts\SceneMenu.cs" />
      <Compile Include="Assets\Scripts\SceneObject.cs" />
      <Compile Include="Assets\Scripts\SmartFox.cs" />
      <Compile Include="Assets\Scripts\gui_Login.cs" />
      <Compile Include="Assets\Scripts\network\ClientNetworkController.cs" />
      <Compile Include="Assets\Scripts\network\ClientPlayerCommand.cs" />
      <Compile Include="Assets\Scripts\network\ClientSpawnController.cs" />
-     <Compile Include="Assets\Scripts\network\Connector.cs" />
-     <Compile Include="Assets\Scripts\network\NetMessage.cs" />
      <Compile Include="Assets\Scripts\network\NetworkController.cs" />
      <Compile Include="Assets\Scripts\network\NetworkTransform.cs" />
      <Compile Include="Assets\Scripts\network\NetworkTransformReceiver.cs" />
