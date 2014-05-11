@@ -105,7 +105,8 @@ public class gui_Login : MonoBehaviour {
 				username=c.text;
 
 			}else{
-				targetScene="clientLab";
+				//targetScene="clientLab";
+				targetScene="SceneMenu";
 				GUI.Label(new Rect(10, 120, 100, 100), "Username: ");
 				username = GUI.TextField(new Rect(100, 120, 200, 20), username, 25);
 			}
@@ -191,6 +192,7 @@ public class gui_Login : MonoBehaviour {
 		try {
 			foreach (int roomId in roomList.Keys)	{					
 				Room room = (Room)roomList[roomId];
+				//Debug.Log(roomId+","+room.GetName());
 				if (room.IsPrivate()) {
 				}
 			}

@@ -13,9 +13,10 @@ import it.gotoandplay.smartfoxserver.lib.ActionscriptObject;
 
 public class MyExtension extends AbstractExtension {
 
-	//private HashMap<String, Scene> scenes;
 	private ExtensionHelper helper;
-Scene myScene;
+	// Scene myScene;
+	SceneManager sceneManager;
+
 	/**
 	 * Initialize the extension.<br>
 	 * It's always good practice to keep a reference to the ExtensionHelper
@@ -23,10 +24,10 @@ Scene myScene;
 	 */
 	public void init() {
 		helper = ExtensionHelper.instance();
-	//	scenes = new HashMap<String, Scene>();
+		sceneManager = new SceneManager(this);
 		// Traces the message to the AdminTool and to the console
 		trace("Hi! The Simple Extension is initializing");
-		
+
 	}
 
 	/**
@@ -54,50 +55,38 @@ Scene myScene;
 			int fromRoom) {
 
 		try {
-			if(cmd=="registScene"){
-				Scene scene=new Scene(u, u.getName(), this);
-				String sceneType=ao.getString("type");
-				scene.type=sceneType;
-				
+			if (cmd.equals("registScene")) {
+				Scene scene = new Scene(u, this);
+				String sceneType = ao.getString("type");
+				scene.type = sceneType;
+				sceneManager.registScene(scene);
+				trace(cmd);
+			} else if (cmd.equals("requestSceneInfo")) {
+				sceneManager.SendSceneInfo(cmd, u, fromRoom);
+			} else if (cmd.equals("joinScene")) {
+				String sceneName = ao.getString("host");
+				sceneManager.addUser(u, sceneName);
+				trace(cmd);
 			}
-			if (cmd.equals("sceneOnline")) {
-				myScene=new Scene(u, u.getName(), this);
-			}
-			if (cmd.equals("clientOnline")) {
-				myScene.getUsers().put(u.getName(), u);
-			}
-			if (cmd.equals("b")) {// tf to all clients
-				Scene scene = myScene;
-				scene.sendMsg(ao);
-			}
-			if (cmd.equals("#")) {// tf to spec clients
-				String to = ao.getString("to");
-				Scene scene = myScene;
-				scene.sendMsg(to, ao);
-			}
-			if (cmd.equals("s")) {// to scene
-				String to = ao.getString("to");
-				Scene scene = myScene;
-				scene.sendMsgToScene(u, ao);
-			}
+			sceneManager.handleRequest(cmd, ao, u, fromRoom);
 		} catch (Exception e) {
-			trace("ex: " + e.toString());
+			trace("ex: " + e.fillInStackTrace());
 		}
 
 	}
 
-	void AddClientToScene(User client, Scene scene) {
-		scene.getUsers().put(client.getName(), client);
-
-		LinkedList<SocketChannel> ll = new LinkedList<SocketChannel>();
-		ll.add(scene.getOwner().getChannel());
-		ActionscriptObject pao = new ActionscriptObject();
-		pao.put("cmd", "getScene");
-		pao.put("to", client.getName());
-		sendResponse(pao, scene.getOwner().getRoom(), client, ll);
-		trace("AddClientToScene: c=" + client.getName() + ", s="
-				+ scene.sceneId);
-	}
+	// void AddClientToScene(User client, Scene scene) {
+	// scene.getUsers().put(client.getName(), client);
+	//
+	// LinkedList<SocketChannel> ll = new LinkedList<SocketChannel>();
+	// ll.add(scene.getOwner().getChannel());
+	// ActionscriptObject pao = new ActionscriptObject();
+	// pao.put("cmd", "getScene");
+	// pao.put("to", client.getName());
+	// sendResponse(pao, scene.getOwner().getRoom(), client, ll);
+	// trace("AddClientToScene: c=" + client.getName() + ", s="
+	// + scene.sceneId);
+	// }
 
 	/**
 	 * Handle client requests sent in String format. The parameters sent by the
@@ -133,8 +122,14 @@ Scene myScene;
 		trace("Received a server event --> " + ieo.getEventName());
 		String evtName = ieo.getEventName();
 		if (evtName.equals("userExit") || evtName.equals("userLost")) {
-			int uId = Integer.valueOf(ieo.getParam("uid"));
-
+			// int uId = Integer.valueOf(ieo.getParam("uid"));
+			User user = (User) ieo.getObject("user");
+			if (user != null)
+				trace("user offline: " + user.getName());
+			else {
+				trace("null user");
+			}
+			sceneManager.removeUser(user.getName());
 		}
 	}
 

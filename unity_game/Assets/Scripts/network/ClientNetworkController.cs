@@ -31,6 +31,12 @@ public class ClientNetworkController : NetworkController {
 		spawn=GetComponent<ClientSpawnController>();
 		smartFoxClient.JoinRoom("Central Square");
 	}
+
+	public static void SendExMsg(string exName,string cmd,Hashtable data){
+		SmartFoxClient client = GetClient();
+		data.Add("host",hostSceneName);
+		client.SendXtMessage(exName,cmd,data);
+	}
 	
 	protected override void OnJoinRoom (Room room)
 	{

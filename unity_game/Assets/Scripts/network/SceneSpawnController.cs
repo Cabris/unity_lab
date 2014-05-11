@@ -44,9 +44,15 @@ public class SceneSpawnController : MonoBehaviour {
 
 	void SendStatusToRemotePlayer(User toUser,PlayerStatus status) {
 		SmartFoxClient client = ClientNetworkController.GetClient();
-		SFSObject o=status.ToSFSObject();
+		SFSObject o=status.GetAsSFSObject();
 		o.Put("scene",client.myUserName);
 		client.SendObject(o);
+
+
+		Hashtable data = status.GetAsHashtable();
+		data.Add("type",Application.loadedLevelName);
+		client.SendXtMessage("test","b",data);
+
 	}
 	
 	private void UserEnterRoom(User user) {

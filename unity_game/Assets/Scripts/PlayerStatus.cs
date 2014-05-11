@@ -18,21 +18,20 @@ public class PlayerStatus : MonoBehaviour {
 		smr.material.color=color;
 	}
 
-	public Hashtable ToHashtable(){
+	public Hashtable GetAsHashtable(){
+		return ToHashTable(GetAsSFSObject());
+	}
+	
+	static Hashtable ToHashTable(SFSObject s){
 		Hashtable data=new Hashtable();
-		data.Add("cmd","playerStatus");
-		data.Add("colorR",this.color.r);
-		data.Add("colorG",this.color.g);
-		data.Add("colorB",this.color.b);
-		data.Add("colorA",this.color.a);
-		data.Add("name",this.gameObject.name);
-		data.Add("userName",this.userName);
-		Hashtable t=NetworkTransform.GetTransform(this.transform);
-		data.Add("transform",t);
+		foreach(object k in s.Keys()){
+			object value=s.Get(k);
+			data.Add(k,value);
+		}
 		return data;
 	}
 
-	public SFSObject ToSFSObject(){
+	public SFSObject GetAsSFSObject(){
 		SFSObject data=new SFSObject();
 		data.Put("cmd","playerStatus");
 		data.Put("colorR",this.color.r);

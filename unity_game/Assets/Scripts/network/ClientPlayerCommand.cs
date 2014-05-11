@@ -40,7 +40,7 @@ public class ClientPlayerCommand : MonoBehaviour
 			isWalkingLast=isWalking;
 			isTurnLeftLast=isTurnLeft;
 			isTurnRightLast=isTurnRight;
-			SmartFoxClient client = ClientNetworkController.GetClient ();
+			//SmartFoxClient client = ClientNetworkController.GetClient ();
 			
 			Hashtable data=new Hashtable();
 			data.Add("cmd", "m");
@@ -48,7 +48,8 @@ public class ClientPlayerCommand : MonoBehaviour
 			data.Add("isTurnLeft", isTurnLeft);
 			data.Add("isTurnRight", isTurnRight);
 			data.Add("object_name", this.name);
-			client.SendXtMessage("test","s",data);
+			//client.SendXtMessage("test","s",data);
+			ClientNetworkController.SendExMsg("test","s",data);
 		}
 		
 	}

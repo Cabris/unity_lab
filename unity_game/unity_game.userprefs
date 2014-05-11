@@ -1,10 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\network\NetworkTransformReceiver.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SceneMenu.cs">
     <Files>
-      <File FileName="Assets\Scripts\network\SceneNetworkController.cs" Line="89" Column="29" />
-      <File FileName="Assets\Scripts\network\SceneSpawnController.cs" Line="49" Column="10" />
-      <File FileName="Assets\Scripts\network\NetworkTransformReceiver.cs" Line="76" Column="4" />
+      <File FileName="Assets\Scripts\SceneMenu.cs" Line="41" Column="43" />
+      <File FileName="Assets\Scripts\network\SceneNetworkController.cs" Line="71" Column="20" />
+      <File FileName="Assets\Scripts\network\ClientNetworkController.cs" Line="118" Column="4" />
+      <File FileName="Assets\Scripts\gui_Login.cs" Line="195" Column="7" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

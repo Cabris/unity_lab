@@ -66,6 +66,7 @@ public class NetworkTransform {
 		SmartFoxClient client = ClientNetworkController.GetClient();
 		Hashtable h=GetData();
 		client.SendXtMessage("test","b",h);
+		//ClientNetworkController.SendExMsg("test","b",h);
 	}
 	
 	public void InitFromValues(Vector3 pos, Quaternion rot) {

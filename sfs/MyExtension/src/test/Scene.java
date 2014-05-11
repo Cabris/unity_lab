@@ -17,13 +17,15 @@ public class Scene {
 	AbstractExtension ext;
 	private HashMap<String, User> users;
 	public String type;
-	//Date date;
-	
-	public Scene(User owner, String id, AbstractExtension a) {
-		sceneId = id;
+	public String sceneName;
+
+	// Date date;
+
+	public Scene(User owner, AbstractExtension a) {
+		sceneName = owner.getName();
 		this.owner = owner;
 		users = new HashMap<String, User>();
-		max = 5;
+		max = 4;
 		ext = a;
 	}
 
@@ -31,7 +33,6 @@ public class Scene {
 		return owner;
 	}
 
-	
 	private int max;
 
 	public int getMax() {
@@ -42,22 +43,16 @@ public class Scene {
 		this.max = max;
 	}
 
-	String sceneId;
-
 	public boolean isFull() {
 		return users.size() >= max;
 	}
 
-	public HashMap<String, User> getUsers() {
-		return users;
+	public void addUser(User user) {
+		users.put(user.getName(), user);
 	}
-
-	public String getSceneId() {
-		return sceneId;
-	}
-
-	public void setSceneId(String sceneId) {
-		this.sceneId = sceneId;
+	
+	public void removeUser(String userName) {
+		users.remove(userName);
 	}
 
 	public LinkedList<SocketChannel> getUsersChannels() {
@@ -68,30 +63,24 @@ public class Scene {
 		return ll;
 	}
 
-	public void sendMsg(ActionscriptObject ao) {// send to all client
-		Calendar cal = Calendar.getInstance();
-		Date now = cal.getTime();
-		//ao.put("cmd", "t");
-		//String t= ""+now.getTime();
-		//ao.put("ts", t);
-		//int time=Date.
+	public void broadcast(ActionscriptObject ao) {
 		ext.sendResponse(ao, owner.getRoom(), owner, getUsersChannels());
-		ext.trace("sendMsg all");
-	}
-
-	public void sendMsg(String client, ActionscriptObject ao) {
-		LinkedList<SocketChannel> ll = new LinkedList<SocketChannel>();
-		ll.add(users.get(client).getChannel());
-		ext.sendResponse(ao, owner.getRoom(), owner, ll);
-		ext.trace("sendMsg");
+		ext.trace("scene "+owner.getName()+" broadcast msg");
 	}
 	
-	public void sendMsgToScene(User from, ActionscriptObject ao) {
+	public void handleRequest(ActionscriptObject ao, User u,
+			int fromRoom){
 		LinkedList<SocketChannel> ll = new LinkedList<SocketChannel>();
 		ll.add(owner.getChannel());
 		ext.sendResponse(ao, owner.getRoom(), owner, ll);
-		ext.trace("sendMsgToScene");
+		ext.trace("scene "+owner.getName()+" handleRequest");
 	}
 	
-	
+	public void transfer(ActionscriptObject ao,String userName) {
+		LinkedList<SocketChannel> ll = new LinkedList<SocketChannel>();
+		ll.add(users.get(userName).getChannel());
+		ext.sendResponse(ao, owner.getRoom(), owner, ll);
+		ext.trace("transfer msg to "+userName);
+	}
+
 }

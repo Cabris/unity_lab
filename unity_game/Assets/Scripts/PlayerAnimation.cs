@@ -34,6 +34,7 @@ public class PlayerAnimation : MonoBehaviour {
 			data.Add ("isWalking", isWalking);
 			SmartFoxClient client = ClientNetworkController.GetClient();
 			client.SendXtMessage("test","b",data);
+			//ClientNetworkController.SendExMsg("test","b",data);
 		}
 		else{
 			if(queue.Count>0){
