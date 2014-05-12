@@ -11,9 +11,9 @@ public class SceneSpawnController : MonoBehaviour {
 	public GameObject serverPlayerPrefab;
 	public Transform[] spawnPoints;
 	private static System.Random random = new System.Random();
-	public Dictionary<User,GameObject> scenePlayers=new Dictionary<User,GameObject>();
+	public Dictionary<string,GameObject> scenePlayers=new Dictionary<string,GameObject>();
 
-	public void SpawnServerPlayer(User user) {
+	public void SpawnServerPlayer(string userName,int userId) {
 		int n = spawnPoints.Length;
 		Transform spawnPoint = spawnPoints [scenePlayers.Count%n];
 		Vector3 relativePos = transform.position - spawnPoint.position;
@@ -21,59 +21,42 @@ public class SceneSpawnController : MonoBehaviour {
 		Quaternion rotation = Quaternion.LookRotation(relativePos);
 		GameObject playerInServer = 
 			Instantiate(serverPlayerPrefab, spawnPoint.position, rotation) as GameObject;
-		playerInServer.name = "user_"+user.GetId();
+		playerInServer.name = "user_"+userId;
 		playerInServer.SendMessage("StartSending");
 
 
 		PlayerStatus ps=playerInServer.GetComponent<PlayerStatus>();
 		ps.color=cr(scenePlayers.Count);
-		ps.userName=user.GetName();
+		ps.userName=userName;
 
 		//tell other client new player status
-		foreach(User u in scenePlayers.Keys){
+		foreach(string u in scenePlayers.Keys){
 			SendStatusToRemotePlayer(u,ps);
 		}
-		SendStatusToRemotePlayer(user,ps);//create local player
+		SendStatusToRemotePlayer(userName,ps);//create local player
 		foreach(GameObject g in scenePlayers.Values){//add p alre exist
 			PlayerStatus pps=g.GetComponent<PlayerStatus>();
-			SendStatusToRemotePlayer(user,pps);
+			SendStatusToRemotePlayer(userName,pps);
 		}
-		scenePlayers.Add(user,playerInServer);
+		scenePlayers.Add(userName,playerInServer);
 	}
 
 
-	void SendStatusToRemotePlayer(User toUser,PlayerStatus status) {
+	void SendStatusToRemotePlayer(string userName,PlayerStatus status) {
 		SmartFoxClient client = ClientNetworkController.GetClient();
-		SFSObject o=status.GetAsSFSObject();
-		o.Put("scene",client.myUserName);
-		client.SendObject(o);
-
-
-		Hashtable data = status.GetAsHashtable();
-		data.Add("type",Application.loadedLevelName);
-		client.SendXtMessage("test","b",data);
-
+		SFSObject data = status.GetAsSFSObject();
+		client.SendObject(data);
+		//data.Add("type",Application.loadedLevelName);
+		//client.SendXtMessage("test","b",data);
 	}
-	
-	private void UserEnterRoom(User user) {
-		SpawnServerPlayer(user);
-	}
-	
-	public void UserLeaveRoom(int userId) {
 
-		foreach (User u in scenePlayers.Keys){
-			if(u.GetId()==userId){
+	public void UserLeaveRoom(string userName) {
+
+		foreach (string u in scenePlayers.Keys){
+			if(u==userName){
 				Destroy(scenePlayers[u]);
 					scenePlayers.Remove(u);
 			}
-		}
-	}
-	
-	private User remoteUser = null;
-	void FixedUpdate() {
-		if (remoteUser!=null) {
-			SpawnServerPlayer(remoteUser);
-			remoteUser = null;	
 		}
 	}
 

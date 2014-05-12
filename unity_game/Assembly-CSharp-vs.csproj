@@ -56,7 +56,6 @@
      <Compile Include="Assets\Scripts\PlayerStatus.cs" />
      <Compile Include="Assets\Scripts\PrefabManager.cs" />
      <Compile Include="Assets\Scripts\SceneController.cs" />
-     <Compile Include="Assets\Scripts\SceneMenu.cs" />
      <Compile Include="Assets\Scripts\SceneObject.cs" />
      <Compile Include="Assets\Scripts\SmartFox.cs" />
      <Compile Include="Assets\Scripts\gui_Login.cs" />
@@ -67,6 +66,7 @@
      <Compile Include="Assets\Scripts\network\NetworkTransform.cs" />
      <Compile Include="Assets\Scripts\network\NetworkTransformReceiver.cs" />
      <Compile Include="Assets\Scripts\network\NetworkTransformSender.cs" />
+     <Compile Include="Assets\Scripts\network\SceneMenu.cs" />
      <Compile Include="Assets\Scripts\network\SceneNetworkController.cs" />
      <Compile Include="Assets\Scripts\network\ScenePlayerCommand.cs" />
      <Compile Include="Assets\Scripts\network\SceneSpawnController.cs" />

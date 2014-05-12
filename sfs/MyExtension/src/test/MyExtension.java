@@ -66,9 +66,9 @@ public class MyExtension extends AbstractExtension {
 			} else if (cmd.equals("joinScene")) {
 				String sceneName = ao.getString("host");
 				sceneManager.addUser(u, sceneName);
-				trace(cmd);
-			}
-			sceneManager.handleRequest(cmd, ao, u, fromRoom);
+				trace(cmd+","+sceneName);
+			} else
+				sceneManager.handleRequest(cmd, ao, u, fromRoom);
 		} catch (Exception e) {
 			trace("ex: " + e.fillInStackTrace());
 		}

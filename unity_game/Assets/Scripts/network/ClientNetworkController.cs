@@ -10,7 +10,7 @@ public class ClientNetworkController : NetworkController {
 	
 	public string sceneName;
 	public ClientController clientController;
-	public string scene;
+	//public string scene;
 	ClientSpawnController spawn;
 	public static string hostSceneName="test";
 
@@ -42,16 +42,14 @@ public class ClientNetworkController : NetworkController {
 	{
 		base.OnJoinRoom (room);
 		Hashtable data = new Hashtable();
-		data.Add("sceneName","lab");
-		SmartFoxClient client = ClientNetworkController.GetClient();
-		client.SendXtMessage("test","clientOnline",data);
+		SendExMsg("test","joinScene",data);
 	}
 	
 	protected override void OnUserLeaveRoom (int roomId, int userId, string userName)
 	{
 		base.OnUserLeaveRoom (roomId, userId, userName);
 		spawn.UserLeaveRoom(userId);
-		if(userName==scene){//scene lost
+		if(userName==hostSceneName){//scene lost
 			Application.Quit();
 		}
 	}
@@ -75,7 +73,7 @@ public class ClientNetworkController : NetworkController {
 				spawn.SpawnLocalPlayer(data);
 			else
 				spawn.SpawnRemotePlayer(data);
-			scene=data.GetString("scene");
+//			scene=data.GetString("scene");
 		}
 		if(cmd=="sceneData"){
 			if(data.GetString("toUser")==GetClient().myUserName){

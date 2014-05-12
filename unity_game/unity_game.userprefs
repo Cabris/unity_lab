@@ -1,11 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SceneMenu.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\network\SceneNetworkController.cs">
     <Files>
-      <File FileName="Assets\Scripts\SceneMenu.cs" Line="41" Column="43" />
-      <File FileName="Assets\Scripts\network\SceneNetworkController.cs" Line="71" Column="20" />
-      <File FileName="Assets\Scripts\network\ClientNetworkController.cs" Line="118" Column="4" />
-      <File FileName="Assets\Scripts\gui_Login.cs" Line="195" Column="7" />
+      <File FileName="Assets\Scripts\network\SceneSpawnController.cs" Line="19" Column="21" />
+      <File FileName="Assets\Scripts\network\SceneNetworkController.cs" Line="104" Column="31" />
+      <File FileName="Assets\Scripts\network\ClientNetworkController.cs" Line="41" Column="36" />
+      <File FileName="Assets\Scripts\network\SceneMenu.cs" Line="72" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -44,8 +44,8 @@ public class SceneNetworkController : NetworkController
 	{
 		base.OnUserEnterRoom (roomId, user);
 		if (roomId == GetClient ().activeRoomId) {
-			spawn.SpawnServerPlayer (user);
-			SendSceneData (user);
+			//spawn.SpawnServerPlayer (user.GetName(),user.GetId());
+			//SendSceneData (user.GetName());
 		}
 	}
 	
@@ -62,13 +62,21 @@ public class SceneNetworkController : NetworkController
 			string msg = data.GetString ("#");
 			Debug.Log (msg);
 		}
+		if(cmd=="userJoinScene"){
+			string userName=data.GetString("userName");
+//			Debug.Log(userName+" added");
+			int userId=Convert.ToInt32(data.GetNumber("userId"));
+//			Debug.Log(userId+" added");
+			spawn.SpawnServerPlayer (userName,userId);
+			SendSceneData (userName);
+		}
 	}
 	
 	protected override void OnUserLeaveRoom (int roomId, int userId, string userName)
 	{
 		base.OnUserLeaveRoom (roomId, userId, userName);
 		if (roomId == GetClient ().activeRoomId) {
-			spawn.UserLeaveRoom (userId);
+			spawn.UserLeaveRoom (userName);
 		}
 	}
 	
@@ -77,23 +85,23 @@ public class SceneNetworkController : NetworkController
 		GUI.Label (new Rect (10, 25, 500, 24), 
 		           "scene: " + GetClient ().myUserName);
 		int i = 0;
-		foreach (User u in spawn.scenePlayers.Keys) {
-			GameObject s = spawn.scenePlayers [u];
+		foreach (string userName in spawn.scenePlayers.Keys) {
+			GameObject s = spawn.scenePlayers [userName];
 			GUI.Label (new Rect (10, 60 + 25 * i, 500, 24), 
-			           "" + (i + 1) + ". user: " + u.GetName () +
+			           "" + (i + 1) + ". user: " + userName +
 			           ", scene player: " + 
 			           s.name + ", pos: " + s.transform.position);
 			i++;
 		}
 	}
 	
-	void SendSceneData (User toUser)
+	void SendSceneData (string userName)
 	{
 		SceneObject[] sceneObjs = sceneController.GetComponentsInChildren<SceneObject> ();
 		SmartFoxClient client = GetClient ();
 		SFSObject data = new SFSObject ();
 		data.Put ("cmd", "sceneData");
-		data.Put ("toUser", toUser.GetName ());
+		data.Put ("toUser", userName);
 		List<SFSObject> sdatas = new List<SFSObject> ();
 		foreach (SceneObject s in sceneObjs) {
 			SFSObject sdata = s.GetData ();

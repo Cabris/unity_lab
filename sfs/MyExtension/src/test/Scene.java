@@ -48,7 +48,17 @@ public class Scene {
 	}
 
 	public void addUser(User user) {
+		if(users.containsKey(user.getName()))
+			return;
 		users.put(user.getName(), user);
+		ActionscriptObject a=new ActionscriptObject();
+		a.put("cmd", "userJoinScene");
+		a.put("userName", user.getName());
+		a.putNumber("userId", user.getUserId());
+		//LinkedList<SocketChannel> sceneChannel = getSceneChannel();
+		//ext.sendResponse(a, owner.getRoom(), owner, sceneChannel);
+		handleRequest(a, user, owner.getRoom());
+		ext.trace("addUser_userJoinScene");
 	}
 	
 	public void removeUser(String userName) {
@@ -65,15 +75,21 @@ public class Scene {
 
 	public void broadcast(ActionscriptObject ao) {
 		ext.sendResponse(ao, owner.getRoom(), owner, getUsersChannels());
-		ext.trace("scene "+owner.getName()+" broadcast msg");
+		String cmd=ao.getString("cmd");
+		ext.trace("scene "+owner.getName()+" broadcast msg: "+cmd);
 	}
 	
 	public void handleRequest(ActionscriptObject ao, User u,
 			int fromRoom){
+		LinkedList<SocketChannel> sceneChannel = getSceneChannel();
+		ext.sendResponse(ao, owner.getRoom(), owner, sceneChannel);
+		ext.trace("scene "+owner.getName()+" handleRequest");
+	}
+
+	private LinkedList<SocketChannel> getSceneChannel() {
 		LinkedList<SocketChannel> ll = new LinkedList<SocketChannel>();
 		ll.add(owner.getChannel());
-		ext.sendResponse(ao, owner.getRoom(), owner, ll);
-		ext.trace("scene "+owner.getName()+" handleRequest");
+		return ll;
 	}
 	
 	public void transfer(ActionscriptObject ao,String userName) {

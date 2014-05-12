@@ -6,7 +6,6 @@ using SmartFoxClientAPI.Data;
 
 public class NetworkController : MonoBehaviour
 {
-	
 	protected static SmartFoxClient smartFoxClient;
 	public static SmartFoxClient GetClient ()
 	{
