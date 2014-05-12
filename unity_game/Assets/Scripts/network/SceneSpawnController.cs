@@ -42,12 +42,14 @@ public class SceneSpawnController : MonoBehaviour {
 	}
 
 
-	void SendStatusToRemotePlayer(string userName,PlayerStatus status) {
+	void SendStatusToRemotePlayer(string toUserName,PlayerStatus status) {
 		SmartFoxClient client = ClientNetworkController.GetClient();
-		SFSObject data = status.GetAsSFSObject();
-		client.SendObject(data);
-		//data.Add("type",Application.loadedLevelName);
-		//client.SendXtMessage("test","b",data);
+		//SFSObject data = status.GetAsSFSObject();
+		//client.SendObject(data);
+		Hashtable data=status.GetAsHashtable();
+		data.Add("host",client.myUserName);
+		data.Add("to",toUserName);
+		client.SendXtMessage("test","#",data);
 	}
 
 	public void UserLeaveRoom(string userName) {

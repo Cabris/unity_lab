@@ -50,6 +50,7 @@ public class ClientNetworkController : NetworkController {
 		base.OnUserLeaveRoom (roomId, userId, userName);
 		spawn.UserLeaveRoom(userId);
 		if(userName==hostSceneName){//scene lost
+			UnsubscribeEvents();
 			Application.Quit();
 		}
 	}
@@ -111,6 +112,7 @@ public class ClientNetworkController : NetworkController {
 			          r.name+", pos: "+r.transform.position );
 		}
 	}
+
 	int i=0;
 	void Update ()
 	{ 
