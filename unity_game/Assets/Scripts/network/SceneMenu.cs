@@ -26,7 +26,7 @@ public class SceneMenu : NetworkController {
 		RequestSceneInfo();
 	}
 	
-	void RequestSceneInfo(){
+	public static void RequestSceneInfo(){
 		if(smartFoxClient!=null){
 			Hashtable data = new Hashtable();
 			data.Add("from",GetClient().myUserName);
@@ -50,12 +50,6 @@ public class SceneMenu : NetworkController {
 			foreach(string sceneName in dataList.Keys()){
 				string sceneType=dataList.GetString(sceneName);
 				sceneInfoMap.Add(sceneName,sceneType);
-//				Debug.Log(sceneName);
-				
-//				SmartFoxClient client = GetClient();
-//				Hashtable data2=new Hashtable();
-//				data2.Add("host",sceneName);
-//				client.SendXtMessage("test","joinScene",data2);
 			}
 		}
 	}

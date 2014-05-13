@@ -8,22 +8,21 @@ using SmartFoxClientAPI.Data;		// necessary to access the room resource
 public class gui_Login : MonoBehaviour {
 	
 	// smartFox variables
-	private SmartFoxClient smartFox;
-	private string serverIP = "140.115.53.97";
-	private int serverPort = 9339;				// default = 9339
-	public string zone = "city";
+	
 	public bool debug = true;
 	public bool isScene=false;
 	string targetScene="serverLab";
-
+	
 	private string statusMessage = "";
 	private string username = "";
-
+	
 	GUIContent[] comboBoxList;
 	private ComboBox comboBoxControl;// = new ComboBox();
 	private GUIStyle listStyle = new GUIStyle();
 	private string[] scenes={"serverLab","scene1"};
-
+	
+	public ServerConnection serverConnection;
+	
 	void Start()
 	{
 		comboBoxList = new GUIContent[scenes.Length];
@@ -38,64 +37,38 @@ public class gui_Login : MonoBehaviour {
 			listStyle.padding.right =
 				listStyle.padding.top =
 				listStyle.padding.bottom = 4;
-
+		
 		comboBoxControl = new ComboBox(new Rect(100, 120, 100, 20), comboBoxList[0], comboBoxList, "button", "box", listStyle);
 	}
-
+	
 	void Awake() {
-		Application.runInBackground = true; 	
-
-		if ( SmartFox.IsInitialized() ) {
-			Debug.Log("SmartFox is already initialized, reusing connection");
-			smartFox = SmartFox.Connection;
-		} else {
-			if( Application.platform == RuntimePlatform.WindowsWebPlayer ) {
-				Security.PrefetchSocketPolicy(serverIP, serverPort);
-			}
-			try {
-				Debug.Log("Starting new SmartFoxClient");
-				smartFox = new SmartFoxClient(debug);
-				smartFox.runInQueueMode = true;
-			} catch ( Exception e ) {
-				Debug.Log(e.ToString());
-			}
-		}
-		
-		// Register callback delegates, before callling Connect()
-		SFSEvent.onConnection += OnConnection;
-		SFSEvent.onConnectionLost += OnConnectionLost;
-		SFSEvent.onLogin += OnLogin;
-		SFSEvent.onRoomListUpdate += OnRoomList;
-		SFSEvent.onDebugMessage += OnDebugMessage;
-		//SFSEvent.onJoinRoom += OnJoinRoom;		// We will not join a room in this level
-		
-		Debug.Log("Attempting to connect to SmartFoxServer");
-		smartFox.Connect(serverIP, serverPort);		
+		RegisterSFSSceneCallbacks();
+		serverConnection.Connect(debug);
 	}
 	
 	void FixedUpdate() {
-		smartFox.ProcessEventQueue();
+		serverConnection.ProcessEventQueue();
 	}
 	
 	void OnGUI() {
-
+		
 		// server IP in bottom left corner
-		GUI.Label(new Rect(10, Screen.height-25, 200, 24), "Server: " + serverIP);
+		GUI.Label(new Rect(10, Screen.height-25, 200, 24), "Server: " + serverConnection.ServerIP);
 		
 		// quit button in bottom right corner
 		if ( Application.platform != RuntimePlatform.WindowsWebPlayer ) {			
 			if ( GUI.Button(new Rect(Screen.width-150, Screen.height - 50, 100, 24), "Quit") ) {
-				smartFox.Disconnect();
+				serverConnection.Disconnect();
 				UnregisterSFSSceneCallbacks();
 				Application.Quit();
 			}
 		}
-
+		
 		// Show login fields if connected and reconnect button if disconnect
-		if (smartFox.IsConnected()) {
-
+		if (serverConnection.IsConnected()) {
+			
 			isScene = GUI.Toggle(new Rect(10, 80, 250, 30), isScene, "isServer");
-
+			
 			if(isScene){
 				GUI.Label(new Rect(10, 120, 100, 100), "SceneName: ");
 				int i=comboBoxControl.Show();
@@ -110,9 +83,9 @@ public class gui_Login : MonoBehaviour {
 			}
 			if ( GUI.Button(new Rect(Screen.width/2-150, Screen.height/2, 300, 24), "Login as "+targetScene)  
 			    || (Event.current.type == EventType.keyDown && Event.current.character == '\n')) {
-				smartFox.Login(zone, username, "");
+				serverConnection.Login(username);
 			}
-
+			
 		} else {
 			if ( GUI.Button(new Rect(Screen.width/2-50, Screen.height/2, 100, 24), "Reconnect")  
 			    || (Event.current.type == EventType.keyDown && Event.current.character == '\n')) {
@@ -143,18 +116,24 @@ public class gui_Login : MonoBehaviour {
 	}
 	
 	private void UnregisterSFSSceneCallbacks() {
-		// This should be called when switching scenes, so callbacks from the backend do not trigger code in this scene
 		SFSEvent.onConnection -= OnConnection;
 		SFSEvent.onConnectionLost -= OnConnectionLost;
 		SFSEvent.onLogin -= OnLogin;
 		SFSEvent.onRoomListUpdate -= OnRoomList;
 		SFSEvent.onDebugMessage -= OnDebugMessage;
-		//SFSEvent.onJoinRoom -= OnJoinRoom;
+	}
+
+	private void RegisterSFSSceneCallbacks() {
+		SFSEvent.onConnection += OnConnection;
+		SFSEvent.onConnectionLost += OnConnectionLost;
+		SFSEvent.onLogin += OnLogin;
+		SFSEvent.onRoomListUpdate += OnRoomList;
+		SFSEvent.onDebugMessage += OnDebugMessage;
 	}
 	
 	void OnConnection(bool success, string error) {
 		if ( success ) {
-			SmartFox.Connection = smartFox;
+			SmartFox.Connection = serverConnection.smartFox;
 			statusMessage = "Connected to SmartFox Server";
 			Debug.Log(statusMessage);
 		} else {
@@ -180,9 +159,9 @@ public class gui_Login : MonoBehaviour {
 			statusMessage = "Login error: " + error;
 		}
 	}
-
+	
 	void OnApplicationQuit() {
-		smartFox.Disconnect();
+		serverConnection.Disconnect();
 		UnregisterSFSSceneCallbacks();
 	}
 	

@@ -11,11 +11,13 @@ public class NetworkController : MonoBehaviour
 	{
 		return SmartFox.Connection;
 	}
-
+	
 	void FixedUpdate ()
 	{
 		if (started) {
 			smartFoxClient.ProcessEventQueue ();
+			if(Time.time%10==0)
+				SceneMenu.RequestSceneInfo();
 		}
 	}
 	
