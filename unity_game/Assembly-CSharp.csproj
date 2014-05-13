@@ -47,17 +47,17 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\MovementAnimsetProLite\Scripts\InputWalk.cs" />
-     <Compile Include="Assets\Scripts\ButtonControl.cs" />
      <Compile Include="Assets\Scripts\ClientController.cs" />
-     <Compile Include="Assets\Scripts\ComboBox.cs" />
-     <Compile Include="Assets\Scripts\FPSStorage.cs" />
-     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
-     <Compile Include="Assets\Scripts\PlayerInput.cs" />
-     <Compile Include="Assets\Scripts\PlayerStatus.cs" />
      <Compile Include="Assets\Scripts\PrefabManager.cs" />
      <Compile Include="Assets\Scripts\SceneController.cs" />
      <Compile Include="Assets\Scripts\SceneObject.cs" />
-     <Compile Include="Assets\Scripts\SmartFox.cs" />
+     <Compile Include="Assets\Scripts\extensions\ButtonControl.cs" />
+     <Compile Include="Assets\Scripts\extensions\ComboBox.cs" />
+     <Compile Include="Assets\Scripts\extensions\Extensions.cs" />
+     <Compile Include="Assets\Scripts\extensions\FPSStorage.cs" />
+     <Compile Include="Assets\Scripts\extensions\PlayerAnimation.cs" />
+     <Compile Include="Assets\Scripts\extensions\PlayerInput.cs" />
+     <Compile Include="Assets\Scripts\extensions\PlayerStatus.cs" />
      <Compile Include="Assets\Scripts\gui_Login.cs" />
      <Compile Include="Assets\Scripts\network\ClientNetworkController.cs" />
      <Compile Include="Assets\Scripts\network\ClientPlayerCommand.cs" />

@@ -99,16 +99,17 @@ public class SceneNetworkController : NetworkController
 	{
 		SceneObject[] sceneObjs = sceneController.GetComponentsInChildren<SceneObject> ();
 		SmartFoxClient client = GetClient ();
-		SFSObject data = new SFSObject ();
-		data.Put ("cmd", "sceneData");
-		data.Put ("toUser", userName);
-		List<SFSObject> sdatas = new List<SFSObject> ();
+		Hashtable data = new Hashtable ();
+		data.Add ("cmd", "sceneData");
+		data.Add ("to", userName);
+		data.Add ("host", client.myUserName);
+		List<Hashtable> dataList = new List<Hashtable> ();
 		foreach (SceneObject s in sceneObjs) {
-			SFSObject sdata = s.GetData ();
-			sdatas.Add (sdata);
+			Hashtable sdata = s.GetDataAsSfs().ToHashTable();
+			dataList.Add (sdata);
 		}
-		data.PutList ("datas", sdatas);
-		client.SendObject (data);
+		data.Add ("datas", dataList);
+		client.SendXtMessage("test","#",data);
 	}
 	
 }

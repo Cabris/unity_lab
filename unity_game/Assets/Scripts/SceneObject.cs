@@ -13,7 +13,7 @@ public class SceneObject : MonoBehaviour {
 		tra=gameObject.transform;
 	}
 
-	public SFSObject GetData(){
+	public SFSObject GetDataAsSfs(){
 		SFSObject data=new SFSObject();
 		data.Put("name",name);
 		data.Put("type",type);

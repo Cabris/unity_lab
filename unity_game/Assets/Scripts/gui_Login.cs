@@ -15,7 +15,7 @@ public class gui_Login : MonoBehaviour {
 	public bool debug = true;
 	public bool isScene=false;
 	string targetScene="serverLab";
-	// variables used in script
+
 	private string statusMessage = "";
 	private string username = "";
 
@@ -38,7 +38,7 @@ public class gui_Login : MonoBehaviour {
 			listStyle.padding.right =
 				listStyle.padding.top =
 				listStyle.padding.bottom = 4;
-		
+
 		comboBoxControl = new ComboBox(new Rect(100, 120, 100, 20), comboBoxList[0], comboBoxList, "button", "box", listStyle);
 	}
 
@@ -103,9 +103,7 @@ public class gui_Login : MonoBehaviour {
 				GUIContent c=comboBoxList[i];
 				targetScene=scenes[i];
 				username=c.text;
-
 			}else{
-				//targetScene="clientLab";
 				targetScene="SceneMenu";
 				GUI.Label(new Rect(10, 120, 100, 100), "Username: ");
 				username = GUI.TextField(new Rect(100, 120, 200, 20), username, 25);

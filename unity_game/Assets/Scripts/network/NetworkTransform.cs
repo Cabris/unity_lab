@@ -29,23 +29,15 @@ public class NetworkTransform {
 
 	Hashtable GetData ()
 	{
-		Hashtable data = GetTransform(this.obj.transform);
+		Hashtable data = GetTransformAsHash(this.obj.transform);
 		data.Add ("object_name", this.obj.name);
 		data.Add ("cmd", "t");
 		return data;
 	}
 
-	public static Hashtable GetTransform (Transform t)
+	public static Hashtable GetTransformAsHash (Transform t)
 	{
-		Hashtable data = new Hashtable ();
-		data.Add ("x", t.position.x);
-		data.Add ("y", t.position.y);
-		data.Add ("z", t.position.z);
-		data.Add ("rx", t.rotation.x);
-		data.Add ("ry", t.rotation.y);
-		data.Add ("rz", t.rotation.z);
-		data.Add ("w", t.rotation.w);
-		return data;
+		return GetTransformAsSfs(t).ToHashTable();
 	}
 
 	public static SFSObject GetTransformAsSfs (Transform t)
@@ -66,7 +58,6 @@ public class NetworkTransform {
 		SmartFoxClient client = ClientNetworkController.GetClient();
 		Hashtable h=GetData();
 		client.SendXtMessage("test","b",h);
-		//ClientNetworkController.SendExMsg("test","b",h);
 	}
 	
 	public void InitFromValues(Vector3 pos, Quaternion rot) {

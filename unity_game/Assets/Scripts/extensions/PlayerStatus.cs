@@ -19,16 +19,7 @@ public class PlayerStatus : MonoBehaviour {
 	}
 
 	public Hashtable GetAsHashtable(){
-		return ToHashTable(GetAsSFSObject());
-	}
-	
-	static Hashtable ToHashTable(SFSObject s){
-		Hashtable data=new Hashtable();
-		foreach(object k in s.Keys()){
-			object value=s.Get(k);
-			data.Add(k,value);
-		}
-		return data;
+		return GetAsSFSObject().ToHashTable();
 	}
 
 	public SFSObject GetAsSFSObject(){
@@ -40,7 +31,7 @@ public class PlayerStatus : MonoBehaviour {
 		data.Put("colorA",this.color.a);
 		data.Put("name",this.gameObject.name);
 		data.Put("userName",this.userName);
-		Hashtable t=NetworkTransform.GetTransform(this.transform);
+		Hashtable t=NetworkTransform.GetTransformAsHash(this.transform);
 		data.PutDictionary("transform",t);
 		return data;
 	}

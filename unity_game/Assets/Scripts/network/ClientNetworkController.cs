@@ -13,7 +13,7 @@ public class ClientNetworkController : NetworkController {
 	//public string scene;
 	ClientSpawnController spawn;
 	public static string hostSceneName="test";
-
+	
 	// We start working from here
 	void Start() {
 		Application.runInBackground = true; // Let the application be running whyle the window is not active.
@@ -31,7 +31,7 @@ public class ClientNetworkController : NetworkController {
 		spawn=GetComponent<ClientSpawnController>();
 		smartFoxClient.JoinRoom("Central Square");
 	}
-
+	
 	public static void SendExMsg(string exName,string cmd,Hashtable data){
 		SmartFoxClient client = GetClient();
 		data.Add("host",hostSceneName);
@@ -74,15 +74,12 @@ public class ClientNetworkController : NetworkController {
 				spawn.SpawnLocalPlayer(data);
 			else
 				spawn.SpawnRemotePlayer(data);
-//			scene=data.GetString("scene");
 		}
 		if(cmd=="sceneData"){
-			if(data.GetString("toUser")==GetClient().myUserName){
-				SFSObject datas =data.Get("datas") as SFSObject;
-				foreach(object obj in datas.Keys()){
-					SFSObject sdata=datas.Get(obj) as SFSObject;
-					clientController.CreateSceneObject(sdata);
-				}
+			SFSObject datas =data.Get("datas") as SFSObject;
+			foreach(object obj in datas.Keys()){
+				SFSObject sdata=datas.Get(obj) as SFSObject;
+				clientController.CreateSceneObject(sdata);
 			}
 		}
 		if(cmd=="a"){
@@ -112,17 +109,17 @@ public class ClientNetworkController : NetworkController {
 			          r.name+", pos: "+r.transform.position );
 		}
 	}
-
+	
 	int i=0;
 	void Update ()
 	{ 
-		if (Input.GetKey(KeyCode.B)) {
-			SmartFoxClient client = ClientNetworkController.GetClient ();
-			SFSObject data = new SFSObject ();
-			data.Put ("cmd", "#");
-			data.Put ("#", "i="+i);
-			//client.SendObject (data);
-			i++;
-		} 
+//		if (Input.GetKey(KeyCode.B)) {
+//			SmartFoxClient client = ClientNetworkController.GetClient ();
+//			SFSObject data = new SFSObject ();
+//			data.Put ("cmd", "#");
+//			data.Put ("#", "i="+i);
+//			client.SendObject (data);
+//			i++;
+//		} 
 	}
 }
