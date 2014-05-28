@@ -7,50 +7,43 @@ using SmartFoxClientAPI.Data;
 
 public class ClientPlayerCommand : MonoBehaviour
 {
-	public bool isWalking=false;
-	public bool isTurnRight=false;
-	public bool isTurnLeft=false;
-	
-	bool isWalkingLast=false;
-	bool isTurnRightLast=false;
-	bool isTurnLeftLast=false;
+	WiiController wiiController;
+	bool _left,_right,_up,_down;
 	
 	// Use this for initialization
 	void Start ()
 	{
-		
+		wiiController=GetComponent<WiiController>();
+//		axis=new Vector4();
 	}
 	
 	void FixedUpdate ()
 	{ 
-		isWalking=false;
-		isTurnRight=false;
-		isTurnLeft=false;
-		if (Input.GetKey (KeyCode.W)) {	
-			isWalking=true;
-		} 
-		if (Input.GetKey (KeyCode.A)) {//left
-			isTurnLeft=true;
-		} 
-		if (Input.GetKey (KeyCode.D)) {//right	
-			isTurnRight=true;
-		}
-		
-		if(isTurnLeft!=isTurnLeftLast||isTurnRight!=isTurnRightLast||isWalking!=isWalkingLast){
-			isWalkingLast=isWalking;
-			isTurnLeftLast=isTurnLeft;
-			isTurnRightLast=isTurnRight;
-			//SmartFoxClient client = ClientNetworkController.GetClient ();
+		if(wiiController!=null&&!isSame()){
+			
 
+			_left=wiiController.left;
+			_right=wiiController.right;
+			_up=wiiController.up;
+			_down=wiiController.down;
+			
 			Hashtable data=new Hashtable();
 			data.Add("cmd", "m");
-			data.Add("isWalking", isWalking);
-			data.Add("isTurnLeft", isTurnLeft);
-			data.Add("isTurnRight", isTurnRight);
+			data.Add ("left", _left);
+			data.Add ("right", _right);
+			data.Add ("up", _up);
+			data.Add ("down", _down);
 			data.Add("object_name", this.name);
-			//client.SendXtMessage("test","s",data);
 			ClientNetworkController.SendExMsg("test","s",data);
 		}
+	}
+	
+	bool isSame(){
+		return
+			_left==wiiController.left&&
+				_right==wiiController.right&&
+				_up==wiiController.up&&
+				_down==wiiController.down;
 		
 	}
 	
