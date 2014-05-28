@@ -177,7 +177,7 @@ public class gui_Login : MonoBehaviour {
 			Application.LoadLevel(targetScene);
 		}
 		catch (Exception e) {
-			//Debug.Log("Room list error: "+e.Message+" "+e.StackTrace);
+			Debug.Log("Room list error: "+e.Message+" "+e.StackTrace);
 		}
 	}
 }

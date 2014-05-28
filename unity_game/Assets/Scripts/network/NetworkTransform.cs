@@ -97,6 +97,10 @@ public class NetworkTransform {
 		this.position = trans.position;
 		this.rotation = trans.rotation;	
 	}
-	
+
+	public override int GetHashCode ()
+	{
+		return base.GetHashCode ();
+	}
 }
 

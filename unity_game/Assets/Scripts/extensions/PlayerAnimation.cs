@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using SmartFoxClientAPI;
 using SmartFoxClientAPI.Data;
@@ -16,7 +16,7 @@ public class PlayerAnimation : MonoBehaviour {
 	void FixedUpdate () {
 		if(animator)
 		{
-			AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+//			AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 			float speed=0;
 			if(isWalking){
 				speed=5;

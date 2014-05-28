@@ -13,7 +13,7 @@ public class SceneController : MonoBehaviour {
 		foreach(SceneObject ss in s){
 			GameObject g=ss.gameObject;
 			sceneObjs.Add(g);
-			string type=ss.SceneObjType;
+//			string type=ss.SceneObjType;
 			g.AddComponent<NetworkTransformSender>();
 			NetworkTransformSender sender=g.GetComponent<NetworkTransformSender>();
 			sender.StartSending();

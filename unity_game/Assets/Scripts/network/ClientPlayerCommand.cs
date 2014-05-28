@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System;
 
@@ -41,7 +41,7 @@ public class ClientPlayerCommand : MonoBehaviour
 			isTurnLeftLast=isTurnLeft;
 			isTurnRightLast=isTurnRight;
 			//SmartFoxClient client = ClientNetworkController.GetClient ();
-			
+
 			Hashtable data=new Hashtable();
 			data.Add("cmd", "m");
 			data.Add("isWalking", isWalking);

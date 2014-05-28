@@ -49,16 +49,21 @@
      <Compile Include="Assets\Scripts\extensions\FPSCounter.js" />
      <Compile Include="Assets\models\Steel Barrels\demo controls.js" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\MovementAnimsetProLite\readme.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="Assets\Packages\UniWii\Visuals\3D Assets\wiimote_redux.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="SmartFoxClient">
  <HintPath>Assets\Plugins\SmartFoxClient.dll</HintPath>
+ </Reference>
+ <Reference Include="UniWii">
+ <HintPath>Assets\Plugins\UniWii.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

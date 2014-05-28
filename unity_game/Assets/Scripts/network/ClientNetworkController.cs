@@ -110,7 +110,7 @@ public class ClientNetworkController : NetworkController {
 		}
 	}
 	
-	int i=0;
+//	int i=0;
 	void Update ()
 	{ 
 //		if (Input.GetKey(KeyCode.B)) {

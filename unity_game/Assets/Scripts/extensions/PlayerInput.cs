@@ -7,10 +7,10 @@ public class PlayerInput : MonoBehaviour {
 	public Transform character;
 	bool isTurnRight=false;
 	bool isTurnLeft=false;
-	PlayerAnimation animation;
+	PlayerAnimation playerAnimation;
 	void Start () 
 	{
-		animation=GetComponent<PlayerAnimation>();
+		playerAnimation=GetComponent<PlayerAnimation>();
 	}
 
 	void Right(){
@@ -21,11 +21,11 @@ public class PlayerInput : MonoBehaviour {
 	}
 
 	public void StartWalk(){
-		if(!animation.isWalking)
-			animation.isWalking=true;
+		if(!playerAnimation.isWalking)
+			playerAnimation.isWalking=true;
 	}
 	public void EndWalk(){
-		animation.isWalking=false;
+		playerAnimation.isWalking=false;
 	}
 
 	public void StartTurn(string cmd){
@@ -48,7 +48,7 @@ public class PlayerInput : MonoBehaviour {
 
 	void Update () {
 		float dt=Time.deltaTime;
-		if(animation.isWalking){
+		if(playerAnimation.isWalking){
 			character.Translate(Vector3.forward * speed*dt);
 		}
 		if(isTurnLeft){

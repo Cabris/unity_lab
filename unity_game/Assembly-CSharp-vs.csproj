@@ -47,11 +47,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\MovementAnimsetProLite\Scripts\InputWalk.cs" />
+     <Compile Include="Assets\Packages\UniWii\Scripts\WiimoteTestController.cs" />
      <Compile Include="Assets\Scripts\ClientController.cs" />
      <Compile Include="Assets\Scripts\PrefabManager.cs" />
      <Compile Include="Assets\Scripts\SceneController.cs" />
      <Compile Include="Assets\Scripts\SceneObject.cs" />
      <Compile Include="Assets\Scripts\ServerConnection.cs" />
+     <Compile Include="Assets\Scripts\UniiWiiCheck.cs" />
      <Compile Include="Assets\Scripts\extensions\ButtonControl.cs" />
      <Compile Include="Assets\Scripts\extensions\ComboBox.cs" />
      <Compile Include="Assets\Scripts\extensions\Extensions.cs" />
@@ -73,16 +75,21 @@
      <Compile Include="Assets\Scripts\network\SceneSpawnController.cs" />
      <Compile Include="Assets\Scripts\network\SmartFox.cs" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\MovementAnimsetProLite\readme.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="Assets\Packages\UniWii\Visuals\3D Assets\wiimote_redux.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="SmartFoxClient">
  <HintPath>Assets\Plugins\SmartFoxClient.dll</HintPath>
+ </Reference>
+ <Reference Include="UniWii">
+ <HintPath>Assets\Plugins\UniWii.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

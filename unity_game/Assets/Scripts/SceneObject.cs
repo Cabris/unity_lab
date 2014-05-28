@@ -4,18 +4,18 @@ using SmartFoxClientAPI.Data;
 public class SceneObject : MonoBehaviour {
 	[SerializeField]
 	public string type;
-	public string name;
+	public string sceneObjName;
 	public Transform tra;
 
 	// Use this for initialization
 	void Start () {
-		name=gameObject.name;
+		sceneObjName=gameObject.name;
 		tra=gameObject.transform;
 	}
 
 	public SFSObject GetDataAsSfs(){
 		SFSObject data=new SFSObject();
-		data.Put("name",name);
+		data.Put("name",sceneObjName);
 		data.Put("type",type);
 		SFSObject tf=NetworkTransform.GetTransformAsSfs(tra);
 		data.Put("transform",tf);

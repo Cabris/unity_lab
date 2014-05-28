@@ -10,7 +10,7 @@ public class SceneSpawnController : MonoBehaviour {
 	//public Transform localPlayerObject; //Note: we leave local player as object and do not instantiate it to keep existing Island Demo scripts working.
 	public GameObject serverPlayerPrefab;
 	public Transform[] spawnPoints;
-	private static System.Random random = new System.Random();
+//	private static System.Random random = new System.Random();
 	public Dictionary<string,GameObject> scenePlayers=new Dictionary<string,GameObject>();
 
 	public void SpawnServerPlayer(string userName,int userId) {
