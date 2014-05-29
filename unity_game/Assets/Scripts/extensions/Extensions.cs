@@ -13,6 +13,16 @@ public static class Extensions
 		}
 		return data;
 	}
+
+	public static SFSObject ToSFSObject(this Hashtable h){
+		SFSObject data=new SFSObject();
+		foreach(object k in h.Keys){
+			object value=h[k];
+			data.Put(k,value);
+		}
+		return data;
+	}
+
 }
 
 

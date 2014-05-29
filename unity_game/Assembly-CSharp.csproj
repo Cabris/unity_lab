@@ -57,6 +57,8 @@
      <Compile Include="Assets\Scripts\extensions\ComboBox.cs" />
      <Compile Include="Assets\Scripts\extensions\Extensions.cs" />
      <Compile Include="Assets\Scripts\extensions\FPSStorage.cs" />
+     <Compile Include="Assets\Scripts\extensions\InputListener.cs" />
+     <Compile Include="Assets\Scripts\extensions\KeyboardController.cs" />
      <Compile Include="Assets\Scripts\extensions\PlayerAnimation.cs" />
      <Compile Include="Assets\Scripts\extensions\PlayerStatus.cs" />
      <Compile Include="Assets\Scripts\extensions\UniiWiiCheck.cs" />
@@ -74,6 +76,8 @@
      <Compile Include="Assets\Scripts\network\ScenePlayerCommand.cs" />
      <Compile Include="Assets\Scripts\network\SceneSpawnController.cs" />
      <Compile Include="Assets\Scripts\network\SmartFox.cs" />
+     <Compile Include="Assets\Scripts\scene\HoldableObject.cs" />
+     <Compile Include="Assets\Scripts\scene\MechinePart.cs" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />

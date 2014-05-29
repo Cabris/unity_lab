@@ -5,27 +5,29 @@ using System;
 using SmartFoxClientAPI;
 using SmartFoxClientAPI.Data;
 
-public class ClientPlayerCommand : MonoBehaviour
+public class ClientPlayerCommand : InputListener
 {
-	WiiController wiiController;
-	bool _left,_right,_up,_down;
-	
+	public	bool _left,_right,_up,_down;
+	public float h;
+	public float v;
+	public ScenePlayerCommand spc;
 	// Use this for initialization
 	void Start ()
 	{
-		wiiController=GetComponent<WiiController>();
-//		axis=new Vector4();
+		spc=GetComponent<ScenePlayerCommand>();
 	}
 	
 	void FixedUpdate ()
 	{ 
-		if(wiiController!=null&&!isSame()){
-			
+		h=Horizontal;
+		v=Vertical;
 
-			_left=wiiController.left;
-			_right=wiiController.right;
-			_up=wiiController.up;
-			_down=wiiController.down;
+		if(!isSame()){
+
+			_left=Horizontal<0;
+			_right=Horizontal>0;
+			_up=Vertical>0;
+			_down=Vertical<0;
 			
 			Hashtable data=new Hashtable();
 			data.Add("cmd", "m");
@@ -34,18 +36,21 @@ public class ClientPlayerCommand : MonoBehaviour
 			data.Add ("up", _up);
 			data.Add ("down", _down);
 			data.Add("object_name", this.name);
-			ClientNetworkController.SendExMsg("test","s",data);
+
+			if(NetworkController.GetClient()!=null)
+				ClientNetworkController.SendExMsg("test","s",data);
+			if(spc!=null)
+				spc.ReceiveCommand(data.ToSFSObject());
 		}
+
 	}
 	
 	bool isSame(){
 		return
-			_left==wiiController.left&&
-				_right==wiiController.right&&
-				_up==wiiController.up&&
-				_down==wiiController.down;
-		
+			_left==Horizontal<0&&
+			_right==Horizontal>0&&
+			_up==Vertical>0&&
+			_down==Vertical<0;
 	}
-	
 	
 }
