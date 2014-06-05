@@ -21,7 +21,8 @@ public class ClientSpawnController : MonoBehaviour
 			Instantiate(localPlayerPrefab) as GameObject;
 		PlayerStatus ps=localPlayer.GetComponent<PlayerStatus>();
 		ps.FromHashtable(data);
-		localPlayer.SendMessage ("StartReceiving");
+		localPlayer.GetComponent<NetworkTransformReceiver>().StartReceiving();
+		//localPlayer.SendMessage ("StartReceiving");
 	}
 
 	public void SpawnRemotePlayer (SFSObject data)
@@ -33,7 +34,8 @@ public class ClientSpawnController : MonoBehaviour
 			Instantiate(remotePlayerPrefab)as GameObject;
 		PlayerStatus ps=remotePlayer.GetComponent<PlayerStatus>();
 		ps.FromHashtable(data);
-		remotePlayer.SendMessage ("StartReceiving");
+		//remotePlayer.SendMessage ("StartReceiving");
+		remotePlayer.GetComponent<NetworkTransformReceiver>().StartReceiving();
 		remotePlayers.Add(remotePlayer);
 	}
 

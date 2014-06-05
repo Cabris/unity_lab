@@ -37,10 +37,14 @@ public class ClientPlayerCommand : InputListener
 			data.Add ("down", _down);
 			data.Add("object_name", this.name);
 
-			if(NetworkController.GetClient()!=null)
+			if(NetworkController.GetClient()!=null){
 				ClientNetworkController.SendExMsg("test","s",data);
-			if(spc!=null)
+				GetComponent<Animator>().applyRootMotion=false;
+			}
+			else if(spc!=null){
 				spc.ReceiveCommand(data.ToSFSObject());
+				GetComponent<Animator>().applyRootMotion=true;
+			}
 		}
 
 	}

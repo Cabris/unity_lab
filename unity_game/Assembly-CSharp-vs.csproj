@@ -46,20 +46,20 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MovementAnimsetProLite\Scripts\InputWalk.cs" />
      <Compile Include="Assets\Packages\UniWii\Scripts\WiimoteTestController.cs" />
-     <Compile Include="Assets\Script\Kinect\KinectImgControllers\DisplayColor.cs" />
-     <Compile Include="Assets\Script\Kinect\KinectImgControllers\DisplayDepth.cs" />
-     <Compile Include="Assets\Script\Kinect\KinectModelControllers\KinectModelControllerV2.cs" />
-     <Compile Include="Assets\Script\Kinect\KinectModelControllers\KinectPointController.cs" />
-     <Compile Include="Assets\Script\Kinect\KinectWrapper\DepthWrapper.cs" />
-     <Compile Include="Assets\Script\Kinect\KinectWrapper\DeviceOrEmulator.cs" />
-     <Compile Include="Assets\Script\Kinect\KinectWrapper\KinectEmulator.cs" />
-     <Compile Include="Assets\Script\Kinect\KinectWrapper\KinectInterop.cs" />
-     <Compile Include="Assets\Script\Kinect\KinectWrapper\KinectRecorder.cs" />
-     <Compile Include="Assets\Script\Kinect\KinectWrapper\KinectSensor.cs" />
-     <Compile Include="Assets\Script\Kinect\KinectWrapper\SkeletonWrapper.cs" />
      <Compile Include="Assets\Scripts\ClientController.cs" />
+     <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectImgControllers\DisplayColor.cs" />
+     <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectImgControllers\DisplayDepth.cs" />
+     <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectModelControllers\KinectModelControllerV2.cs" />
+     <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectModelControllers\KinectPointController.cs" />
+     <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectWrapper\DepthWrapper.cs" />
+     <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectWrapper\DeviceOrEmulator.cs" />
+     <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectWrapper\KinectEmulator.cs" />
+     <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectWrapper\KinectInterop.cs" />
+     <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectWrapper\KinectRecorder.cs" />
+     <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectWrapper\KinectSensor.cs" />
+     <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectWrapper\SkeletonWrapper.cs" />
+     <Compile Include="Assets\Scripts\KinectScript\Kinect\PlayerControllerKinect.cs" />
      <Compile Include="Assets\Scripts\PrefabManager.cs" />
      <Compile Include="Assets\Scripts\SceneController.cs" />
      <Compile Include="Assets\Scripts\SceneObject.cs" />
@@ -87,17 +87,22 @@
      <Compile Include="Assets\Scripts\network\ScenePlayerCommand.cs" />
      <Compile Include="Assets\Scripts\network\SceneSpawnController.cs" />
      <Compile Include="Assets\Scripts\network\SmartFox.cs" />
+     <Compile Include="Assets\Scripts\scene\BoneData.cs" />
+     <Compile Include="Assets\Scripts\scene\BoneReceiver.cs" />
+     <Compile Include="Assets\Scripts\scene\BoneSender.cs" />
      <Compile Include="Assets\Scripts\scene\HoldableObject.cs" />
      <Compile Include="Assets\Scripts\scene\MechinePart.cs" />
+     <Compile Include="Assets\models\Model\MovementAnimsetProLite\Scripts\InputWalk.cs" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
-     <None Include="Assets\Asset\Shaders\Normal-Diffuse.shader" />
+     <None Include="Assets\Kinect\Asset\Shaders\Normal-Diffuse.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
-     <None Include="Assets\MovementAnimsetProLite\readme.txt" />
+     <None Include="Assets\models\Model\MovementAnimsetProLite\readme.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Packages\UniWii\Visuals\3D Assets\wiimote_redux.txt" />
+     <None Include="Assets\prototype_textures\readme.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>

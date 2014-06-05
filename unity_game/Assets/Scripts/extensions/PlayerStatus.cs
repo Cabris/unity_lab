@@ -11,6 +11,7 @@ public class PlayerStatus : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		smr=GetComponentInChildren<SkinnedMeshRenderer>();
+		//color=Color.cyan;
 	}
 	
 	// Update is called once per frame

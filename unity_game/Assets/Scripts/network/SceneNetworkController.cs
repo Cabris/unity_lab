@@ -58,6 +58,13 @@ public class SceneNetworkController : NetworkController
 			ScenePlayerCommand c = g.GetComponent<ScenePlayerCommand> ();
 			c.ReceiveCommand (data);
 		}
+		if(cmd=="b"){
+			Debug.Log("bone!");
+			string object_name = data.GetString ("object_name");
+			GameObject g = GameObject.Find (object_name);
+			BoneReceiver bc=g.GetComponentInChildren<BoneReceiver>();
+			bc.ReceiveBoneData(data);
+		}
 		if (cmd == "#") {
 			string msg = data.GetString ("#");
 			Debug.Log (msg);
