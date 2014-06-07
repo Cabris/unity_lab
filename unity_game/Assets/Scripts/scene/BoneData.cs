@@ -6,22 +6,12 @@ using SmartFoxClientAPI.Data;
 public class BoneData
 {
 	Transform root;
-	List<Transform> childrenT;
+	public List<Transform> transformsToSend;
 	public BoneData (Transform t)
 	{
 		this.root=t;
-		childrenT=new List<Transform>();
-		findChildren(root,childrenT);
-	}
-	
-	public void SetBones (SFSObject data)
-	{
-		foreach(Transform c in childrenT){
-			string n=c.name;
-			Debug.Log("SetBones "+n);
-			SFSObject boneInfo=data.GetObj(n) as SFSObject;
-			SetTansform(boneInfo,c);
-		}
+		transformsToSend=new List<Transform>();
+		//findChildren(root,childrenT);
 	}
 	
 	public Hashtable GetHash(){
@@ -32,24 +22,25 @@ public class BoneData
 
 	private Hashtable toHash(){
 		Hashtable hash=new Hashtable();
-		foreach(Transform c in childrenT){
+		foreach(Transform c in transformsToSend){
 			Hashtable boneHash=new Hashtable();
 			boneHash.Add("name",c.name);
 			boneHash.Add("bone",GetBoneInfo(c));
 			hash.Add(c.name,boneHash);
 		}
+		//hash=new Hashtable();
 		return hash;
 	}
 
 
-	private void findChildren(Transform t,List<Transform> tList){
-		for(int i=0;i<t.childCount;i++){
-			Transform c=t.GetChild(i);
-//			Debug.Log(c.name);
-			tList.Add(c);
-			findChildren(c,tList);
-		}
-	}
+//	private void findChildren(Transform t,List<Transform> tList){
+//		for(int i=0;i<t.childCount;i++){
+//			Transform c=t.GetChild(i);
+////			Debug.Log(c.name);
+//			tList.Add(c);
+//			findChildren(c,tList);
+//		}
+//	}
 	
 	private Hashtable GetBoneInfo(Transform bt){
 		Hashtable h=new Hashtable();
@@ -63,17 +54,7 @@ public class BoneData
 		return h;
 	}
 
-	private void SetTansform(SFSObject boneInfo,Transform t){
-		Vector3 p=new Vector3();
-		p.x=(float)boneInfo.GetNumber("x");
-		p.y=(float)boneInfo.GetNumber("y");
-		p.z=(float)boneInfo.GetNumber("z");
-		Quaternion r=new Quaternion();
-		r.x=(float)boneInfo.GetNumber("rx");
-		r.y=(float)boneInfo.GetNumber("ry");
-		r.z=(float)boneInfo.GetNumber("rz");
-		r.w=(float)boneInfo.GetNumber("rw");
-	}
+
 
 }
 

@@ -59,7 +59,7 @@ public class SceneNetworkController : NetworkController
 			c.ReceiveCommand (data);
 		}
 		if(cmd=="b"){
-			Debug.Log("bone!");
+//			Debug.Log("bone!");
 			string object_name = data.GetString ("object_name");
 			GameObject g = GameObject.Find (object_name);
 			BoneReceiver bc=g.GetComponentInChildren<BoneReceiver>();
