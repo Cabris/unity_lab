@@ -90,6 +90,7 @@
      <Compile Include="Assets\Scripts\scene\BoneData.cs" />
      <Compile Include="Assets\Scripts\scene\BoneReceiver.cs" />
      <Compile Include="Assets\Scripts\scene\BoneSender.cs" />
+     <Compile Include="Assets\Scripts\scene\FlyCamera.cs" />
      <Compile Include="Assets\Scripts\scene\HoldableObject.cs" />
      <Compile Include="Assets\Scripts\scene\MechinePart.cs" />
      <Compile Include="Assets\models\Model\MovementAnimsetProLite\Scripts\InputWalk.cs" />

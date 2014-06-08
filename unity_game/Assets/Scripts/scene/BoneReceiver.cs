@@ -63,7 +63,7 @@ public class BoneReceiver : MonoBehaviour {
 		r.y=(float)boneTransform.GetNumber("ry");
 		r.z=(float)boneTransform.GetNumber("rz");
 		r.w=(float)boneTransform.GetNumber("rw");
-		Debug.Log("SetTansform: "+boneInfo.GetString("name"));
+	//	Debug.Log("SetTansform: "+boneInfo.GetString("name"));
 		t.localPosition=p;
 		t.localRotation=r;
 	}

@@ -94,11 +94,16 @@ public class SceneNetworkController : NetworkController
 		int i = 0;
 		foreach (string userName in spawn.scenePlayers.Keys) {
 			GameObject s = spawn.scenePlayers [userName];
-			GUI.Label (new Rect (10, 60 + 25 * i, 500, 24), 
+			if(GUI.Button (new Rect (10, 60 + 25 * i, 500, 24), 
 			           "" + (i + 1) + ". user: " + userName +
 			           ", scene player: " + 
-			           s.name + ", pos: " + s.transform.position);
+			               s.name + ", pos: " + s.transform.position)){
+				sceneController.FocusTo(s.transform.FindChild("CamTarget").transform);
+			}
 			i++;
+		}
+		if(GUI.Button (new Rect (10, 60 + 25 * i, 500, 24), "...")){
+			sceneController.FocusTo(null);
 		}
 	}
 	

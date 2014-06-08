@@ -72,6 +72,7 @@ public class WiiController : MonoBehaviour {
 				inputListener.Horizontal=horizontal;
 				inputListener.Vertical=vertical;
 			}
+			//Debug.Log("wii input");
 		}
 		if(keyboard!=null){
 			if(wiimote_count()>0)

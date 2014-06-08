@@ -6,7 +6,9 @@ public class SceneController : MonoBehaviour {
 
 	public List<GameObject> sceneObjs=new List<GameObject>();
 	public GameObject prefabManagerPrefab;
-
+	Camera camera;
+	Vector3 cameraIniPos;
+	Quaternion cameraIniRot;
 	// Use this for initialization
 	void Start () {
 		SceneObject[] s=GetComponentsInChildren<SceneObject>();
@@ -19,10 +21,22 @@ public class SceneController : MonoBehaviour {
 			sender.StartSending();
 //			Debug.Log(g.name+", "+type+".");
 		}
+		camera=Camera.main;
+		cameraIniPos=camera.transform.position;
+		cameraIniRot=camera.transform.rotation;
 	}
 
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void FocusTo(Transform t){
+		SmoothFollow f=(SmoothFollow)camera.GetComponent("SmoothFollow");
+		f.target=t;
+		if(t==null){
+			camera.transform.position=cameraIniPos;
+			camera.transform.rotation=cameraIniRot;
+		}
 	}
 }

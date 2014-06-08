@@ -1,13 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\scene\BoneSender.cs">
-    <Files>
-      <File FileName="Assets\Scripts\scene\BoneReceiver.cs" Line="27" Column="21" />
-      <File FileName="Assets\Scripts\scene\BoneSender.cs" Line="17" Column="63" />
-      <File FileName="Assets\Scripts\KinectScript\Kinect\PlayerControllerKinect.cs" Line="10" Column="38" />
-      <File FileName="Assets\Scripts\KinectScript\Kinect\KinectModelControllers\KinectModelControllerV2.cs" Line="63" Column="34" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

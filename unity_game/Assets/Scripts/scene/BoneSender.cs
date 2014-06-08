@@ -20,8 +20,8 @@ public class BoneSender : MonoBehaviour {
 		bd.transformsToSend.Add(kinectModelController.Wrist_Left.transform);
 		bd.transformsToSend.Add(kinectModelController.Wrist_Right.transform);
 
-//		bd.transformsToSend.Add(kinectModelController.Hand_Left.transform);
-//		bd.transformsToSend.Add(kinectModelController.Hand_Right.transform);
+		bd.transformsToSend.Add(kinectModelController.Hand_Left.transform);
+		bd.transformsToSend.Add(kinectModelController.Hand_Right.transform);
 	}
 	
 	// Update is called once per frame
@@ -33,10 +33,11 @@ public class BoneSender : MonoBehaviour {
 	}
 
 	void LateUpdate() {
+
 		Hashtable hash=bd.GetHash();
 		hash.Add("object_name",name);
 		ClientNetworkController.SendExMsg("test","s",hash);
-		Debug.Log("send bones");
+		//Debug.Log("send bones");
 	}
 
 }
