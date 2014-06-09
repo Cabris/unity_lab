@@ -310,6 +310,14 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: LeftForeArm
       humanName: LeftLowerArm
       limit:
@@ -318,8 +326,24 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: LeftHand
       humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RightHand
+      humanName: RightHand
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -582,30 +606,6 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: RightHand
-      humanName: RightHand
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: RightForeArm
-      humanName: RightLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: RightArm
-      humanName: RightUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     skeleton:
     - name: Dummy(Clone)
       position: {x: 0, y: 0, z: 0}
@@ -714,7 +714,7 @@ ModelImporter:
       transformModified: 1
     - name: LeftArm
       position: {x: -.169873804, y: 1.52587887e-07, z: -2.86102289e-08}
-      rotation: {x: -.00150501844, y: .0019348925, z: -.02389214, w: .999711573}
+      rotation: {x: -.00150501833, y: .00193489238, z: -.0238921382, w: .999711514}
       scale: {x: .99999994, y: .99999994, z: .99999994}
       transformModified: 1
     - name: LeftArmRoll
@@ -829,7 +829,7 @@ ModelImporter:
       transformModified: 1
     - name: LeftHandThumb2
       position: {x: -.0533665977, y: 2.48689826e-16, z: 3.55271128e-17}
-      rotation: {x: -.00347656454, y: .0160379466, z: .0353552103, w: .9992401}
+      rotation: {x: -.00347656431, y: .0160379447, z: .0353552066, w: .999240041}
       scale: {x: 1, y: 1, z: .999999881}
       transformModified: 1
     - name: LeftHandThumb3
@@ -859,7 +859,7 @@ ModelImporter:
       transformModified: 1
     - name: RightArm
       position: {x: .169874936, y: 7.96424774e-06, z: 6.6770383e-07}
-      rotation: {x: -.00150518259, y: .00193436118, z: -.0238819495, w: .999711812}
+      rotation: {x: -.00150518247, y: .00193436106, z: -.0238819476, w: .999711752}
       scale: {x: .99999994, y: .99999994, z: .99999994}
       transformModified: 1
     - name: RightArmRoll
@@ -869,7 +869,7 @@ ModelImporter:
       transformModified: 1
     - name: RightForeArm
       position: {x: .271039546, y: -5.25014866e-06, z: -4.83078679e-07}
-      rotation: {x: -.0136774238, y: .0223927479, z: -.03288633, w: .999114633}
+      rotation: {x: -.0136774229, y: .0223927461, z: -.0328863263, w: .999114573}
       scale: {x: 1.00000024, y: 1, z: 1.00000024}
       transformModified: 1
     - name: RightForeArmRoll
@@ -914,7 +914,7 @@ ModelImporter:
       transformModified: 1
     - name: RightHandMiddle3
       position: {x: .0261784419, y: 5.03553247e-06, z: 1.35034463e-06}
-      rotation: {x: 3.3705868e-07, y: -3.20233744e-06, z: .0415303558, w: .999137282}
+      rotation: {x: 3.37058651e-07, y: -3.20233721e-06, z: .0415303521, w: .999137223}
       scale: {x: .99999994, y: 1, z: .99999994}
       transformModified: 1
     - name: RightHandMiddle4
@@ -974,7 +974,7 @@ ModelImporter:
       transformModified: 1
     - name: RightHandThumb2
       position: {x: .0533663966, y: 5.55547388e-07, z: -3.19239206e-07}
-      rotation: {x: -.00347622647, y: .0160446987, z: .0353587791, w: .999239862}
+      rotation: {x: -.00347622624, y: .0160446968, z: .0353587754, w: .999239802}
       scale: {x: 1, y: 1, z: .999999881}
       transformModified: 1
     - name: RightHandThumb3

@@ -8,7 +8,15 @@ using SmartFoxClientAPI.Data;
 public class ScenePlayerCommand : MonoBehaviour {
 	PlayerAnimation playerAni;
 	private Queue queue = new Queue();
-	public int qc;
+
+	public bool _buttonB=false;
+	public GameObject detectObj;	
+	public int CommandQueueSize;
+	
+	public delegate void ButtonEventHandler(string button);
+	public ButtonEventHandler OnButtonDown;
+	public ButtonEventHandler OnButtonUp;
+
 	// Use this for initialization
 	void Start () {
 		playerAni=GetComponent<PlayerAnimation>();
@@ -20,7 +28,7 @@ public class ScenePlayerCommand : MonoBehaviour {
 			SFSObject data=queue.Dequeue() as SFSObject;
 			HandleCommand(data);
 		}
-		qc=queue.Count;
+		CommandQueueSize=queue.Count;
 	}
 
 	public void ReceiveCommand(SFSObject data) {	
@@ -28,10 +36,21 @@ public class ScenePlayerCommand : MonoBehaviour {
 	}
 
 	void HandleCommand(SFSObject data){
-		playerAni.left=data.GetBool("left");
-		playerAni.right=data.GetBool("right");
-		playerAni.up=data.GetBool("up");
-		playerAni.down=data.GetBool("down");
-		playerAni.isToSend=true;
+		string horizontal=data.GetString("horizontal");
+		string vertical=data.GetString("vertical");
+		playerAni.direction=Single.Parse( horizontal);
+		playerAni.speed=Single.Parse( vertical);
+		HandleButton(data,"buttonB",ref _buttonB);
+		string detect=data.GetString("detected_object_name");
+		detectObj=GameObject.Find(detect);
+	}
+
+	void HandleButton(SFSObject data,string button,ref bool preState){
+		bool newState=data.GetBool(button);
+		if(preState&&!newState&&OnButtonUp!=null)
+			OnButtonUp(button);
+		if(!preState&&newState&&OnButtonDown!=null)
+			OnButtonDown(button);
+		preState=newState;
 	}
 }

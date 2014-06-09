@@ -59,7 +59,6 @@ public class SceneNetworkController : NetworkController
 			c.ReceiveCommand (data);
 		}
 		if(cmd=="b"){
-//			Debug.Log("bone!");
 			string object_name = data.GetString ("object_name");
 			GameObject g = GameObject.Find (object_name);
 			BoneReceiver bc=g.GetComponentInChildren<BoneReceiver>();
@@ -71,9 +70,7 @@ public class SceneNetworkController : NetworkController
 		}
 		if(cmd=="userJoinScene"){
 			string userName=data.GetString("userName");
-//			Debug.Log(userName+" added");
 			int userId=Convert.ToInt32(data.GetNumber("userId"));
-//			Debug.Log(userId+" added");
 			spawn.SpawnServerPlayer (userName,userId);
 			SendSceneData (userName);
 		}

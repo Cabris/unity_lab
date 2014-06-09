@@ -46,8 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\MovementAnimsetProLite\Scripts\InputWalk.cs" />
      <Compile Include="Assets\Packages\UniWii\Scripts\WiimoteTestController.cs" />
      <Compile Include="Assets\Scripts\ClientController.cs" />
+     <Compile Include="Assets\Scripts\GrapDetector.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectImgControllers\DisplayColor.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectImgControllers\DisplayDepth.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectModelControllers\KinectModelControllerV2.cs" />
@@ -93,13 +95,12 @@
      <Compile Include="Assets\Scripts\scene\FlyCamera.cs" />
      <Compile Include="Assets\Scripts\scene\HoldableObject.cs" />
      <Compile Include="Assets\Scripts\scene\MechinePart.cs" />
-     <Compile Include="Assets\models\Model\MovementAnimsetProLite\Scripts\InputWalk.cs" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Kinect\Asset\Shaders\Normal-Diffuse.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
-     <None Include="Assets\models\Model\MovementAnimsetProLite\readme.txt" />
+     <None Include="Assets\MovementAnimsetProLite\readme.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Packages\UniWii\Visuals\3D Assets\wiimote_redux.txt" />

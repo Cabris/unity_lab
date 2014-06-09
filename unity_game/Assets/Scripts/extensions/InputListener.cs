@@ -6,6 +6,7 @@ public class InputListener: MonoBehaviour
 {
 	public  float Horizontal{get;set;}
 	public  float Vertical{get;set;}
+	public bool ButtonBPress{get;set;}
 }
 
 

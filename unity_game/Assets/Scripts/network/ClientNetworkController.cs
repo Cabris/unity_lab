@@ -35,6 +35,7 @@ public class ClientNetworkController : NetworkController {
 	public static void SendExMsg(string exName,string cmd,Hashtable data){
 		SmartFoxClient client = GetClient();
 		data.Add("host",hostSceneName);
+		if(client!=null)
 		client.SendXtMessage(exName,cmd,data);
 	}
 	

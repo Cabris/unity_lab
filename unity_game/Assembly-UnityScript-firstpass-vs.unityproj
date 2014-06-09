@@ -61,7 +61,7 @@
      <None Include="Assets\Kinect\Asset\Shaders\Normal-Diffuse.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
-     <None Include="Assets\models\Model\MovementAnimsetProLite\readme.txt" />
+     <None Include="Assets\MovementAnimsetProLite\readme.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Packages\UniWii\Visuals\3D Assets\wiimote_redux.txt" />

@@ -167,7 +167,7 @@ public class KinectModelControllerV2 : MonoBehaviour {
 		Vector3.OrthoNormalize(ref _boneDir[(int)Kinect.NuiSkeletonPositionIndex.HipLeft],ref _hipRight);
 	}
 	
-	void Update () {
+	void LateUpdate () {
 		//update the data from the kinect if necessary
 		if(sw.pollSkeleton()){
 			for( int ii = 0; ii < (int)Kinect.NuiSkeletonPositionIndex.Count; ii++)
