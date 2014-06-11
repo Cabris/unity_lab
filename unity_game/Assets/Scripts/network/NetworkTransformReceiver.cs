@@ -37,29 +37,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 		}
 		qc=queue.Count;
 	}
-
-	public static void SetTransform(Transform t, SFSObject data){
-		t.position=GetPos(data);
-		t.rotation=GetRot(data);
-	}
-
-	public  static Vector3 GetPos(SFSObject data){
-		Vector3 pos = new Vector3(Convert.ToSingle(data.GetNumber("x")), 
-		                          Convert.ToSingle(data.GetNumber("y")),
-		                          Convert.ToSingle(data.GetNumber("z"))
-		                          );
-		return pos;
-	}
-
-	public  static Quaternion GetRot(SFSObject data){
-		Quaternion rot = new Quaternion(Convert.ToSingle(data.GetNumber("rx")), 
-		                                Convert.ToSingle(data.GetNumber("ry")),
-		                                Convert.ToSingle(data.GetNumber("rz")),
-		                                Convert.ToSingle(data.GetNumber("w"))
-		                                );
-		return rot;
-	}
-
+	
 	//This method is called when receiving remote transform
 	// We update lastState here to know last received transform state
 	public void ReceiveTransform(SFSObject data) {
@@ -67,11 +45,12 @@ public class NetworkTransformReceiver : MonoBehaviour {
 			Vector3 pos = GetPos(data);
 			pos.y+=yAdjust;
 			Quaternion rot = GetRot(data);
+			Vector3 sca=GetScale(data);
 //			Debug.Log("ReceiveTransform:"+gameObject.name);
-			lastState.InitFromValues(pos, rot);
+			lastState.InitFromValues(pos, rot,sca);
 			// Adding next received state to the queue	
 			NetworkTransform nextState = new NetworkTransform(this.gameObject);
-			nextState.InitFromValues(pos, rot);
+			nextState.InitFromValues(pos, rot,sca);
 			queue.Enqueue(nextState);
 		}
 	}
@@ -86,13 +65,15 @@ public class NetworkTransformReceiver : MonoBehaviour {
 				t=1;
 			transform.position = Vector3.Lerp(interpolateFrom.position, interpolateTo.position, t);
 			transform.rotation = Quaternion.Slerp(interpolateFrom.rotation, interpolateTo.rotation, t);
+			transform.localScale = Vector3.Lerp(interpolateFrom.scale, interpolateTo.scale, t);
 		}
 		else {
 			// Finished interpolating to the next point
 			if (interpolateTo!=null) {
 				// Fixing interpolation result to set transform right to the next point
-				transform.position = interpolateTo.position;
-				transform.rotation = interpolateTo.rotation;
+				//transform.position = interpolateTo.position;
+				//transform.rotation = interpolateTo.rotation;
+				SetTransform(transform,interpolateTo);
 			}
 			
 			// Take new value from queue
@@ -115,12 +96,49 @@ public class NetworkTransformReceiver : MonoBehaviour {
 			}
 			else {
 				// If queue is empty just setting the transform to the last received state
-				transform.position = lastState.position;
-				transform.rotation = lastState.rotation;
+				//transform.position = lastState.position;
+				//transform.rotation = lastState.rotation;
+				SetTransform(transform,lastState);
 			}
 		}	
 	}
 
+	public static void SetTransform(Transform t, SFSObject data){
+		t.position=GetPos(data);
+		t.rotation=GetRot(data);
+		t.localScale=GetScale(data);
+	}
+
+	public static void SetTransform(Transform t, NetworkTransform nt){
+		t.position=nt.position;
+		t.rotation=nt.rotation;
+		t.localScale=nt.scale;
+	}
+	
+	public  static Vector3 GetPos(SFSObject data){
+		Vector3 pos = new Vector3(Convert.ToSingle(data.GetNumber("x")), 
+		                          Convert.ToSingle(data.GetNumber("y")),
+		                          Convert.ToSingle(data.GetNumber("z"))
+		                          );
+		return pos;
+	}
+	
+	public  static Vector3 GetScale(SFSObject data){
+		Vector3 sca = new Vector3(Convert.ToSingle(data.GetNumber("sx")), 
+		                          Convert.ToSingle(data.GetNumber("sy")),
+		                          Convert.ToSingle(data.GetNumber("sz"))
+		                          );
+		return sca;
+	}
+	
+	public  static Quaternion GetRot(SFSObject data){
+		Quaternion rot = new Quaternion(Convert.ToSingle(data.GetNumber("rx")), 
+		                                Convert.ToSingle(data.GetNumber("ry")),
+		                                Convert.ToSingle(data.GetNumber("rz")),
+		                                Convert.ToSingle(data.GetNumber("w"))
+		                                );
+		return rot;
+	}
 
 	
 }

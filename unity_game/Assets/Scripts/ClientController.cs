@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using SmartFoxClientAPI.Data;
+
 public class ClientController : MonoBehaviour {
 	
 	public GameObject prefabManagerPrefab;
@@ -25,6 +26,7 @@ public class ClientController : MonoBehaviour {
 
 		Vector3 pos=NetworkTransformReceiver.GetPos(t);
 		Quaternion rot=NetworkTransformReceiver.GetRot(t);
+		Vector3 sca=NetworkTransformReceiver.GetScale(t);
 		sceneObj.transform.position=pos;
 		sceneObj.transform.rotation=rot;
 		Rigidbody rigi=sceneObj.GetComponent<Rigidbody>();
