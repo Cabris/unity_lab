@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -48,8 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\MovementAnimsetProLite\Scripts\InputWalk.cs" />
      <Compile Include="Assets\Packages\UniWii\Scripts\WiimoteTestController.cs" />
-     <Compile Include="Assets\Scripts\ClientController.cs" />
-     <Compile Include="Assets\Scripts\GrapDetector.cs" />
+     <Compile Include="Assets\Scripts\AssetBundlesTest.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectImgControllers\DisplayColor.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectImgControllers\DisplayDepth.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectModelControllers\KinectModelControllerV2.cs" />
@@ -62,10 +61,6 @@
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectWrapper\KinectSensor.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectWrapper\SkeletonWrapper.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\PlayerControllerKinect.cs" />
-     <Compile Include="Assets\Scripts\PrefabManager.cs" />
-     <Compile Include="Assets\Scripts\SceneController.cs" />
-     <Compile Include="Assets\Scripts\SceneObject.cs" />
-     <Compile Include="Assets\Scripts\ServerConnection.cs" />
      <Compile Include="Assets\Scripts\extensions\ButtonControl.cs" />
      <Compile Include="Assets\Scripts\extensions\ComboBox.cs" />
      <Compile Include="Assets\Scripts\extensions\Extensions.cs" />
@@ -76,7 +71,6 @@
      <Compile Include="Assets\Scripts\extensions\PlayerStatus.cs" />
      <Compile Include="Assets\Scripts\extensions\UniiWiiCheck.cs" />
      <Compile Include="Assets\Scripts\extensions\WiiController.cs" />
-     <Compile Include="Assets\Scripts\gui_Login.cs" />
      <Compile Include="Assets\Scripts\network\ClientNetworkController.cs" />
      <Compile Include="Assets\Scripts\network\ClientPlayerCommand.cs" />
      <Compile Include="Assets\Scripts\network\ClientSpawnController.cs" />
@@ -88,13 +82,20 @@
      <Compile Include="Assets\Scripts\network\SceneNetworkController.cs" />
      <Compile Include="Assets\Scripts\network\ScenePlayerCommand.cs" />
      <Compile Include="Assets\Scripts\network\SceneSpawnController.cs" />
+     <Compile Include="Assets\Scripts\network\ServerConnection.cs" />
      <Compile Include="Assets\Scripts\network\SmartFox.cs" />
+     <Compile Include="Assets\Scripts\network\gui_Login.cs" />
      <Compile Include="Assets\Scripts\scene\BoneData.cs" />
      <Compile Include="Assets\Scripts\scene\BoneReceiver.cs" />
      <Compile Include="Assets\Scripts\scene\BoneSender.cs" />
+     <Compile Include="Assets\Scripts\scene\ClientController.cs" />
      <Compile Include="Assets\Scripts\scene\FlyCamera.cs" />
+     <Compile Include="Assets\Scripts\scene\GrapDetector.cs" />
      <Compile Include="Assets\Scripts\scene\HoldableObject.cs" />
      <Compile Include="Assets\Scripts\scene\MechinePart.cs" />
+     <Compile Include="Assets\Scripts\scene\PrefabManager.cs" />
+     <Compile Include="Assets\Scripts\scene\SceneController.cs" />
+     <Compile Include="Assets\Scripts\scene\SceneObject.cs" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Kinect\Asset\Shaders\Normal-Diffuse.shader" />

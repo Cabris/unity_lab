@@ -36,6 +36,7 @@ public class SceneMenu : NetworkController {
 	
 	void GoToClient(string targetScene){
 		//GetClient().LeaveRoom(GetClient().activeRoomId);
+		ClientController.AssetName=sceneInfoMap[targetScene];
 		ClientNetworkController.hostSceneName=targetScene;
 		Application.LoadLevel("clientLab");
 	}
@@ -62,7 +63,7 @@ public class SceneMenu : NetworkController {
 	void OnGUI() {
 		int i=0;
 		foreach(string sceneName in sceneInfoMap.Keys){
-			if ( GUI.Button(new Rect(50, 50+i*80, 150, 24), "go to "+sceneName)){
+			if ( GUI.Button(new Rect(50, 50+i*80, 350, 24), "go to "+sceneName+", type: "+sceneInfoMap[sceneName])){
 				GoToClient(sceneName);
 			}
 			i++;

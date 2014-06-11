@@ -22,14 +22,14 @@ public class SceneNetworkController : NetworkController
 		SubscribeEvents ();
 		started = true;
 		spawn = GetComponent<SceneSpawnController> ();
-		
 		smartFoxClient.JoinRoom ("Central Square");
+
 	}
 	
 	protected void RegistScene ()
 	{
 		Hashtable data = new Hashtable ();
-		data.Add ("type", Application.loadedLevelName);
+		data.Add ("type", SceneController.AssetName);
 		SmartFoxClient client = ClientNetworkController.GetClient ();
 		client.SendXtMessage ("test", "registScene", data);
 	}

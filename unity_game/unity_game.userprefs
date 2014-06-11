@@ -1,12 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\network\ScenePlayerCommand.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\network\NetworkTransformReceiver.cs">
     <Files>
-      <File FileName="unity_game.sln" Line="58" Column="1" />
-      <File FileName="Assets\Scripts\network\NetworkTransform.cs" Line="56" Column="31" />
-      <File FileName="Assets\Scripts\network\NetworkTransformReceiver.cs" Line="113" Column="26" />
-      <File FileName="Assets\Scripts\network\ClientPlayerCommand.cs" Line="40" Column="44" />
-      <File FileName="Assets\Scripts\network\ScenePlayerCommand.cs" Line="42" Column="31" />
+      <File FileName="Assets\Scripts\extensions\Extensions.cs" Line="26" Column="2" />
+      <File FileName="Assets\Scripts\network\NetworkTransformReceiver.cs" Line="79" Column="35" />
+      <File FileName="Assets\Scripts\network\NetworkTransformSender.cs" Line="31" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

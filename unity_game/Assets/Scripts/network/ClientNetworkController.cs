@@ -80,7 +80,7 @@ public class ClientNetworkController : NetworkController {
 			SFSObject datas =data.Get("datas") as SFSObject;
 			foreach(object obj in datas.Keys()){
 				SFSObject sdata=datas.Get(obj) as SFSObject;
-				clientController.CreateSceneObject(sdata);
+				clientController.HandleSceneObject(sdata);
 			}
 		}
 		if(cmd=="a"){

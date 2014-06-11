@@ -19,7 +19,7 @@ public class NetworkTransformSender : MonoBehaviour {
 		sendMode = true;
 	}
 	
-	void FixedUpdate() { 
+	void Update() { 
 		if (sendMode) {
 			SendTransform();
 		}

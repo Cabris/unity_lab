@@ -11,12 +11,14 @@ public class SceneObject : MonoBehaviour {
 	void Start () {
 		sceneObjName=gameObject.name;
 		tra=gameObject.transform;
+
 	}
 
 	public SFSObject GetDataAsSfs(){
 		SFSObject data=new SFSObject();
 		data.Put("name",sceneObjName);
 		data.Put("type",type);
+	 
 		SFSObject tf=NetworkTransform.GetTransformAsSfs(tra);
 		data.Put("transform",tf);
 		return data;

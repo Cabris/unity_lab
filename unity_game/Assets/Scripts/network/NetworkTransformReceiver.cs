@@ -71,8 +71,6 @@ public class NetworkTransformReceiver : MonoBehaviour {
 			// Finished interpolating to the next point
 			if (interpolateTo!=null) {
 				// Fixing interpolation result to set transform right to the next point
-				//transform.position = interpolateTo.position;
-				//transform.rotation = interpolateTo.rotation;
 				SetTransform(transform,interpolateTo);
 			}
 			
@@ -96,8 +94,6 @@ public class NetworkTransformReceiver : MonoBehaviour {
 			}
 			else {
 				// If queue is empty just setting the transform to the last received state
-				//transform.position = lastState.position;
-				//transform.rotation = lastState.rotation;
 				SetTransform(transform,lastState);
 			}
 		}	

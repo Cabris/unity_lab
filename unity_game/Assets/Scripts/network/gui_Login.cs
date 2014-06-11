@@ -11,7 +11,6 @@ public class gui_Login : MonoBehaviour {
 	
 	public bool debug = true;
 	public bool isScene=false;
-	string targetScene="serverLab";
 	
 	private string statusMessage = "";
 	private string username = "";
@@ -19,7 +18,7 @@ public class gui_Login : MonoBehaviour {
 	GUIContent[] comboBoxList;
 	private ComboBox comboBoxControl;// = new ComboBox();
 	private GUIStyle listStyle = new GUIStyle();
-	private string[] scenes={"serverLab","scene1"};
+	private string[] scenes={"Scene0","Scene1"};
 	
 	public ServerConnection serverConnection;
 	
@@ -68,20 +67,22 @@ public class gui_Login : MonoBehaviour {
 		if (serverConnection.IsConnected()) {
 			
 			isScene = GUI.Toggle(new Rect(10, 80, 250, 30), isScene, "isServer");
-			
+			string asWhat="";
 			if(isScene){
 				GUI.Label(new Rect(10, 120, 100, 100), "SceneName: ");
 				int i=comboBoxControl.Show();
 				//Debug.Log(i);
 				GUIContent c=comboBoxList[i];
-				targetScene=scenes[i];
-				username=c.text;
+				SceneController.AssetName =scenes[i];
+				string r="r"+Convert.ToInt32(UnityEngine.Random.Range(0,500)).ToString();
+				username=c.text+"_"+r;
+				asWhat="Scene";
 			}else{
-				targetScene="SceneMenu";
 				GUI.Label(new Rect(10, 120, 100, 100), "Username: ");
 				username = GUI.TextField(new Rect(100, 120, 200, 20), username, 25);
+				asWhat="player";
 			}
-			if ( GUI.Button(new Rect(Screen.width/2-150, Screen.height/2, 300, 24), "Login as "+targetScene)  
+			if ( GUI.Button(new Rect(Screen.width/2-150, Screen.height/2, 300, 24), "Login as "+asWhat)  
 			    || (Event.current.type == EventType.keyDown && Event.current.character == '\n')) {
 				serverConnection.Login(username);
 			}
@@ -174,7 +175,10 @@ public class gui_Login : MonoBehaviour {
 				}
 			}
 			UnregisterSFSSceneCallbacks();
-			Application.LoadLevel(targetScene);
+			if(isScene)
+				Application.LoadLevel("serverLab");
+			else
+				Application.LoadLevel("SceneMenu");
 		}
 		catch (Exception e) {
 			Debug.Log("Room list error: "+e.Message+" "+e.StackTrace);
