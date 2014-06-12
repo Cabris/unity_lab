@@ -46,9 +46,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 			pos.y+=yAdjust;
 			Quaternion rot = GetRot(data);
 			Vector3 sca=GetScale(data);
-//			Debug.Log("ReceiveTransform:"+gameObject.name);
 			lastState.InitFromValues(pos, rot,sca);
-			// Adding next received state to the queue	
 			NetworkTransform nextState = new NetworkTransform(this.gameObject);
 			nextState.InitFromValues(pos, rot,sca);
 			queue.Enqueue(nextState);
@@ -61,7 +59,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 		if (interpolationPoint < maxInterpolationPoints) {
 			interpolationPoint++;
 			float t = interpolationPoint*interpolationDelta;
-			if (t>1) 
+			if (t>1)
 				t=1;
 			transform.position = Vector3.Lerp(interpolateFrom.position, interpolateTo.position, t);
 			transform.rotation = Quaternion.Slerp(interpolateFrom.rotation, interpolateTo.rotation, t);
