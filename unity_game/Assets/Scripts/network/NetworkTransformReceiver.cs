@@ -8,7 +8,7 @@ using SmartFoxClientAPI.Data;
 public class NetworkTransformReceiver : MonoBehaviour {
 	
 	public float yAdjust = 0.0f; // Ajust y position when synchronizing the local and remote models.
-	public float interpolationPeriod = 0.01f;  // This value should be equal to the sendingPerion value of the Sender script
+	public float interpolationPeriod = 0.03f;  // This value should be equal to the sendingPerion value of the Sender script
 	public int qc;
 	public long ts=0;
 
@@ -17,8 +17,8 @@ public class NetworkTransformReceiver : MonoBehaviour {
 	private NetworkTransform interpolateTo = null;  // Last state we interpolate to in receiving mode.
 	private NetworkTransform interpolateFrom;  // Point from which to start interpolation
 	
-	private int interpolationPoint = 0; // Current interpolation point
-	private int maxInterpolationPoints = 0; // Maximum number of interpolation points;
+	public int interpolationPoint = 0; // Current interpolation point
+	public int maxInterpolationPoints = 0; // Maximum number of interpolation points;
 	private float interpolationDelta = 0; // Delta value by which interpolate
 	
 	private FPSStorage fpsStorage;
@@ -27,7 +27,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 	// We call it on remote player to start receiving his transform
 	public void StartReceiving() {
 		lastState = new NetworkTransform(this.gameObject);	
-		fpsStorage = GameObject.Find("FPS").GetComponent(typeof(FPSStorage)) as FPSStorage;
+		fpsStorage = GameObject.Find("FPS").GetComponent<FPSStorage>() as FPSStorage;
 		receiveMode = true;
 	}
 	

@@ -50,20 +50,21 @@ public class ClientController : MonoBehaviour {
 		GameObject sceneObj=GameObject.Find(name);	
 		sceneObj.name=name;
 		sceneObj.AddComponent<NetworkTransformReceiver>();
-		NetworkTransformReceiver r=sceneObj.GetComponent<NetworkTransformReceiver>();
-		r.StartReceiving();
+		NetworkTransformReceiver ntReceiver=sceneObj.GetComponent<NetworkTransformReceiver>();
+		ntReceiver.StartReceiving();
 		
 		Vector3 pos=NetworkTransformReceiver.GetPos(t);
 		Quaternion rot=NetworkTransformReceiver.GetRot(t);
 		Vector3 sca=NetworkTransformReceiver.GetScale(t);
 		sceneObj.transform.position=pos;
 		sceneObj.transform.rotation=rot;
-		Rigidbody rigi=sceneObj.GetComponent<Rigidbody>();
-		if(rigi!=null){
-			rigi.isKinematic=true;
-			rigi.useGravity=false;
+		Rigidbody rig=sceneObj.rigidbody;
+		if(rig!=null){
+			rig.isKinematic=true;
+			rig.useGravity=false;
 		}
-		r.ReceiveTransform(t);
+
+		ntReceiver.ReceiveTransform(t);
 	}
 
 	void Update () {

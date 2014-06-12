@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\extensions\ComboBox.cs" />
      <Compile Include="Assets\Scripts\extensions\Extensions.cs" />
      <Compile Include="Assets\Scripts\extensions\FPSStorage.cs" />
+     <Compile Include="Assets\Scripts\extensions\HUDFPS.cs" />
      <Compile Include="Assets\Scripts\extensions\InputListener.cs" />
      <Compile Include="Assets\Scripts\extensions\KeyboardController.cs" />
      <Compile Include="Assets\Scripts\extensions\PlayerAnimation.cs" />

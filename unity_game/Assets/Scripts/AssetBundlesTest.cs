@@ -8,7 +8,7 @@ public class AssetBundlesTest : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine(LoadGameObject());
+		//StartCoroutine(LoadGameObject());
 	}
 	
 	// Update is called once per frame

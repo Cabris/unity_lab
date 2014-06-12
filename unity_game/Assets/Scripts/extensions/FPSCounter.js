@@ -8,7 +8,7 @@
 // by accumulating FPS for each frame. This way we end up with
 // correct overall FPS even if the interval renders something like
 // 5.5 frames.
- 
+
 var updateInterval = 1.0;
 private var accum = 0.0; // FPS accumulated over the interval
 private var frames = 0; // Frames drawn over the interval
@@ -17,6 +17,8 @@ private var fps = 15.0; // Current FPS
 private var oldFps = 15.0; 
 private var lastSample : double;
 private var gotIntervals = 0;
+
+var gui:GUIText;
 
 function Start()
 {
@@ -47,7 +49,7 @@ function Update()
         	SendMessage("FPSChanged", fps);
         }
         
-        guiText.text = fps.ToString("f2");
+        gui.text = fps.ToString("f2");
         timeleft = updateInterval;
         accum = 0.0;
         frames = 0;
