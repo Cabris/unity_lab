@@ -18,7 +18,7 @@ public class gui_Login : MonoBehaviour {
 	GUIContent[] comboBoxList;
 	private ComboBox comboBoxControl;// = new ComboBox();
 	private GUIStyle listStyle = new GUIStyle();
-	private string[] scenes={"Scene0","Scene1"};
+	private string[] scenes={"Scene0","Scene1","Scene2"};
 	
 	public ServerConnection serverConnection;
 	

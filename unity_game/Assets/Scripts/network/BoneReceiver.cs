@@ -25,7 +25,6 @@ public class BoneReceiver : MonoBehaviour {
 	}
 
 	void LateUpdate() {
-
 		if(latestData!=null)
 			SetBones(latestData);
 	}

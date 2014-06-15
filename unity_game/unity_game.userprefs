@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Editor\AssetBundleHelper.cs">
+    <Files>
+      <File FileName="Assets\Scripts\scene\StirlingEngineController.cs" Line="19" Column="16" />
+      <File FileName="Assets\Scripts\scene\SceneObject.cs" Line="8" Column="22" />
+      <File FileName="Assets\Scripts\network\gui_Login.cs" Line="21" Column="52" />
+      <File FileName="Assets\Scripts\Editor\AssetBundleHelper.cs" Line="11" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

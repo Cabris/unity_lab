@@ -49,6 +49,8 @@
      <Compile Include="Assets\MovementAnimsetProLite\Scripts\InputWalk.cs" />
      <Compile Include="Assets\Packages\UniWii\Scripts\WiimoteTestController.cs" />
      <Compile Include="Assets\Scripts\AssetBundlesTest.cs" />
+     <Compile Include="Assets\Scripts\GrapController.cs" />
+     <Compile Include="Assets\Scripts\GrapableObj.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectImgControllers\DisplayColor.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectImgControllers\DisplayDepth.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectModelControllers\KinectModelControllerV2.cs" />
@@ -61,6 +63,7 @@
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectWrapper\KinectSensor.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectWrapper\SkeletonWrapper.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\PlayerControllerKinect.cs" />
+     <Compile Include="Assets\Scripts\MouseBoneController.cs" />
      <Compile Include="Assets\Scripts\extensions\ButtonControl.cs" />
      <Compile Include="Assets\Scripts\extensions\ComboBox.cs" />
      <Compile Include="Assets\Scripts\extensions\Extensions.cs" />
@@ -72,6 +75,8 @@
      <Compile Include="Assets\Scripts\extensions\PlayerStatus.cs" />
      <Compile Include="Assets\Scripts\extensions\UniiWiiCheck.cs" />
      <Compile Include="Assets\Scripts\extensions\WiiController.cs" />
+     <Compile Include="Assets\Scripts\network\BoneReceiver.cs" />
+     <Compile Include="Assets\Scripts\network\BoneSender.cs" />
      <Compile Include="Assets\Scripts\network\ClientNetworkController.cs" />
      <Compile Include="Assets\Scripts\network\ClientPlayerCommand.cs" />
      <Compile Include="Assets\Scripts\network\ClientSpawnController.cs" />
@@ -87,8 +92,6 @@
      <Compile Include="Assets\Scripts\network\SmartFox.cs" />
      <Compile Include="Assets\Scripts\network\gui_Login.cs" />
      <Compile Include="Assets\Scripts\scene\BoneData.cs" />
-     <Compile Include="Assets\Scripts\scene\BoneReceiver.cs" />
-     <Compile Include="Assets\Scripts\scene\BoneSender.cs" />
      <Compile Include="Assets\Scripts\scene\ClientController.cs" />
      <Compile Include="Assets\Scripts\scene\FlyCamera.cs" />
      <Compile Include="Assets\Scripts\scene\GrapDetector.cs" />
@@ -97,6 +100,7 @@
      <Compile Include="Assets\Scripts\scene\PrefabManager.cs" />
      <Compile Include="Assets\Scripts\scene\SceneController.cs" />
      <Compile Include="Assets\Scripts\scene\SceneObject.cs" />
+     <Compile Include="Assets\Scripts\scene\StirlingEngineController.cs" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Kinect\Asset\Shaders\Normal-Diffuse.shader" />

@@ -4,7 +4,8 @@ using System.Collections;
 public class GrapDetector : MonoBehaviour {
 	public  Transform target;
 	public float distance;
-	//public Transform temp;
+	public Transform start;
+	public Transform end;
 	public GameObject detectedObj;
 	Vector3 posHand;
 	// Use this for initialization
@@ -22,14 +23,24 @@ public class GrapDetector : MonoBehaviour {
 		int layerMask=1<<10;
 		Ray ray=Camera.main.ScreenPointToRay(handPosInScreen);
 		ray=new Ray(posHand,direction);
-		Debug.DrawRay(ray.origin, direction, Color.red);
+		Debug.DrawRay(ray.origin, direction*distance, Color.red);
 
 		RaycastHit hit;
-		//temp.position=posHand+direction*distance;
+		start.position=posHand;
+		end.position=posHand+direction*distance;
 		if (Physics.Raycast(ray, out hit,distance,layerMask)){
 			detectedObj=hit.collider.gameObject;
 		}else
 			detectedObj=null;
+	}
+
+	void OnGUI () {
+		if(detectedObj!=null){
+			Vector3 screenPos= Camera.main.WorldToScreenPoint(detectedObj.transform.position);
+			GUI.Label(new Rect(screenPos.x, screenPos.y, 150, 24), detectedObj.name);
+		}
+
+
 	}
 	
 	void LateUpdate () {

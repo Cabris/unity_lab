@@ -7,20 +7,23 @@ using SmartFoxClientAPI.Data;		// necessary to access the room resource
 
 public class ServerConnection:MonoBehaviour
 {
-	[SerializeField]
+	//[SerializeField]
 	string serverIP = "140.115.53.97";
+	//string serverIP = "127.0.0.1";
 	[SerializeField]
 	int serverPort = 9339;			
 	[SerializeField]
 	string zone = "city";
 
 	public SmartFoxClient smartFox;
-
+	public bool isLocalhost=true;
 	public string ServerIP{get{return serverIP;}}
 
 
 	public void Connect(bool debug){
 		Application.runInBackground = true; 	
+		if(isLocalhost)
+			serverIP="127.0.0.1";
 		if ( SmartFox.IsInitialized() ) {
 			Debug.Log("SmartFox is already initialized, reusing connection");
 			smartFox = SmartFox.Connection;

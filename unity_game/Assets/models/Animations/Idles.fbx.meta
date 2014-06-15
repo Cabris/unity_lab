@@ -518,164 +518,308 @@ ModelImporter:
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000000000000000000001000000010000000000000000000000000000000000000001000000010000000000000000000000
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
       transformMask:
       - path: 
         weight: 1
-      - path: DummyMESH
+      - path: Reference
         weight: 1
-      - path: Root
+      - path: Reference/Hips
         weight: 1
-      - path: Root/Hips
+      - path: Reference/Hips/LeftUpLeg
         weight: 1
-      - path: Root/Hips/LeftUpLeg
+      - path: Reference/Hips/LeftUpLeg/l_hipProxy_geo
+        weight: 0
+      - path: Reference/Hips/LeftUpLeg/LeftLeg
         weight: 1
-      - path: Root/Hips/LeftUpLeg/LeftLeg
+      - path: Reference/Hips/LeftUpLeg/LeftLeg/l_kneeProxy_geo
+        weight: 0
+      - path: Reference/Hips/LeftUpLeg/LeftLeg/LeftFoot
         weight: 1
-      - path: Root/Hips/LeftUpLeg/LeftLeg/LeftFoot
+      - path: Reference/Hips/LeftUpLeg/LeftLeg/LeftFoot/l_ankleProxy_geo
+        weight: 0
+      - path: Reference/Hips/LeftUpLeg/LeftLeg/LeftFoot/LeftToes
         weight: 1
-      - path: Root/Hips/LeftUpLeg/LeftLeg/LeftFoot/LeftToeBase
+      - path: Reference/Hips/LeftUpLeg/LeftLeg/LeftFoot/LeftToes/l_ballProxy_geo
+        weight: 0
+      - path: Reference/Hips/LeftUpLeg/LeftLeg/LeftFoot/LeftToes/LToeBase_End2
+        weight: 0
+      - path: Reference/Hips/pelvisProxy_geo
+        weight: 0
+      - path: Reference/Hips/RightUpLeg
         weight: 1
-      - path: Root/Hips/LeftUpLeg/LeftLeg/LeftFoot/LeftToeBase/LeftToeBase_END
+      - path: Reference/Hips/RightUpLeg/r_hipProxy_geo
+        weight: 0
+      - path: Reference/Hips/RightUpLeg/RightLeg
         weight: 1
-      - path: Root/Hips/LeftUpLeg/LeftLeg/LeftLegRoll
+      - path: Reference/Hips/RightUpLeg/RightLeg/r_kneeProxy_geo
+        weight: 0
+      - path: Reference/Hips/RightUpLeg/RightLeg/RightFoot
         weight: 1
-      - path: Root/Hips/LeftUpLeg/LeftUpLegRoll
+      - path: Reference/Hips/RightUpLeg/RightLeg/RightFoot/r_ankleProxy_geo
+        weight: 0
+      - path: Reference/Hips/RightUpLeg/RightLeg/RightFoot/RightToes
         weight: 1
-      - path: Root/Hips/RightUpLeg
+      - path: Reference/Hips/RightUpLeg/RightLeg/RightFoot/RightToes/LToeBase_End3
+        weight: 0
+      - path: Reference/Hips/RightUpLeg/RightLeg/RightFoot/RightToes/r_ballProxy_geo
+        weight: 0
+      - path: Reference/Hips/Spine
         weight: 1
-      - path: Root/Hips/RightUpLeg/RightLeg
+      - path: Reference/Hips/Spine/Chest
         weight: 1
-      - path: Root/Hips/RightUpLeg/RightLeg/RightFoot
+      - path: Reference/Hips/Spine/Chest/chestProxy_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/LeftShoulder
         weight: 1
-      - path: Root/Hips/RightUpLeg/RightLeg/RightFoot/RightToeBase
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/l_clavicleProxy_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm
         weight: 1
-      - path: Root/Hips/RightUpLeg/RightLeg/RightFoot/RightToeBase/RightToeBase_END
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/l_shourderProxy_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm
         weight: 1
-      - path: Root/Hips/RightUpLeg/RightLeg/RightLegRoll
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/l_erbowProxy_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand
         weight: 1
-      - path: Root/Hips/RightUpLeg/RightUpLegRoll
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/l_wristProxy_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandIndex1
         weight: 1
-      - path: Root/Hips/Spine
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandIndex1/l_indexProxy_01_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandIndex1/LeftHandIndex2
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandIndex1/LeftHandIndex2/l_indexProxy_02_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandIndex1/LeftHandIndex2/LeftHandIndex3
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandIndex1/LeftHandIndex2/LeftHandIndex3/l_indexProxy_03_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandIndex1/LeftHandIndex2/LeftHandIndex3/LeftHandIndex13
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftArmRoll
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandMiddle1
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandMiddle1/l_middleProxy_01_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandMiddle1/LeftHandMiddle2
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandMiddle1/LeftHandMiddle2/l_middleProxy_02_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftForeArmRoll
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandMiddle1/LeftHandMiddle2/LeftHandMiddle3
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandMiddle1/LeftHandMiddle2/LeftHandMiddle3/l_middleProxy_03_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandMiddle1/LeftHandMiddle2/LeftHandMiddle3/LeftHandMiddle13
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandIndex1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandPinky1
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandPinky1/l_pinkyProxy_01_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandIndex1/LeftHandIndex2
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandPinky1/LeftHandPinky2
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandPinky1/LeftHandPinky2/l_pinkyProxy_02_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandIndex1/LeftHandIndex2/LeftHandIndex3
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandPinky1/LeftHandPinky2/LeftHandPinky3
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandPinky1/LeftHandPinky2/LeftHandPinky3/l_pinkyProxy_03_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandIndex1/LeftHandIndex2/LeftHandIndex3/LeftHandIndex4
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandPinky1/LeftHandPinky2/LeftHandPinky3/LeftHandPinky13
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandMiddle1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandRing1
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandRing1/l_ringProxy_01_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandMiddle1/LeftHandMiddle2
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandRing1/LeftHandRing2
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandRing1/LeftHandRing2/l_ringProxy_02_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandMiddle1/LeftHandMiddle2/LeftHandMiddle3
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandRing1/LeftHandRing2/LeftHandRing3
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandRing1/LeftHandRing2/LeftHandRing3/l_ringProxy_03_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandMiddle1/LeftHandMiddle2/LeftHandMiddle3/LeftHandMiddle4
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandRing1/LeftHandRing2/LeftHandRing3/LeftHandRing13
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandPinky1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandThumb1
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandThumb1/l_thumbProxy_01_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandPinky1/LeftHandPinky2
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandThumb1/LeftHandThumb2
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandThumb1/LeftHandThumb2/l_thumbProxy_02_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandPinky1/LeftHandPinky2/LeftHandPinky3
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandThumb1/LeftHandThumb2/LeftHandThumb3
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandThumb1/LeftHandThumb2/LeftHandThumb3/l_thumbProxy_03_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandPinky1/LeftHandPinky2/LeftHandPinky3/LeftHandPinky4
+      - path: Reference/Hips/Spine/Chest/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandThumb1/LeftHandThumb2/LeftHandThumb3/LeftHandThumb13
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandProp
+      - path: Reference/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/Neck/Head/headProxy_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandRing1
+      - path: Reference/Hips/Spine/Chest/Neck/Head/HeadTop_End
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandRing1/LeftHandRing2
+      - path: Reference/Hips/Spine/Chest/Neck/Head/Jaw
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/Neck/Head/Jaw/JawEND
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandRing1/LeftHandRing2/LeftHandRing3
+      - path: Reference/Hips/Spine/Chest/Neck/Head/Jaw/jawProxy_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandRing1/LeftHandRing2/LeftHandRing3/LeftHandRing4
+      - path: Reference/Hips/Spine/Chest/Neck/Head/Jaw/LeftLipCorner
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandThumb1
+      - path: Reference/Hips/Spine/Chest/Neck/Head/Jaw/LeftLipLower
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandThumb1/LeftHandThumb2
+      - path: Reference/Hips/Spine/Chest/Neck/Head/Jaw/RightLipCorner
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandThumb1/LeftHandThumb2/LeftHandThumb3
+      - path: Reference/Hips/Spine/Chest/Neck/Head/Jaw/RightLipLower
         weight: 0
-      - path: Root/Hips/Spine/Spine1/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandThumb1/LeftHandThumb2/LeftHandThumb3/LeftHandThumb4
+      - path: Reference/Hips/Spine/Chest/Neck/Head/Jaw/TongueBack
         weight: 0
-      - path: Root/Hips/Spine/Spine1/Neck
+      - path: Reference/Hips/Spine/Chest/Neck/Head/Jaw/TongueBack/UNI_01_TongueBaseProxy
         weight: 0
-      - path: Root/Hips/Spine/Spine1/Neck/Head
+      - path: Reference/Hips/Spine/Chest/Neck/Head/Jaw/TongueTip
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder
+      - path: Reference/Hips/Spine/Chest/Neck/Head/Jaw/TongueTip/UNI_01_TongueTipProxy
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm
+      - path: Reference/Hips/Spine/Chest/Neck/Head/Jaw/UNI_01_Lower_teethProxy
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightArmRoll
+      - path: Reference/Hips/Spine/Chest/Neck/Head/LeftCheek
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm
+      - path: Reference/Hips/Spine/Chest/Neck/Head/LeftEye
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/Neck/Head/LeftEye/l_UNI_eye
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightForeArmRoll
+      - path: Reference/Hips/Spine/Chest/Neck/Head/LeftEyelidLower
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand
+      - path: Reference/Hips/Spine/Chest/Neck/Head/LeftEyelidUpper
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandIndex1
+      - path: Reference/Hips/Spine/Chest/Neck/Head/LeftInnerBrow
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandIndex1/RightHandIndex2
+      - path: Reference/Hips/Spine/Chest/Neck/Head/LeftIOuterBrow
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandIndex1/RightHandIndex2/RightHandIndex3
+      - path: Reference/Hips/Spine/Chest/Neck/Head/LeftLipUpper
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandIndex1/RightHandIndex2/RightHandIndex3/RightHandIndex4
+      - path: Reference/Hips/Spine/Chest/Neck/Head/LeftNostril
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandMiddle1
+      - path: Reference/Hips/Spine/Chest/Neck/Head/RightCheek
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandMiddle1/RightHandMiddle2
+      - path: Reference/Hips/Spine/Chest/Neck/Head/RightEye
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/Neck/Head/RightEye/r_UNI_eye
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandMiddle1/RightHandMiddle2/RightHandMiddle3
+      - path: Reference/Hips/Spine/Chest/Neck/Head/RightEyelidLower
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandMiddle1/RightHandMiddle2/RightHandMiddle3/RightHandMiddle4
+      - path: Reference/Hips/Spine/Chest/Neck/Head/RightEyelidUpper
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandPinky1
+      - path: Reference/Hips/Spine/Chest/Neck/Head/RightInnerBrow
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandPinky1/RightHandPinky2
+      - path: Reference/Hips/Spine/Chest/Neck/Head/RightIOuterBrow
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandPinky1/RightHandPinky2/RightHandPinky3
+      - path: Reference/Hips/Spine/Chest/Neck/Head/RightLipUpper
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandPinky1/RightHandPinky2/RightHandPinky3/RightHandPinky4
+      - path: Reference/Hips/Spine/Chest/Neck/Head/RightNostril
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandProp
+      - path: Reference/Hips/Spine/Chest/Neck/Head/UNI_01_Upper_teethProxy
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandRing1
+      - path: Reference/Hips/Spine/Chest/Neck/neckProxy_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandRing1/RightHandRing2
+      - path: Reference/Hips/Spine/Chest/RightShoulder
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/r_clavicleProxy_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandRing1/RightHandRing2/RightHandRing3
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/r_shourderProxy_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandRing1/RightHandRing2/RightHandRing3/RightHandRing4
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/r_erbowProxy_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandThumb1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/r_wristProxy_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandThumb1/RightHandThumb2
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandIndex1
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandIndex1/r_indexProxy_01_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandThumb1/RightHandThumb2/RightHandThumb3
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandIndex1/RightHandIndex2
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandIndex1/RightHandIndex2/r_indexProxy_02_geo
         weight: 0
-      - path: Root/Hips/Spine/Spine1/RightShoulder/RightArm/RightForeArm/RightHand/RightHandThumb1/RightHandThumb2/RightHandThumb3/RightHandThumb4
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandIndex1/RightHandIndex2/RightHandIndex3
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandIndex1/RightHandIndex2/RightHandIndex3/LeftHandIndex17
         weight: 0
-      maskType: 1
-      maskSource: {fileID: 101100000, guid: 13dadc9df87361b43a0e23a800c20db1, type: 2}
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandIndex1/RightHandIndex2/RightHandIndex3/r_indexProxy_03_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandMiddle1
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandMiddle1/r_middleProxy_01_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandMiddle1/RightHandMiddle2
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandMiddle1/RightHandMiddle2/r_middleProxy_02_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandMiddle1/RightHandMiddle2/RightHandMiddle3
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandMiddle1/RightHandMiddle2/RightHandMiddle3/LeftHandMiddle17
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandMiddle1/RightHandMiddle2/RightHandMiddle3/r_middleProxy_03_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandPinky1
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandPinky1/r_pinkyProxy_01_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandPinky1/RightHandPinky2
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandPinky1/RightHandPinky2/r_pinkyProxy_02_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandPinky1/RightHandPinky2/RightHandPinky3
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandPinky1/RightHandPinky2/RightHandPinky3/LeftHandPinky17
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandPinky1/RightHandPinky2/RightHandPinky3/r_pinkyProxy_03_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandRing1
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandRing1/r_ringProxy_01_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandRing1/RightHandRing2
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandRing1/RightHandRing2/r_ringProxy_02_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandRing1/RightHandRing2/RightHandRing3
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandRing1/RightHandRing2/RightHandRing3/LeftHandRing17
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandRing1/RightHandRing2/RightHandRing3/r_ringProxy_03_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandThumb1
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandThumb1/r_thumbProxy_01_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandThumb1/RightHandThumb2
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandThumb1/RightHandThumb2/r_thumbProxy_02_geo
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandThumb1/RightHandThumb2/RightHandThumb3
+        weight: 1
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandThumb1/RightHandThumb2/RightHandThumb3/LeftHandThumb17
+        weight: 0
+      - path: Reference/Hips/Spine/Chest/RightShoulder/RightArm/RightForeArm/RightHand/RightHandThumb1/RightHandThumb2/RightHandThumb3/r_thumbProxy_03_geo
+        weight: 0
+      - path: Reference/Hips/Spine/spineProxy_geo
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
