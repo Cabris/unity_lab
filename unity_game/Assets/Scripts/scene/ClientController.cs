@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using SmartFoxClientAPI.Data;
+using System;
 
 public class ClientController : MonoBehaviour {
 	public static string AssetName{get;set;} 
@@ -16,27 +17,35 @@ public class ClientController : MonoBehaviour {
 	}
 	
 	private IEnumerator LoadGameObject(string assetName){
-		string path = string.Format("file://{0}/_AssetBundles/{1}.assetBundles" , 
-		                          "c:" , assetName);
-		//loading assetbundle
-		WWW bundle = new WWW(path);
-		//wait for loaded
-		yield return bundle;
-
-		//Instantiate GameObject wait
-		GameObject scene=UnityEngine.Object.Instantiate(bundle.assetBundle.mainAsset) as GameObject;
-		Debug.Log("loaded: "+path);
-		yield return scene;
-		
-		SceneObject[] s=scene.GetComponentsInChildren<SceneObject>();
-		foreach(SceneObject ss in s){
-			GameObject g=ss.gameObject;
-			g.transform.parent=transform;
+		WWW bundle=null;
+		string path = string.Format(Extensions.AssetBundleLoaction, assetName);
+		Debug.Log("p:"+path);
+		try{
+			//loading assetbundle
+			bundle = new WWW(path);
 		}
-		Debug.Log("client loaded from asset: "+AssetName);
-		Destroy(scene);
-		isLoaded=true;
-		bundle.assetBundle.Unload(false);
+		catch(Exception e){
+			Debug.LogException(e);
+		}
+			//wait for loaded
+			yield return bundle;
+			
+			//Instantiate GameObject wait
+			GameObject scene=UnityEngine.Object.Instantiate(bundle.assetBundle.mainAsset) as GameObject;
+			Debug.Log("loaded: "+path);
+			yield return scene;
+			
+			SceneObject[] s=scene.GetComponentsInChildren<SceneObject>();
+			foreach(SceneObject ss in s){
+				GameObject g=ss.gameObject;
+				g.transform.parent=transform;
+			}
+			Debug.Log("client loaded from asset: "+AssetName);
+			Destroy(scene);
+			isLoaded=true;
+			bundle.assetBundle.Unload(false);
+		
+
 	}
 	
 	public void HandleSceneObject(SFSObject sdata){

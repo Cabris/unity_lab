@@ -48,19 +48,19 @@ public class Scene {
 	}
 
 	public void addUser(User user) {
-		if(users.containsKey(user.getName()))
+		if (users.containsKey(user.getName()))
 			return;
 		users.put(user.getName(), user);
-		ActionscriptObject a=new ActionscriptObject();
+		ActionscriptObject a = new ActionscriptObject();
 		a.put("cmd", "userJoinScene");
 		a.put("userName", user.getName());
 		a.putNumber("userId", user.getUserId());
-		//LinkedList<SocketChannel> sceneChannel = getSceneChannel();
-		//ext.sendResponse(a, owner.getRoom(), owner, sceneChannel);
+		// LinkedList<SocketChannel> sceneChannel = getSceneChannel();
+		// ext.sendResponse(a, owner.getRoom(), owner, sceneChannel);
 		handleRequest(a, user, owner.getRoom());
 		ext.trace("addUser_userJoinScene");
 	}
-	
+
 	public void removeUser(String userName) {
 		users.remove(userName);
 	}
@@ -75,15 +75,24 @@ public class Scene {
 
 	public void broadcast(ActionscriptObject ao) {
 		ext.sendResponse(ao, owner.getRoom(), owner, getUsersChannels());
-		String cmd=ao.getString("cmd");
-		ext.trace("scene "+owner.getName()+" broadcast msg: "+cmd);
+		String cmd = ao.getString("cmd");
+		ext.trace("scene " + owner.getName() + " broadcast msg: " + cmd);
 	}
-	
-	public void handleRequest(ActionscriptObject ao, User u,
-			int fromRoom){
+
+	public void handleRequest(ActionscriptObject ao, User u, int fromRoom) {
 		LinkedList<SocketChannel> sceneChannel = getSceneChannel();
 		ext.sendResponse(ao, owner.getRoom(), owner, sceneChannel);
-		ext.trace("scene "+owner.getName()+" handleRequest");
+		String request = aoInfo(ao);
+		ext.trace("scene " + owner.getName() + " handleRequest: " + request);
+	}
+
+	private String aoInfo(ActionscriptObject ao) {
+		String infoString = "ao: \n";
+		for (Object k : ao.keySet()) {
+			Object obj = ao.get(k.toString());
+			infoString+="key: "+k.toString()+", value: "+obj.toString()+".\n";
+		}
+		return infoString;
 	}
 
 	private LinkedList<SocketChannel> getSceneChannel() {
@@ -91,12 +100,12 @@ public class Scene {
 		ll.add(owner.getChannel());
 		return ll;
 	}
-	
-	public void transfer(ActionscriptObject ao,String userName) {
+
+	public void transfer(ActionscriptObject ao, String userName) {
 		LinkedList<SocketChannel> ll = new LinkedList<SocketChannel>();
 		ll.add(users.get(userName).getChannel());
 		ext.sendResponse(ao, owner.getRoom(), owner, ll);
-		ext.trace("transfer msg to "+userName);
+		ext.trace("transfer msg to " + userName);
 	}
 
 }

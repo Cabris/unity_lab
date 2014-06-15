@@ -15,13 +15,15 @@ public class MechinePart : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		r.enabled=isPlaced;
+		if(rigidbody!=null)
+			rigidbody.isKinematic=!isPlaced;
 	}
 	
 	void OnTriggerEnter(Collider other) {
 		string n=other.name;
 		if(n==name){
-			Destroy(other.gameObject);
+			Destroy(other.gameObject,1.5f);
 			isPlaced=true;
 		}
 	}

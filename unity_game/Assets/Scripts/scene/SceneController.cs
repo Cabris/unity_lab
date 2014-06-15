@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
-//using UnityEditor;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+
 public class SceneController : MonoBehaviour {
 	public static string AssetName{get;set;} 
 	public List<GameObject> sceneObjs=new List<GameObject>();
@@ -11,7 +12,7 @@ public class SceneController : MonoBehaviour {
 	Quaternion cameraIniRot;
 	// Use this for initialization
 	void Start () {
-
+		
 		if(AssetName!=null&&AssetName.Length>0){
 			Coroutine co= StartCoroutine(LoadGameObject(AssetName));
 		}
@@ -19,16 +20,24 @@ public class SceneController : MonoBehaviour {
 		cameraIniPos=_camera.transform.position;
 		cameraIniRot=_camera.transform.rotation;
 	}
-
-
+	
+	
 	private IEnumerator LoadGameObject(string assetName){
-		string path = string.Format("file://{0}/_AssetBundles/{1}.assetBundles" ,  "c:" , assetName);
-		WWW bundle = new WWW(path);
+		WWW bundle=null;
+		string path = string.Format(Extensions.AssetBundleLoaction, assetName);
+		Debug.Log("p:"+path);
+		try{
+		    bundle = new WWW(path);
+		}
+		catch(Exception e){
+			Debug.LogException(e);
+		}
 		yield return bundle;
 		GameObject scene=UnityEngine.Object.Instantiate(bundle.assetBundle.mainAsset) as GameObject;
 		Debug.Log("loaded: "+path);
-		yield return scene;
 
+		yield return scene;
+		
 		SceneObject[] s=scene.GetComponentsInChildren<SceneObject>();
 		foreach(SceneObject ss in s){
 			GameObject g=ss.gameObject;
@@ -42,13 +51,14 @@ public class SceneController : MonoBehaviour {
 		Debug.Log("scene loaded from asset: "+AssetName);
 		isLoaded=true;
 		bundle.assetBundle.Unload(false);
+		
 	}
-
+	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
-
+	
 	public void FocusTo(Transform t){
 		SmoothFollow f=(SmoothFollow)_camera.GetComponent("SmoothFollow");
 		f.target=t;

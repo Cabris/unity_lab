@@ -8,9 +8,8 @@ using SmartFoxClientAPI.Data;
 public class ScenePlayerCommand : MonoBehaviour {
 	PlayerAnimation playerAni;
 	private Queue queue = new Queue();
-
+	GrapController gc;
 	public bool _buttonB=false;
-	public GameObject detectObj;	
 	public int CommandQueueSize;
 	
 	public delegate void ButtonEventHandler(string button);
@@ -20,6 +19,8 @@ public class ScenePlayerCommand : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		playerAni=GetComponent<PlayerAnimation>();
+		gc=GetComponent<GrapController>();
+
 	}
 	
 	// Update is called once per frame
@@ -42,7 +43,8 @@ public class ScenePlayerCommand : MonoBehaviour {
 		playerAni.speed=Single.Parse( vertical);
 		HandleButton(data,"buttonB",ref _buttonB);
 		string detect=data.GetString("detected_object_name");
-		detectObj=GameObject.Find(detect);
+		if(gc!=null)
+		gc.detectObj=GameObject.Find(detect);
 	}
 
 	void HandleButton(SFSObject data,string button,ref bool preState){
@@ -53,4 +55,8 @@ public class ScenePlayerCommand : MonoBehaviour {
 			OnButtonDown(button);
 		preState=newState;
 	}
+
+
+
+
 }

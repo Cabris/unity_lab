@@ -8,7 +8,7 @@ using SmartFoxClientAPI.Data;
 public class NetworkTransformReceiver : MonoBehaviour {
 	
 	public float yAdjust = 0.0f; // Ajust y position when synchronizing the local and remote models.
-	public float interpolationPeriod = 0.03f;  // This value should be equal to the sendingPerion value of the Sender script
+	public float interpolationPeriod = 0.01f;  // This value should be equal to the sendingPerion value of the Sender script
 	public int qc;
 	public long ts=0;
 
@@ -112,29 +112,51 @@ public class NetworkTransformReceiver : MonoBehaviour {
 	}
 	
 	public  static Vector3 GetPos(SFSObject data){
-		Vector3 pos = new Vector3(Convert.ToSingle(data.GetNumber("x")), 
-		                          Convert.ToSingle(data.GetNumber("y")),
-		                          Convert.ToSingle(data.GetNumber("z"))
+		string dataLine=data.GetString("dataLine");
+		string[] datas=dataLine.Split(',');
+
+		Vector3 pos = new Vector3(Convert.ToSingle(datas[0]), 
+		                          Convert.ToSingle(datas[1]),
+		                          Convert.ToSingle(datas[2])
 		                          );
+//		Vector3 pos = new Vector3(Convert.ToSingle(data.GetNumber("x")), 
+//		                          Convert.ToSingle(data.GetNumber("y")),
+//		                          Convert.ToSingle(data.GetNumber("z"))
+//		                          );
 		return pos;
 	}
-	
+
+	public  static Quaternion GetRot(SFSObject data){
+		string dataLine=data.GetString("dataLine");
+		string[] datas=dataLine.Split(',');
+		Quaternion rot = new Quaternion(Convert.ToSingle(datas[3]), 
+		                                Convert.ToSingle(datas[4]),
+		                                Convert.ToSingle(datas[5]),
+		                                Convert.ToSingle(datas[6])
+		                                );
+//		Quaternion rot = new Quaternion(Convert.ToSingle(data.GetNumber("rx")), 
+//		                                Convert.ToSingle(data.GetNumber("ry")),
+//		                                Convert.ToSingle(data.GetNumber("rz")),
+//		                                Convert.ToSingle(data.GetNumber("w"))
+//		                                );
+		return rot;
+	}
+
 	public  static Vector3 GetScale(SFSObject data){
-		Vector3 sca = new Vector3(Convert.ToSingle(data.GetNumber("sx")), 
-		                          Convert.ToSingle(data.GetNumber("sy")),
-		                          Convert.ToSingle(data.GetNumber("sz"))
+		string dataLine=data.GetString("dataLine");
+		string[] datas=dataLine.Split(',');
+		Vector3 sca = new Vector3(Convert.ToSingle(datas[7]), 
+		                          Convert.ToSingle(datas[8]),
+		                          Convert.ToSingle(datas[9])
 		                          );
+//		Vector3 sca = new Vector3(Convert.ToSingle(data.GetNumber("sx")), 
+//		                          Convert.ToSingle(data.GetNumber("sy")),
+//		                          Convert.ToSingle(data.GetNumber("sz"))
+//		                          );
 		return sca;
 	}
 	
-	public  static Quaternion GetRot(SFSObject data){
-		Quaternion rot = new Quaternion(Convert.ToSingle(data.GetNumber("rx")), 
-		                                Convert.ToSingle(data.GetNumber("ry")),
-		                                Convert.ToSingle(data.GetNumber("rz")),
-		                                Convert.ToSingle(data.GetNumber("w"))
-		                                );
-		return rot;
-	}
+
 
 	
 }
