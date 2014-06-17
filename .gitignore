@@ -26,8 +26,13 @@ Temp
 sfs/.metadata
 sfs/RemoteSystemsTempFiles
 sfs/MyExtension/bin
-*.csproj
-*.unityproj
-*.sln
+unity_game/*.svd
+unity_game/*.userprefs
+unity_game/*.csproj
+unity_game/*.pidb
+unity_game/*.suo
+unity_game/*.sln
+unity_game/*.user
+unity_game/*.unityproj
+unity_game/*.booproj
 Thumbs.db
-*.userprefs
