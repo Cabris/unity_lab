@@ -6,19 +6,19 @@ using SmartFoxClientAPI;
 using SmartFoxClientAPI.Data;
 
 public class NetworkTransformReceiver : MonoBehaviour {
-	
-	public float yAdjust = 0.0f; // Ajust y position when synchronizing the local and remote models.
-	public float interpolationPeriod = 0.01f;  // This value should be equal to the sendingPerion value of the Sender script
-	public int qc;
-	public long ts=0;
 
+	public float interpolationPeriod = 0.02f;  // This value should be equal to the sendingPerion value of the Sender script
+	public float yAdjust = 0.0f; // Ajust y position when synchronizing the local and remote models.
+	public int qc;
+	//public long ts=0;
+	
 	private bool receiveMode = false;
 	private NetworkTransform lastState; // Last received transform state
-//	private NetworkTransform interpolateTo = null;  // Last state we interpolate to in receiving mode.
-//	private NetworkTransform interpolateFrom;  // Point from which to start interpolation
+	private NetworkTransform interpolateTo = null;  // Last state we interpolate to in receiving mode.
+	private NetworkTransform interpolateFrom;  // Point from which to start interpolation
 	
-	public int interpolationPoint = 0; // Current interpolation point
-	public int maxInterpolationPoints = 0; // Maximum number of interpolation points;
+	private int interpolationPoint = 0; // Current interpolation point
+	private int maxInterpolationPoints = 0; // Maximum number of interpolation points;
 	private float interpolationDelta = 0; // Delta value by which interpolate
 	
 	private FPSStorage fpsStorage;
@@ -31,7 +31,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 		receiveMode = true;
 	}
 	
-	void FixedUpdate() {
+	void Update() {
 		if (receiveMode) {
 			InterpolateTransform();
 		}
@@ -47,28 +47,62 @@ public class NetworkTransformReceiver : MonoBehaviour {
 			Quaternion rot = GetRot(data);
 			Vector3 sca=GetScale(data);
 			lastState.InitFromValues(pos, rot,sca);
-
-			queue.Enqueue(lastState);
-
+			NetworkTransform nextState = new NetworkTransform(this.gameObject);
+			nextState.InitFromValues(pos, rot,sca);
+			queue.Enqueue(nextState);
 		}
 	}
 	
 	// This method is called in every Fixed Update in receiving mode. And it does transform interpolation to the latest state.
 	void InterpolateTransform() {
-
+		// If interpolationg
+		if (interpolationPoint < maxInterpolationPoints) {
+			interpolationPoint++;
+			float t = interpolationPoint*interpolationDelta;
+			if (t>1)
+				t=1;
+			transform.position = Vector3.Lerp(interpolateFrom.position, interpolateTo.position, t);
+			transform.rotation = Quaternion.Slerp(interpolateFrom.rotation, interpolateTo.rotation, t);
+			transform.localScale = Vector3.Lerp(interpolateFrom.scale, interpolateTo.scale, t);
+		}
+		else {
+			// Finished interpolating to the next point
+			if (interpolateTo!=null) {
+				// Fixing interpolation result to set transform right to the next point
+				SetTransform(transform,interpolateTo);
+			}
+			
 			// Take new value from queue
 			if (queue.Count!=0) {
 				NetworkTransform nextTransform = queue.Dequeue() as NetworkTransform;
-				SetTransform(transform,nextTransform);
+				//Start interpolation to the next transform
+				// Set new final interpolation state and reset interpolationPoint
+				interpolateTo = nextTransform;
+				// Set new point from which to start interpolation as current transform
+				interpolateFrom = new NetworkTransform(this.gameObject);
+				
+				interpolationPoint = 0;
+				float frameRate = fpsStorage.GetCurrentFPS();
+				
+				// Calculate the total number of interpolation points as number of frames during interpolationPriod
+				maxInterpolationPoints = Convert.ToInt32(Math.Round(frameRate * interpolationPeriod));
+				
+				// Reset interpolation deltaTime
+				interpolationDelta = 1.0f / Convert.ToSingle(maxInterpolationPoints);
 			}
+			else {
+				// If queue is empty just setting the transform to the last received state
+				SetTransform(transform,lastState);
+			}
+		}	
 	}
-
+	
 	public static void SetTransform(Transform t, SFSObject data){
 		t.position=GetPos(data);
 		t.rotation=GetRot(data);
 		t.localScale=GetScale(data);
 	}
-
+	
 	public static void SetTransform(Transform t, NetworkTransform nt){
 		t.position=nt.position;
 		t.rotation=nt.rotation;
@@ -78,14 +112,14 @@ public class NetworkTransformReceiver : MonoBehaviour {
 	public  static Vector3 GetPos(SFSObject data){
 		string dataLine=data.GetString("dataLine");
 		string[] datas=dataLine.Split(',');
-
+		
 		Vector3 pos = new Vector3(Convert.ToSingle(datas[0]), 
 		                          Convert.ToSingle(datas[1]),
 		                          Convert.ToSingle(datas[2])
 		                          );
 		return pos;
 	}
-
+	
 	public  static Quaternion GetRot(SFSObject data){
 		string dataLine=data.GetString("dataLine");
 		string[] datas=dataLine.Split(',');
@@ -96,7 +130,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 		                                );
 		return rot;
 	}
-
+	
 	public  static Vector3 GetScale(SFSObject data){
 		string dataLine=data.GetString("dataLine");
 		string[] datas=dataLine.Split(',');
@@ -107,7 +141,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 		return sca;
 	}
 	
-
-
+	
+	
 	
 }
