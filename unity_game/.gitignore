@@ -24,5 +24,11 @@ Temp
 *.csproj
 *.unityproj
 *.sln
+*.svd
+*.userprefs
+*.pidb
+*.suo
+*.user
+*.booproj
 Thumbs.db
 *.userprefs
