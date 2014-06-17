@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
-using SmartFoxClientAPI;
+//using SmartFoxClientAPI;
 using SmartFoxClientAPI.Data;
 
 // We use this class here to store and work with transform states
@@ -75,9 +74,9 @@ public class NetworkTransform {
 
 	// Send transform to all other users
 	public void DoSend() {
-		SmartFoxClient client = ClientNetworkController.GetClient();
+		//SmartFoxClient client = NetworkController.GetClient();
 		Hashtable h=GetData();
-		client.SendXtMessage("test","b",h);
+		NetworkController.SendExMsg("test","b",h);
 	}
 	
 	public void InitFromValues(Vector3 pos, Quaternion rot,Vector3 sca) {

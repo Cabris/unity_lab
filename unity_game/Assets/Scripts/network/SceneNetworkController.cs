@@ -23,7 +23,7 @@ public class SceneNetworkController : NetworkController
 		started = true;
 		spawn = GetComponent<SceneSpawnController> ();
 		smartFoxClient.JoinRoom ("Central Square");
-
+		userType = MyUserType.Scene;
 	}
 	
 	protected void RegistScene ()

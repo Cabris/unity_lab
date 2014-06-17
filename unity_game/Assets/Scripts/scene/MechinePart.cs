@@ -23,7 +23,10 @@ public class MechinePart : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		string n=other.name;
 		if(n==name){
-			Destroy(other.gameObject,1.5f);
+			SceneObject s=other.gameObject.GetComponent<SceneObject>();
+			if(s!=null&&NetworkController.UserType==MyUserType.Scene){
+				s.DoDestoryAndSend();
+			}
 			isPlaced=true;
 		}
 	}

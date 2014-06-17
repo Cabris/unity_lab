@@ -6,6 +6,8 @@ using SmartFoxClientAPI.Data;
 
 public class NetworkController : MonoBehaviour
 {
+	protected static MyUserType userType=MyUserType.Undefine;
+	public static MyUserType UserType{get{return userType;}}
 	protected static SmartFoxClient smartFoxClient;
 	public static SmartFoxClient GetClient ()
 	{
@@ -81,6 +83,12 @@ public class NetworkController : MonoBehaviour
 		HandleReceiveData(data);
 	}
 
+	public static void SendExMsg(string exName,string cmd,Hashtable data){
+		SmartFoxClient client = GetClient();
+		if(client!=null)
+			client.SendXtMessage(exName,cmd,data);
+	}
+
 	#region Events
 	
 	protected bool started = false;
@@ -109,5 +117,10 @@ public class NetworkController : MonoBehaviour
 	
 	#endregion Events
 
-	
+}
+
+public enum MyUserType{
+	Undefine,
+	Scene,
+	Client
 }

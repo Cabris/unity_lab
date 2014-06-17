@@ -30,13 +30,15 @@ public class ClientNetworkController : NetworkController {
 		started = true;
 		spawn=GetComponent<ClientSpawnController>();
 		smartFoxClient.JoinRoom("Central Square");
+		userType = MyUserType.Client;
 	}
 	
 	public static void SendExMsg(string exName,string cmd,Hashtable data){
-		SmartFoxClient client = GetClient();
+		//SmartFoxClient client = GetClient();
 		data.Add("host",hostSceneName);
-		if(client!=null)
-		client.SendXtMessage(exName,cmd,data);
+//		if(client!=null)
+//			client.SendXtMessage(exName,cmd,data);
+		NetworkController.SendExMsg (exName, cmd, data);
 	}
 	
 	protected override void OnJoinRoom (Room room)
@@ -65,7 +67,6 @@ public class ClientNetworkController : NetworkController {
 			if(g!=null){
 				NetworkTransformReceiver tr=g.GetComponent<NetworkTransformReceiver>();
 				if(tr!=null){
-					//Debug.Log(cmd+","+object_name);
 					tr.ReceiveTransform(data);
 				}
 			}
@@ -81,6 +82,16 @@ public class ClientNetworkController : NetworkController {
 			foreach(object obj in datas.Keys()){
 				SFSObject sdata=datas.Get(obj) as SFSObject;
 				clientController.HandleSceneObject(sdata);
+			}
+		}
+		if(cmd=="sceneObject"){
+			string object_name=data.GetString("object_name");
+			GameObject g=GameObject.Find(object_name);
+			if(g!=null){
+				SceneObject s=g.GetComponent<SceneObject>();
+				if(s!=null){
+					s.ReceiveMessage(data);
+				}
 			}
 		}
 		if(cmd=="a"){
