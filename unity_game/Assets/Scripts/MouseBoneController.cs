@@ -17,6 +17,7 @@ public class MouseBoneController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		IsActive=!KinectSensor.IsInitialized;
 		if(IsActive){
 			kinectModelController.enabled=false;
 		}else{

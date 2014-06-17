@@ -7,6 +7,7 @@ using UnityEngine;
 using Kinect;
 
 public class KinectSensor : MonoBehaviour, KinectInterface {
+	public static bool IsInitialized=false;
 	//make KinectSensor a singleton (sort of)
 	private static KinectInterface instance;
     public static KinectInterface Instance
@@ -140,10 +141,12 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 			DontDestroyOnLoad(gameObject);
 			KinectSensor.Instance = this;
 			NativeMethods.NuiSetDeviceStatusCallback(new NuiStatusProc(), IntPtr.Zero);
+			IsInitialized=true;
 		}
 		
 		catch (Exception e)
 		{
+			IsInitialized=false;
 			Debug.Log(e.Message);
 		}
 	}

@@ -49,6 +49,7 @@
      <Compile Include="Assets\MovementAnimsetProLite\Scripts\InputWalk.cs" />
      <Compile Include="Assets\Packages\UniWii\Scripts\WiimoteTestController.cs" />
      <Compile Include="Assets\Scripts\AssetBundlesTest.cs" />
+     <Compile Include="Assets\Scripts\CameraTarget.cs" />
      <Compile Include="Assets\Scripts\GrapController.cs" />
      <Compile Include="Assets\Scripts\GrapableObj.cs" />
      <Compile Include="Assets\Scripts\KinectScript\Kinect\KinectImgControllers\DisplayColor.cs" />

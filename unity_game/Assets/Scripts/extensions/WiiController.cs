@@ -11,8 +11,7 @@ public class WiiController : MonoBehaviour {
 	private static extern void wiimote_stop();
 	[DllImport ("UniWii")]
 	private static extern int wiimote_count();
-	
-	
+
 	[DllImport ("UniWii")]
 	private static extern bool wiimote_getButtonA(int which);
 	[DllImport ("UniWii")]
@@ -82,5 +81,23 @@ public class WiiController : MonoBehaviour {
 			else
 				keyboard.enabled=true;
 		}
+		Color c=r.material.color;
+		isPressA=wiimote_getButtonA(userId);
+		if(isPressA){
+			c.a=0;
+			r.enabled=false;
+		}
+		else{
+			c.a=1;
+			r.enabled=true;
+		}
+		r.material.color=c;
+
 	}
+
+	public bool isPressA=false;
+	public Renderer r;
+
+
+
 }
