@@ -19,21 +19,14 @@ public class NetworkTransformSender : MonoBehaviour {
 		sendMode = true;
 	}
 	
-	void Update() { 
+	void FixedUpdate() { 
 		if (sendMode) {
 			SendTransform();
 		}
 	}
 	
 	void SendTransform() {
-		if (lastState.UpdateIfDifferent()) {
-				if (timeLastSending >= sendingPeriod) {
-					lastState.DoSend();
-					timeLastSending = 0;
-					return;
-				}
-		}
-		timeLastSending += Time.deltaTime;
+		lastState.DoSend();
 	}
 	
 	//This method is called when remote user forces us to send our transform

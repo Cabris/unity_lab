@@ -14,8 +14,8 @@ public class NetworkTransformReceiver : MonoBehaviour {
 
 	private bool receiveMode = false;
 	private NetworkTransform lastState; // Last received transform state
-	private NetworkTransform interpolateTo = null;  // Last state we interpolate to in receiving mode.
-	private NetworkTransform interpolateFrom;  // Point from which to start interpolation
+//	private NetworkTransform interpolateTo = null;  // Last state we interpolate to in receiving mode.
+//	private NetworkTransform interpolateFrom;  // Point from which to start interpolation
 	
 	public int interpolationPoint = 0; // Current interpolation point
 	public int maxInterpolationPoints = 0; // Maximum number of interpolation points;
@@ -31,7 +31,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 		receiveMode = true;
 	}
 	
-	void Update() {
+	void FixedUpdate() {
 		if (receiveMode) {
 			InterpolateTransform();
 		}
@@ -47,54 +47,20 @@ public class NetworkTransformReceiver : MonoBehaviour {
 			Quaternion rot = GetRot(data);
 			Vector3 sca=GetScale(data);
 			lastState.InitFromValues(pos, rot,sca);
-			NetworkTransform nextState = new NetworkTransform(this.gameObject);
-			nextState.InitFromValues(pos, rot,sca);
-			queue.Enqueue(nextState);
+
+			queue.Enqueue(lastState);
+
 		}
 	}
 	
 	// This method is called in every Fixed Update in receiving mode. And it does transform interpolation to the latest state.
 	void InterpolateTransform() {
-		// If interpolationg
-		if (interpolationPoint < maxInterpolationPoints) {
-			interpolationPoint++;
-			float t = interpolationPoint*interpolationDelta;
-			if (t>1)
-				t=1;
-			transform.position = Vector3.Lerp(interpolateFrom.position, interpolateTo.position, t);
-			transform.rotation = Quaternion.Slerp(interpolateFrom.rotation, interpolateTo.rotation, t);
-			transform.localScale = Vector3.Lerp(interpolateFrom.scale, interpolateTo.scale, t);
-		}
-		else {
-			// Finished interpolating to the next point
-			if (interpolateTo!=null) {
-				// Fixing interpolation result to set transform right to the next point
-				SetTransform(transform,interpolateTo);
-			}
-			
+
 			// Take new value from queue
 			if (queue.Count!=0) {
 				NetworkTransform nextTransform = queue.Dequeue() as NetworkTransform;
-				//Start interpolation to the next transform
-				// Set new final interpolation state and reset interpolationPoint
-				interpolateTo = nextTransform;
-				// Set new point from which to start interpolation as current transform
-				interpolateFrom = new NetworkTransform(this.gameObject);
-				
-				interpolationPoint = 0;
-				float frameRate = fpsStorage.GetCurrentFPS();
-				
-				// Calculate the total number of interpolation points as number of frames during interpolationPriod
-				maxInterpolationPoints = Convert.ToInt32(Math.Round(frameRate * interpolationPeriod));
-				
-				// Reset interpolation deltaTime
-				interpolationDelta = 1.0f / Convert.ToSingle(maxInterpolationPoints);
+				SetTransform(transform,nextTransform);
 			}
-			else {
-				// If queue is empty just setting the transform to the last received state
-				SetTransform(transform,lastState);
-			}
-		}	
 	}
 
 	public static void SetTransform(Transform t, SFSObject data){
@@ -117,10 +83,6 @@ public class NetworkTransformReceiver : MonoBehaviour {
 		                          Convert.ToSingle(datas[1]),
 		                          Convert.ToSingle(datas[2])
 		                          );
-//		Vector3 pos = new Vector3(Convert.ToSingle(data.GetNumber("x")), 
-//		                          Convert.ToSingle(data.GetNumber("y")),
-//		                          Convert.ToSingle(data.GetNumber("z"))
-//		                          );
 		return pos;
 	}
 
@@ -132,11 +94,6 @@ public class NetworkTransformReceiver : MonoBehaviour {
 		                                Convert.ToSingle(datas[5]),
 		                                Convert.ToSingle(datas[6])
 		                                );
-//		Quaternion rot = new Quaternion(Convert.ToSingle(data.GetNumber("rx")), 
-//		                                Convert.ToSingle(data.GetNumber("ry")),
-//		                                Convert.ToSingle(data.GetNumber("rz")),
-//		                                Convert.ToSingle(data.GetNumber("w"))
-//		                                );
 		return rot;
 	}
 
@@ -147,10 +104,6 @@ public class NetworkTransformReceiver : MonoBehaviour {
 		                          Convert.ToSingle(datas[8]),
 		                          Convert.ToSingle(datas[9])
 		                          );
-//		Vector3 sca = new Vector3(Convert.ToSingle(data.GetNumber("sx")), 
-//		                          Convert.ToSingle(data.GetNumber("sy")),
-//		                          Convert.ToSingle(data.GetNumber("sz"))
-//		                          );
 		return sca;
 	}
 	
