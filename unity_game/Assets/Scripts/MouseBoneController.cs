@@ -18,11 +18,14 @@ public class MouseBoneController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		IsActive=!KinectSensor.IsInitialized;
-		if(IsActive){
-			kinectModelController.enabled=false;
-		}else{
-			kinectModelController.enabled=true;
+		if(kinectModelController!=null){
+			if(IsActive){
+				kinectModelController.enabled=false;
+			}else{
+				kinectModelController.enabled=true;
+			}
 		}
+
 		ray=Camera.main.ScreenPointToRay(Input.mousePosition);
 		Debug.DrawRay(ray.origin, ray.direction*100, Color.blue);
 	}
