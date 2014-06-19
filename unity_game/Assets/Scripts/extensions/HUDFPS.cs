@@ -30,6 +30,7 @@ public class HUDFPS : MonoBehaviour
 			return;
 		}
 		timeleft = updateInterval;  
+
 	}
 	
 	void Update()

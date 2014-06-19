@@ -44,7 +44,7 @@ public class gui_Login : MonoBehaviour {
 		RegisterSFSSceneCallbacks();
 		LoadGameObject ("ServerConnection");
 		//Coroutine co= StartCoroutine(LoadGameObject("ServerConnection"));
-
+		Application.targetFrameRate = 60;
 	}
 
 	private void LoadGameObject(string assetName){
