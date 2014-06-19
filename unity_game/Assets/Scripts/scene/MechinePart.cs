@@ -24,8 +24,10 @@ public class MechinePart : MonoBehaviour {
 		string n=other.name;
 		if(n==name){
 			SceneObject s=other.gameObject.GetComponent<SceneObject>();
-			if(s!=null&&NetworkController.UserType==MyUserType.Scene){
-				s.DoDestoryAndSend();
+			if(s!=null){
+				if(NetworkController.UserType==MyUserType.Scene)
+					s.ForceClientMove();
+				GameObject.Destroy (s.gameObject);
 			}
 			isPlaced=true;
 		}

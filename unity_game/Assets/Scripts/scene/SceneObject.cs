@@ -7,7 +7,7 @@ public class SceneObject : MonoBehaviour {
 	public string sceneObjName;
 	public Transform tra;
 
-	private string _destory="d";
+	//private string _destory="d";
 
 
 	// Use this for initialization
@@ -30,10 +30,11 @@ public class SceneObject : MonoBehaviour {
 		get {return type;}
 	}
 
-	public void DoDestoryAndSend (){
-		GameObject.Destroy (gameObject);
-		Hashtable d = new Hashtable ();
-		d.Add ("msg",_destory);
+	public void ForceClientMove (){
+		NetworkTransformSender sender=GetComponent<NetworkTransformSender>();
+		if(sender!=null){
+			sender.ForceSendTransform();
+		}
 	}
 
 	private void SendMessage(Hashtable data){
@@ -44,8 +45,8 @@ public class SceneObject : MonoBehaviour {
 
 	public void ReceiveMessage(SFSObject data){
 		string msg = data.GetString ("msg");
-		if(msg==_destory)
-			GameObject.Destroy (gameObject);
+		//if(msg==_destory)
+		//	GameObject.Destroy (gameObject);
 	}
 
 	public static string GetType(SFSObject data){
