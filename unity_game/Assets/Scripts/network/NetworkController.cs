@@ -57,9 +57,9 @@ public class NetworkController : MonoBehaviour
 		HandleReceiveData(data);
 	}
 
-	public void Send(string to,SFSObject data){
-	//	SmartFoxClient client = GetClient ();
-	//	client.SendObject(data);
+	public static  void Send(SFSObject data){
+		SmartFoxClient client = GetClient ();
+		client.SendObject(data);
 	}
 	
 	virtual public  void OnPublicMessage (string message, User fromUser, int roomId)

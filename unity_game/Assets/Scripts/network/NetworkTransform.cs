@@ -45,16 +45,6 @@ public class NetworkTransform {
 	public static SFSObject GetTransformAsSfs (Transform t)
 	{
 		SFSObject data = new SFSObject ();
-//		data.Put ("x", t.position.x);
-//		data.Put ("y", t.position.y);
-//		data.Put ("z", t.position.z);
-//		data.Put ("rx", t.rotation.x);
-//		data.Put ("ry", t.rotation.y);
-//		data.Put ("rz", t.rotation.z);
-//		data.Put ("w", t.rotation.w);
-//		data.Put ("sx", t.localScale.x);
-//		data.Put ("sy", t.localScale.y);
-//		data.Put ("sz", t.localScale.z);
 
 		string dataLine="";
 		dataLine+=(t.position.x+",");
@@ -77,6 +67,10 @@ public class NetworkTransform {
 		//SmartFoxClient client = NetworkController.GetClient();
 		Hashtable h=GetData();
 		NetworkController.SendExMsg("test","b",h);
+
+		//SFSObject s = h.ToSFSObject ();
+		//NetworkController.Send (s);
+
 	}
 	
 	public void InitFromValues(Vector3 pos, Quaternion rot,Vector3 sca) {

@@ -50,11 +50,13 @@ public class NetworkTransformReceiver : MonoBehaviour {
 			NetworkTransform nextState = new NetworkTransform(this.gameObject);
 			nextState.InitFromValues(pos, rot,sca);
 			queue.Enqueue(nextState);
+			Debug.Log("r");
 		}
 	}
 	
 	// This method is called in every Fixed Update in receiving mode. And it does transform interpolation to the latest state.
 	void InterpolateTransform() {
+
 		// If interpolationg
 		if (interpolationPoint < maxInterpolationPoints) {
 			interpolationPoint++;
@@ -82,13 +84,13 @@ public class NetworkTransformReceiver : MonoBehaviour {
 				interpolateFrom = new NetworkTransform(this.gameObject);
 				
 				interpolationPoint = 0;
+
 				float frameRate = fpsStorage.GetCurrentFPS();
-				
 				// Calculate the total number of interpolation points as number of frames during interpolationPriod
 				maxInterpolationPoints = Convert.ToInt32(Math.Round(frameRate * interpolationPeriod));
-				
 				// Reset interpolation deltaTime
 				interpolationDelta = 1.0f / Convert.ToSingle(maxInterpolationPoints);
+				Debug.Log("d");
 			}
 			else {
 				// If queue is empty just setting the transform to the last received state
