@@ -19,8 +19,8 @@ public class gui_Login : MonoBehaviour {
 	private ComboBox comboBoxControl;// = new ComboBox();
 	private GUIStyle listStyle = new GUIStyle();
 	private string[] scenes={"Scene0","Scene1","Scene2"};
-	
-	public ServerConnection serverConnection;
+	[SerializeField]
+	ServerConnection serverConnection;
 	
 	void Start()
 	{
@@ -42,35 +42,12 @@ public class gui_Login : MonoBehaviour {
 	
 	void Awake() {
 		RegisterSFSSceneCallbacks();
-		LoadGameObject ("ServerConnection");
+		//LoadGameObject ("ServerConnection");
 		//Coroutine co= StartCoroutine(LoadGameObject("ServerConnection"));
+		serverConnection.Connect(debug);
 		Application.targetFrameRate = 60;
 	}
-
-	private void LoadGameObject(string assetName){
-		WWW bundle=null;
-		string path = string.Format(Extensions.AssetBundleLoaction, assetName);
-		Debug.Log("p:"+path);
-		try{
-			//loading assetbundle
-			bundle = new WWW(path);
-		}
-		catch(Exception e){
-			Debug.LogException(e);
-		}
-		//wait for loaded
-		//yield return bundle;
 		
-		//Instantiate GameObject wait
-		GameObject connection=UnityEngine.Object.Instantiate(bundle.assetBundle.mainAsset) as GameObject;
-		Debug.Log("loaded: "+path);
-		//yield return connection;
-		bundle.assetBundle.Unload(false);
-		serverConnection = connection.GetComponent<ServerConnection> ();
-		serverConnection.Connect(debug);
-	}
-
-	
 	void FixedUpdate() {
 		serverConnection.ProcessEventQueue();
 	}

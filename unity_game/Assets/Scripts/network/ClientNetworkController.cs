@@ -29,7 +29,7 @@ public class ClientNetworkController : NetworkController {
 		SubscribeEvents();
 		started = true;
 		spawn=GetComponent<ClientSpawnController>();
-		smartFoxClient.JoinRoom("Central Square");
+		smartFoxClient.JoinRoom(ServerConnection.ConnectionConfig.Room);
 		userType = MyUserType.Client;
 	}
 	
@@ -91,6 +91,16 @@ public class ClientNetworkController : NetworkController {
 				SceneObject s=g.GetComponent<SceneObject>();
 				if(s!=null){
 					s.ReceiveMessage(data);
+				}
+			}
+		}
+		if(cmd=="mechinePart"){
+			string object_name=data.GetString("object_name");
+			GameObject g=GameObject.Find(object_name);
+			if(g!=null){
+				MechinePart m=g.GetComponent<MechinePart>();
+				if(m!=null){
+					m.ReceiveMessage(data);
 				}
 			}
 		}

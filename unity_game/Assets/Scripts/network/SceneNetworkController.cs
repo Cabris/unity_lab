@@ -22,7 +22,7 @@ public class SceneNetworkController : NetworkController
 		SubscribeEvents ();
 		started = true;
 		spawn = GetComponent<SceneSpawnController> ();
-		smartFoxClient.JoinRoom ("Central Square");
+		smartFoxClient.JoinRoom (ServerConnection.ConnectionConfig.Room);
 		userType = MyUserType.Scene;
 	}
 	

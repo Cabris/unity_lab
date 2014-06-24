@@ -4,26 +4,26 @@ using System.Collections;			// for using hash tables
 using System.Security.Permissions;	// for getting the socket policy
 using SmartFoxClientAPI;			// to setup SmartFox connection
 using SmartFoxClientAPI.Data;		// necessary to access the room resource
+using System.Xml.Serialization;
 
 public class ServerConnection:MonoBehaviour
 {
-	//[SerializeField]
 	string serverIP = "140.115.53.97";
-	//string serverIP = "127.0.0.1";
-	[SerializeField]
 	int serverPort = 9339;			
-	[SerializeField]
 	string zone = "city";
 
 	public SmartFoxClient smartFox;
-	public bool isLocalhost=true;
-	public string ServerIP{get{return serverIP;}}
 
+	public string ServerIP{get{return serverIP;}}
+	public static ConnectionConfig ConnectionConfig{get;private set;}
 
 	public void Connect(bool debug){
+		loadConfig();
+				serverIP=ConnectionConfig.ServerIP;
+				serverPort=ConnectionConfig.ServerPort;
+				zone=ConnectionConfig.Zone;
+
 		Application.runInBackground = true; 	
-		if(isLocalhost)
-			serverIP="127.0.0.1";
 		if ( SmartFox.IsInitialized() ) {
 			Debug.Log("SmartFox is already initialized, reusing connection");
 			smartFox = SmartFox.Connection;
@@ -39,18 +39,22 @@ public class ServerConnection:MonoBehaviour
 				Debug.Log(e.ToString());
 			}
 		}
-		
-		//		// Register callback delegates, before callling Connect()
-		//		SFSEvent.onConnection += OnConnection;
-		//		SFSEvent.onConnectionLost += OnConnectionLost;
-		//		SFSEvent.onLogin += OnLogin;
-		//		SFSEvent.onRoomListUpdate += OnRoomList;
-		//		SFSEvent.onDebugMessage += OnDebugMessage;
-		//		//SFSEvent.onJoinRoom += OnJoinRoom;		// We will not join a room in this level
-		
+
 		Debug.Log("Attempting to connect to SmartFoxServer");
 		smartFox.Connect(serverIP, serverPort);		
 		
+	}
+
+	void loadConfig(){
+		string path=@"C:\_AssetBundles\config.xml";
+
+		System.Xml.Serialization.XmlSerializer reader = 
+			new System.Xml.Serialization.XmlSerializer(typeof(ConnectionConfig));
+		System.IO.StreamReader file = new System.IO.StreamReader(path);
+
+		ConnectionConfig config=new ConnectionConfig();
+		config = (ConnectionConfig)reader.Deserialize(file);
+		ConnectionConfig=config;
 	}
 	
 	public void Disconnect(){

@@ -7,7 +7,7 @@ using SmartFoxClientAPI.Data;
 
 public class NetworkTransformReceiver : MonoBehaviour {
 
-	public float interpolationPeriod = 0.02f;  // This value should be equal to the sendingPerion value of the Sender script
+	public float interpolationPeriod = 0.01f;  // This value should be equal to the sendingPerion value of the Sender script
 	public float yAdjust = 0.0f; // Ajust y position when synchronizing the local and remote models.
 	public int qc;
 	//public long ts=0;
