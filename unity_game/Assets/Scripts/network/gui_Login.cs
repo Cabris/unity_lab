@@ -19,8 +19,8 @@ public class gui_Login : MonoBehaviour {
 	private ComboBox comboBoxControl;// = new ComboBox();
 	private GUIStyle listStyle = new GUIStyle();
 	private string[] scenes={"Scene0","Scene1","Scene2"};
-	
-	public ServerConnection serverConnection;
+	[SerializeField]
+	ServerConnection serverConnection;
 	
 	void Start()
 	{
@@ -42,9 +42,12 @@ public class gui_Login : MonoBehaviour {
 	
 	void Awake() {
 		RegisterSFSSceneCallbacks();
+		//LoadGameObject ("ServerConnection");
+		//Coroutine co= StartCoroutine(LoadGameObject("ServerConnection"));
 		serverConnection.Connect(debug);
+		Application.targetFrameRate = 60;
 	}
-	
+		
 	void FixedUpdate() {
 		serverConnection.ProcessEventQueue();
 	}

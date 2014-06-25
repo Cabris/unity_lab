@@ -26,23 +26,23 @@ public class ClientNetworkController : NetworkController {
 			Application.LoadLevel("SceneMenu");
 			return;
 		}
+	//	Debug.Log("1");
 		SubscribeEvents();
 		started = true;
 		spawn=GetComponent<ClientSpawnController>();
-		smartFoxClient.JoinRoom("Central Square");
+		smartFoxClient.JoinRoom(ServerConnection.ConnectionConfig.Room);
 		userType = MyUserType.Client;
+	//	Debug.Log("2");
 	}
 	
 	public static void SendExMsg(string exName,string cmd,Hashtable data){
-		//SmartFoxClient client = GetClient();
 		data.Add("host",hostSceneName);
-//		if(client!=null)
-//			client.SendXtMessage(exName,cmd,data);
 		NetworkController.SendExMsg (exName, cmd, data);
 	}
 	
 	protected override void OnJoinRoom (Room room)
 	{
+	//	Debug.Log("5");
 		base.OnJoinRoom (room);
 		Hashtable data = new Hashtable();
 		SendExMsg("test","joinScene",data);
@@ -50,6 +50,7 @@ public class ClientNetworkController : NetworkController {
 	
 	protected override void OnUserLeaveRoom (int roomId, int userId, string userName)
 	{
+	//	Debug.Log("4");
 		base.OnUserLeaveRoom (roomId, userId, userName);
 		spawn.UserLeaveRoom(userId);
 		if(userName==hostSceneName){//scene lost
@@ -59,7 +60,7 @@ public class ClientNetworkController : NetworkController {
 	}
 	
 	protected override void HandleReceiveData(SFSObject data){
-		base.HandleReceiveData(data);
+//		Debug.Log("6");
 		string cmd=data.GetString("cmd");
 		if(cmd=="t"){
 			string object_name=data.GetString("object_name");
@@ -71,42 +72,33 @@ public class ClientNetworkController : NetworkController {
 				}
 			}
 		}
-		if(cmd=="playerStatus"){
+		else if(cmd=="playerStatus"){
 			if(data.GetString("userName")==GetClient().myUserName)
 				spawn.SpawnLocalPlayer(data);
 			else
 				spawn.SpawnRemotePlayer(data);
 		}
-		if(cmd=="sceneData"){
+		else if(cmd=="sceneData"){
 			SFSObject datas =data.Get("datas") as SFSObject;
 			foreach(object obj in datas.Keys()){
 				SFSObject sdata=datas.Get(obj) as SFSObject;
 				clientController.HandleSceneObject(sdata);
 			}
 		}
-		if(cmd=="sceneObject"){
+		else{
 			string object_name=data.GetString("object_name");
+			string type=data.GetString("type");
 			GameObject g=GameObject.Find(object_name);
 			if(g!=null){
-				SceneObject s=g.GetComponent<SceneObject>();
-				if(s!=null){
-					s.ReceiveMessage(data);
-				}
+				NetworkObject networkObj=g.GetComponent(type) as NetworkObject;
+				networkObj.ReceiveMessage(data);
 			}
 		}
-		if(cmd=="a"){
-			string object_name=data.GetString("object_name");
-			GameObject g=GameObject.Find(object_name);
-			if(g!=null){
-				PlayerAnimation a=g.GetComponent<PlayerAnimation>();
-				if(a!=null){
-					a.ReceiveAni(data);
-				}
-			}
-		}
+
 	}
 	
 	void OnGUI() {
+	//	Debug.Log("3");
 		if(spawn.localPlayer!=null){
 			NetworkTransformReceiver r=spawn.localPlayer.GetComponent<NetworkTransformReceiver>();
 			GUI.Label(new Rect(10, 25, 500, 24), 
@@ -122,16 +114,5 @@ public class ClientNetworkController : NetworkController {
 		}
 	}
 	
-//	int i=0;
-	void Update ()
-	{ 
-//		if (Input.GetKey(KeyCode.B)) {
-//			SmartFoxClient client = ClientNetworkController.GetClient ();
-//			SFSObject data = new SFSObject ();
-//			data.Put ("cmd", "#");
-//			data.Put ("#", "i="+i);
-//			client.SendObject (data);
-//			i++;
-//		} 
-	}
+
 }

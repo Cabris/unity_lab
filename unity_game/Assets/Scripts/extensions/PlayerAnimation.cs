@@ -3,7 +3,7 @@ using System.Collections;
 using SmartFoxClientAPI;
 using SmartFoxClientAPI.Data;
 
-public class PlayerAnimation : MonoBehaviour {
+public class PlayerAnimation : NetworkObject {
 	
 	protected Animator animator;
 	public bool isSendmode;
@@ -28,13 +28,9 @@ public class PlayerAnimation : MonoBehaviour {
 			_speed=speed;
 			_direction=direction;
 			Hashtable data =new Hashtable();
-			data.Add ("object_name", this.name);
-			data.Add ("cmd", "a");
 			data.Add ("vertical", speed);
 			data.Add ("horizontal", direction);
-			//SmartFoxClient client = ClientNetworkController.GetClient();
-			ClientNetworkController.SendExMsg("test","b",data);
-
+			SendMessage(data);
 		}else if(queue.Count>0){
 			SFSObject d=queue.Dequeue() as SFSObject;
 			speed=(float)d.GetNumber("vertical");
@@ -42,7 +38,8 @@ public class PlayerAnimation : MonoBehaviour {
 		}
 	}
 	
-	public void ReceiveAni(SFSObject data){
+	public override void ReceiveMessage (SFSObject data)
+	{
 		queue.Enqueue(data);
 	}
 

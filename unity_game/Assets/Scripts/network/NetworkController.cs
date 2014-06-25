@@ -22,9 +22,7 @@ public class NetworkController : MonoBehaviour
 				SceneMenu.RequestSceneInfo();
 		}
 	}
-	
-	// We should unsubscribe all delegates before quitting the application to avoid probleems.
-	// Also we should Disconnect from server
+
 	void OnApplicationQuit ()
 	{
 		UnsubscribeEvents ();
@@ -33,10 +31,10 @@ public class NetworkController : MonoBehaviour
 	
 	virtual protected void OnJoinRoom (Room room)
 	{
-		string extensionName="test";
-		Hashtable msg = new Hashtable ();
-		msg.Add ("#",GetClient().myUserName+ ": OnJoinRoom("+room.GetName()+")");
-		GetClient ().SendXtMessage (extensionName, "test", msg);
+//		string extensionName="test";
+//		Hashtable msg = new Hashtable ();
+//		msg.Add ("#",GetClient().myUserName+ ": OnJoinRoom("+room.GetName()+")");
+//		GetClient ().SendXtMessage (extensionName, "test", msg);
 	}
 	
 	// This will be invoked when remote player enters our room
@@ -57,25 +55,25 @@ public class NetworkController : MonoBehaviour
 		HandleReceiveData(data);
 	}
 
-	public void Send(string to,SFSObject data){
-	//	SmartFoxClient client = GetClient ();
-	//	client.SendObject(data);
+	public static  void Send(SFSObject data){
+		SmartFoxClient client = GetClient ();
+		client.SendObject(data);
 	}
 	
 	virtual public  void OnPublicMessage (string message, User fromUser, int roomId)
 	{
-		int userId = fromUser.GetId ();
-		if (userId != smartFoxClient.myUserId) {  // If it's not myself
-			string mes = fromUser.GetName () + ": " + message;
-			// Send chat message to the Chat Controller			
-			SendMessage ("AddChatMessage", mes);
-			//Find user object with such Id
-			GameObject user = GameObject.Find ("remote_" + userId);
-			//If found - send him bubble message
-			if (user) {
-				user.SendMessage ("ShowBubble", mes);
-			}
-		}
+//		int userId = fromUser.GetId ();
+//		if (userId != smartFoxClient.myUserId) {  // If it's not myself
+//			string mes = fromUser.GetName () + ": " + message;
+//			// Send chat message to the Chat Controller			
+//			SendMessage ("AddChatMessage", mes);
+//			//Find user object with such Id
+//			GameObject user = GameObject.Find ("remote_" + userId);
+//			//If found - send him bubble message
+//			if (user) {
+//				user.SendMessage ("ShowBubble", mes);
+//			}
+//		}
 	}
 
 	virtual protected void onExtensionResponse(object obj,string type){

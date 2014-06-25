@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Collections;
 using System;
 using System.IO;
-
+using System.Xml.Serialization;
 public class AssetBundleHelper : MonoBehaviour {
 
 	// Use this for initialization
@@ -13,7 +13,21 @@ public class AssetBundleHelper : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+	}
+
+	[MenuItem("Custom Editor/Create ConnectConfig")]
+	static void ExecCreateConnectConfig(){
+		ConnectionConfig config=new ConnectionConfig();
+
+		System.Xml.Serialization.XmlSerializer writer = 
+			new System.Xml.Serialization.XmlSerializer(typeof(ConnectionConfig));
+		
+		System.IO.StreamWriter file = new System.IO.StreamWriter(
+			@"C:\_AssetBundles\config.xml");
+		writer.Serialize(file, config);
+		file.Close();
+
 	}
 
 	[MenuItem("Custom Editor/Create AssetBunldes")]

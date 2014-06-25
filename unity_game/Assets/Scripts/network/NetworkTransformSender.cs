@@ -4,7 +4,7 @@ using System;
 
 public class NetworkTransformSender : MonoBehaviour {
 	
-	public float sendingPeriod = 0.02f; // We will send transform each 0.1 second. To make transform synchronization smoother consider writing interpolation algorithm instead of making smaller period.
+	public float sendingPeriod = 0.01f; // We will send transform each 0.1 second. To make transform synchronization smoother consider writing interpolation algorithm instead of making smaller period.
 	private float timeLastSending = 0.0f;
 	
 	private bool sendMode = false;

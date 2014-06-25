@@ -7,8 +7,10 @@ using SmartFoxClientAPI.Data;
 
 public class ClientSpawnController : MonoBehaviour
 {
-	public GameObject localPlayerPrefab; //Note: we leave local player as object and do not instantiate it to keep existing Island Demo scripts working.
-	public GameObject remotePlayerPrefab;
+	[SerializeField]
+	GameObject localPlayerPrefab; //Note: we leave local player as object and do not instantiate it to keep existing Island Demo scripts working.
+	[SerializeField]
+	GameObject remotePlayerPrefab;
 	public GameObject localPlayer;
 	public List<GameObject> remotePlayers=new List<GameObject>();
 	
@@ -22,7 +24,6 @@ public class ClientSpawnController : MonoBehaviour
 		PlayerStatus ps=localPlayer.GetComponent<PlayerStatus>();
 		ps.FromHashtable(data);
 		localPlayer.GetComponent<NetworkTransformReceiver>().StartReceiving();
-		//localPlayer.SendMessage ("StartReceiving");
 	}
 
 	public void SpawnRemotePlayer (SFSObject data)

@@ -18,7 +18,7 @@ public class Scene {
 	private HashMap<String, User> users;
 	public String type;
 	public String sceneName;
-
+	LinkedList<SocketChannel> ll;
 	// Date date;
 
 	public Scene(User owner, AbstractExtension a) {
@@ -27,6 +27,7 @@ public class Scene {
 		users = new HashMap<String, User>();
 		max = 4;
 		ext = a;
+		ll = new LinkedList<SocketChannel>();
 	}
 
 	public User getOwner() {
@@ -59,17 +60,21 @@ public class Scene {
 		// ext.sendResponse(a, owner.getRoom(), owner, sceneChannel);
 		handleRequest(a, user, owner.getRoom());
 		ext.trace("addUser_userJoinScene");
+		ll = new LinkedList<SocketChannel>();
+		for (User _user : users.values())
+			if (_user != null)
+				ll.add(_user.getChannel());
 	}
 
 	public void removeUser(String userName) {
 		users.remove(userName);
+		ll = new LinkedList<SocketChannel>();
+		for (User _user : users.values())
+			if (_user != null)
+				ll.add(_user.getChannel());
 	}
 
 	public LinkedList<SocketChannel> getUsersChannels() {
-		LinkedList<SocketChannel> ll = new LinkedList<SocketChannel>();
-		for (User user : users.values())
-			if (user != null)
-				ll.add(user.getChannel());
 		return ll;
 	}
 
@@ -90,7 +95,7 @@ public class Scene {
 		String infoString = "ao: \n";
 		for (Object k : ao.keySet()) {
 			Object obj = ao.get(k.toString());
-			infoString+="key: "+k.toString()+", value: "+obj.toString()+".\n";
+			infoString+="key: "+k.toString()+", value: "+obj+".\n";
 		}
 		return infoString;
 	}

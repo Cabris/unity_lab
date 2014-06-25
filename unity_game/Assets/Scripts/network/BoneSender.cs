@@ -8,6 +8,7 @@ public class BoneSender : MonoBehaviour {
 	BoneData bd;
 	KinectModelControllerV2 kinectModelController;
 	public Transform target;
+	Queue q=new Queue();
 	// Use this for initialization
 	void Start () {
 		kinectModelController=GetComponent<KinectModelControllerV2>();
@@ -25,16 +26,18 @@ public class BoneSender : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-		
+		if(q.Count>0){
+			Hashtable data=q.Dequeue() as Hashtable;
+			ClientNetworkController.SendExMsg("test","s",data);
+		}
 	}
 	
 	void LateUpdate() {
 		if(!bd.IsSame()){
-			Hashtable hash=bd.GetHash();
-			hash.Add("object_name",name);
-			ClientNetworkController.SendExMsg("test","s",hash);
+			Hashtable data=bd.GetHash();
+			data.Add("object_name",name);
+			q.Enqueue(data);
 		}
-		//Debug.Log("send bones");
 	}
 	
 }

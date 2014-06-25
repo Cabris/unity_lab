@@ -54,7 +54,7 @@ public class MyExtension extends AbstractExtension {
 	public void handleRequest(String cmd, ActionscriptObject ao, User u,
 			int fromRoom) {
 
-		try {
+		//try {
 			if (cmd.equals("registScene")) {
 				Scene scene = new Scene(u, this);
 				String sceneType = ao.getString("type");
@@ -69,9 +69,10 @@ public class MyExtension extends AbstractExtension {
 				trace(cmd+","+sceneName);
 			} else
 				sceneManager.handleRequest(cmd, ao, u, fromRoom);
-		} catch (Exception e) {
-			trace("ex: " + e.fillInStackTrace());
-		}
+//		} catch (Exception e) {
+//			trace("ex: " + e.fillInStackTrace());
+//			
+//		}
 
 	}
 
