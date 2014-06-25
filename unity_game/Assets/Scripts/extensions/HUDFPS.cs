@@ -20,7 +20,11 @@ public class HUDFPS : MonoBehaviour
 	private float accum   = 0; // FPS accumulated over the interval
 	private int   frames  = 0; // Frames drawn over the interval
 	private float timeleft; // Left time for current interval
-	
+
+	void Awake() {
+		Application.targetFrameRate = 60;
+	}
+
 	void Start()
 	{
 		if( !guiText )

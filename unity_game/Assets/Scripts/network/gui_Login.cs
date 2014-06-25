@@ -45,7 +45,7 @@ public class gui_Login : MonoBehaviour {
 		//LoadGameObject ("ServerConnection");
 		//Coroutine co= StartCoroutine(LoadGameObject("ServerConnection"));
 		serverConnection.Connect(debug);
-		Application.targetFrameRate = 60;
+		//Application.targetFrameRate = 60;
 	}
 		
 	void FixedUpdate() {
