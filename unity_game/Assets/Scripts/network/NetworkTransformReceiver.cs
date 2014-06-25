@@ -50,7 +50,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 			NetworkTransform nextState = new NetworkTransform(this.gameObject);
 			nextState.InitFromValues(pos, rot,sca);
 			queue.Enqueue(nextState);
-			Debug.Log("r");
+		//	Debug.Log("r");
 		}
 	}
 	
@@ -90,7 +90,7 @@ public class NetworkTransformReceiver : MonoBehaviour {
 				maxInterpolationPoints = Convert.ToInt32(Math.Round(frameRate * interpolationPeriod));
 				// Reset interpolation deltaTime
 				interpolationDelta = 1.0f / Convert.ToSingle(maxInterpolationPoints);
-				Debug.Log("d");
+			//	Debug.Log("d");
 			}
 			else {
 				// If queue is empty just setting the transform to the last received state

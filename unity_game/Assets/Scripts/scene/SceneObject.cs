@@ -1,16 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using SmartFoxClientAPI.Data;
-public class SceneObject : MonoBehaviour {
+public class SceneObject : NetworkObject {
 	[SerializeField]
 	public string type;
 	public string sceneObjName;
 	public Transform tra;
 
-	//private string _destory="d";
-
-
-	// Use this for initialization
 	void Start () {
 		sceneObjName=gameObject.name;
 		tra=gameObject.transform;
@@ -35,18 +31,6 @@ public class SceneObject : MonoBehaviour {
 		if(sender!=null){
 			sender.ForceSendTransform();
 		}
-	}
-
-	private void SendMessage(Hashtable data){
-		data.Add ("object_name",name);
-		data.Add ("cmd","sceneObject");
-		NetworkController.SendExMsg ("test","b",data);
-	}
-
-	public void ReceiveMessage(SFSObject data){
-		string msg = data.GetString ("msg");
-		//if(msg==_destory)
-		//	GameObject.Destroy (gameObject);
 	}
 
 	public static string GetType(SFSObject data){

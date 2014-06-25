@@ -3,7 +3,7 @@ using System.Collections;
 using SmartFoxClientAPI.Data;
 
 [RequireComponent(typeof(SphereCollider))]
-public class MechinePart : MonoBehaviour {
+public class MechinePart : NetworkObject {
 	Renderer r;
 	public bool isPlaced;
 	[SerializeField]
@@ -22,24 +22,18 @@ public class MechinePart : MonoBehaviour {
 			rigidbody.isKinematic=!isPlaced;
 	}
 
-	public void ReceiveMessage(SFSObject data){
-		string msg = data.GetString ("msg");
+	public override void ReceiveMessage (SFSObject data)
+	{
 		isPlaced=data.GetBool("isPlaced");
 		if(isPlaced){
 			GameObject.Destroy (otherPart);
 		}
 	}
-
+	
 	void sendPlacedMsgToClient(){
 		Hashtable data=new Hashtable();
 		data.Add("isPlaced",true);
 		SendMessage(data);
-	}
-
-	private void SendMessage(Hashtable data){
-		data.Add ("object_name",name);
-		data.Add ("cmd","mechinePart");
-		NetworkController.SendExMsg ("test","b",data);
 	}
 
 	void OnTriggerEnter(Collider other) {

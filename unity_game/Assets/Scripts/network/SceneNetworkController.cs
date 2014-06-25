@@ -40,18 +40,21 @@ public class SceneNetworkController : NetworkController
 		RegistScene ();
 	}
 	
-	protected override void OnUserEnterRoom (int roomId, User user)
-	{
-		base.OnUserEnterRoom (roomId, user);
-		if (roomId == GetClient ().activeRoomId) {
-			//spawn.SpawnServerPlayer (user.GetName(),user.GetId());
-			//SendSceneData (user.GetName());
-		}
-	}
-	
 	protected override void HandleReceiveData (SFSObject data)
 	{
 		string cmd = data.GetString ("cmd");
+
+		if (cmd == "#") {
+			string msg = data.GetString ("#");
+			Debug.Log (msg);
+		}
+		if(cmd=="userJoinScene"){
+			string userName=data.GetString("userName");
+			int userId=Convert.ToInt32(data.GetNumber("userId"));
+			spawn.SpawnServerPlayer (userName,userId);
+			SendSceneData (userName);
+		}
+
 		if (cmd == "m") {
 			string object_name = data.GetString ("object_name");
 			GameObject g = GameObject.Find (object_name);
@@ -64,16 +67,7 @@ public class SceneNetworkController : NetworkController
 			BoneReceiver bc=g.GetComponentInChildren<BoneReceiver>();
 			bc.ReceiveBoneData(data);
 		}
-		if (cmd == "#") {
-			string msg = data.GetString ("#");
-			Debug.Log (msg);
-		}
-		if(cmd=="userJoinScene"){
-			string userName=data.GetString("userName");
-			int userId=Convert.ToInt32(data.GetNumber("userId"));
-			spawn.SpawnServerPlayer (userName,userId);
-			SendSceneData (userName);
-		}
+		
 	}
 	
 	protected override void OnUserLeaveRoom (int roomId, int userId, string userName)
