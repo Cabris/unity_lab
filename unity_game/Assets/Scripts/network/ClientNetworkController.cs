@@ -85,6 +85,12 @@ public class ClientNetworkController : NetworkController {
 				clientController.HandleSceneObject(sdata);
 			}
 		}
+		else if(cmd=="b"){
+			string object_name = data.GetString ("object_name");
+			GameObject g = GameObject.Find (object_name);
+			BoneReceiver bc=g.GetComponentInChildren<BoneReceiver>();
+			bc.ReceiveBoneData(data);
+		}
 		else{
 			string object_name=data.GetString("object_name");
 			string type=data.GetString("type");

@@ -31,6 +31,9 @@ public class BoneReceiver : MonoBehaviour {
 	
 	public void ReceiveBoneData(SFSObject data){
 		q.Enqueue(data);
+		//NetworkController.Send(data);
+		if(NetworkController.UserType==MyUserType.Scene)
+			NetworkController.SendExMsg("test","b",data.ToHashTable());
 	}
 	
 	public void SetBones (SFSObject data)
