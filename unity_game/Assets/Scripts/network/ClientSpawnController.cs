@@ -40,16 +40,15 @@ public class ClientSpawnController : MonoBehaviour
 		remotePlayers.Add(remotePlayer);
 	}
 
-	public void UserEnterRoom (User user)
-	{
-		//When remote user enters our room we spawn his object.
-		//SpawnRemotePlayer (user);
-		//remoteUser = user;
-	}
+//	public void UserEnterRoom (User user)
+//	{
+//		//When remote user enters our room we spawn his object.
+//		//SpawnRemotePlayer (user);
+//		//remoteUser = user;
+//	}
 	
 	public void UserLeaveRoom (int userId)
 	{
-		//Just destroy the corresponding object
 		GameObject obj = GameObject.Find ("user_" + userId);
 		if (obj != null){
 			remotePlayers.Remove(obj);

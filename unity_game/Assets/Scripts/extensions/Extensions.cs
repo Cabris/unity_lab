@@ -24,7 +24,7 @@ public static class Extensions
 	}
 
 	public static String AssetBundleLoaction{
-		get{return "file:///C:/_AssetBundles/{0}.assetBundles";}
+		get{return "file:///D:/_AssetBundles/{0}.assetBundles";}
 	}
 
 }
