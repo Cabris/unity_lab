@@ -14,11 +14,13 @@ public class ClientPlayerCommand : InputListener
 	public ScenePlayerCommand spc;
 	GrapDetector grapDetect;
 	GameObject _detected_object;
-	// Use this for initialization
+	IKCtrl ikCtrl;
+
 	void Start ()
 	{
 		spc=GetComponent<ScenePlayerCommand>();
 		grapDetect=GetComponent<GrapDetector>();
+		ikCtrl=GetComponent<IKCtrl>();
 	}
 	
 	void FixedUpdate ()
@@ -47,6 +49,12 @@ public class ClientPlayerCommand : InputListener
 				GetComponent<Animator>().applyRootMotion=true;
 			}
 		}
+		if(_detected_object!=null&&_buttonBPress){
+			ikCtrl.ikActive=true;
+			//ikCtrl.rightHandObj=_detected_object.transform;
+		}
+		if(!_buttonBPress)
+			ikCtrl.ikActive=false;
 	}
 	
 	bool isSame(){

@@ -35,12 +35,11 @@ public class GrapDetector : MonoBehaviour {
 	}
 
 	void OnGUI () {
+		//GUI.skin.label.fontSize=20;
 		if(detectedObj!=null){
-			Vector3 screenPos= Camera.main.WorldToScreenPoint(detectedObj.transform.position);
-			GUI.Label(new Rect(screenPos.x, screenPos.y, 150, 24), detectedObj.name);
+			Vector3 screenPos= Camera.main.WorldToScreenPoint(posHand);
+			GUI.Label(new Rect(screenPos.x,Screen.height- screenPos.y, 150, 24), detectedObj.name);
 		}
-
-
 	}
 	
 	void LateUpdate () {

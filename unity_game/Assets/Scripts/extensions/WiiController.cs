@@ -43,6 +43,8 @@ public class WiiController : MonoBehaviour {
 	public float vertical;
 	KeyboardController keyboard;
 	public int userId;
+	public bool isPressA=false;
+	public Renderer _renderer;
 	// Use this for initialization
 	void Start () {
 		wiimote_start();
@@ -81,22 +83,21 @@ public class WiiController : MonoBehaviour {
 			else
 				keyboard.enabled=true;
 		}
-		Color c=r.material.color;
+		Color c=_renderer.material.color;
 		isPressA=wiimote_getButtonA(userId);
 		if(isPressA){
 			c.a=0;
-			r.enabled=false;
+			_renderer.enabled=false;
 		}
 		else{
 			c.a=1;
-			r.enabled=true;
+			_renderer.enabled=true;
 		}
-		r.material.color=c;
+		_renderer.material.color=c;
 
 	}
 
-	public bool isPressA=false;
-	public Renderer r;
+
 
 
 

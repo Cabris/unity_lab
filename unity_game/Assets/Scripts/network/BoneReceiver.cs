@@ -31,7 +31,6 @@ public class BoneReceiver : MonoBehaviour {
 	
 	public void ReceiveBoneData(SFSObject data){
 		q.Enqueue(data);
-		//Debug.Log("ReceiveBoneData");
 	}
 	
 	public void SetBones (SFSObject data)

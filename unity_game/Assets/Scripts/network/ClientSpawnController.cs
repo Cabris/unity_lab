@@ -8,19 +8,24 @@ using SmartFoxClientAPI.Data;
 public class ClientSpawnController : MonoBehaviour
 {
 	[SerializeField]
-	GameObject localPlayerPrefab; //Note: we leave local player as object and do not instantiate it to keep existing Island Demo scripts working.
+	GameObject localPlayerPrefabStandard;
+	[SerializeField]
+	GameObject localPlayerPrefabKinect;
 	[SerializeField]
 	GameObject remotePlayerPrefab;
 	public GameObject localPlayer;
 	public List<GameObject> remotePlayers=new List<GameObject>();
-	
+	KinectSensor kinectSensor;
+
 	public void SpawnLocalPlayer (SFSObject data)
 	{
 		string name=data.GetString("name");
 		if(GameObject.Find(name)!=null)
 			return;
-		localPlayer = 
-			Instantiate(localPlayerPrefab) as GameObject;
+		if(KinectSensor.IsInitialized)
+			localPlayer = Instantiate(localPlayerPrefabKinect) as GameObject;
+		else
+			localPlayer = Instantiate(localPlayerPrefabStandard) as GameObject;
 		PlayerStatus ps=localPlayer.GetComponent<PlayerStatus>();
 		ps.FromHashtable(data);
 		localPlayer.GetComponent<NetworkTransformReceiver>().StartReceiving();
