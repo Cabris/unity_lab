@@ -16,7 +16,7 @@ public class BoneReceiver : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		if(q.Count>0){
 			SFSObject data=q.Dequeue() as SFSObject;
 			SetBones(data);

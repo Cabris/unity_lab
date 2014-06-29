@@ -40,12 +40,16 @@ public class SceneController : MonoBehaviour {
 		
 		SceneObject[] s=scene.GetComponentsInChildren<SceneObject>();
 		foreach(SceneObject ss in s){
-			GameObject g=ss.gameObject;
-			g.transform.parent=transform;
-			sceneObjs.Add(g);
-			g.AddComponent<NetworkTransformSender>();
-			NetworkTransformSender sender=g.GetComponent<NetworkTransformSender>();
-			sender.StartSending();
+			GameObject sceneObj=ss.gameObject;
+			sceneObj.transform.parent=transform;
+			sceneObjs.Add(sceneObj);
+
+//			sceneObj.AddComponent<NetworkTransformSender>();
+//			NetworkTransformSender sender=sceneObj.GetComponent<NetworkTransformSender>();
+//			sender.StartSending();
+
+			sceneObj.AddComponent<SimpleTransformSync>();
+		
 		}
 		Destroy(scene);
 		Debug.Log("scene loaded from asset: "+AssetName);

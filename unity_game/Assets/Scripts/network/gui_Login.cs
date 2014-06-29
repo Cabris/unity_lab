@@ -18,10 +18,16 @@ public class gui_Login : MonoBehaviour {
 	GUIContent[] comboBoxList;
 	private ComboBox comboBoxControl;// = new ComboBox();
 	private GUIStyle listStyle = new GUIStyle();
-	private string[] scenes={"Scene0","Scene1","Scene2"};
+	private string[] scenes={"Scene0","Scene1"};
 	[SerializeField]
 	ServerConnection serverConnection;
-	
+
+	void Awake() {
+		RegisterSFSSceneCallbacks();
+		serverConnection.Connect(debug);
+		scenes =Extensions.GetFileNames( "*.assetBundles");
+	}
+
 	void Start()
 	{
 		comboBoxList = new GUIContent[scenes.Length];
@@ -38,14 +44,6 @@ public class gui_Login : MonoBehaviour {
 				listStyle.padding.bottom = 4;
 		
 		comboBoxControl = new ComboBox(new Rect(100, 120, 100, 20), comboBoxList[0], comboBoxList, "button", "box", listStyle);
-	}
-	
-	void Awake() {
-		RegisterSFSSceneCallbacks();
-		//LoadGameObject ("ServerConnection");
-		//Coroutine co= StartCoroutine(LoadGameObject("ServerConnection"));
-		serverConnection.Connect(debug);
-		//Application.targetFrameRate = 60;
 	}
 		
 	void FixedUpdate() {

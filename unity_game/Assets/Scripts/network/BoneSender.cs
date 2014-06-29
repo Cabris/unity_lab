@@ -25,7 +25,7 @@ public class BoneSender : MonoBehaviour {
 		bd.transformsToSend.Add(kinectModelController.Hand_Right.transform);
 	}
 	
-	void FixedUpdate () {
+	void Update () {
 		if(q.Count>0){
 			Hashtable data=q.Dequeue() as Hashtable;
 			ClientNetworkController.SendExMsg("test","s",data);

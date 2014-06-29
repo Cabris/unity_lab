@@ -34,7 +34,7 @@ public class AssetBundleHelper : MonoBehaviour {
 	static void ExecCreateAssetBunldes(){
 		
 		// AssetBundle 的資料夾名稱及副檔名
-		string targetDir = @"c:\_AssetBundles";
+		string targetDir = @"C:\_AssetBundles";
 		string extensionName = ".assetBundles";
 		
 		//取得在 Project 視窗中選擇的資源(包含資料夾的子目錄中的資源)

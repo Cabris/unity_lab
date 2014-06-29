@@ -29,11 +29,10 @@ public class NetworkTransform {
 		}
 	}
 
-	Hashtable GetData ()
+	public Hashtable GetData ()
 	{
 		Hashtable data = GetTransformAsHash(this.obj.transform);
-		data.Add ("object_name", this.obj.name);
-		data.Add ("cmd", "t");
+
 		return data;
 	}
 
@@ -65,8 +64,10 @@ public class NetworkTransform {
 	// Send transform to all other users
 	public void DoSend() {
 		//SmartFoxClient client = NetworkController.GetClient();
-		Hashtable h=GetData();
-		NetworkController.SendExMsg("test","b",h);
+		Hashtable data=GetData();
+		data.Add ("object_name", this.obj.name);
+		data.Add ("cmd", "t");
+		NetworkController.SendExMsg("test","b",data);
 
 		//SFSObject s = h.ToSFSObject ();
 		//NetworkController.Send (s);

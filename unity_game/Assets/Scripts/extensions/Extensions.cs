@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using UnityEngine;
 using System.Collections;
 using SmartFoxClientAPI.Data;
@@ -13,7 +14,7 @@ public static class Extensions
 		}
 		return data;
 	}
-
+	
 	public static SFSObject ToSFSObject(this Hashtable h){
 		SFSObject data=new SFSObject();
 		foreach(object k in h.Keys){
@@ -22,11 +23,23 @@ public static class Extensions
 		}
 		return data;
 	}
+	
 
 	public static String AssetBundleLoaction{
-		get{return "file:///D:/_AssetBundles/{0}.assetBundles";}
+		get{return "file:///C:/_AssetBundles/{0}.assetBundles";}
 	}
+	
 
+	
+	public static string[] GetFileNames(string filter)
+	{
+		string path="C:\\_AssetBundles";
+		string[] files = Directory.GetFiles(path, filter);
+		for(int i = 0; i < files.Length; i++)
+			files[i] = Path.GetFileNameWithoutExtension(files[i]);
+		return files;
+	}
+	
 }
 
 

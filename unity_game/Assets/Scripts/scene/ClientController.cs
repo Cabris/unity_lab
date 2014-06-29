@@ -58,10 +58,14 @@ public class ClientController : MonoBehaviour {
 		SFSObject t=SceneObject.GetTransform(sdata);
 		GameObject sceneObj=GameObject.Find(name);	
 		sceneObj.name=name;
-		sceneObj.AddComponent<NetworkTransformReceiver>();
-		NetworkTransformReceiver ntReceiver=sceneObj.GetComponent<NetworkTransformReceiver>();
-		ntReceiver.StartReceiving();
-		
+
+//		sceneObj.AddComponent<NetworkTransformReceiver>();
+//		NetworkTransformReceiver ntReceiver=sceneObj.GetComponent<NetworkTransformReceiver>();
+//		ntReceiver.StartReceiving();
+//		ntReceiver.ReceiveTransform(t);
+
+		sceneObj.AddComponent<SimpleTransformSync>();
+
 		Vector3 pos=NetworkTransformReceiver.GetPos(t);
 		Quaternion rot=NetworkTransformReceiver.GetRot(t);
 		Vector3 sca=NetworkTransformReceiver.GetScale(t);
@@ -73,7 +77,7 @@ public class ClientController : MonoBehaviour {
 			rig.useGravity=false;
 		}
 
-		ntReceiver.ReceiveTransform(t);
+
 	}
 
 	void Update () {
