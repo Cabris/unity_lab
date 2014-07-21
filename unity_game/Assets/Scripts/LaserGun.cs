@@ -32,7 +32,7 @@ public class LaserGun : MonoBehaviour {
 
 
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
 		if(count>=updateReflectPeriod){
 			count=0;
 			UpdateReflect();
@@ -61,6 +61,7 @@ public class LaserGun : MonoBehaviour {
 				laserIn=lasers[1+i];
 				laserIn.start=hitPos;
 				laserIn.direction=directionOut;
+			//	Debug.Log(hit.collider.gameObject.name);
 				//laserIn.gameObject.SetActive(true);
 			}
 			else
