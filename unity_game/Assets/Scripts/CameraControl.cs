@@ -7,10 +7,14 @@ public class CameraControl : MonoBehaviour {
 	private Vector3 dragOrigin;
 	float iniCameraHeight;
 	Quaternion iniRotation;
+	float iniDistance;
+	[SerializeField]
+	float maxH,minH,maxD,minD;
 	// Use this for initialization
 	void Start () {
 		iniCameraHeight=follow.height;
-		iniRotation=transform.rotation;
+		iniRotation=transform.localRotation;
+		iniDistance=follow.distance;
 	}
 	
 	// Update is called once per frame
@@ -34,17 +38,25 @@ public class CameraControl : MonoBehaviour {
 		Vector3 r=new Vector3(0,pos.x * dragSpeed,0);
 		transform.Rotate(r,Space.Self);
 		float y=pos.y*dragSpeed*0.05f;
+
+		follow.distance-=y;
+		if(follow.distance>maxD)
+			follow.distance=maxD;
+		if(follow.distance<minD)
+			follow.distance=minD;
+
 		follow.height-=y;
-		if(follow.height>3)
-			follow.height=3;
-		if(follow.height<-1)
-			follow.height=-1;
+		if(follow.height>maxH)
+			follow.height=maxH;
+		if(follow.height<minH)
+			follow.height=minH;
 
 	}
 
 	public void Reset(){
-		transform.rotation=iniRotation;
+		transform.localRotation=iniRotation;
 		follow.height=iniCameraHeight;
+		follow.distance=iniDistance;
 	}
 
 }

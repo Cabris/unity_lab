@@ -75,6 +75,7 @@ public class WiiController : MonoBehaviour {
 				inputListener.Vertical=vertical;
 				inputListener.ButtonBPress=wiimote_getButtonB(userId);
 			}
+			isPressA=wiimote_getButtonA(userId);
 			//Debug.Log("wii input");
 		}
 		if(keyboard!=null){
@@ -84,7 +85,7 @@ public class WiiController : MonoBehaviour {
 				keyboard.enabled=true;
 		}
 		Color c=_renderer.material.color;
-		isPressA=wiimote_getButtonA(userId);
+
 		if(isPressA){
 			c.a=0;
 			_renderer.enabled=false;

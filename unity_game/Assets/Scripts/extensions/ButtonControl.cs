@@ -2,10 +2,13 @@
 using System.Collections;
 
 public class ButtonControl : MonoBehaviour {
-	
-	public bool isPress;
-	public	Rigidbody c;
 
+	public delegate void ButtonEvent(ButtonControl control);
+	public ButtonEvent OnButtonPress,OnButtonUp;
+
+	public bool isPress;
+	[SerializeField]
+	Transform button;
 
 	// Use this for initialization
 	void Start () {
@@ -15,21 +18,23 @@ public class ButtonControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(IsPress){
-			transform.localPosition=new Vector3(0,-6,0);
-			if(c!=null)
-			c.useGravity=true;
+			button.localPosition=new Vector3(0,-6,0);
 		}
 		else{
-			transform.localPosition=new Vector3(0,0,0);
+			button.localPosition=new Vector3(0,0,0);
 		}
 	}
 	
 	void OnTriggerEnter(Collider other) {
 		IsPress=true;
+		if(OnButtonPress!=null&&other.gameObject.tag=="Player")
+			OnButtonPress(this);
 	}
-	
+
 	void OnTriggerExit(Collider other) {
 		IsPress=false;
+		if(OnButtonUp!=null&&other.gameObject.tag=="Player")
+			OnButtonUp(this);
 	}
 	
 	public bool IsPress{
