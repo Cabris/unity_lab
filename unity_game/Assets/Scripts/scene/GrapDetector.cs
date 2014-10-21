@@ -2,47 +2,56 @@
 using System.Collections;
 
 public class GrapDetector : MonoBehaviour {
-	public  Transform target;
-	public float distance;
+	public Transform target;
+	float distance;
 	public Transform start;
 	public Transform end;
-	public GameObject detectedObj;
-	Vector3 posHand;
+	GameObject pre_obj;
+	GameObject detectedObj;
+	Vector3 handPos;
+	
+	public delegate void OnObjectDetectEvent(GameObject obj);
+	public OnObjectDetectEvent onObjectEnter,onObjectLeave;
+	
 	// Use this for initialization
 	void Start () {
-		
+		distance=999;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		Vector3 handPosInScreen=Camera.main.WorldToScreenPoint(posHand);
-		Vector3 posC=Camera.main.transform.position;
-		Vector3 direction=(posHand-posC).normalized;
-		//direction=Camera.main.transform.rotation.eulerAngles;
-		direction.Normalize();
+		Vector3 handPosInScreen=Camera.main.WorldToScreenPoint(handPos);
+		Vector3 cameraPos=Camera.main.transform.position;
+		Vector3 direction=(handPos-cameraPos).normalized;
+		
 		int layerMask=1<<10;
 		Ray ray=Camera.main.ScreenPointToRay(handPosInScreen);
-		ray=new Ray(posHand,direction);
+		ray=new Ray(handPos,direction);
 		Debug.DrawRay(ray.origin, direction*distance, Color.red);
-
+		
 		RaycastHit hit;
-		start.position=posHand;
-		end.position=posHand+direction*distance;
+		start.position=handPos;
+		end.position=handPos+direction*distance;
+		
 		if (Physics.Raycast(ray, out hit,distance,layerMask)){
 			detectedObj=hit.collider.gameObject;
-		}else
+			if(pre_obj!=detectedObj){//state change
+				if(pre_obj!=null&&onObjectLeave!=null)//from exist obj to another
+					onObjectLeave(pre_obj);//leave old one
+				if(onObjectEnter!=null)
+					onObjectEnter(detectedObj);
+			}
+			pre_obj=detectedObj;
+			
+		}else{//go to empty
+			if(onObjectLeave!=null&&detectedObj!=null)
+				onObjectLeave(detectedObj);
 			detectedObj=null;
-	}
-
-	void OnGUI () {
-		//GUI.skin.label.fontSize=20;
-		if(detectedObj!=null){
-			Vector3 screenPos= Camera.main.WorldToScreenPoint(posHand);
-			GUI.Label(new Rect(screenPos.x,Screen.height- screenPos.y, 150, 24), detectedObj.name);
+			pre_obj=null;
 		}
 	}
 	
 	void LateUpdate () {
-		 posHand=target.position;
+		handPos=target.position;
 	}
 }

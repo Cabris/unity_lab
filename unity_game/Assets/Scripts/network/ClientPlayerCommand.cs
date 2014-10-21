@@ -5,41 +5,28 @@ using System;
 using SmartFoxClientAPI;
 using SmartFoxClientAPI.Data;
 
-public class ClientPlayerCommand : InputListener
+public class ClientPlayerCommand : MonoBehaviour
 {
 	//public	bool _left,_right,_up,_down;
-	public bool _buttonBPress;
-	public float _horizontal;
-	public float _vertical;
 	public ScenePlayerCommand spc;
-	GrapDetector grapDetect;
-	GameObject _detected_object;
-	IKCtrl ikCtrl;
+	PlayerBeheaver player;
 
 	void Start ()
 	{
 		spc=GetComponent<ScenePlayerCommand>();
-		grapDetect=GetComponent<GrapDetector>();
-		ikCtrl=GetComponent<IKCtrl>();
+		player=GetComponent<PlayerBeheaver>();
 	}
 	
 	void FixedUpdate ()
 	{ 
-		if(!isSame()){
-			_horizontal=Horizontal;
-			_vertical=Vertical;
-			_buttonBPress=ButtonBPress;
-			_detected_object=grapDetect.detectedObj;
+		if(!player.isSame()){
 			Hashtable data=new Hashtable();
 			data.Add("cmd", "m");
-			data.Add("horizontal", ""+_horizontal);
-			data.Add("vertical", ""+_vertical);
-			data.Add("buttonB", _buttonBPress);
+			data.Add("horizontal", ""+player.Horizontal);
+			data.Add("vertical", ""+player.Vertical);
+			data.Add("buttonB", player.ButtonBPress);
 			data.Add("object_name", this.name);
-			if(_detected_object!=null)
-				data.Add ("detected_object_name",grapDetect.detectedObj.name);
-			else
-				data.Add ("detected_object_name",null);
+			data.Add("detected_object_name",player.GrapObjectName);
 			if(NetworkController.GetClient()!=null){
 				ClientNetworkController.SendExMsg("test","s",data);
 				GetComponent<Animator>().applyRootMotion=false;
@@ -49,22 +36,9 @@ public class ClientPlayerCommand : InputListener
 				GetComponent<Animator>().applyRootMotion=true;
 			}
 		}
-		if(_detected_object!=null&&_buttonBPress){
-			ikCtrl.ikActive=true;
-			//ikCtrl.rightHandObj=_detected_object.transform;
-		}
-		if(!_buttonBPress)
-			ikCtrl.ikActive=false;
+
 	}
 	
-	bool isSame(){
-		bool gd=_detected_object==grapDetect.detectedObj;
 
-		return
-			_horizontal==Horizontal&&
-				_vertical==Vertical&&
-				_buttonBPress==ButtonBPress&&
-				gd;
-	}
 	
 }
