@@ -16,6 +16,14 @@ public class KeyboardController : MonoBehaviour {
 		vertical = Input.GetAxis("Vertical");
 		inputListener.Horizontal=horizontal;
 		inputListener.Vertical=vertical;
-		inputListener.ButtonBPress=Input.GetMouseButton(0);
+//		inputListener.ButtonBPress=Input.GetMouseButton(0);
+
+		if(Input.GetMouseButtonDown(0))
+			inputListener.OnKeyPress(KeyCode.B);
+		if(Input.GetMouseButtonUp(0))
+			inputListener.OnKeyUp(KeyCode.B);
+
 	}
+
+
 }

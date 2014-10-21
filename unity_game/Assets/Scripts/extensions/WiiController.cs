@@ -73,7 +73,7 @@ public class WiiController : MonoBehaviour {
 			if(inputListener!=null){
 				inputListener.Horizontal=horizontal;
 				inputListener.Vertical=vertical;
-				inputListener.ButtonBPress=wiimote_getButtonB(userId);
+				//inputListener.ButtonBPress=wiimote_getButtonB(userId);
 			}
 			isPressA=wiimote_getButtonA(userId);
 			//Debug.Log("wii input");
@@ -95,7 +95,6 @@ public class WiiController : MonoBehaviour {
 			_renderer.enabled=true;
 		}
 		_renderer.material.color=c;
-
 	}
 
 
