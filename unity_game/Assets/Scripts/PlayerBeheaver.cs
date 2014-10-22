@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class PlayerBeheaver : InputListener {
 
 	[SerializeField]
-	GameObject panel;
+	GameObject PanelPrefab;
 	GrapDetector grapDetect;
 	IKController ikControl;
 	GameObject _detected_object;
@@ -80,21 +80,23 @@ public class PlayerBeheaver : InputListener {
 	}
 
 
-	Dictionary<GameObject,GameObject> selections=new Dictionary<GameObject, GameObject>();
+	Dictionary<GameObject,PanelController> selections=new Dictionary<GameObject, PanelController>();
 	void selectObj(GameObject obj){
 //		ikControl.isActive=true;
 //		ikControl.rightHandTarget=obj.transform;
 		if(!selections.ContainsKey(obj)){
-			GameObject _p=GameObject.Instantiate(panel) as GameObject;
-			_p.transform.position=obj.transform.position;
+			GameObject _p=GameObject.Instantiate(PanelPrefab) as GameObject;
+			_p.transform.position=obj.transform.position+new Vector3(0,.8f,0);
 			_p.GetComponent<CameraFacingBillboard>().Init();
-			selections.Add(obj,_p);
+			PanelController panelControl=_p.GetComponent<PanelController>();
+			panelControl.owner=obj;
+			selections.Add(obj,panelControl);
 		}
 	}
 
 	void unselectAll(){
 		foreach(GameObject selectObj in selections.Keys){
-			GameObject p=selections[selectObj];
+			GameObject p=selections[selectObj].gameObject;
 			GameObject.Destroy(p);
 		}
 		selections.Clear();

@@ -13,6 +13,7 @@ public class CameraFacingBillboard : MonoBehaviour
 {
 	
 	public Camera m_Camera;
+	public Transform cameraTF;
 	public bool amActive =false;
 	public bool autoInit =false;
 	GameObject myContainer;	
@@ -25,6 +26,7 @@ public class CameraFacingBillboard : MonoBehaviour
 	public void Init(){
 		inited=true;
 		m_Camera = Camera.main;
+		cameraTF=m_Camera.transform;
 		amActive = true;
 		myContainer = new GameObject();
 		myContainer.name = "GRP_"+transform.gameObject.name;
@@ -34,7 +36,7 @@ public class CameraFacingBillboard : MonoBehaviour
 	
 	void Update(){
 		if(amActive==true){
-			myContainer.transform.LookAt(myContainer.transform.position + m_Camera.transform.rotation * Vector3.forward, m_Camera.transform.rotation * Vector3.up);
+			myContainer.transform.LookAt(myContainer.transform.position + cameraTF.rotation * Vector3.forward, cameraTF.rotation * Vector3.up);
 		}
 	}
 }
