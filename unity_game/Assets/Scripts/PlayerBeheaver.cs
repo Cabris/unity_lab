@@ -1,26 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
+
 
 public class PlayerBeheaver : InputListener {
-
-	[SerializeField]
-	GameObject PanelPrefab;
+	
 	GrapDetector grapDetect;
 	IKController ikControl;
 	GameObject _detected_object;
 	public bool ButtonBPress{get; private set;}
 	float _horizontal;
 	float _vertical;
+	[SerializeField]
 	SelectController select;
-	
-	// Use this for initialization
+
+
 	void Start () {
 		grapDetect=GetComponent<GrapDetector>();
 		ikControl=GetComponent<IKController>();
 		grapDetect.onObjectEnter+=onObjectDetectEnter;
 		grapDetect.onObjectLeave+=onObjectDetectLeave;
-		select=new SelectController();
+		select=GameObject.Find("SceneLogic").GetComponent<SelectController>();
 	}
 	
 	// Update is called once per frame
@@ -39,7 +38,6 @@ public class PlayerBeheaver : InputListener {
 		if(grapingObj==null)
 			return false;
 		float dis=Vector3.Distance(grapingObj.transform.position,transform.position);
-		//Debug.Log(dis);
 		return dis<1.3f;
 	}
 
@@ -60,9 +58,9 @@ public class PlayerBeheaver : InputListener {
 		case KeyCode.B:
 			ButtonBPress=true;
 			if(_detected_object!=null)
-				selectObj(_detected_object);
+				select.onSelect(_detected_object);
 			else
-				unselectAll();
+				select.onUnselectAll();
 			break;
 		}
 	}
@@ -78,30 +76,7 @@ public class PlayerBeheaver : InputListener {
 			break;
 		}
 	}
-
-
-	Dictionary<GameObject,PanelController> selections=new Dictionary<GameObject, PanelController>();
-	void selectObj(GameObject obj){
-//		ikControl.isActive=true;
-//		ikControl.rightHandTarget=obj.transform;
-		if(!selections.ContainsKey(obj)){
-			GameObject _p=GameObject.Instantiate(PanelPrefab) as GameObject;
-			_p.transform.position=obj.transform.position+new Vector3(0,.8f,0);
-			_p.GetComponent<CameraFacingBillboard>().Init();
-			PanelController panelControl=_p.GetComponent<PanelController>();
-			panelControl.owner=obj;
-			selections.Add(obj,panelControl);
-		}
-	}
-
-	void unselectAll(){
-		foreach(GameObject selectObj in selections.Keys){
-			GameObject p=selections[selectObj].gameObject;
-			GameObject.Destroy(p);
-		}
-		selections.Clear();
-	}
-
+	
 	public bool isSame(){
 		return
 			_horizontal==Horizontal&&

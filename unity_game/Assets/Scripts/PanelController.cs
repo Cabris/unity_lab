@@ -8,12 +8,16 @@ public class PanelController : MonoBehaviour {
 	string header;
 	StringBuilder text;
 	public GameObject owner;
-	
+	//GameObject link;
+	[SerializeField]
+	LineRenderer line;
 	// Use this for initialization
 	void Start () {
 		_text=transform.Find("Text").GetComponent<UILabel>();
 		_header=transform.Find("Header").GetComponent<UILabel>();
 		text=new StringBuilder();
+		line=transform.Find("Link").GetComponent<LineRenderer>();
+		//line.enabled=false;
 	}
 	
 	// Update is called once per frame
@@ -30,8 +34,16 @@ public class PanelController : MonoBehaviour {
 				text.AppendLine(@"rotation: "+r.rotation.eulerAngles);
 				text.AppendLine(@"drag: "+r.drag);
 			}
+//			line.enabled=true;
+			line.SetPosition(0,line.transform.position);
+			line.SetPosition(1,owner.transform.position);
 		}
 		_text.text=text.ToString();
+		//_text.text="123";
 		_header.text=header;
+		//c=	transform.FindChild("Window").GetComponent<UISlicedSprite>().color;
 	}
+
+
+
 }
