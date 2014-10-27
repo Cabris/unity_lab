@@ -22,6 +22,10 @@ public class KeyboardController : MonoBehaviour {
 			inputListener.OnKeyPress(KeyCode.B);
 		if(Input.GetMouseButtonUp(0))
 			inputListener.OnKeyUp(KeyCode.B);
+		if(Input.GetMouseButtonDown(1))
+			inputListener.OnKeyPress(KeyCode.A);
+		if(Input.GetMouseButtonUp(1))
+			inputListener.OnKeyUp(KeyCode.A);
 
 	}
 

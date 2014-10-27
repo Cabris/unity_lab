@@ -6,7 +6,7 @@ public class PlayerBeheaver : InputListener {
 	
 	GrapDetector grapDetect;
 	IKController ikControl;
-	GameObject _detected_object;
+	GameObject detected_object;
 	public bool ButtonBPress{get; private set;}
 	float _horizontal;
 	float _vertical;
@@ -42,11 +42,11 @@ public class PlayerBeheaver : InputListener {
 	}
 
 	void onObjectDetectEnter(GameObject obj){
-		_detected_object=obj;
+		detected_object=obj;
 	}
 
 	void onObjectDetectLeave(GameObject obj){
-		_detected_object=null;
+		detected_object=null;
 	}
 
 	public override void OnKeyPress (KeyCode k)
@@ -54,11 +54,14 @@ public class PlayerBeheaver : InputListener {
 		base.OnKeyPress (k);
 		switch(k) {
 		case KeyCode.A:
+			if(detected_object!=null){
+				//if(CanGrap(detected_object)));
+			}
 			break;
 		case KeyCode.B:
 			ButtonBPress=true;
-			if(_detected_object!=null)
-				select.onSelect(_detected_object);
+			if(detected_object!=null)
+				select.onSelect(detected_object);
 			else
 				select.onUnselectAll();
 			break;
@@ -85,9 +88,9 @@ public class PlayerBeheaver : InputListener {
 	}
 	
 	public string GrapObjectName{get{
-			if(_detected_object==null)
+			if(detected_object==null)
 				return null;
 			else
-				return _detected_object.name;
+				return detected_object.name;
 		}}
 }
