@@ -5,7 +5,6 @@ using System.Collections;
 public class PlayerBeheaver : InputListener {
 
 	public bool IsMouseSelectActive;
-	GrapDetector grapDetect;
 	IKController ikControl;
 	GameObject detected_object;
 	public bool ButtonBPress{get; private set;}
@@ -15,39 +14,37 @@ public class PlayerBeheaver : InputListener {
 	SelectController select;
 	KinectModelControllerV2 kinectModelController;
 	GrapDetector grapDetector;
-	public Vector3 grapTargetPos{get;set;}
+	[SerializeField]
+	Transform grapTarget;
 
 	void Start () {
-		grapDetect=GetComponent<GrapDetector>();
-		ikControl=GetComponent<IKController>();
-		grapDetect.onObjectEnter+=onObjectDetectEnter;
-		grapDetect.onObjectLeave+=onObjectDetectLeave;
-		select=GameObject.Find("SceneLogic").GetComponent<SelectController>();
-		grapTargetPos=new Vector3();
-		kinectModelController = GetComponent<KinectModelControllerV2> ();
 		grapDetector = GetComponent<GrapDetector> ();
+		ikControl=GetComponent<IKController>();
+		grapDetector.onObjectEnter+=onObjectDetectEnter;
+		grapDetector.onObjectLeave+=onObjectDetectLeave;
+		select=GameObject.Find("SceneLogic").GetComponent<SelectController>();
+		kinectModelController = GetComponent<KinectModelControllerV2> ();
 
+		IsMouseSelectActive = !KinectSensor.IsInitialized;
+		if (kinectModelController != null) {
+			if (IsMouseSelectActive) {
+				kinectModelController.enabled = false;
+				grapDetector.target = grapTarget;
+				grapDetector.myCamera=GameObject.Find("UI Camera").camera;
+			} else {
+				kinectModelController.enabled = true;
+			}
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		_horizontal=Horizontal;
 		_vertical=Vertical;
-		IsMouseSelectActive = !KinectSensor.IsInitialized;
-		if (kinectModelController != null) {
-			if (IsMouseSelectActive) {
-				kinectModelController.enabled = false;
-			} else {
-				kinectModelController.enabled = true;
-			}
-		}
 	}
 
 	void LateUpdate ()
 	{
-		if (IsMouseSelectActive) {
-			grapDetector.target.position = grapTargetPos;
-		}
 	}
 	
 	bool CanGrap(GameObject grapingObj){

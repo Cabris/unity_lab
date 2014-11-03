@@ -2,14 +2,14 @@
 using System.Collections;
 
 public class GrapDetector : MonoBehaviour {
-	public Transform target;
+	public Transform target{ get; set;}
 	float distance;
 	public Transform start;
 	public Transform end;
 	GameObject pre_obj;
 	GameObject detectedObj;
 	Vector3 handPos;
-	
+	public Camera myCamera{ get; set;} 
 	public delegate void OnObjectDetectEvent(GameObject obj);
 	public OnObjectDetectEvent onObjectEnter,onObjectLeave;
 	
@@ -20,18 +20,15 @@ public class GrapDetector : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		Vector3 handPosInScreen=Camera.main.WorldToScreenPoint(handPos);
-		Vector3 cameraPos=Camera.main.transform.position;
-		Vector3 direction=(handPos-cameraPos).normalized;
-		
+		Vector3 handPosInScreen=myCamera.WorldToScreenPoint(handPos);
 		int layerMask=1<<10;
 		Ray ray=Camera.main.ScreenPointToRay(handPosInScreen);
-		ray=new Ray(handPos,direction);
-		Debug.DrawRay(ray.origin, direction*distance, Color.red);
+		//ray=new Ray(handPos,direction);
+		Debug.DrawRay(ray.origin, ray.direction*distance, Color.red);
 		
 		RaycastHit hit;
 		start.position=handPos;
-		end.position=handPos+direction*distance;
+		end.position=handPos+ray.direction*distance;
 		
 		if (Physics.Raycast(ray, out hit,distance,layerMask)){
 			detectedObj=hit.collider.gameObject;

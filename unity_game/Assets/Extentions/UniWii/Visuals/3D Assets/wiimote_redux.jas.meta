@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: c2abee1156ce44781ac0cfa94d48e724
 ModelImporter:
-  serializedVersion: 15
+  serializedVersion: 16
   fileIDToRecycleName:
     2800000: __AssetImporterPreview
     4300000: WiiMote_base
@@ -70,4 +70,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 1
+  additionalBone: 0
   userData: 

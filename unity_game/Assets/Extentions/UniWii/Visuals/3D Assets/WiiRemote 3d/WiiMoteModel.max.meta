@@ -1,8 +1,41 @@
 fileFormatVersion: 2
 guid: 8574386ef934a488a8b6a4800c3e97c4
 ModelImporter:
-  serializedVersion: 15
-  fileIDToRecycleName: {}
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Box01
+    100002: Plane01
+    100004: Plane02
+    100006: Plane03
+    100008: Plane04
+    100010: Plane05
+    100012: //RootNode
+    400000: Box01
+    400002: Plane01
+    400004: Plane02
+    400006: Plane03
+    400008: Plane04
+    400010: Plane05
+    400012: //RootNode
+    2300000: Box01
+    2300002: Plane01
+    2300004: Plane02
+    2300006: Plane03
+    2300008: Plane04
+    2300010: Plane05
+    3300000: Box01
+    3300002: Plane01
+    3300004: Plane02
+    3300006: Plane03
+    3300008: Plane04
+    3300010: Plane05
+    4300000: Plane01
+    4300002: Plane02
+    4300004: Plane03
+    4300006: Plane04
+    4300008: Plane05
+    4300010: Box01
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3
@@ -54,4 +87,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 1
+  additionalBone: 0
   userData: 
