@@ -35,10 +35,10 @@ public class SelectController: MonoBehaviour
 	Vector3 panelOffset=new Vector3(0,1,0);
 
 	void select(GameObject obj){
-		GameObject _p=GameObject.Instantiate(PanelPrefab) as GameObject;
-		_p.transform.position=obj.transform.position+panelOffset;
-		_p.GetComponent<CameraFacingBillboard>().Init();
-		PanelController panelControl=_p.GetComponent<PanelController>();
+		GameObject panel=GameObject.Instantiate(PanelPrefab) as GameObject;
+		panel.transform.position=obj.transform.position+panelOffset;
+		panel.GetComponent<CameraFacingBillboard>().Init();
+		PanelController panelControl=panel.GetComponent<PanelController>();
 		panelControl.owner=obj;
 		selections.Add(obj,panelControl);
 
