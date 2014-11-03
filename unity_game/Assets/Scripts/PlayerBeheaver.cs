@@ -3,7 +3,8 @@ using System.Collections;
 
 
 public class PlayerBeheaver : InputListener {
-	
+
+	public bool IsMouseSelectActive;
 	GrapDetector grapDetect;
 	IKController ikControl;
 	GameObject detected_object;
@@ -12,7 +13,9 @@ public class PlayerBeheaver : InputListener {
 	float _vertical;
 	[SerializeField]
 	SelectController select;
-
+	KinectModelControllerV2 kinectModelController;
+	GrapDetector grapDetector;
+	public Vector3 grapTargetPos{get;set;}
 
 	void Start () {
 		grapDetect=GetComponent<GrapDetector>();
@@ -20,18 +23,31 @@ public class PlayerBeheaver : InputListener {
 		grapDetect.onObjectEnter+=onObjectDetectEnter;
 		grapDetect.onObjectLeave+=onObjectDetectLeave;
 		select=GameObject.Find("SceneLogic").GetComponent<SelectController>();
+		grapTargetPos=new Vector3();
+		kinectModelController = GetComponent<KinectModelControllerV2> ();
+		grapDetector = GetComponent<GrapDetector> ();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		_horizontal=Horizontal;
 		_vertical=Vertical;
-//		if(CanGrap(_detected_object)&&ButtonBPress){
-//			ikControl.isActive=true;
-//			ikControl.rightHandTarget=_detected_object.transform;
-//		}
-//		if(!ButtonBPress)
-//			ikControl.isActive=false;
+		IsMouseSelectActive = !KinectSensor.IsInitialized;
+		if (kinectModelController != null) {
+			if (IsMouseSelectActive) {
+				kinectModelController.enabled = false;
+			} else {
+				kinectModelController.enabled = true;
+			}
+		}
+	}
+
+	void LateUpdate ()
+	{
+		if (IsMouseSelectActive) {
+			grapDetector.target.position = grapTargetPos;
+		}
 	}
 	
 	bool CanGrap(GameObject grapingObj){
