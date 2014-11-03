@@ -23,7 +23,7 @@ public class CameraFacingBillboard : MonoBehaviour
 			Init();
 	}
 
-	public void Init(){
+	public Transform Init(){
 		inited=true;
 		m_Camera = Camera.main;
 		cameraTF=m_Camera.transform;
@@ -32,6 +32,7 @@ public class CameraFacingBillboard : MonoBehaviour
 		myContainer.name = "GRP_"+transform.gameObject.name;
 		myContainer.transform.position = transform.position;
 		transform.parent = myContainer.transform;
+		return myContainer.transform;
 	}
 	
 	void Update(){

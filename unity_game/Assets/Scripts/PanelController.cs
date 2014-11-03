@@ -7,17 +7,36 @@ public class PanelController : MonoBehaviour {
 	UILabel textLabel,headerLabel;
 	string header;
 	StringBuilder text;
-	public GameObject owner;
+	public GameObject owner{get;private set;}
+	SelectController controller;
 	[SerializeField]
 	LineRenderer line;
+	GameObject close;
+	public Transform actualTransform{get;private set;}
+
 	// Use this for initialization
 	void Start () {
 		textLabel=transform.Find("Text").GetComponent<UILabel>();
 		headerLabel=transform.Find("Header").GetComponent<UILabel>();
 		text=new StringBuilder();
 		line=transform.Find("Link").GetComponent<LineRenderer>();
+		close=transform.Find("Close").gameObject;
+		UIEventListener.Get(close).onClick = ButtonClick;
 	}
-	
+
+	void ButtonClick(GameObject button)
+	{
+		if(button==close){
+			controller.OnUnselect(owner);
+		}
+	}
+
+	public void Init(SelectController controller,GameObject owner){
+		this.controller=controller;
+		this.owner=owner;
+		actualTransform= GetComponent<CameraFacingBillboard>().Init();
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if(owner!=null){
@@ -30,9 +49,7 @@ public class PanelController : MonoBehaviour {
 		textLabel.text=text.ToString();
 		headerLabel.text=header;
 	}
-
-
-
+	
 	void updateText (StringBuilder text )
 	{
 		Rigidbody r = owner.rigidbody;

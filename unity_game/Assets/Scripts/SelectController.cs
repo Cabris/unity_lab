@@ -5,10 +5,13 @@ using System.Collections.Generic;
 public class SelectController: MonoBehaviour
 {
 	[SerializeField]
+	float offsetValue=1.3f;
+	[SerializeField]
 	Material outline;
 	[SerializeField]
 	GameObject PanelPrefab;
 	Dictionary<GameObject,PanelController> selections=new Dictionary<GameObject, PanelController>();
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,30 +19,35 @@ public class SelectController: MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		
+		foreach(PanelController p in selections.Values){
+
+		}
 	}
 
 	public void onSelect(GameObject obj){
 		if(!selections.ContainsKey(obj)){
 			select(obj);
-		}
+		}else
+			OnUnselect(obj);
 	}
 	
 	public void onUnselectAll(){
 		foreach(GameObject selectObj in selections.Keys){
-			unselect(selectObj);
+			OnUnselect(selectObj);
 		}
 		selections.Clear();
 	}
 
-	Vector3 panelOffset=new Vector3(0,1,0);
-
 	void select(GameObject obj){
+		Camera c=Camera.main;
+		Vector3 panelPos=c.transform.position;
+		Vector3 offset= c.transform.rotation * Vector3.forward;
+		panelPos+=offset*offsetValue;
+
 		GameObject panel=GameObject.Instantiate(PanelPrefab) as GameObject;
-		panel.transform.position=obj.transform.position+panelOffset;
-		panel.GetComponent<CameraFacingBillboard>().Init();
 		PanelController panelControl=panel.GetComponent<PanelController>();
-		panelControl.owner=obj;
+		panelControl.Init(this,obj);
+		panelControl.actualTransform.position=panelPos;
 		selections.Add(obj,panelControl);
 
 		Renderer r=obj.GetComponent<Renderer>();
@@ -50,7 +58,9 @@ public class SelectController: MonoBehaviour
 		r.materials=newMs;
 	}
 
-	void unselect(GameObject obj){
+	public void OnUnselect(GameObject obj){
+		if(!selections.ContainsKey(obj))
+			return;
 		GameObject p=selections[obj].transform.parent.gameObject;
 		GameObject.Destroy(p);
 
@@ -59,7 +69,7 @@ public class SelectController: MonoBehaviour
 		Material[] newMs=new Material[ms.Length-1];
 		Array.Copy(ms,1,newMs,0,ms.Length-1);
 		r.materials=newMs;
-
+		selections.Remove(obj);
 	}
 
 }

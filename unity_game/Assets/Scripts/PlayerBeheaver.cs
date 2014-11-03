@@ -4,18 +4,18 @@ using System.Collections;
 
 public class PlayerBeheaver : InputListener {
 
-	public bool IsMouseSelectActive;
-	IKController ikControl;
-	GameObject detected_object;
 	public bool ButtonBPress{get; private set;}
-	float _horizontal;
-	float _vertical;
 	[SerializeField]
 	SelectController select;
-	KinectModelControllerV2 kinectModelController;
-	GrapDetector grapDetector;
 	[SerializeField]
 	Transform grapTarget;
+	[SerializeField]
+	bool IsMouseSelectActive;
+	IKController ikControl;
+	GameObject detected_object;
+	KinectModelControllerV2 kinectModelController;
+	GrapDetector grapDetector;
+	PlayerAnimation playerAni;
 
 	void Start () {
 		grapDetector = GetComponent<GrapDetector> ();
@@ -24,6 +24,7 @@ public class PlayerBeheaver : InputListener {
 		grapDetector.onObjectLeave+=onObjectDetectLeave;
 		select=GameObject.Find("SceneLogic").GetComponent<SelectController>();
 		kinectModelController = GetComponent<KinectModelControllerV2> ();
+		playerAni=GetComponent<PlayerAnimation>();
 
 		IsMouseSelectActive = !KinectSensor.IsInitialized;
 		if (kinectModelController != null) {
@@ -39,8 +40,8 @@ public class PlayerBeheaver : InputListener {
 	
 	// Update is called once per frame
 	void Update () {
-		_horizontal=Horizontal;
-		_vertical=Vertical;
+		playerAni.direction=Horizontal;
+		playerAni.speed=Vertical;
 	}
 
 	void LateUpdate ()
@@ -75,8 +76,8 @@ public class PlayerBeheaver : InputListener {
 			ButtonBPress=true;
 			if(detected_object!=null)
 				select.onSelect(detected_object);
-			else
-				select.onUnselectAll();
+//			else
+//				select.onUnselectAll();
 			break;
 		}
 	}
@@ -91,13 +92,6 @@ public class PlayerBeheaver : InputListener {
 			ButtonBPress=false;
 			break;
 		}
-	}
-	
-	public bool isSame(){
-		return
-			_horizontal==Horizontal&&
-				_vertical==Vertical;
-//				_buttonBPress==ButtonBPress;
 	}
 	
 	public string GrapObjectName{get{
