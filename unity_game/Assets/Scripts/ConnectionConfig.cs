@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 public class ConnectionConfig
 {
@@ -14,7 +14,5 @@ public class ConnectionConfig
 		Zone = "city";
 		Room="Central Square";
 	}
-		
+	
 }
-
-

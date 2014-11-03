@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
-using SmartFoxClientAPI.Data;
+
 public class BoneData
 {
 	Transform root;

@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using SmartFoxClientAPI.Data;
 
 [RequireComponent(typeof(SphereCollider))]
-public class MechinePart : NetworkObject {
+public class MechinePart : MonoBehaviour {
 	Renderer r;
 	public bool isPlaced;
 	[SerializeField]
@@ -21,33 +20,13 @@ public class MechinePart : NetworkObject {
 		if(rigidbody!=null)
 			rigidbody.isKinematic=!isPlaced;
 	}
-
-	public override void ReceiveMessage (SFSObject data)
-	{
-		isPlaced=data.GetBool("isPlaced");
-		if(isPlaced){
-			GameObject.Destroy (otherPart);
-		}
-	}
 	
-	void sendPlacedMsgToClient(){
-		Hashtable data=new Hashtable();
-		data.Add("isPlaced",true);
-		SendMessage(data);
-	}
-
 	void OnTriggerEnter(Collider other) {
-		if(NetworkController.UserType==MyUserType.Scene){
 			if(other.gameObject==otherPart){
-				SceneObject s=otherPart.GetComponent<SceneObject>();
-				if(s!=null){
-					s.ForceClientMove();
 					GameObject.Destroy (otherPart);
-				}
 				isPlaced=true;
-				sendPlacedMsgToClient();
+
 			}
-		}
 	}
 	
 }

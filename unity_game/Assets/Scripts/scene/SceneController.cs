@@ -37,21 +37,7 @@ public class SceneController : MonoBehaviour {
 		Debug.Log("loaded: "+path);
 
 		yield return scene;
-		
-		SceneObject[] s=scene.GetComponentsInChildren<SceneObject>();
-		foreach(SceneObject ss in s){
-			GameObject sceneObj=ss.gameObject;
-			sceneObj.transform.parent=transform;
-			sceneObjs.Add(sceneObj);
 
-//			sceneObj.AddComponent<NetworkTransformSender>();
-//			NetworkTransformSender sender=sceneObj.GetComponent<NetworkTransformSender>();
-//			sender.StartSending();
-
-			sceneObj.AddComponent<SimpleTransformSync>();
-		
-		}
-		Destroy(scene);
 		Debug.Log("scene loaded from asset: "+AssetName);
 		isLoaded=true;
 		bundle.assetBundle.Unload(false);
