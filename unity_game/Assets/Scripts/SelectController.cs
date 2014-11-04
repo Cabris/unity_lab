@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class SelectController: MonoBehaviour
 {
+
 	[SerializeField]
 	float offsetValue=1.3f;
 	[SerializeField]
@@ -31,11 +32,18 @@ public class SelectController: MonoBehaviour
 			OnUnselect(obj);
 	}
 	
-	public void onUnselectAll(){
-		foreach(GameObject selectObj in selections.Keys){
-			OnUnselect(selectObj);
-		}
-		selections.Clear();
+	public void OnUnselect(GameObject obj){
+		if(!selections.ContainsKey(obj))
+			return;
+		GameObject p=selections[obj].transform.parent.gameObject;
+		GameObject.Destroy(p);
+		
+		Renderer r=obj.GetComponent<Renderer>();
+		Material[] ms=r.materials;//add outline to  first
+		Material[] newMs=new Material[ms.Length-1];
+		Array.Copy(ms,1,newMs,0,ms.Length-1);
+		r.materials=newMs;
+		selections.Remove(obj);
 	}
 
 	void select(GameObject obj){
@@ -58,18 +66,13 @@ public class SelectController: MonoBehaviour
 		r.materials=newMs;
 	}
 
-	public void OnUnselect(GameObject obj){
-		if(!selections.ContainsKey(obj))
-			return;
-		GameObject p=selections[obj].transform.parent.gameObject;
-		GameObject.Destroy(p);
 
-		Renderer r=obj.GetComponent<Renderer>();
-		Material[] ms=r.materials;//add outline to  first
-		Material[] newMs=new Material[ms.Length-1];
-		Array.Copy(ms,1,newMs,0,ms.Length-1);
-		r.materials=newMs;
-		selections.Remove(obj);
+
+	public void onUnselectAll(){
+		foreach(GameObject selectObj in selections.Keys){
+			OnUnselect(selectObj);
+		}
+		selections.Clear();
 	}
 
 }

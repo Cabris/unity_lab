@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class GrapDetector : MonoBehaviour {
+	public LayerMask mask;
 	public Transform target{ get; set;}
 	float distance;
 	public Transform start;
@@ -21,7 +22,7 @@ public class GrapDetector : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		Vector3 handPosInScreen=myCamera.WorldToScreenPoint(handPos);
-		int layerMask=1<<10;
+		int layerMask = mask.value;
 		Ray ray=Camera.main.ScreenPointToRay(handPosInScreen);
 		//ray=new Ray(handPos,direction);
 		Debug.DrawRay(ray.origin, ray.direction*distance, Color.red);

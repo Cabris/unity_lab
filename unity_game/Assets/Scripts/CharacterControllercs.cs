@@ -134,6 +134,8 @@ public class CharacterControllercs : MonoBehaviour {
          
         //Get CharacterController 
         controller = GetComponent<CharacterController>(); 
+
+
         //Move Charactercontroller and check if grounded 
         grounded = ((controller.Move(moveDirection * Time.deltaTime)) & CollisionFlags.Below) != 0; 
          

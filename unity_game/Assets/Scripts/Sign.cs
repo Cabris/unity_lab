@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class Sign : MonoBehaviour {
-	//public string text;
-	//TypogenicText tt;
-	// Use this for initialization
+
+
+
 	void Start () {
 		//tt=GetComponentInChildren<TypogenicText>();
 	}

@@ -3,7 +3,7 @@ using System.Collections;
 
 
 public class PlayerBeheaver : InputListener {
-
+	
 	public bool ButtonBPress{get; private set;}
 	[SerializeField]
 	SelectController select;
@@ -16,7 +16,10 @@ public class PlayerBeheaver : InputListener {
 	KinectModelControllerV2 kinectModelController;
 	GrapDetector grapDetector;
 	PlayerAnimation playerAni;
-
+	
+	[SerializeField]
+	bool isT=false;
+	
 	void Start () {
 		grapDetector = GetComponent<GrapDetector> ();
 		ikControl=GetComponent<IKController>();
@@ -25,7 +28,7 @@ public class PlayerBeheaver : InputListener {
 		select=GameObject.Find("SceneLogic").GetComponent<SelectController>();
 		kinectModelController = GetComponent<KinectModelControllerV2> ();
 		playerAni=GetComponent<PlayerAnimation>();
-
+		
 		IsMouseSelectActive = !KinectSensor.IsInitialized;
 		if (kinectModelController != null) {
 			if (IsMouseSelectActive) {
@@ -42,8 +45,13 @@ public class PlayerBeheaver : InputListener {
 	void Update () {
 		playerAni.direction=Horizontal;
 		playerAni.speed=Vertical;
+		
+		if (isT) {
+			playerAni.Apart();
+			isT=false;		
+		}
 	}
-
+	
 	void LateUpdate ()
 	{
 	}
@@ -54,34 +62,31 @@ public class PlayerBeheaver : InputListener {
 		float dis=Vector3.Distance(grapingObj.transform.position,transform.position);
 		return dis<1.3f;
 	}
-
+	
 	void onObjectDetectEnter(GameObject obj){
 		detected_object=obj;
 	}
-
+	
 	void onObjectDetectLeave(GameObject obj){
 		detected_object=null;
 	}
-
+	
 	public override void OnKeyPress (KeyCode k)
 	{
 		base.OnKeyPress (k);
 		switch(k) {
 		case KeyCode.A:
 			if(detected_object!=null){
-				//if(CanGrap(detected_object)));
 			}
 			break;
 		case KeyCode.B:
 			ButtonBPress=true;
 			if(detected_object!=null)
 				select.onSelect(detected_object);
-//			else
-//				select.onUnselectAll();
 			break;
 		}
 	}
-
+	
 	public override void OnKeyUp (KeyCode k)
 	{
 		base.OnKeyUp (k);
@@ -94,10 +99,22 @@ public class PlayerBeheaver : InputListener {
 		}
 	}
 	
-	public string GrapObjectName{get{
+	public string GrapObjectName{
+		get{
 			if(detected_object==null)
 				return null;
 			else
 				return detected_object.name;
-		}}
+		}
+	}
+
+	public void DoDamage(float d){
+		if (d > 0) {
+						isT = true;
+			KeyboardController kc=GetComponent<KeyboardController>();
+			GameObject.Destroy(kc);
+			CameraControllercs c=Camera.main.GetComponent<CameraControllercs>();
+			c.target=transform.Find ("Root/Hips").gameObject;
+		}
+	}
 }
