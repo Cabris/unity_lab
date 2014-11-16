@@ -29,6 +29,7 @@ Temp
 *.pidb
 *.suo
 *.user
+*.mp4
 *.booproj
 Thumbs.db
 *.userprefs
