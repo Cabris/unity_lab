@@ -16,13 +16,12 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	public OnClientMessage onClientMessage;
 	[SerializeField]
 	Vector4 ort;
-	//Quaternion inv=Quaternion.identity;
 	public Transform test;
 	ConcurrentStack<Vector4> orientationStack=new ConcurrentStack<Vector4>();
 	[SerializeField]
 	EncodeCamera encodeCam;
-
 	bool isClose=false;
+	bool HandleClientFlag=true;
 
 	void Start () {
 		this.tcpListener = new TcpListener(IPAddress.Any, 8887);
@@ -34,14 +33,14 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		while(orientationStack.Count>0){
+		if(orientationStack.Count>0){
 			ort=orientationStack.Pop();
-			//Debug.Log(ort);
 			Quaternion q=new Quaternion(ort.x,
 			                            ort.y,
 			                            ort.z,
 			                            ort.w);	
 			test.localRotation=q;
+			orientationStack.Clear();
 		}
 		if(Input.GetKeyDown(KeyCode.R)){
 			Quaternion inv=Quaternion.Inverse(test.localRotation);
@@ -82,21 +81,19 @@ public class DeviceMessageReceiver : MonoBehaviour {
 			Debug.Log(s);
 		}
 		
-		while (true){
+		//while (true){
 			//blocks until a client has connected to the server
 			TcpClient client = this.tcpListener.AcceptTcpClient();
 			Debug.Log("DeviceMessageReceiver client:"+clients.Count);
-			ParameterizedThreadStart tStart=new ParameterizedThreadStart(HandleClientComm);
-			//Thread clientThread=new Thread(tStart);
-			//clientThread.Start(client);
-			HandleClientComm(client);
-			break;
-			Debug.Log(" DeviceMessageReceiver client end");
-		}
+			ParameterizedThreadStart tStart=new ParameterizedThreadStart(HandleClient);
+			HandleClient(client);
+			//break;
+			//Debug.Log(" DeviceMessageReceiver client end");
+		//}
 		
 	}
 	
-	private void HandleClientComm(object client)
+	private void HandleClient(object client)
 	{
 		TcpClient tcpClient = (TcpClient)client;
 		tcpClient.NoDelay=true;
@@ -104,12 +101,13 @@ public class DeviceMessageReceiver : MonoBehaviour {
 		clients.Add(tcpClient);
 		StreamReader reader=new StreamReader(tcpClient.GetStream());
 		try{
-			while(true){
+			while(HandleClientFlag){
 				string msg= reader.ReadLine();
 				if(msg!=null){
 					if(msg==exit_code){
 						Debug.Log("orient discont");
 						isClose=true;
+						HandleClientFlag=false;
 						break;
 					}
 					if(onClientMessage!=null)
@@ -126,7 +124,10 @@ public class DeviceMessageReceiver : MonoBehaviour {
 		foreach(TcpClient c in clients)
 			c.Close();
 		tcpListener.Stop();
-		listenThread.Abort();
+		HandleClientFlag=false;
+		if(listenThread.IsAlive)
+			listenThread.Join();
+		//listenThread.Abort();
 	}
 	
 	void OnApplicationQuit() {

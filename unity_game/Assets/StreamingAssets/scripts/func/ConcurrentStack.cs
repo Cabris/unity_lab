@@ -41,7 +41,9 @@ public class ConcurrentStack<tvalue>{
 	{
 		lock(syncLock)
 		{
+			//if(stk.Count>0)
 			return stk.Pop();
+			//else return null;
 		}
 	}
 	

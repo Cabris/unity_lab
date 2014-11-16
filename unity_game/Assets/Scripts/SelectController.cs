@@ -65,9 +65,7 @@ public class SelectController: MonoBehaviour
 		Array.Copy(ms,0,newMs,1,ms.Length);
 		r.materials=newMs;
 	}
-
-
-
+	
 	public void onUnselectAll(){
 		foreach(GameObject selectObj in selections.Keys){
 			OnUnselect(selectObj);

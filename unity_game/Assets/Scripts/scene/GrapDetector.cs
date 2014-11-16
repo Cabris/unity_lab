@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class GrapDetector : MonoBehaviour {
-	public LayerMask mask;
+	//public LayerMask mask;
+	string mask="Pickable|Selectable";
 	public Transform target{ get; set;}
 	float distance;
 	public Transform start;
@@ -10,7 +11,8 @@ public class GrapDetector : MonoBehaviour {
 	GameObject pre_obj;
 	GameObject detectedObj;
 	Vector3 handPos;
-	public Camera myCamera{ get; set;} 
+	[SerializeField]
+	Camera myCamera;
 	public delegate void OnObjectDetectEvent(GameObject obj);
 	public OnObjectDetectEvent onObjectEnter,onObjectLeave;
 	
@@ -22,7 +24,7 @@ public class GrapDetector : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		Vector3 handPosInScreen=myCamera.WorldToScreenPoint(handPos);
-		int layerMask = mask.value;
+		//int layerMask = mask.value;
 		Ray ray=Camera.main.ScreenPointToRay(handPosInScreen);
 		//ray=new Ray(handPos,direction);
 		Debug.DrawRay(ray.origin, ray.direction*distance, Color.red);
@@ -30,8 +32,11 @@ public class GrapDetector : MonoBehaviour {
 		RaycastHit hit;
 		start.position=handPos;
 		end.position=handPos+ray.direction*distance;
+		bool ishit=false;
+		if (Physics.Raycast(ray, out hit,distance))
+			ishit=(mask.Contains(hit.collider.tag));
 		
-		if (Physics.Raycast(ray, out hit,distance,layerMask)){
+		if(ishit){
 			detectedObj=hit.collider.gameObject;
 			if(pre_obj!=detectedObj){//state change
 				if(pre_obj!=null&&onObjectLeave!=null)//from exist obj to another
@@ -40,7 +45,6 @@ public class GrapDetector : MonoBehaviour {
 					onObjectEnter(detectedObj);
 			}
 			pre_obj=detectedObj;
-			
 		}else{//go to empty
 			if(onObjectLeave!=null&&detectedObj!=null)
 				onObjectLeave(detectedObj);

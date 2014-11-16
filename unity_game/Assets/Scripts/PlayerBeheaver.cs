@@ -20,7 +20,10 @@ public class PlayerBeheaver : InputListener {
 	[SerializeField]
 	bool isT=false;
 	
+	Vector3 initialPos;
+	
 	void Start () {
+		initialPos=transform.position;
 		grapDetector = GetComponent<GrapDetector> ();
 		ikControl=GetComponent<IKController>();
 		grapDetector.onObjectEnter+=onObjectDetectEnter;
@@ -34,7 +37,7 @@ public class PlayerBeheaver : InputListener {
 			if (IsMouseSelectActive) {
 				kinectModelController.enabled = false;
 				grapDetector.target = grapTarget;
-				grapDetector.myCamera=GameObject.Find("UI Camera").camera;
+				//grapDetector.myCamera=GameObject.Find("UI Camera").camera;
 			} else {
 				kinectModelController.enabled = true;
 			}
@@ -47,22 +50,29 @@ public class PlayerBeheaver : InputListener {
 		playerAni.speed=Vertical;
 		
 		if (isT) {
-			playerAni.Apart();
+			playerAni.Disable();
+			KeyboardController kc=GetComponent<KeyboardController>();
+			kc.enabled=false;
+			//CameraControllercs c=Camera.main.GetComponent<CameraControllercs>();
+			//c.target=transform.Find ("Root/Hips").gameObject;
+			StartCoroutine(reset(5));
 			isT=false;		
 		}
+	}
+
+	IEnumerator  reset(float s){
+		yield return new WaitForSeconds(s);
+		playerAni.Enable();
+		KeyboardController kc=GetComponent<KeyboardController>();
+		kc.enabled=true;
+		transform.position=initialPos;
+		//Application.LoadLevel (Application.loadedLevelName);
 	}
 	
 	void LateUpdate ()
 	{
 	}
-	
-	bool CanGrap(GameObject grapingObj){
-		if(grapingObj==null)
-			return false;
-		float dis=Vector3.Distance(grapingObj.transform.position,transform.position);
-		return dis<1.3f;
-	}
-	
+
 	void onObjectDetectEnter(GameObject obj){
 		detected_object=obj;
 	}
@@ -107,14 +117,12 @@ public class PlayerBeheaver : InputListener {
 				return detected_object.name;
 		}
 	}
-
+	
 	public void DoDamage(float d){
 		if (d > 0) {
-						isT = true;
-			KeyboardController kc=GetComponent<KeyboardController>();
-			GameObject.Destroy(kc);
-			CameraControllercs c=Camera.main.GetComponent<CameraControllercs>();
-			c.target=transform.Find ("Root/Hips").gameObject;
+			isT = true;
 		}
 	}
+	
+
 }
