@@ -12,6 +12,7 @@ public class StreamTcpServer : MonoBehaviour {
 	private Thread listenThread;
 	List<TcpClient> clients=new List<TcpClient>();
 	List<BufferedStream> bStreams=new List<BufferedStream>();
+	bool isListening=true;
 
 	// Use this for initialization
 	void Start () {
@@ -40,7 +41,7 @@ public class StreamTcpServer : MonoBehaviour {
 			//Debug.Log(s);
 		}
 
-		while (true){
+		while (isListening){
 			//blocks until a client has connected to the server
 			TcpClient client = this.tcpListener.AcceptTcpClient();
 			Debug.Log("StreamTcpServer client:"+clients.Count);
@@ -82,6 +83,7 @@ public class StreamTcpServer : MonoBehaviour {
 	}
 
 	public void onDestory(){
+		isListening=false;
 		foreach(BufferedStream bs in bStreams)
 			bs.Close();
 		bStreams.Clear();
@@ -89,10 +91,11 @@ public class StreamTcpServer : MonoBehaviour {
 			c.Close();
 		clients.Clear();
 		tcpListener.Stop();
-		listenThread.Abort();
+		listenThread.Join();
 	}
 
 	void OnApplicationQuit() {
-
+		if(isListening)
+			onDestory();
 	}
 }
