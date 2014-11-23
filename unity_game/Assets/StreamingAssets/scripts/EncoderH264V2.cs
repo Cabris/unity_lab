@@ -65,8 +65,8 @@ public class EncoderH264V2
 		lock(obj){
 			try{
 				startEncoder(srcW, srcH, outWidth, outHeight, bitRate, fps);
-				stopWatch.Start();
 				isStarted=true;
+//				stopWatch.Start();
 			}catch(Exception e){
 				UnityEngine.Debug.LogException(e);
 			}
@@ -112,13 +112,11 @@ public class EncoderH264V2
 
 			Marshal.FreeHGlobal(decP);
 			
-			stopWatch.Stop();
-			TimeSpan ts = stopWatch.Elapsed;
-			// Format and display the TimeSpan value.
-			string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-			                                   ts.Hours, ts.Minutes, ts.Seconds,
-			                                   ts.Milliseconds / 10);
-			UnityEngine.Debug.Log("RunTime " + elapsedTime);
+//			stopWatch.Stop();
+//			TimeSpan ts = stopWatch.Elapsed;
+//			string elapsedTime = String.Format("{0:00}",ts.Milliseconds);
+//			UnityEngine.Debug.Log("RunTime " + elapsedTime);
+
 			stopEncoder();
 		}
 	}

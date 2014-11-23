@@ -7,16 +7,16 @@ using System.Runtime.CompilerServices;
 public class TextureSource : MonoBehaviour
 {
 	
-	[DllImport ("RenderingPlugin", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport ("RenderingPlugin")]
 	private static extern void CreateTextureCapt (int id, IntPtr texture);
 	
-	[DllImport("RenderingPlugin", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport("RenderingPlugin")]
 	private static extern void StartCapt (int id);
 	
-	[DllImport("RenderingPlugin", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport("RenderingPlugin")]
 	private static extern void StopCapt (int id);
 	
-	[DllImport("RenderingPlugin", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport("RenderingPlugin")]
 	private static extern void getTexture (int id, IntPtr dataP, out int size);
 	
 	[SerializeField]
@@ -36,25 +36,33 @@ public class TextureSource : MonoBehaviour
 	void Awake(){
 		Width = tex.width;
 		Height = tex.height;
+		obj = this;
+		srcP = IntPtr.Zero;
 	}
 
 	// Use this for initialization
 	void Start ()
 	{
-		obj = this;
-		srcP = IntPtr.Zero;
-		CreateTextureAndPassToPlugin ();
+		try{
+			CreateTextureAndPassToPlugin ();
+		}catch(Exception e){
+			Debug.LogException(e);
+		}
 	}
 	
 	private void CreateTextureAndPassToPlugin ()
 	{
 		listeningCamera.targetTexture = tex as RenderTexture;
-		CreateTextureCapt (Id, tex.GetNativeTexturePtr ());
+
 	}
 	
 	public void StartCapture ()
 	{
 		lock (obj) {
+			IntPtr tp=tex.GetNativeTexturePtr ();
+			if(tp==IntPtr.Zero)
+				throw new Exception("y r u null!!!!????");
+			CreateTextureCapt (Id, tp);
 			isCapt = true;
 			StartCapt (Id);
 			StartCoroutine ("CallPluginAtEndOfFrames");
@@ -89,7 +97,7 @@ public class TextureSource : MonoBehaviour
 			if (isCapt) {
 				yield return new WaitForEndOfFrame ();
 				GL.IssuePluginEvent (Id);
-			}else break;	
+			}//else break;	
 		}
 	}
 	
@@ -111,6 +119,6 @@ public class TextureSource : MonoBehaviour
 	
 	void OnApplicationQuit ()
 	{
-		StopCapture ();
+		//StopCapture ();
 	}
 }

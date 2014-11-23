@@ -7,9 +7,15 @@ using System.Runtime.InteropServices;
 
 public class EncodeCameraV2 : MonoBehaviour {
 
-	[DllImport("RenderingPlugin", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport("RenderingPlugin")]
 	private static extern void GetCombinedTexture (IntPtr dataP, out int size);
 
+	[DllImport("RenderingPlugin")]
+	private static extern void SetCallback(Callback fn);
+
+	private delegate int Callback(string text);
+	private Callback mInstance;   // Ensure it doesn't get garbage collected
+	
 	[SerializeField]
 	TextureSource leftSrc,rightSrc;
 	[SerializeField]
@@ -30,8 +36,16 @@ public class EncodeCameraV2 : MonoBehaviour {
 	long tatol=0;
 	System.Timers.Timer timer;
 	System.Object obj;
+	System.Diagnostics.Stopwatch stopWatch;
 
 
+	private int Handler(string text) {
+		// Do something...
+		Debug.Log(text);
+		return 42;
+	}
+	
+	
 	// Use this for initialization
 	void Start () {
 		Application.targetFrameRate=-1;
@@ -63,6 +77,11 @@ public class EncodeCameraV2 : MonoBehaviour {
 		double interval=1000.0/(double)fps;
 		timer=new System.Timers.Timer(interval);
 		timer.Elapsed+=Encoding;
+
+		stopWatch = new System.Diagnostics.Stopwatch();
+		mInstance = new Callback(Handler);
+		//SetCallback(mInstance);
+
 	}
 	
 	// Update is called once per frame
@@ -86,23 +105,42 @@ public class EncodeCameraV2 : MonoBehaviour {
 		leftSrc.StartCapture();
 		rightSrc.StartCapture();
 		encoder.StartEncoder();
+		//StartCoroutine ("CallDoEncoding");
 		timer.Start();
 		isEncoding=true;
 	}
-	
-	void  Encoding(object source, ElapsedEventArgs e){
+
+	private IEnumerator CallDoEncoding ()
+	{
+		while (true) {
+			yield return new WaitForEndOfFrame ();
+			doEncoding();
+		}
+	}
+
+	void  doEncoding ()
+	{
 		blocking++;
-		lock(obj){
-			if(isEncoding){
+		lock (obj) {
+			if (isEncoding) {
 				int size;
-				GetCombinedTexture(srcP,out size);
-				byte[] encoded= encoder.Encoding();
-				server.Send(encoded);//blocking point
-				tatol+=encoded.Length;
+				stopWatch.Reset ();
+				stopWatch.Start ();
+				//GL.IssuePluginEvent (0);
+				//GL.IssuePluginEvent (1);
+				GetCombinedTexture (srcP, out size);
+				byte[] encoded = encoder.Encoding ();
+				server.Send (encoded);
+				tatol += encoded.Length;
 				//Debug.Log(encoded.Length);
+				DoStopWatch ();
 			}
 		}
 		blocking--;
+	}
+	
+	void  Encoding(object source, ElapsedEventArgs e){
+		doEncoding ();
 	}
 	
 	public void stopEncoding(){
@@ -110,8 +148,9 @@ public class EncodeCameraV2 : MonoBehaviour {
 			leftSrc.StopCapture();
 			rightSrc.StopCapture();
 			isEncoding=false;
+			//StopCoroutine ("CallDoEncoding");
 			timer.Stop();
-			timer.Dispose();
+			//timer.Dispose();
 			encoder.StopEncoder();
 			server.onDestory();
 		}
@@ -123,5 +162,13 @@ public class EncodeCameraV2 : MonoBehaviour {
 		if (srcP != IntPtr.Zero)
 			Marshal.FreeHGlobal (srcP);
 		Debug.Log("tatol: "+tatol);
+	}
+
+	void DoStopWatch ()
+	{
+		stopWatch.Stop ();
+		TimeSpan ts = stopWatch.Elapsed;
+		string elapsedTime = String.Format ("{0:00}", ts.Milliseconds);
+		UnityEngine.Debug.Log ("RunTime " + elapsedTime);
 	}
 }

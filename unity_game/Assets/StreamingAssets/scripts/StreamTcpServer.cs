@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.IO;
 
+
 public class StreamTcpServer : MonoBehaviour {
 	
 	private TcpListener tcpListener;
@@ -38,7 +39,7 @@ public class StreamTcpServer : MonoBehaviour {
 		for (int i = 0; i < IpA.Length; i++) 
 		{ 
 			string s= String.Format("IP Address {0}: {1} ", i, IpA[i].ToString ());
-			//Debug.Log(s);
+			Debug.Log(s);
 		}
 
 		while (isListening){
@@ -66,16 +67,16 @@ public class StreamTcpServer : MonoBehaviour {
 	}
 	
 	public int Send(byte [] data){
+		int length=-1;
 		for(int i=0;i<bStreams.Count;i++){
 			BufferedStream bs=bStreams[i];
-			int length=data.Length;
+			length=data.Length;
 			byte[] lengthData=getBytes(length);
 			bs.Write(lengthData, 0 , lengthData.Length); 
 			bs.Write(data, 0 , data.Length);   
 			bs.Flush();
-			return length;
 		}          
-		return -1;
+		return length;
 	}
 
 	byte[] getBytes(int x) {
