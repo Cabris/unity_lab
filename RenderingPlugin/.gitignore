@@ -40,5 +40,6 @@ VisualStudio2008/build
 VisualStudio2008/_UpgradeReport_Files
 VisualStudio2008/*.suo
 VisualStudio2008/*.sdf
+VisualStudio2008/*.opensdf
 VisualStudio2008/*.vcxproj.user
 Thumbs.db
