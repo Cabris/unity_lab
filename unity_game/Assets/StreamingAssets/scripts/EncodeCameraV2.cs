@@ -61,7 +61,7 @@ public class EncodeCameraV2 : MonoBehaviour {
 			outHeight=inH;
 		}
 
-		int src_size = inW * inH * 3;//bgr
+		int src_size = inW * inH * 4;//bgr
 		srcP=Marshal.AllocHGlobal (src_size);
 
 		encoder=new EncoderH264V2(srcP,inW,inH,true);
@@ -124,16 +124,17 @@ public class EncodeCameraV2 : MonoBehaviour {
 		lock (obj) {
 			if (isEncoding) {
 				int size;
-				stopWatch.Reset ();
-				stopWatch.Start ();
-				//GL.IssuePluginEvent (0);
-				//GL.IssuePluginEvent (1);
+				//WatchStart ();
 				GetCombinedTexture (srcP, out size);
+				//WatchStop ("GetCombinedTexture");
+				//WatchStart ();
 				byte[] encoded = encoder.Encoding ();
+				//WatchStop ("Encoding");
+				//WatchStart ();
 				server.Send (encoded);
 				tatol += encoded.Length;
+				//WatchStop ("Send");
 				//Debug.Log(encoded.Length);
-				DoStopWatch ();
 			}
 		}
 		blocking--;
@@ -164,11 +165,17 @@ public class EncodeCameraV2 : MonoBehaviour {
 		Debug.Log("tatol: "+tatol);
 	}
 
-	void DoStopWatch ()
+	void WatchStart ()
+	{
+		stopWatch.Reset ();
+		stopWatch.Start ();
+	}
+
+	void WatchStop (string lable)
 	{
 		stopWatch.Stop ();
 		TimeSpan ts = stopWatch.Elapsed;
 		string elapsedTime = String.Format ("{0:00}", ts.Milliseconds);
-		UnityEngine.Debug.Log ("RunTime " + elapsedTime);
+		UnityEngine.Debug.Log ("RunTime_"+lable+": " + elapsedTime);
 	}
 }

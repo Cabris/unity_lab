@@ -105,7 +105,9 @@ extern "C" void EXPORT_API GetCombinedTexture(byte* data,int* size){
 	int height=(tc[0].height+tc[1].height)/2;
 	int tempSize=width*height*4;
 	combine(&tc[0],&tc[1],tempData,&tempSize);
-	convert(tempData,tempSize,data,size);//cirtical!!
+	memcpy(data,tempData,tempSize);
+	*size=tempSize;
+	//convert(tempData,tempSize,data,size);//cirtical!!
 }
 
 static void combine(TextureCapt* left,TextureCapt* right,byte* data,int* size){
