@@ -37,7 +37,7 @@ public class EncoderH264V2
 	public EncoderH264V2 (IntPtr srcP,int srcW,int srcH,bool isDebug)
 	{
 		this.srcP=srcP;
-		this.src_size=srcW*srcH*3;
+		this.src_size=srcW*srcH*4;
 		this.debug=isDebug;
 		this.srcW=srcW;
 		this.srcH=srcH;
@@ -79,7 +79,16 @@ public class EncoderH264V2
 			if(!isStarted||isStoped)
 				throw new Exception("wrong state");
 			try{
-				if (encode(srcP, src_size, decP, out dec_size) > 0)
+
+				stopWatch.Reset();
+				stopWatch.Start();
+				int r=encode(srcP, src_size, decP, out dec_size);
+				stopWatch.Stop();
+				TimeSpan ts = stopWatch.Elapsed;
+				string elapsedTime = String.Format("{0:00}",ts.Milliseconds);
+				//UnityEngine.Debug.Log("RunTime " + elapsedTime);
+
+				if (r > 0)
 				{
 					Marshal.Copy(decP, dec, 0, dec_size);
 					encoded=new byte[dec_size];
