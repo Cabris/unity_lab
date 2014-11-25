@@ -19,7 +19,7 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	public Transform test;
 	ConcurrentStack<Vector4> orientationStack=new ConcurrentStack<Vector4>();
 	[SerializeField]
-	EncodeCamera encodeCam;
+	EncodeCameraV2 encodeCam;
 	bool isClose=false;
 	bool HandleClientFlag=true;
 
@@ -34,13 +34,16 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(orientationStack.Count>0){
+			try{
 			ort=orientationStack.Pop();
-			Quaternion q=new Quaternion(ort.x,
-			                            ort.y,
-			                            ort.z,
-			                            ort.w);	
+			Quaternion q=new Quaternion(ort.x,ort.y, ort.z,ort.w);	
 			test.localRotation=q;
 			orientationStack.Clear();
+			}
+			catch(Exception e){
+				Debug.Log(e.Message);
+				//Debug.LogException(e);
+			}
 		}
 		if(Input.GetKeyDown(KeyCode.R)){
 			Quaternion inv=Quaternion.Inverse(test.localRotation);
@@ -50,8 +53,6 @@ public class DeviceMessageReceiver : MonoBehaviour {
 			encodeCam.stopEncoding();
 			isClose=false;
 		}
-
-
 	}
 	
 	void clientMsg(string msg){

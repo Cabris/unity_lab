@@ -86,7 +86,7 @@ public class EncoderH264V2
 				stopWatch.Stop();
 				TimeSpan ts = stopWatch.Elapsed;
 				string elapsedTime = String.Format("{0:00}",ts.Milliseconds);
-				UnityEngine.Debug.Log("RunTime " + elapsedTime);
+				//UnityEngine.Debug.Log("RunTime " + elapsedTime);
 
 				if (r > 0)
 				{
