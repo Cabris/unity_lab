@@ -73,7 +73,7 @@ extern "C" void EXPORT_API CreateTextureCapt(int id,void* texturePtr){
 	if(id>1||id<0)
 		return;
 	//tc[id]=new TextureCapt();
-	tc[id].setTexture((ID3D11Texture2D*)texturePtr);
+	//tc[id].setTexture((ID3D11Texture2D*)texturePtr);
 }
 
 extern "C" void EXPORT_API  StartCapt(int id) {

@@ -26,14 +26,14 @@ public class Orientation : MonoBehaviour
     }
     
     // Update is called once per frame
-    void Update()
-    {
+	void Update()
+	{
         if (Input.GetKeyDown(KeyCode.F1))
         {
             Rectify();
         }
         if(isRectified&&target!=null)
-            target.localRotation=cameraAvatar.rotation;
+            target.rotation=cameraAvatar.rotation;
     }
     
     public void Rectify()

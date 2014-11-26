@@ -7,10 +7,10 @@ using System.Runtime.InteropServices;
 
 public class EncodeCameraV2 : MonoBehaviour {
 
-	[DllImport("RenderingPlugin")]
+	[DllImport("RenderingPlugin", CallingConvention = CallingConvention.Cdecl)]
 	private static extern void GetCombinedTexture (IntPtr dataP, out int size);
 
-	[DllImport("RenderingPlugin")]
+	[DllImport("RenderingPlugin", CallingConvention = CallingConvention.Cdecl)]
 	private static extern void SetCallback(Callback fn);
 
 	private delegate int Callback(string text);

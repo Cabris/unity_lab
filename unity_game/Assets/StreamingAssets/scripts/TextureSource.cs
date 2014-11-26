@@ -7,16 +7,16 @@ using System.Runtime.CompilerServices;
 public class TextureSource : MonoBehaviour
 {
 	
-	[DllImport ("RenderingPlugin")]
+	[DllImport ("RenderingPlugin", CallingConvention = CallingConvention.Cdecl)]
 	private static extern void CreateTextureCapt (int id, IntPtr texture);
 	
-	[DllImport("RenderingPlugin")]
+	[DllImport("RenderingPlugin", CallingConvention = CallingConvention.Cdecl)]
 	private static extern void StartCapt (int id);
 	
-	[DllImport("RenderingPlugin")]
+	[DllImport("RenderingPlugin", CallingConvention = CallingConvention.Cdecl)]
 	private static extern void StopCapt (int id);
 	
-	[DllImport("RenderingPlugin")]
+	[DllImport("RenderingPlugin", CallingConvention = CallingConvention.Cdecl)]
 	private static extern void getTexture (int id, IntPtr dataP, out int size);
 	
 	[SerializeField]

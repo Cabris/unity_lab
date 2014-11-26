@@ -22,7 +22,7 @@ public class HUDFPS : MonoBehaviour
 	private float timeleft; // Left time for current interval
 
 	void Awake() {
-		Application.targetFrameRate = 60;
+		Application.targetFrameRate = -1;
 	}
 
 	void Start()

@@ -36,7 +36,7 @@ public class KeyboardController : MonoBehaviour {
 //		if(Input.GetMouseButton(0)) { 
 //			transform.rotation = Quaternion.Euler(0,Camera.main.transform.eulerAngles.y,0); 
 //		} else { 
-			transform.Rotate(0,Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime, 0); 
+		//	transform.Rotate(0,Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime, 0); 
 //		} 
 	}
 
