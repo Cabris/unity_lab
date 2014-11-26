@@ -33,6 +33,7 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		try{
 		if(orientationStack.Count>0){
 			try{
 			ort=orientationStack.Pop();
@@ -44,6 +45,10 @@ public class DeviceMessageReceiver : MonoBehaviour {
 				Debug.Log(e.Message);
 				//Debug.LogException(e);
 			}
+		}
+		}
+		catch(Exception e){
+			Debug.LogException(e);
 		}
 		if(Input.GetKeyDown(KeyCode.R)){
 			Quaternion inv=Quaternion.Inverse(test.localRotation);
