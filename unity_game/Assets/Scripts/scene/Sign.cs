@@ -18,10 +18,10 @@ public class Sign : MonoBehaviour {
 		foreach (ContactPoint contact in collision.contacts) {
 			Collider c=contact.otherCollider;
 			string tag=c.gameObject.tag;
-			if(tag=="Player"){
+			//if(tag=="Player"){
 				this.rigidbody.isKinematic=false;
 				this.rigidbody.WakeUp();
-			}
+			//}
 		}
 	}
 }

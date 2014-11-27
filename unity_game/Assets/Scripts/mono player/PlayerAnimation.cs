@@ -24,25 +24,11 @@ public class PlayerAnimation : MonoBehaviour {
 
 	public void Disable(){
 		animator.enabled = false;
-		rigidbody.isKinematic = true;
-		rigidbody.detectCollisions = false;
-//		CharacterJoint[] js=root.GetComponentsInChildren<CharacterJoint>();
-//		foreach(CharacterJoint j in js){
-//			GameObject.Destroy(j);
-//		}
-		//GameObject.Destroy(rigidbody);
-		//GameObject.Destroy(collider);
+
 	}
 
 	public void Enable(){
 		animator.enabled = true;
-		rigidbody.isKinematic = false;
-		rigidbody.detectCollisions = true;
-//		CharacterJoint[] js=root.GetComponentsInChildren<CharacterJoint>();
-//		foreach(CharacterJoint j in js){
-//			GameObject.Destroy(j);
-//		}
-		//GameObject.Destroy(rigidbody);
-		//GameObject.Destroy(collider);
+
 	}
 }

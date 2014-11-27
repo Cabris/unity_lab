@@ -51,10 +51,9 @@ public class PlayerBeheaver : InputListener {
 		
 		if (isT) {
 			playerAni.Disable();
-			KeyboardController kc=GetComponent<KeyboardController>();
-			kc.enabled=false;
-			//CameraControllercs c=Camera.main.GetComponent<CameraControllercs>();
-			//c.target=transform.Find ("Root/Hips").gameObject;
+			rigidbody.isKinematic = true;
+			rigidbody.detectCollisions = false;
+
 			StartCoroutine(reset(5));
 			isT=false;		
 		}
@@ -62,11 +61,15 @@ public class PlayerBeheaver : InputListener {
 
 	IEnumerator  reset(float s){
 		yield return new WaitForSeconds(s);
-		playerAni.Enable();
-		KeyboardController kc=GetComponent<KeyboardController>();
-		kc.enabled=true;
+		rigidbody.isKinematic = false;
+		rigidbody.detectCollisions = true;
+		//KeyboardController kc=GetComponent<KeyboardController>();
+		//kc.enabled=true;
 		transform.position=initialPos;
-		//Application.LoadLevel (Application.loadedLevelName);
+//		yield return new WaitForSeconds(0.01f);
+		playerAni.Enable();
+
+
 	}
 	
 	void LateUpdate ()

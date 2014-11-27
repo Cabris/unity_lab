@@ -24,9 +24,7 @@ public class GrapDetector : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		Vector3 handPosInScreen=myCamera.WorldToScreenPoint(handPos);
-		//int layerMask = mask.value;
 		Ray ray=Camera.main.ScreenPointToRay(handPosInScreen);
-		//ray=new Ray(handPos,direction);
 		Debug.DrawRay(ray.origin, ray.direction*distance, Color.red);
 		
 		RaycastHit hit;

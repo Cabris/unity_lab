@@ -70,34 +70,19 @@ public class WiiController : MonoBehaviour {
 				vertical=1;
 			if(down)
 				vertical=-1;
-			if(inputListener!=null){
+			//if(inputListener!=null){
 				inputListener.Horizontal=horizontal;
 				inputListener.Vertical=vertical;
 				//inputListener.ButtonBPress=wiimote_getButtonB(userId);
-			}
+			//}
 			isPressA=wiimote_getButtonA(userId);
 			//Debug.Log("wii input");
 		}
-		if(keyboard!=null){
-			if(wiimote_count()>0)
-				keyboard.enabled=false;
-			else
-				keyboard.enabled=true;
-		}
-		Color c=_renderer.material.color;
-
-		if(isPressA){
-			c.a=0;
-			_renderer.enabled=false;
-		}
-		else{
-			c.a=1;
-			_renderer.enabled=true;
-		}
-		_renderer.material.color=c;
 	}
 
+	void OnApplicationQuit() {
 
+	}
 
 
 

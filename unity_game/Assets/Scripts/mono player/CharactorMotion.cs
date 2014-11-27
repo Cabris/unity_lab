@@ -20,5 +20,8 @@ public class CharactorMotion : MonoBehaviour {
 		                                         target.localEulerAngles.y, 
 		                                         transform.localEulerAngles.z); 
 		myCamera.position=cameraAvator.position;
+		InputListener inp=GetComponent<InputListener>();
+		Vector3 t=new Vector3(inp.Horizontal,0,inp.Vertical);
+		transform.Translate(t*2.5f * Time.deltaTime, Space.Self);
 	}
 }

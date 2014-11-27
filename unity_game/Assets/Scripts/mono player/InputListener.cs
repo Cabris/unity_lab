@@ -4,8 +4,9 @@ using System;
 
 public class InputListener: MonoBehaviour
 {
-	public  float Horizontal{get;set;}
-	public  float Vertical{get;set;}
+	public  float Horizontal;
+	public  float Vertical;
+
 	//public bool ButtonBPress{get;set;}
 
 	public virtual void OnKeyPress(KeyCode k){}

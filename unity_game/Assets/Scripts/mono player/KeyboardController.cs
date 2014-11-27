@@ -6,6 +6,8 @@ public class KeyboardController : MonoBehaviour {
 	public float horizontal;
 	public float vertical;
 	private float rotateSpeed = 250.0f;
+	[SerializeField]
+	Transform target;
 	// Use this for initialization
 	void Start () {
 		inputListener=GetComponent<InputListener>();
@@ -36,7 +38,8 @@ public class KeyboardController : MonoBehaviour {
 //		if(Input.GetMouseButton(0)) { 
 //			transform.rotation = Quaternion.Euler(0,Camera.main.transform.eulerAngles.y,0); 
 //		} else { 
-		//	transform.Rotate(0,Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime, 0); 
+		 
+		target.Rotate(0,Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime, 0); 
 //		} 
 	}
 
