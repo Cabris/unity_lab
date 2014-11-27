@@ -7,7 +7,7 @@ using System.Threading;
 using System.IO;
 
 public class DeviceMessageReceiver : MonoBehaviour {
-
+	
 	const string exit_code="ORIENT_EXIT";
 	private TcpListener tcpListener;
 	private Thread listenThread;
@@ -22,7 +22,7 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	EncodeCameraV2 encodeCam;
 	bool isClose=false;
 	bool HandleClientFlag=true;
-
+	
 	void Start () {
 		this.tcpListener = new TcpListener(IPAddress.Any, 8887);
 		this.listenThread = new Thread(new ThreadStart(ListenForClients));
@@ -34,18 +34,12 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		try{
-		if(orientationStack.Count>0){
-			try{
-			ort=orientationStack.Pop();
-			Quaternion q=new Quaternion(ort.x,ort.y, ort.z,ort.w);	
-			test.localRotation=q;
-			orientationStack.Clear();
+			if(orientationStack.Count>0){
+				ort=orientationStack.Pop();
+				Quaternion q=new Quaternion(ort.x,ort.y, ort.z,ort.w);	
+				test.localRotation=q;
+				orientationStack.Clear();
 			}
-			catch(Exception e){
-				Debug.Log(e.Message);
-				//Debug.LogException(e);
-			}
-		}
 		}
 		catch(Exception e){
 			Debug.LogException(e);
@@ -88,13 +82,13 @@ public class DeviceMessageReceiver : MonoBehaviour {
 		}
 		
 		//while (true){
-			//blocks until a client has connected to the server
-			TcpClient client = this.tcpListener.AcceptTcpClient();
-			Debug.Log("DeviceMessageReceiver client:"+clients.Count);
-			ParameterizedThreadStart tStart=new ParameterizedThreadStart(HandleClient);
-			HandleClient(client);
-			//break;
-			//Debug.Log(" DeviceMessageReceiver client end");
+		//blocks until a client has connected to the server
+		TcpClient client = this.tcpListener.AcceptTcpClient();
+		Debug.Log("DeviceMessageReceiver client:"+clients.Count);
+		ParameterizedThreadStart tStart=new ParameterizedThreadStart(HandleClient);
+		HandleClient(client);
+		//break;
+		//Debug.Log(" DeviceMessageReceiver client end");
 		//}
 		
 	}
