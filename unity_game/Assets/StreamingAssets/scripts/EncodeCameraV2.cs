@@ -37,7 +37,8 @@ public class EncodeCameraV2 : MonoBehaviour {
 	System.Timers.Timer timer;
 	System.Object obj;
 	System.Diagnostics.Stopwatch stopWatch;
-
+	[SerializeField]
+	bool outputFile=false;
 
 	private int Handler(string text) {
 		// Do something...
@@ -64,7 +65,7 @@ public class EncodeCameraV2 : MonoBehaviour {
 		int src_size = inW * inH * 4;//bgr
 		srcP=Marshal.AllocHGlobal (src_size);
 
-		encoder=new EncoderH264V2(srcP,inW,inH,true);
+		encoder=new EncoderH264V2(srcP,inW,inH,outputFile);
 		encoder.OutWidth=outWidth;
 		encoder.OutHeight=outHeight;
 		encoder.Fps=fps;

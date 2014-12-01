@@ -26,7 +26,7 @@ public class DemoScript : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.J))
 		{
-			index++;
+			index--;
 			if(index<=21)
 			r.material.mainTexture = Resources.Load("demo ("+index+")", typeof(Texture2D)) as Texture;
 		}
@@ -44,7 +44,8 @@ public class DemoScript : MonoBehaviour {
 //			UIp.transform.localScale=new Vector3(1,1,1);
 //		}
 
-
+		if(Input.GetKeyDown(KeyCode.Escape))
+			Application.Quit();
 
 
 	}
