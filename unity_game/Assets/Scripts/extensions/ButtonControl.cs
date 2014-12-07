@@ -3,9 +3,9 @@ using System.Collections;
 
 public class ButtonControl : MonoBehaviour {
 
-	public delegate void ButtonEvent(ButtonControl control);
+	public delegate void ButtonEvent(ButtonControl control,GameObject hit);
 	public ButtonEvent OnButtonPress,OnButtonUp;
-
+	//string mask="Player|";
 	public bool isPress;
 	[SerializeField]
 	Transform button;
@@ -18,23 +18,23 @@ public class ButtonControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(IsPress){
-			button.localPosition=new Vector3(0,-6,0);
+			button.localPosition=new Vector3(0,-12,0);
 		}
 		else{
-			button.localPosition=new Vector3(0,0,0);
+			button.localPosition=new Vector3(0,-6,0);
 		}
 	}
 	
 	void OnTriggerEnter(Collider other) {
 		IsPress=true;
-		if(OnButtonPress!=null&&other.gameObject.tag=="Player")
-			OnButtonPress(this);
+		if(OnButtonPress!=null)
+			OnButtonPress(this,other.gameObject);
 	}
 
 	void OnTriggerExit(Collider other) {
 		IsPress=false;
-		if(OnButtonUp!=null&&other.gameObject.tag=="Player")
-			OnButtonUp(this);
+		if(OnButtonUp!=null)
+			OnButtonUp(this,other.gameObject);
 	}
 	
 	public bool IsPress{

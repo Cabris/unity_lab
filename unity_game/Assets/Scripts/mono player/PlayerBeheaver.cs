@@ -3,24 +3,22 @@ using System.Collections;
 
 
 public class PlayerBeheaver : InputListener {
+	public enum ControlType{mono,stereo };
 	
-	public bool ButtonBPress{get; private set;}
-	[SerializeField]
-	SelectController select;
+	public ControlType controlType;
 	[SerializeField]
 	Transform grapTarget;
-	[SerializeField]
-	bool IsMouseSelectActive;
+	SelectController select;
 	IKController ikControl;
 	GameObject detected_object;
 	KinectModelControllerV2 kinectModelController;
 	GrapDetector grapDetector;
 	PlayerAnimation playerAni;
-	
-	[SerializeField]
 	bool isT=false;
-	
 	Vector3 initialPos;
+
+	MonoController monoInput;
+	WiiController wiiInput;
 	
 	void Start () {
 		initialPos=transform.position;
@@ -31,17 +29,28 @@ public class PlayerBeheaver : InputListener {
 		select=GameObject.Find("SceneLogic").GetComponent<SelectController>();
 		kinectModelController = GetComponent<KinectModelControllerV2> ();
 		playerAni=GetComponent<PlayerAnimation>();
-		
-		IsMouseSelectActive = !KinectSensor.IsInitialized;
-		if (kinectModelController != null) {
-			if (IsMouseSelectActive) {
-				kinectModelController.enabled = false;
-				grapDetector.target = grapTarget;
-				//grapDetector.myCamera=GameObject.Find("UI Camera").camera;
-			} else {
-				kinectModelController.enabled = true;
-			}
+		bool isKinectInited= KinectSensor.IsInitialized;
+//		IsMouseSelectActive = !KinectSensor.IsInitialized;
+//		if (kinectModelController != null) {
+//			if (IsMouseSelectActive) {
+//				kinectModelController.enabled = false;
+//				grapDetector.target = grapTarget;
+//			} else {
+//				kinectModelController.enabled = true;
+//			}
+//		}
+		grapDetector.target = grapTarget;
+		monoInput=GetComponent<MonoController>();
+		wiiInput=GetComponent<WiiController>();
+
+		if(controlType==ControlType.mono){
+			monoInput.enabled=true;
+			wiiInput.enabled=false;
+		}else{
+			monoInput.enabled=false;
+			wiiInput.enabled=true;
 		}
+
 	}
 	
 	// Update is called once per frame
@@ -63,17 +72,8 @@ public class PlayerBeheaver : InputListener {
 		yield return new WaitForSeconds(s);
 		rigidbody.isKinematic = false;
 		rigidbody.detectCollisions = true;
-		//KeyboardController kc=GetComponent<KeyboardController>();
-		//kc.enabled=true;
 		transform.position=initialPos;
-//		yield return new WaitForSeconds(0.01f);
 		playerAni.Enable();
-
-
-	}
-	
-	void LateUpdate ()
-	{
 	}
 
 	void onObjectDetectEnter(GameObject obj){
@@ -93,7 +93,7 @@ public class PlayerBeheaver : InputListener {
 			}
 			break;
 		case KeyCode.B:
-			ButtonBPress=true;
+//			ButtonBPress=true;
 			if(detected_object!=null)
 				select.onSelect(detected_object);
 			break;
@@ -107,7 +107,7 @@ public class PlayerBeheaver : InputListener {
 		case KeyCode.A:
 			break;
 		case KeyCode.B:
-			ButtonBPress=false;
+//			ButtonBPress=false;
 			break;
 		}
 	}

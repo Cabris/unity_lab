@@ -41,7 +41,7 @@ public class WiiController : MonoBehaviour {
 	public InputListener inputListener;
 	public float horizontal;
 	public float vertical;
-	KeyboardController keyboard;
+
 	public int userId;
 	public bool isPressA=false;
 	public Renderer _renderer;
@@ -49,12 +49,11 @@ public class WiiController : MonoBehaviour {
 	void Start () {
 		wiimote_start();
 		inputListener=GetComponent<InputListener>();
-		keyboard=GetComponent<KeyboardController>();
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(wiimote_count()>0){
+		if(wiimote_count()>0&&inputListener!=null){
 			bool left,right,up,down;
 			left=wiimote_getButtonLeft(userId);
 			right=wiimote_getButtonRight(userId);
@@ -70,11 +69,8 @@ public class WiiController : MonoBehaviour {
 				vertical=1;
 			if(down)
 				vertical=-1;
-			//if(inputListener!=null){
-				inputListener.Horizontal=horizontal;
-				inputListener.Vertical=vertical;
-				//inputListener.ButtonBPress=wiimote_getButtonB(userId);
-			//}
+			inputListener.Horizontal=horizontal;
+			inputListener.Vertical=vertical;
 			isPressA=wiimote_getButtonA(userId);
 			//Debug.Log("wii input");
 		}

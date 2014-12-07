@@ -8,10 +8,14 @@ public class CharactorMotion : MonoBehaviour {
 	[SerializeField]
 	Transform cameraAvator;
 	[SerializeField]
-	Transform myCamera;
-	// Use this for initialization
+	float speed=2.5f;
 	void Start () {
-		myCamera.parent=transform.parent;
+		target.parent=transform.parent;
+		PlayerBeheaver pb=GetComponent<PlayerBeheaver>();
+		if(pb.controlType==PlayerBeheaver.ControlType.stereo){
+			target.GetComponent<MouseLook>().enabled=false;
+		}
+
 	}
 	
 	// Update is called once per frame
@@ -19,9 +23,9 @@ public class CharactorMotion : MonoBehaviour {
 		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 
 		                                         target.localEulerAngles.y, 
 		                                         transform.localEulerAngles.z); 
-		myCamera.position=cameraAvator.position;
+		target.position=cameraAvator.position;
 		InputListener inp=GetComponent<InputListener>();
-		Vector3 t=new Vector3(inp.Horizontal,0,inp.Vertical);
-		transform.Translate(t*2.5f * Time.deltaTime, Space.Self);
+		Vector3 direction=new Vector3(inp.Horizontal,0,inp.Vertical);
+		transform.Translate(direction*speed * Time.deltaTime, Space.Self);
 	}
 }

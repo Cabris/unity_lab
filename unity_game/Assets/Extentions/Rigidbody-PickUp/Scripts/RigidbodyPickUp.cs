@@ -179,16 +179,17 @@ public class RigidbodyPickUp : MonoBehaviour
                     distance = distance - 0.05f;
                 }
             }
+			if (distance < zoomSystem.minZoom)
+			{
+				distance = zoomSystem.minZoom + 0.1f;
+			}
+			else if (distance > zoomSystem.maxZoom)
+			{
+				distance = zoomSystem.maxZoom - 0.1f;
+			}
         }
 
-        if (distance < zoomSystem.minZoom)
-        {
-            distance = zoomSystem.minZoom + 0.1f;
-        }
-        else if (distance > zoomSystem.maxZoom)
-        {
-            distance = zoomSystem.maxZoom - 0.1f;
-        }
+       
 
 
         if (isObjectHeld && objectIsToggled)
