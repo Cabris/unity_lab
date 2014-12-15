@@ -10,7 +10,15 @@ public static class Extensions
 		get{return "file:///C:/_AssetBundles/{0}.assetBundles";}
 	}
 	
-
+	public static int toInt(float f){
+		if(f>0){
+			return (int)(f+.5f);
+		}
+		if(f<0){
+			return (int)(f-.5f);
+		}
+		return 0;
+	}
 	
 	public static string[] GetFileNames(string filter)
 	{

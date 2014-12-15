@@ -6,7 +6,7 @@ public class SwitchWall : MonoBehaviour {
 	[SerializeField]
 	GameObject wall;
 	[SerializeField]
-	float g=12.49f;
+	float g=12f;
 	[SerializeField]
 	float duration=.25f;
 	Vector3 wallIniPos;

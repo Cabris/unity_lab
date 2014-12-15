@@ -1,49 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class Stage_Time : MonoBehaviour {
 	[SerializeField]
-	GameObject target;
+	PauseRigidBody pause;
 	[SerializeField]
-	Rigidbody[] bodys;
+	ButtonControl button,button2;
 	[SerializeField]
-	bool pause=false;
-	bool isPaused=false;
-	Dictionary<Rigidbody,Vector3> velocities=new Dictionary<Rigidbody, Vector3>();
-	Dictionary<Rigidbody,Vector3> angularVelocities=new Dictionary<Rigidbody, Vector3>();
-
+	SwitchWall wall;
 	// Use this for initialization
 	void Start () {
-		bodys=target.GetComponentsInChildren<Rigidbody>();
-		foreach(Rigidbody r in bodys){
-			velocities.Add(r,Vector3.zero);
-			angularVelocities.Add(r,Vector3.zero);
-		}
+		button.OnButtonPress+=OnButtonPress;
+		button.OnButtonUp+=OnButtonUp;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-		if(pause&&!isPaused){
-			foreach (Rigidbody r in bodys){
-				velocities[r]=r.velocity;
-				angularVelocities[r]=r.angularVelocity;
-				r.velocity = Vector3.zero;
-				r.angularVelocity=Vector3.zero;
-				r.useGravity = false;
-				r.isKinematic = true;
-			}
-			isPaused=pause;
-		}
-		if(!pause&&isPaused){
-			foreach (Rigidbody r in bodys){
-				r.useGravity = true;
-				r.isKinematic = false;
-				r.velocity = velocities[r];
-				r.angularVelocity=angularVelocities[r];
-			}
-			isPaused=pause;
-		}
+		pause.pause=button.IsPress;
+		wall.Open=button2.IsPress;
 	}
+
+	void OnButtonPress(ButtonControl control,GameObject hit){
+		//if(hit.tag=="Player")
+			//pause.pause=true;
+	}
+
+	void OnButtonUp(ButtonControl control,GameObject hit){
+		//if(hit.tag=="Player")
+			//pause.pause=false;
+	}
+
 }

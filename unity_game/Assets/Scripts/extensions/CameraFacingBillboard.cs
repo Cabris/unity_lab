@@ -29,6 +29,7 @@ public class CameraFacingBillboard : MonoBehaviour
 		cameraTF=m_Camera.transform;
 		amActive = true;
 		myContainer = new GameObject();
+		myContainer.transform.parent=transform.parent;
 		myContainer.name = "GRP_"+transform.gameObject.name;
 		myContainer.transform.position = transform.position;
 		transform.parent = myContainer.transform;
