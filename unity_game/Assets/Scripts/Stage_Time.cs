@@ -2,22 +2,21 @@
 using System.Collections;
 
 public class Stage_Time : MonoBehaviour {
+	//[SerializeField]
+	//PauseRigidBody pause;
 	[SerializeField]
-	PauseRigidBody pause;
-	[SerializeField]
-	ButtonControl button,button2;
+	ButtonControl button;
 	[SerializeField]
 	SwitchWall wall;
 	// Use this for initialization
 	void Start () {
-		button.OnButtonPress+=OnButtonPress;
-		button.OnButtonUp+=OnButtonUp;
+		//button.OnButtonPress+=OnButtonPress;
+		//button.OnButtonUp+=OnButtonUp;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		pause.pause=button.IsPress;
-		wall.Open=button2.IsPress;
+		wall.Open=button.IsPress;
 	}
 
 	void OnButtonPress(ButtonControl control,GameObject hit){

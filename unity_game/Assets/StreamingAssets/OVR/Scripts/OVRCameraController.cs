@@ -269,8 +269,8 @@ public class OVRCameraController : OVRComponent
 		camera.backgroundColor = BackgroundColor;
 		
 		// Clip Planes
-		camera.nearClipPlane = NearClipPlane;
-		camera.farClipPlane = FarClipPlane;
+		//camera.nearClipPlane = NearClipPlane;
+		//camera.farClipPlane = FarClipPlane;
 			
 		return true;
 	}

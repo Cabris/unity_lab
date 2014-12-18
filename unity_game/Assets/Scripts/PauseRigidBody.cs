@@ -7,7 +7,8 @@ public class PauseRigidBody : MonoBehaviour {
 	GameObject target;
 	//[SerializeField]
 	Rigidbody[] bodys;
-	//[SerializeField]
+	[SerializeField]
+	ButtonControl button;
 	public bool pause=false;
 	bool isPaused=false;
 	Dictionary<Rigidbody,Vector3> velocities=new Dictionary<Rigidbody, Vector3>();
@@ -25,6 +26,9 @@ public class PauseRigidBody : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+		if(button!=null)
+			pause=button.IsPress;
+
 		if(pause&&!isPaused){
 			foreach (Rigidbody r in bodys){
 				velocities[r]=r.velocity;

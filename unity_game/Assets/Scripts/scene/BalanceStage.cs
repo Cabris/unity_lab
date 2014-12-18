@@ -2,7 +2,10 @@
 using System.Collections;
 
 public class BalanceStage : MonoBehaviour {
-	public LaboratoryBalance balance;
+	[SerializeField]
+	LaboratoryBalance[] balances;
+	[SerializeField]
+	SwitchWall wall;
 	// Use this for initialization
 	void Start () {
 	
@@ -10,9 +13,9 @@ public class BalanceStage : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Mathf.Abs(balance.Balance-270f)<0.01f){
-			this.rigidbody.isKinematic=false;
-			this.rigidbody.WakeUp();
-		}
+		bool isB=true;
+		foreach(LaboratoryBalance b in balances)
+			isB&=b.isBalanced;
+		wall.Open=isB;
 	}
 }
