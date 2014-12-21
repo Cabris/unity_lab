@@ -39,11 +39,7 @@ public class WiiController : MonoBehaviour {
 	
 	//public bool left,right,up,down;
 	public InputListener inputListener;
-	public float horizontal;
-	public float vertical;
-
 	public int userId;
-	public bool isPressA=false;
 	public Renderer _renderer;
 	// Use this for initialization
 	void Start () {
@@ -52,15 +48,15 @@ public class WiiController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		if(wiimote_count()>0&&inputListener!=null){
 			bool left,right,up,down;
 			left=wiimote_getButtonLeft(userId);
 			right=wiimote_getButtonRight(userId);
 			up=wiimote_getButtonUp(userId);
 			down=wiimote_getButtonDown(userId);
-			horizontal=0;
-			vertical=0;
+			float horizontal=0;
+			float vertical=0;
 			if(left)
 				horizontal=-1;
 			if(right)
@@ -71,7 +67,11 @@ public class WiiController : MonoBehaviour {
 				vertical=-1;
 			inputListener.Horizontal=horizontal;
 			inputListener.Vertical=vertical;
-			isPressA=wiimote_getButtonA(userId);
+
+			inputListener.SetButtonValue("Fire1",wiimote_getButtonB(userId));
+			inputListener.SetButtonValue("Fire2",wiimote_getButtonA(userId));
+			bool temp=wiimote_getButtonPlus(userId)||wiimote_getButtonMinus(userId);
+			inputListener.SetButtonValue("Fire3",temp);
 			//Debug.Log("wii input");
 		}
 	}

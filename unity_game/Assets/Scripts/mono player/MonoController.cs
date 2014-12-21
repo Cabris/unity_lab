@@ -14,33 +14,16 @@ public class MonoController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		horizontal = Input.GetAxis("Horizontal");
 		vertical = Input.GetAxis("Vertical");
 		inputListener.Horizontal=horizontal;
 		inputListener.Vertical=vertical;
-//		inputListener.ButtonBPress=Input.GetMouseButton(0);
 
-		if(Input.GetMouseButtonDown(2))
-			inputListener.OnKeyPress(KeyCode.B);
-		if(Input.GetMouseButtonUp(2))
-			inputListener.OnKeyUp(KeyCode.B);
-		if(Input.GetMouseButtonDown(1))
-			inputListener.OnKeyPress(KeyCode.A);
-		if(Input.GetMouseButtonUp(1))
-			inputListener.OnKeyUp(KeyCode.A);
-
+		inputListener.SetButtonValue("Fire1",Input.GetMouseButton(0));
+		inputListener.SetButtonValue("Fire2",Input.GetMouseButton(1));
+		inputListener.SetButtonValue("Fire3",Input.GetMouseButton(2));
+		
 	}
-
-	void Update () 
-	{
-		// Allow turning at anytime. Keep the character facing in the same direction as the Camera if the right mouse button is down. 
-//		if(Input.GetMouseButton(0)) { 
-//			transform.rotation = Quaternion.Euler(0,Camera.main.transform.eulerAngles.y,0); 
-//		} else { 
-		 
-//		target.Rotate(0,Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime, 0); 
-//		} 
-	}
-
+	
 }

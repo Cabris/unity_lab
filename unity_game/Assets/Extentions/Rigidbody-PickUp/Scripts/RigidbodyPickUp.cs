@@ -202,7 +202,7 @@ public class RigidbodyPickUp : MonoBehaviour
         if (togglePickUp)
         {
             //Button toggles for Raycasting
-            if (Input.GetButtonDown(pickupButton) && !Input.GetButton(throwingSystem.throwButton) && !isObjectHeld && !objectIsToggled && togg_time > 0.45f)
+            if (InputListener.GetButtonDown(pickupButton) && !Input.GetButton(throwingSystem.throwButton) && !isObjectHeld && !objectIsToggled && togg_time > 0.45f)
             {
                 if (!isObjectHeld)
                 /*If no object is held, try to pick up an object.
@@ -212,7 +212,7 @@ public class RigidbodyPickUp : MonoBehaviour
                 }
             }
 
-            if (Input.GetButtonDown(pickupButton) && isObjectHeld && objectIsToggled && togg_time < 0.4)
+			if (InputListener.GetButtonDown(pickupButton) && isObjectHeld && objectIsToggled && togg_time < 0.4)
             {
                 isObjectHeld = false;
                 objectHeld.rigidbody.useGravity = true;
@@ -225,7 +225,7 @@ public class RigidbodyPickUp : MonoBehaviour
         else if (!togglePickUp)
         {
             //Button toggles for Raycasting
-            if (Input.GetButton(pickupButton) && !Input.GetButton(throwingSystem.throwButton) && throwingSystem.thrownTimer >= 0.9)
+			if (InputListener.GetButton(pickupButton) && !Input.GetButton(throwingSystem.throwButton) && throwingSystem.thrownTimer >= 0.9)
             {
                 if (!isObjectHeld)
                 /*If no object is held, try to pick up an object.
@@ -240,7 +240,7 @@ public class RigidbodyPickUp : MonoBehaviour
             }
 
             //If Pickup Button is up, reset object to original state
-            if (Input.GetButtonUp(pickupButton) && isObjectHeld)
+			if (InputListener.GetButtonUp(pickupButton) && isObjectHeld)
             {
                 isObjectHeld = false;
                 objectHeld.rigidbody.useGravity = true;

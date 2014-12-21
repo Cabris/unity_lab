@@ -55,6 +55,7 @@ public class PlayerBeheaver : InputListener {
 	
 	// Update is called once per frame
 	void Update () {
+		//base.Update();
 		playerAni.direction=Horizontal;
 		playerAni.speed=Vertical;
 		
@@ -66,6 +67,10 @@ public class PlayerBeheaver : InputListener {
 			StartCoroutine(reset(5));
 			isT=false;		
 		}
+
+		if(detected_object!=null&&GetButtonDown("Fire3"))
+			select.onSelect(detected_object);
+
 	}
 
 	IEnumerator  reset(float s){
@@ -83,35 +88,7 @@ public class PlayerBeheaver : InputListener {
 	void onObjectDetectLeave(GameObject obj){
 		detected_object=null;
 	}
-	
-	public override void OnKeyPress (KeyCode k)
-	{
-		base.OnKeyPress (k);
-		switch(k) {
-		case KeyCode.A:
-			if(detected_object!=null){
-			}
-			break;
-		case KeyCode.B:
-//			ButtonBPress=true;
-			if(detected_object!=null)
-				select.onSelect(detected_object);
-			break;
-		}
-	}
-	
-	public override void OnKeyUp (KeyCode k)
-	{
-		base.OnKeyUp (k);
-		switch(k) {
-		case KeyCode.A:
-			break;
-		case KeyCode.B:
-//			ButtonBPress=false;
-			break;
-		}
-	}
-	
+
 	public string GrapObjectName{
 		get{
 			if(detected_object==null)
