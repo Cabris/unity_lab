@@ -49,11 +49,6 @@ public class EncoderH264V2
 		colors=new UnityEngine.Color32[srcW*srcH];
 		for(int i=0;i<srcW*srcH;i++)
 			colors[i]=UnityEngine.Color.green;
-		if(debug){
-			string path = @"MyTest_h264.mp4";
-			fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write);
-		}
-
 		dec = new byte[outWidth * outHeight*3/2];
 		dec_size = dec.Length;
 		decP = Marshal.AllocHGlobal(dec_size);
@@ -64,6 +59,10 @@ public class EncoderH264V2
 	public void StartEncoder(){
 		lock(obj){
 			try{
+				if(debug){
+					string path = @"MyTest_h264.mp4";
+					fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write);
+				}
 				startEncoder(srcW, srcH, outWidth, outHeight, bitRate, fps);
 				isStarted=true;
 //				stopWatch.Start();

@@ -1,0 +1,132 @@
+[99FF00] [-] 
+
+An object goes from one point in space to another. After it arrives at its destination, its displacement is:
+[99FF00]1.[-] either greater than or equal to
+[99FF00]2.[-] always equal to
+[99FF00]3.[-] either less than or equal to
+[99FF00]4.[-] not related to the distance it traveled.
+3. either less than or equal to
+Displacement can be negative, and when it is, it is less than
+distance, which is the absolute value of displacement!
+
+
+A skydiver is falling straight down, along the negative
+y direction. During the initial part of the fall, her speed
+increases from 16 to 28 m/s in 1.5 s. What sign are
+the velocity and acceleration?
+v<0, a<0
+
+
+During a later part of the fall, after the parachute has
+opened, her speed decreases from 48 to 26 m/s in 11 s.
+Which of the following is correct?
+1) v>0, a>0
+2) v>0, a<0
+3) v<0, a>0
+4) v<0, a<0
+3) v<0, a>0
+If speed is increasing, v and a are in same direction.
+If speed is decreasing, v and a are in opposite direction.
+
+
+A ball is thrown straight up in the air and returns to its initial position.
+For the time the ball is in the air, which of the following statements is
+true?
+1 - Both average acceleration and average velocity are zero.
+2 - Average acceleration is zero but average velocity is not zero.
+3 - Average velocity is zero but average acceleration is not zero.
+4 - Neither average acceleration nor average velocity are zero.
+3 - Average velocity is zero but average acceleration is not zero.
+Free fall: acceleration is constant (-g)
+Initial position = final position: Δx=0
+ave vel = Δx/ Δt = 0
+
+
+An object is dropped from rest. If it falls a distance D in time t
+then how far will if fall in a time 2t ?
+1. D/4
+2. D/2
+3. D
+4. 2D
+5. 4D
+4. 2D
+Correct x=1/2 at2
+
+
+An object is dropped from rest. If the object has speed v at
+time t then what is the speed at time 2t ?
+1. v/4
+2. v/2
+3. v
+4. 2v
+5. 4v
+4. 2v
+Correct v=at
+
+
+A ball is thrown downward (not dropped) from the top of a
+tower. After being released, its downward acceleration will
+be:
+1. greater than g
+2. exactly g
+3. smaller than g
+2. exactly g
+after the ball is released, it is only being accelerated by gravity, the throw just sets the initial velocity
+
+
+A ball is thrown vertically upward. At the very top of its
+trajectory, which of the following statements is true:
+1. velocity is zero and acceleration is zero
+2. velocity is not zero and acceleration is zero
+3. velocity is zero and acceleration is not zero
+4. velocity is not zero and acceleration is not zero
+3. velocity is zero and acceleration is not zero
+At the top of the path, the velocity of the ball is
+zero,but the acceleration is not zero. The velocity at
+the top is changing, and the acceleration is the rate at
+which velocity changes.
+
+
+Without air resistance, an object dropped from a plane
+flying at constant speed in a straight line will
+1. Quickly lag behind the plane.
+2. Remain vertically under the plane.
+3. Move ahead of the plane
+2. Remain vertically under the plane.
+There is no acceleration along
+horizontal - object continues to
+travel at constant speed (same as
+that of the plane) along horizontal.
+Due to gravitational acceleration
+the object’s speed downwards
+increases.
+
+
+An object is held in place by friction on an inclined surface. The
+angle of inclination is increased until the object starts moving. If
+the surface is kept at this angle, the object
+1. slows down
+2. moves at uniform speed
+3. speeds up
+4. none of the above
+3. speeds up
+When the object is at rest net force on it is zero.
+When the object starts to move there is change in velocity - i.e.,
+there is acceleration or a net force due to gravity
+The force remains constant when inclination is kept at that angle
+leading to constant acceleration - continuous speed up.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
