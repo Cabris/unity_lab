@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 public class Grapher1 : MonoBehaviour {
-	[SerializeField]
-	Rigidbody rb;
+	public Rigidbody rb;
 	[SerializeField]
 	Transform axisX,axisY;
 	[Range(10, 100)]
@@ -85,6 +84,7 @@ public class Grapher1 : MonoBehaviour {
 		FunctionDelegate f = functionDelegates[(int)function];
 		Datas.Clear();
 		for(int i=0;i<points.Length;i++){
+			//Debug.Log(i);
 			Datas.Add(f(rb).magnitude);
 			float increment = lengthX / (float)(i+1);
 			float max=Datas.Max(),min=Datas.Min();

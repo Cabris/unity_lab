@@ -10,13 +10,14 @@ public class StageMotion1D : MonoBehaviour {
 	Turbol t;
 	[SerializeField]
 	Grapher1 grapher;
-	[SerializeField]
-	Transform cube;
+	//[SerializeField]
+	//Transform cube;
 	[SerializeField]
 	GrapherWall gWall;
 	// Use this for initialization
 	void Start () {
 		fireB.OnButtonPress+=OnButtonPress;
+		iniB.OnButtonPress+=OnButtonPress;
 		endB.OnButtonPress+=OnButtonPress;
 		endB.OnButtonUp+=OnButtonUp;
 	}
@@ -32,6 +33,8 @@ public class StageMotion1D : MonoBehaviour {
 	}
 	
 	void OnButtonPress(ButtonControl control,GameObject hit){
+		if(control==iniB)
+			grapher.rb=hit.rigidbody;
 		if(control==fireB&&iniB.IsPress){
 			grapher.StartLog();}
 		if(control==endB)
