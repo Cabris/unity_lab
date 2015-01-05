@@ -22,9 +22,9 @@ public class Grapher1 : MonoBehaviour {
 	private FunctionDelegate[] functionDelegates;
 	
 	public FunctionOption function;
-
+	
 	public List<float> Datas{get;private set;}
-
+	
 	void Start () {
 		functionDelegates=new FunctionDelegate[3];
 		functionDelegates[0]=funcVt;
@@ -66,7 +66,7 @@ public class Grapher1 : MonoBehaviour {
 		isStop=true;
 		StopCoroutine("showGrapher");
 	}
-
+	
 	public void Reset(){
 		isStop=true;
 		StopCoroutine("showGrapher");
@@ -76,26 +76,32 @@ public class Grapher1 : MonoBehaviour {
 	
 	public void PauseLog(){}
 	public void ResumeLog(){}
-
+	
 	bool isStop=false;
 	IEnumerator showGrapher(float interval){
 		float lengthX=axisX.lossyScale.y*2f;
 		float lengthY=axisY.lossyScale.y*2f;
 		FunctionDelegate f = functionDelegates[(int)function];
 		Datas.Clear();
-		for(int i=0;i<points.Length;i++){
+		for(int i=0;!isStop;i++){
 			//Debug.Log(i);
 			Datas.Add(f(rb).magnitude);
-			float increment = lengthX / (float)(i+1);
+			float increment = lengthX / (float)(points.Length);
 			float max=Datas.Max(),min=Datas.Min();
-			if(Datas.Count>0&&max-min>0)
-			for(int j=0;j<=i;j++){
+			float dec=max-min;
+			float increase=lengthX/(float)Datas.Count;
+			//	((float)datas.Length)/21f;
+			if(Datas.Count>0&&dec>0)
+			for(int j=0;j<points.Length;j++){
 				Vector3 p1 = points[j].position;
 				p1.x=j*increment;
-				p1.y=(Datas[j]-min)*lengthY*0.75f/(max-min);
+				int index=j*Datas.Count/points.Length;
+				//if(j<Datas.Count)
+				p1.y=(Datas[index]-min)*lengthY*0.75f/dec;
+				//p1.y=(Datas[index]-min)*lengthY;
 				points[j].position = p1;
 			}
-			particleSystem.SetParticles(points, i);
+			particleSystem.SetParticles(points, points.Length);
 			if(isStop)
 				break;
 			yield return new WaitForSeconds(interval);
