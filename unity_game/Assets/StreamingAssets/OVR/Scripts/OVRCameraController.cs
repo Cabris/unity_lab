@@ -167,6 +167,7 @@ public class OVRCameraController : OVRComponent
 	// Update 
 	new void Update()
 	{
+		verticalFOV=60;
 		base.Update();		
 		UpdateCameras();
 	}
