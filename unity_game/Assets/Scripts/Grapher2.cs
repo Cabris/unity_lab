@@ -10,10 +10,10 @@ public class Grapher2 : MonoBehaviour {
 	public List<Vector3> Datas{get;private set;}
 	
 	void Start () {
-		transform.parent=null;
-		transform.position=Vector3.zero;
-		transform.localScale=new Vector3(1,1,1);
-		transform.rotation=Quaternion.identity;
+		//transform.parent=null;
+		//transform.position=Vector3.zero;
+		//transform.localScale=new Vector3(1,1,1);
+		//transform.rotation=Quaternion.identity;
 		Datas=new List<Vector3>();
 		StartLog();
 	}
