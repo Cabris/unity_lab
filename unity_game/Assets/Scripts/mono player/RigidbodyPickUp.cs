@@ -35,6 +35,7 @@ public class RigidbodyPickUp : MonoBehaviour
     public rotationSystemSub rotationSystem = new rotationSystemSub(); //Bring the Rotation System into the Inspector
     public objectZoomSub zoomSystem = new objectZoomSub(); //Brings the Object Zoom System into the Inspector
     public objectFreezing objectFreeze = new objectFreezing();
+	public CustomAim customAim=new CustomAim();
 
     //NOTE: There are more variables at the very bottom of the script.
 
@@ -61,6 +62,7 @@ public class RigidbodyPickUp : MonoBehaviour
             throw new System.Exception("[Rigidbody-Pickup] ERROR 2 Physics System: Please uncheck either OnlyY or Forward in the Physics submenu in the inspector.");
         }
     }
+
     void Update()
     {
         //Finds all the objects with the tag "Pickable", and adds them to the GameObject list, 'pickableObjs'
@@ -74,7 +76,15 @@ public class RigidbodyPickUp : MonoBehaviour
         }
 
         //Crosshair Raycasting
-        Ray playerAim = playerCam.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
+		if(customAim.enabled){
+			customAim.viewportPos=playerCam.camera.WorldToViewportPoint(customAim.Aim.position);
+			customAim.viewportPos.z=0.5f;
+		}
+		else
+			customAim.viewportPos=new Vector3(0.5f, 0.5f, 0.5f);
+		Ray playerAim = playerCam.camera.ViewportPointToRay(customAim.viewportPos);
+
+		Debug.DrawRay(playerAim.origin, playerAim.direction*5, Color.blue);
         RaycastHit hit;
 
         if (Physics.Raycast(playerAim, out hit, maxDistanceGrab - 0.8f))
@@ -338,7 +348,13 @@ public class RigidbodyPickUp : MonoBehaviour
     //Will try to pick up the rigidbody in the 'pickableObjs' array.
     private void tryPickObject()
     {
-        Ray playerAim = playerCam.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+//		Vector3 p=new Vector3(0.5f, 0.5f, 0.5f);
+//		if(customAim.enabled){
+//			p=playerCam.camera.WorldToViewportPoint(customAim.Aim.position);
+//			p.z=0f;
+//		}
+		Ray playerAim = playerCam.camera.ViewportPointToRay(customAim.viewportPos);
+        //Ray playerAim = playerCam.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
         Physics.Raycast(playerAim, out hit);//Outputs the Raycast
         objectNullSet = false;
@@ -373,11 +389,21 @@ public class RigidbodyPickUp : MonoBehaviour
 
     private void holdObject()
     {
-        Ray playerAim = playerCam.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+//		Vector3 p=new Vector3(0.5f, 0.5f, 0.5f);
+//		if(customAim.enabled){
+//			p=playerCam.camera.WorldToViewportPoint(customAim.Aim.position);
+//			p.z=0f;
+//		}
+		Ray playerAim = playerCam.camera.ViewportPointToRay(customAim.viewportPos);
+        //Ray playerAim = playerCam.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         /*Finds the next position for the object held to move to, depending on the Camera's position
         ,direction, and distance the object is held between you two.*/
-        Vector3 nextPos = playerCam.transform.position + playerAim.direction * distance;
-        //Takes the current position of the object held
+
+		Vector3 nextPos = playerCam.transform.position + playerAim.direction * distance;
+		if(customAim.enabled)
+			nextPos = customAim.Aim.position + playerAim.direction * customAim.distance;
+		//Takes the current position of the object held
         Vector3 currPos = objectHeld.transform.position;
         timeHeld = timeHeld - 0.1f * Time.deltaTime;
 
@@ -585,4 +611,14 @@ public class objectFreezing
 
     [System.NonSerialized]
     public bool objectFrozen = false;
+}
+
+[System.Serializable]
+public class CustomAim
+{
+	public bool enabled = false;
+	public Transform Aim;
+	public float distance;
+	//[System.NonSerialized]
+	public Vector3 viewportPos;
 }
