@@ -10,12 +10,13 @@ public class GrapDetector : MonoBehaviour {
 	public Transform end;
 	GameObject pre_obj;
 	GameObject detectedObj;
-	Vector3 handPos;
+
 	[SerializeField]
 	Camera myCamera;
 	public delegate void OnObjectDetectEvent(GameObject obj);
 	public OnObjectDetectEvent onObjectEnter,onObjectLeave;
-	
+	public Ray myRay;
+	public Vector3 handPos;
 	// Use this for initialization
 	void Start () {
 		distance=999;
@@ -25,8 +26,8 @@ public class GrapDetector : MonoBehaviour {
 	void FixedUpdate () {
 		Vector3 handPosInScreen=myCamera.WorldToScreenPoint(handPos);
 		Ray ray=Camera.main.ScreenPointToRay(handPosInScreen);
-		//Debug.DrawRay(ray.origin, ray.direction*distance, Color.red);
-		
+		Debug.DrawRay(ray.origin, ray.direction*distance, Color.green);
+		myRay=ray;
 		RaycastHit hit;
 		start.position=handPos;
 		end.position=handPos+ray.direction*distance;

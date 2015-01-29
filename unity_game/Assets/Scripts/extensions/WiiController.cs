@@ -13,6 +13,24 @@ public class WiiController : MonoBehaviour {
 	private static extern int wiimote_count();
 
 	[DllImport ("UniWii")]
+	private static extern byte wiimote_getAccX(int which);
+	[DllImport ("UniWii")]
+	private static extern byte wiimote_getAccY(int which);
+	[DllImport ("UniWii")]
+	private static extern byte wiimote_getAccZ(int which);
+	
+	[DllImport ("UniWii")]
+	private static extern float wiimote_getIrX(int which);
+	[DllImport ("UniWii")]
+	private static extern float wiimote_getIrY(int which);
+	[DllImport ("UniWii")]
+	private static extern float wiimote_getRoll(int which);
+	[DllImport ("UniWii")]
+	private static extern float wiimote_getPitch(int which);
+	[DllImport ("UniWii")]
+	private static extern float wiimote_getYaw(int which);
+
+	[DllImport ("UniWii")]
 	private static extern bool wiimote_getButtonA(int which);
 	[DllImport ("UniWii")]
 	private static extern bool wiimote_getButtonB(int which);
@@ -73,6 +91,25 @@ public class WiiController : MonoBehaviour {
 			bool temp=wiimote_getButtonPlus(userId)||wiimote_getButtonMinus(userId);
 			inputListener.SetButtonValue("Fire3",temp);
 			//Debug.Log("wii input");
+		}
+	}
+
+	private Vector3 oldVec;
+	void FixedUpdate () {
+		int c = wiimote_count();
+		if (c>0) {
+			for (int i=0; i<=c-1; i++) {
+				float roll = Mathf.Round(wiimote_getRoll(i));
+				float p = Mathf.Round(wiimote_getPitch(i));
+				float yaw = Mathf.Round(wiimote_getYaw(i));
+				if (!float.IsNaN(roll) && !float.IsNaN(p) && (i==c-1)) {
+					Vector3 vec = new Vector3(p, yaw , -1 * roll);
+					vec = Vector3.Lerp(oldVec, vec, Time.deltaTime * 5);
+					oldVec = vec;
+					GameObject.Find("wiiparent").transform.eulerAngles = vec;
+				}
+				
+			}
 		}
 	}
 

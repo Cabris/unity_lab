@@ -76,15 +76,14 @@ public class RigidbodyPickUp : MonoBehaviour
         }
 
         //Crosshair Raycasting
-		if(customAim.enabled){
-			customAim.viewportPos=playerCam.camera.WorldToViewportPoint(customAim.Aim.position);
-			customAim.viewportPos.z=0.5f;
-		}
-		else
-			customAim.viewportPos=new Vector3(0.5f, 0.5f, 0.5f);
-		Ray playerAim = playerCam.camera.ViewportPointToRay(customAim.viewportPos);
 
-		Debug.DrawRay(playerAim.origin, playerAim.direction*5, Color.blue);
+		Ray playerAim = playerCam.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
+		if(customAim.enabled){
+			playerAim=GetComponent<GrapDetector>().myRay;
+			customAim.Aim=GetComponent<GrapDetector>().handPos;
+		}
+
+		Debug.DrawRay(playerAim.origin, playerAim.direction*5, Color.red);
         RaycastHit hit;
 
         if (Physics.Raycast(playerAim, out hit, maxDistanceGrab - 0.8f))
@@ -353,7 +352,10 @@ public class RigidbodyPickUp : MonoBehaviour
 //			p=playerCam.camera.WorldToViewportPoint(customAim.Aim.position);
 //			p.z=0f;
 //		}
-		Ray playerAim = playerCam.camera.ViewportPointToRay(customAim.viewportPos);
+		Ray playerAim = playerCam.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
+		if(customAim.enabled){
+			playerAim=GetComponent<GrapDetector>().myRay;
+		}
         //Ray playerAim = playerCam.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
         Physics.Raycast(playerAim, out hit);//Outputs the Raycast
@@ -395,14 +397,17 @@ public class RigidbodyPickUp : MonoBehaviour
 //			p=playerCam.camera.WorldToViewportPoint(customAim.Aim.position);
 //			p.z=0f;
 //		}
-		Ray playerAim = playerCam.camera.ViewportPointToRay(customAim.viewportPos);
+		Ray playerAim = playerCam.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
+		if(customAim.enabled){
+			playerAim=GetComponent<GrapDetector>().myRay;
+		}
         //Ray playerAim = playerCam.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         /*Finds the next position for the object held to move to, depending on the Camera's position
         ,direction, and distance the object is held between you two.*/
 
 		Vector3 nextPos = playerCam.transform.position + playerAim.direction * distance;
 		if(customAim.enabled)
-			nextPos = customAim.Aim.position + playerAim.direction * customAim.distance;
+			nextPos = customAim.Aim + playerAim.direction * customAim.distance;
 		//Takes the current position of the object held
         Vector3 currPos = objectHeld.transform.position;
         timeHeld = timeHeld - 0.1f * Time.deltaTime;
@@ -617,8 +622,6 @@ public class objectFreezing
 public class CustomAim
 {
 	public bool enabled = false;
-	public Transform Aim;
+	public Vector3 Aim;
 	public float distance;
-	//[System.NonSerialized]
-	public Vector3 viewportPos;
 }

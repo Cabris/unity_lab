@@ -7,7 +7,7 @@ public class PlayerBeheaver : InputListener {
 	
 	public ControlType controlType;
 	[SerializeField]
-	Transform grapTarget;
+	Transform corsor,hand;
 	SelectController select;
 	IKController ikControl;
 	GameObject detected_object;
@@ -39,16 +39,18 @@ public class PlayerBeheaver : InputListener {
 //				kinectModelController.enabled = true;
 //			}
 //		}
-		grapDetector.target = grapTarget;
+
 		monoInput=GetComponent<MonoController>();
 		wiiInput=GetComponent<WiiController>();
 
 		if(controlType==ControlType.mono){
 			monoInput.enabled=true;
 			wiiInput.enabled=false;
+			grapDetector.target = corsor;
 		}else{
 			monoInput.enabled=false;
 			wiiInput.enabled=true;
+			grapDetector.target = hand;
 		}
 
 	}
