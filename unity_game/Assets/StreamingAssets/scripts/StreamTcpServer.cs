@@ -14,6 +14,7 @@ public class StreamTcpServer : MonoBehaviour {
 	List<TcpClient> clients=new List<TcpClient>();
 	List<BufferedStream> bStreams=new List<BufferedStream>();
 	bool isListening=true;
+	List<string> pathes=new List<string>();
 
 	// Use this for initialization
 	void Start () {
@@ -24,9 +25,11 @@ public class StreamTcpServer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		foreach(string p in pathes)
+			GetComponent<QRcodeCreater>().CreateCode(p);
+		pathes.Clear();
 	}
-	
+
 	void ListenForClients()
 	{
 		//Debug.Log("ListenForClients0");
@@ -38,8 +41,10 @@ public class StreamTcpServer : MonoBehaviour {
 		IPAddress [] IpA = ipE.AddressList; 
 		for (int i = 0; i < IpA.Length; i++) 
 		{ 
-			string s= String.Format("IP Address {0}: {1} ", i, IpA[i].ToString ());
+			string path=IpA[i].ToString ()+":8888";
+			string s= String.Format("IP Address [{0}] {1} ", i, path);
 			Debug.Log(s);
+			pathes.Add(path);
 		}
 
 		while (isListening){
