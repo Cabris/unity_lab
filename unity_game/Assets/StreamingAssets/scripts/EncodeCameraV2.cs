@@ -3,6 +3,7 @@ using System.Collections;
 using System.Text;
 using System.Timers;
 using System;
+using System.Threading;
 using System.Runtime.InteropServices;
 
 public class EncodeCameraV2 : MonoBehaviour {
@@ -39,6 +40,8 @@ public class EncodeCameraV2 : MonoBehaviour {
 	System.Diagnostics.Stopwatch stopWatch;
 	[SerializeField]
 	bool outputFile=false;
+
+	Thread thread;
 
 	private int Handler(string text) {
 		// Do something...
@@ -80,9 +83,10 @@ public class EncodeCameraV2 : MonoBehaviour {
 		timer.Elapsed+=Encoding;
 
 		stopWatch = new System.Diagnostics.Stopwatch();
-		mInstance = new Callback(Handler);
-		//SetCallback(mInstance);
-
+//		mInstance = new Callback(Handler);
+//		SetCallback(mInstance);
+//		mInstance+=Handler;
+		//thread=new Thread(new ThreadStart(encodeLoop));
 	}
 	
 	// Update is called once per frame
@@ -109,12 +113,21 @@ public class EncodeCameraV2 : MonoBehaviour {
 		//StartCoroutine ("CallDoEncoding");
 		timer.Start();
 		isEncoding=true;
+		//thread.Start();
 	}
 
-	private IEnumerator CallDoEncoding ()
-	{
-		while (true) {
-			yield return new WaitForEndOfFrame ();
+//	private IEnumerator CallDoEncoding ()
+//	{
+//		while (true) {
+//			yield return new WaitForEndOfFrame ();
+//			doEncoding();
+//		}
+//	}
+
+	void encodeLoop(){
+		while(isEncoding){
+			double interval=1000.0/(double)fps;
+			Thread.Sleep((int)interval);
 			doEncoding();
 		}
 	}
@@ -151,8 +164,9 @@ public class EncodeCameraV2 : MonoBehaviour {
 			rightSrc.StopCapture();
 			isEncoding=false;
 			//StopCoroutine ("CallDoEncoding");
-			timer.Stop();
-			//timer.Dispose();
+			//timer.Stop();
+			//thread.Join();
+			timer.Dispose();
 			encoder.StopEncoder();
 			server.onDestory();
 		}

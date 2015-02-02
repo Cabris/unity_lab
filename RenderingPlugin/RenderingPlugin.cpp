@@ -73,7 +73,7 @@ extern "C" void EXPORT_API CreateTextureCapt(int id,void* texturePtr){
 	if(id>1||id<0)
 		return;
 	//tc[id]=new TextureCapt();
-	//tc[id].setTexture((ID3D11Texture2D*)texturePtr);
+	tc[id].setTexture((ID3D11Texture2D*)texturePtr);
 }
 
 extern "C" void EXPORT_API  StartCapt(int id) {
@@ -96,7 +96,9 @@ extern "C" void EXPORT_API  getTexture(int id,byte* data,int* size) {
 	if(tc[id].isCapt){											     
 		int s=tc[id].height*tc[id].width*4;
 		byte* d=tc[id].data;
-		convert(d,s, data, size);
+		memcpy(data,d,s);
+		*size=s;
+		//convert(d,s, data, size);
 	}
 }
 
@@ -132,21 +134,21 @@ static void combine(TextureCapt* left,TextureCapt* right,byte* data,int* size){
 }
 
 //from rgba to bgr
-static void convert(byte* d0,int s0, byte* d1,int* s1){
-	int index_d=0;
-	int index_data=0;
-	int pc=s0/4;
-	for(int i=0;i<pc;i++){
-		int tempIndex=index_d;
-		d1[tempIndex+2]=d0[index_data++];//b-r
-		d1[tempIndex+1]=d0[index_data++];//g-g
-		d1[tempIndex+0]=d0[index_data++];//r-b
-		index_data++;//a
-		index_d+=3;
-	}
-	*s1=(pc*3);
-	log("convert");
-}
+//static void convert(byte* d0,int s0, byte* d1,int* s1){
+//	int index_d=0;
+//	int index_data=0;
+//	int pc=s0/4;
+//	for(int i=0;i<pc;i++){
+//		int tempIndex=index_d;
+//		d1[tempIndex+2]=d0[index_data++];//b-r
+//		d1[tempIndex+1]=d0[index_data++];//g-g
+//		d1[tempIndex+0]=d0[index_data++];//r-b
+//		index_data++;//a
+//		index_d+=3;
+//	}
+//	*s1=(pc*3);
+//	log("convert");
+//}
 
 // --------------------------------------------------------------------------
 // UnitySetGraphicsDevice
@@ -427,7 +429,7 @@ static void SetDefaultGraphicsState ()
 string int2str(int &i) {
   string s;
   stringstream ss(s);
- ss << i;
+	ss << i;
   return ss.str();
 }
 
