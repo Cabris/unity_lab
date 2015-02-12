@@ -57,7 +57,6 @@ public class EncodeCameraV2 : MonoBehaviour {
 			Debug.LogError("null source");
 			Application.Quit();
 		}
-
 		int inW=leftSrc.Width+rightSrc.Width;
 		int inH=(leftSrc.Height+rightSrc.Height)/2;
 		if(isSameAsSource){
