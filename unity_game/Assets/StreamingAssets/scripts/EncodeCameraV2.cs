@@ -64,7 +64,7 @@ public class EncodeCameraV2 : MonoBehaviour {
 			outHeight=inH;
 		}
 
-		int src_size = inW * inH * 4;//bgr
+		int src_size = inW * inH * 4;//rgba
 		srcP=Marshal.AllocHGlobal (src_size);
 
 		encoder=new EncoderH264V2(srcP,inW,inH,outputFile);
