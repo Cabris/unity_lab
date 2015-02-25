@@ -1,0 +1,454 @@
+﻿e
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch new_hoster
+# Your branch is up-to-date with 'origin/new_hoster'.
+#
+# Changes to be committed:
+#	new file:   hoster/.metadata/.lock
+#	new file:   hoster/.metadata/.log
+#	new file:   hoster/.metadata/.mylyn/.taskListIndex/segments.gen
+#	new file:   hoster/.metadata/.mylyn/.taskListIndex/segments_1
+#	new file:   hoster/.metadata/.mylyn/.tasks.xml.zip
+#	new file:   hoster/.metadata/.mylyn/repositories.xml.zip
+#	new file:   hoster/.metadata/.mylyn/tasks.xml.zip
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/dialog_settings.xml
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/AnalogClock.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/AutoCompleteTextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/Button.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/CalendarView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/CheckBox.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/CheckedTextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/Date.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/DigitalClock.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/Email.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/ExpandableListView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/LargeText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/ListView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/MediumText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/MultiAutoCompleteTextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/MultilineText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/Number.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/NumberDecimal.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/NumberSigned.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/Password.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/PasswordNumeric.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/PersonName.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/Phone.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/PlainText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/PostalAddress.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/ProgressBarHorizontal.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/ProgressBarLarge.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/ProgressBarNormal.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/ProgressBarSmall.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/QuickContactBadge.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/RadioButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/RadioGroup.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/RatingBar.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/SeekBar.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/SmallButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/SmallText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/Switch.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/TextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/Time.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/ToggleButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/ZoomButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/ZoomControls.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-apptheme-37wvganexusone/preview.properties
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/AnalogClock.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/AutoCompleteTextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/Button.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/CalendarView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/CheckBox.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/CheckedTextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/Date.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/DigitalClock.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/Email.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/ExpandableListView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/LargeText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/ListView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/MediumText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/MultiAutoCompleteTextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/MultilineText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/Number.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/NumberDecimal.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/NumberSigned.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/Password.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/PasswordNumeric.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/PersonName.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/Phone.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/PlainText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/PostalAddress.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/ProgressBarHorizontal.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/ProgressBarLarge.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/ProgressBarNormal.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/ProgressBarSmall.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/QuickContactBadge.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/RadioButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/RadioGroup.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/RatingBar.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/SeekBar.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/SmallButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/SmallText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/Spinner.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/Switch.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/TextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/Time.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/ToggleButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/ZoomButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/ZoomControls.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-black-37wvganexusone/preview.properties
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/AnalogClock.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/AutoCompleteTextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/Button.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/CalendarView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/CheckBox.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/CheckedTextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/Date.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/DigitalClock.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/Email.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/ExpandableListView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/LargeText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/ListView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/MediumText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/MultiAutoCompleteTextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/MultilineText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/Number.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/NumberDecimal.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/NumberSigned.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/Password.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/PasswordNumeric.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/PersonName.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/Phone.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/PlainText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/PostalAddress.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/ProgressBarHorizontal.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/ProgressBarLarge.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/ProgressBarNormal.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/ProgressBarSmall.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/QuickContactBadge.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/RadioButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/RadioGroup.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/RatingBar.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/SeekBar.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/SmallButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/SmallText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/Spinner.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/Switch.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/TextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/Time.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/ToggleButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/ZoomButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/ZoomControls.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebar-37wvganexusone/preview.properties
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/AnalogClock.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/AutoCompleteTextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/Button.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/CalendarView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/CheckBox.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/CheckedTextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/Date.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/DigitalClock.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/Email.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/ExpandableListView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/LargeText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/ListView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/MediumText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/MultiAutoCompleteTextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/MultilineText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/Number.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/NumberDecimal.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/NumberSigned.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/Password.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/PasswordNumeric.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/PersonName.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/Phone.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/PlainText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/PostalAddress.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/ProgressBarHorizontal.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/ProgressBarLarge.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/ProgressBarNormal.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/ProgressBarSmall.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/QuickContactBadge.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/RadioButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/RadioGroup.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/RatingBar.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/SeekBar.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/SmallButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/SmallText.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/Spinner.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/Switch.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/TextView.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/Time.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/ToggleButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/ZoomButton.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/ZoomControls.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-blacknotitlebarfullscreen-37wvganexusone/preview.properties
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-devicedefaultnoactionbarfullscreen-37wvganexusone/Switch.png
+#	new file:   hoster/.metadata/.plugins/com.android.ide.eclipse.adt/palette-preview-r16b-21-devicedefaultnoactionbarfullscreen-37wvganexusone/preview.properties
+#	new file:   hoster/.metadata/.plugins/org.eclipse.cdt.core/.log
+#	new file:   hoster/.metadata/.plugins/org.eclipse.cdt.make.core/specs.c
+#	new file:   hoster/.metadata/.plugins/org.eclipse.cdt.make.core/specs.cpp
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/.org.eclipse.jdt.core.external.folders/.location
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/H264StreamingViwer/.indexes/a0/5f/properties.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/H264StreamingViwer/.indexes/a0/8a/properties.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/H264StreamingViwer/.indexes/a0/d6/properties.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/H264StreamingViwer/.indexes/a0/de/properties.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/H264StreamingViwer/.indexes/a0/eb/properties.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/H264StreamingViwer/.indexes/a0/ee/properties.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/H264StreamingViwer/.indexes/properties.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/H264StreamingViwer/.location
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/H264StreamingViwer/.markers
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/H264StreamingViwer/org.eclipse.egit.core/GitProjectData.properties
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/H264StreamingViwer/org.eclipse.jdt.core/state.dat
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/RemoteSystemsTempFiles/.indexes/properties.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/RemoteSystemsTempFiles/org.eclipse.egit.core/GitProjectData.properties
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/StreamingNetwork/.indexes/properties.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/StreamingNetwork/.markers
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/StreamingNetwork/org.eclipse.egit.core/GitProjectData.properties
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.projects/StreamingNetwork/org.eclipse.jdt.core/state.dat
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/history.version
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.version
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.root/15.tree
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/com.android.ide.eclipse.adt.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/com.android.ide.eclipse.ddms.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.debug.core.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.cdt.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.resources.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.debug.core.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.debug.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.egit.core.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.epp.mpc.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.core.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.launching.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jst.j2ee.webservice.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.m2e.discovery.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.context.core.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.java.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.monitor.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.tasks.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.pde.api.tools.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.pde.core.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.rse.core.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.rse.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.team.cvs.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.team.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.editors.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.workbench.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.wst.jsdt.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.wst.sse.ui.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.wst.ws.service.policy.prefs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.debug.core/.launches/H264StreamingViwer.launch
+#	new file:   hoster/.metadata/.plugins/org.eclipse.debug.ui/dialog_settings.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+#	new file:   hoster/.metadata/.plugins/org.eclipse.equinox.p2.ui/dialog_settings.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/.org.eclipse.jdt.core.external.folders/.project
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/1164626235.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/1654984216.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/2143716467.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/2364387596.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/2394392208.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/2448026493.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/248351807.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/2626230084.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/290714306.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/2958705335.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/3097394219.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/3176364129.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/3520661010.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/358050146.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/3776425001.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/3963179895.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/437518001.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/844601494.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/847618560.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/865109435.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/881303192.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/881895235.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/949515501.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/indexNamesMap.txt
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/invalidArchivesCache
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/javaLikeNames.txt
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/savedIndexNames.txt
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.debug.ui/dialog_settings.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.launching/.install.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.launching/libraryInfos.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.ui/OpenTypeHistory.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.jdt.ui/dialog_settings.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/.workspace/2015/1/4/refactorings.history
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/.workspace/2015/1/4/refactorings.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/.workspace/2015/1/5/refactorings.history
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/.workspace/2015/1/5/refactorings.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/H264StreamingViwer/2015/1/4/refactorings.history
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/H264StreamingViwer/2015/1/4/refactorings.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/H264StreamingViwer/2015/1/5/refactorings.history
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/H264StreamingViwer/2015/1/5/refactorings.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/H264StreamingViwer/2015/2/7/refactorings.history
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/H264StreamingViwer/2015/2/7/refactorings.index
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ltk.ui.refactoring/dialog_settings.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.m2e.core/nexus/26522e0d83a422eed93329ece7565cfc/_0.cfs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.m2e.core/nexus/26522e0d83a422eed93329ece7565cfc/segments.gen
+#	new file:   hoster/.metadata/.plugins/org.eclipse.m2e.core/nexus/26522e0d83a422eed93329ece7565cfc/segments_2
+#	new file:   hoster/.metadata/.plugins/org.eclipse.m2e.core/nexus/26522e0d83a422eed93329ece7565cfc/write.lock
+#	new file:   hoster/.metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/_0.cfs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/segments.gen
+#	new file:   hoster/.metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/segments_2
+#	new file:   hoster/.metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/write.lock
+#	new file:   hoster/.metadata/.plugins/org.eclipse.m2e.core/nexus/ddb594d03394f2dc9d67516188b1d00b/_0.cfs
+#	new file:   hoster/.metadata/.plugins/org.eclipse.m2e.core/nexus/ddb594d03394f2dc9d67516188b1d00b/segments.gen
+#	new file:   hoster/.metadata/.plugins/org.eclipse.m2e.core/nexus/ddb594d03394f2dc9d67516188b1d00b/segments_2
+#	new file:   hoster/.metadata/.plugins/org.eclipse.m2e.core/nexus/ddb594d03394f2dc9d67516188b1d00b/write.lock
+#	new file:   hoster/.metadata/.plugins/org.eclipse.m2e.core/workspaceState.ser
+#	new file:   hoster/.metadata/.plugins/org.eclipse.pde.core/.cache/clean-cache.properties
+#	new file:   hoster/.metadata/.plugins/org.eclipse.rse.core/.log
+#	new file:   hoster/.metadata/.plugins/org.eclipse.rse.core/initializerMarks/org.eclipse.rse.internal.core.RSELocalConnectionInitializer.mark
+#	new file:   hoster/.metadata/.plugins/org.eclipse.rse.core/profiles/PRF.cabris-pc_259/FP.local.files_0/node.properties
+#	new file:   hoster/.metadata/.plugins/org.eclipse.rse.core/profiles/PRF.cabris-pc_259/H.local_16/node.properties
+#	new file:   hoster/.metadata/.plugins/org.eclipse.rse.core/profiles/PRF.cabris-pc_259/node.properties
+#	new file:   hoster/.metadata/.plugins/org.eclipse.rse.ui/.log
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ui.ide/dialog_settings.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ui.workbench.texteditor/dialog_settings.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ui.workbench/dialog_settings.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.ui.workbench/workingsets.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.internet.cache/cache.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.jsdt.core/externalLibsTimeStamps
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/baseBrowserLibrary.js
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/browserWindow.js
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/dom5.js
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/system.js
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/xhr.js
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.jsdt.core/variablesAndContainers.dat
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.jsdt.ui/OpenTypeHistory.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.jsdt.ui/QualifiedTypeNameHistory.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.sse.ui/dialog_settings.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.xml.core/default_catalog.xml
+#	new file:   hoster/.metadata/.plugins/org.eclipse.wst.xml.core/system_catalog.xml
+#	new file:   hoster/.metadata/version.ini
+#	deleted:    hoster/AnimationsDemo/AndroidManifest.xml
+#	deleted:    hoster/AnimationsDemo/libs/android-support-v13.jar
+#	deleted:    hoster/AnimationsDemo/res/animator/card_flip_left_in.xml
+#	deleted:    hoster/AnimationsDemo/res/animator/card_flip_left_out.xml
+#	deleted:    hoster/AnimationsDemo/res/animator/card_flip_right_in.xml
+#	deleted:    hoster/AnimationsDemo/res/animator/card_flip_right_out.xml
+#	deleted:    hoster/AnimationsDemo/res/drawable-hdpi/ic_action_info.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-hdpi/ic_action_new.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-hdpi/ic_action_photo.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-hdpi/ic_launcher.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-hdpi/ic_list_remove.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-mdpi/ic_action_info.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-mdpi/ic_action_new.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-mdpi/ic_action_photo.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-mdpi/ic_launcher.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-mdpi/ic_list_remove.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-nodpi/image1.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-nodpi/image2.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-nodpi/thumb1.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-nodpi/thumb2.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-xhdpi/ic_action_info.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-xhdpi/ic_action_new.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-xhdpi/ic_action_photo.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-xhdpi/ic_launcher.png
+#	deleted:    hoster/AnimationsDemo/res/drawable-xhdpi/ic_list_remove.png
+#	deleted:    hoster/AnimationsDemo/res/layout/activity_card_flip.xml
+#	deleted:    hoster/AnimationsDemo/res/layout/activity_crossfade.xml
+#	deleted:    hoster/AnimationsDemo/res/layout/activity_layout_changes.xml
+#	deleted:    hoster/AnimationsDemo/res/layout/activity_main.xml
+#	deleted:    hoster/AnimationsDemo/res/layout/activity_screen_slide.xml
+#	deleted:    hoster/AnimationsDemo/res/layout/activity_zoom.xml
+#	deleted:    hoster/AnimationsDemo/res/layout/excerpt_content.xml
+#	deleted:    hoster/AnimationsDemo/res/layout/fragment_card_back.xml
+#	deleted:    hoster/AnimationsDemo/res/layout/fragment_card_front.xml
+#	deleted:    hoster/AnimationsDemo/res/layout/fragment_screen_slide_page.xml
+#	deleted:    hoster/AnimationsDemo/res/layout/list_item_example.xml
+#	deleted:    hoster/AnimationsDemo/res/menu/activity_crossfade.xml
+#	deleted:    hoster/AnimationsDemo/res/menu/activity_layout_changes.xml
+#	deleted:    hoster/AnimationsDemo/res/menu/activity_screen_slide.xml
+#	deleted:    hoster/AnimationsDemo/res/values/ids.xml
+#	deleted:    hoster/AnimationsDemo/res/values/integers.xml
+#	deleted:    hoster/AnimationsDemo/res/values/strings.xml
+#	deleted:    hoster/AnimationsDemo/res/values/styles.xml
+#	deleted:    hoster/AnimationsDemo/src/com/example/android/animationsdemo/CardFlipActivity.java
+#	deleted:    hoster/AnimationsDemo/src/com/example/android/animationsdemo/CrossfadeActivity.java
+#	deleted:    hoster/AnimationsDemo/src/com/example/android/animationsdemo/LayoutChangesActivity.java
+#	deleted:    hoster/AnimationsDemo/src/com/example/android/animationsdemo/MainActivity.java
+#	deleted:    hoster/AnimationsDemo/src/com/example/android/animationsdemo/ScreenSlideActivity.java
+#	deleted:    hoster/AnimationsDemo/src/com/example/android/animationsdemo/ScreenSlidePageFragment.java
+#	deleted:    hoster/AnimationsDemo/src/com/example/android/animationsdemo/TouchHighlightImageButton.java
+#	deleted:    hoster/AnimationsDemo/src/com/example/android/animationsdemo/ZoomActivity.java
+#	new file:   hoster/H264StreamingViwer/.classpath
+#	new file:   hoster/H264StreamingViwer/.gitignore
+#	new file:   hoster/H264StreamingViwer/.project
+#	new file:   hoster/H264StreamingViwer/.settings/org.eclipse.jdt.core.prefs
+#	deleted:    hoster/LacalTester/src/com/test/Tester.java
+#	new file:   hoster/RemoteSystemsTempFiles/.project
+#	new file:   hoster/StreamingNetwork/.gitignore
+#	deleted:    hoster/ViwerTest/AndroidManifest.xml
+#	deleted:    hoster/ViwerTest/gen/com/example/android/animationsdemo/BuildConfig.java
+#	deleted:    hoster/ViwerTest/gen/com/example/android/animationsdemo/R.java
+#	deleted:    hoster/ViwerTest/libs/android-support-v13.jar
+#	deleted:    hoster/ViwerTest/proguard-project.txt
+#	deleted:    hoster/ViwerTest/project.properties
+#	deleted:    hoster/ViwerTest/res/animator/card_flip_left_in.xml
+#	deleted:    hoster/ViwerTest/res/animator/card_flip_left_out.xml
+#	deleted:    hoster/ViwerTest/res/animator/card_flip_right_in.xml
+#	deleted:    hoster/ViwerTest/res/animator/card_flip_right_out.xml
+#	deleted:    hoster/ViwerTest/res/drawable-hdpi/ic_action_info.png
+#	deleted:    hoster/ViwerTest/res/drawable-hdpi/ic_action_new.png
+#	deleted:    hoster/ViwerTest/res/drawable-hdpi/ic_action_photo.png
+#	deleted:    hoster/ViwerTest/res/drawable-hdpi/ic_launcher.png
+#	deleted:    hoster/ViwerTest/res/drawable-hdpi/ic_list_remove.png
+#	deleted:    hoster/ViwerTest/res/drawable-ldpi/ic_launcher.png
+#	deleted:    hoster/ViwerTest/res/drawable-mdpi/ic_action_info.png
+#	deleted:    hoster/ViwerTest/res/drawable-mdpi/ic_action_new.png
+#	deleted:    hoster/ViwerTest/res/drawable-mdpi/ic_action_photo.png
+#	deleted:    hoster/ViwerTest/res/drawable-mdpi/ic_launcher.png
+#	deleted:    hoster/ViwerTest/res/drawable-mdpi/ic_list_remove.png
+#	deleted:    hoster/ViwerTest/res/drawable-nodpi/image1.png
+#	deleted:    hoster/ViwerTest/res/drawable-nodpi/image2.png
+#	deleted:    hoster/ViwerTest/res/drawable-nodpi/thumb1.png
+#	deleted:    hoster/ViwerTest/res/drawable-nodpi/thumb2.png
+#	deleted:    hoster/ViwerTest/res/drawable-xhdpi/ic_action_info.png
+#	deleted:    hoster/ViwerTest/res/drawable-xhdpi/ic_action_new.png
+#	deleted:    hoster/ViwerTest/res/drawable-xhdpi/ic_action_photo.png
+#	deleted:    hoster/ViwerTest/res/drawable-xhdpi/ic_launcher.png
+#	deleted:    hoster/ViwerTest/res/drawable-xhdpi/ic_list_remove.png
+#	deleted:    hoster/ViwerTest/res/layout/activity_card_flip.xml
+#	deleted:    hoster/ViwerTest/res/layout/activity_crossfade.xml
+#	deleted:    hoster/ViwerTest/res/layout/activity_layout_changes.xml
+#	deleted:    hoster/ViwerTest/res/layout/activity_main.xml
+#	deleted:    hoster/ViwerTest/res/layout/activity_screen_slide.xml
+#	deleted:    hoster/ViwerTest/res/layout/activity_zoom.xml
+#	deleted:    hoster/ViwerTest/res/layout/excerpt_content.xml
+#	deleted:    hoster/ViwerTest/res/layout/fragment_card_back.xml
+#	deleted:    hoster/ViwerTest/res/layout/fragment_card_front.xml
+#	deleted:    hoster/ViwerTest/res/layout/fragment_screen_slide_page.xml
+#	deleted:    hoster/ViwerTest/res/layout/list_item_example.xml
+#	deleted:    hoster/ViwerTest/res/menu/activity_crossfade.xml
+#	deleted:    hoster/ViwerTest/res/menu/activity_layout_changes.xml
+#	deleted:    hoster/ViwerTest/res/menu/activity_screen_slide.xml
+#	deleted:    hoster/ViwerTest/res/values/ids.xml
+#	deleted:    hoster/ViwerTest/res/values/integers.xml
+#	deleted:    hoster/ViwerTest/res/values/strings.xml
+#	deleted:    hoster/ViwerTest/res/values/styles.xml
+#	deleted:    hoster/ViwerTest/src/com/example/android/animationsdemo/CardFlipActivity.java
+#	deleted:    hoster/ViwerTest/src/com/example/android/animationsdemo/CrossfadeActivity.java
+#	deleted:    hoster/ViwerTest/src/com/example/android/animationsdemo/LayoutChangesActivity.java
+#	deleted:    hoster/ViwerTest/src/com/example/android/animationsdemo/MainActivity.java
+#	deleted:    hoster/ViwerTest/src/com/example/android/animationsdemo/ScreenSlideActivity.java
+#	deleted:    hoster/ViwerTest/src/com/example/android/animationsdemo/ScreenSlidePageFragment.java
+#	deleted:    hoster/ViwerTest/src/com/example/android/animationsdemo/TouchHighlightImageButton.java
+#	deleted:    hoster/ViwerTest/src/com/example/android/animationsdemo/ZoomActivity.java
+#	deleted:    hoster/byteBufferTest/src/ByteBufferTest.java
+#
+
