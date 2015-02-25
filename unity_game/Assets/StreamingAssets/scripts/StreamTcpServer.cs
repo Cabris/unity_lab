@@ -25,8 +25,11 @@ public class StreamTcpServer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		foreach(string p in pathes)
-			GetComponent<QRcodeCreater>().CreateCode(p);
+		foreach (string p in pathes) {
+			QRcodeCreater q=GetComponent<QRcodeCreater> ();
+			if(q!=null)
+						q.CreateCode (p);
+		}
 		pathes.Clear();
 	}
 
