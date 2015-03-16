@@ -54,9 +54,9 @@ public class Decoder {
 			format.setInteger(MediaFormat.KEY_MAX_INPUT_SIZE, 4000000);
 			format.setInteger(MediaFormat.KEY_WIDTH, 1280);
 			format.setInteger(MediaFormat.KEY_HEIGHT, 720);
-			format.setInteger(MediaFormat.KEY_MAX_WIDTH, 1280);
-			format.setInteger(MediaFormat.KEY_MAX_HEIGHT, 720);
-			format.setInteger(MediaFormat.KEY_PUSH_BLANK_BUFFERS_ON_STOP, 1);
+			//format.setInteger(MediaFormat.KEY_MAX_WIDTH, 1280);
+			//format.setInteger(MediaFormat.KEY_MAX_HEIGHT, 720);
+			//format.setInteger(MediaFormat.KEY_PUSH_BLANK_BUFFERS_ON_STOP, 1);
 			decoder = MediaCodec.createDecoderByType("video/avc");
 			try {
 				decoder.configure(format, surface, null, 0);
