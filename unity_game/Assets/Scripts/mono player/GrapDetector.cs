@@ -10,7 +10,7 @@ public class GrapDetector : MonoBehaviour {
 	public Transform end;
 	GameObject pre_obj;
 	GameObject detectedObj;
-
+	
 	[SerializeField]
 	Camera myCamera;
 	public delegate void OnObjectDetectEvent(GameObject obj);
@@ -30,11 +30,16 @@ public class GrapDetector : MonoBehaviour {
 		myRay=ray;
 		RaycastHit hit;
 		start.position=handPos;
-		end.position=handPos+ray.direction*distance;
+		//end.position=handPos+ray.direction*distance;
 		bool ishit=false;
-		if (Physics.Raycast(ray, out hit,distance))
-			ishit=(mask.Contains(hit.collider.tag));
-		
+		if (Physics.Raycast (ray, out hit, distance)) {
+			ishit = (mask.Contains (hit.collider.tag));
+			end.position=hit.point-ray.direction*0.05f;
+
+			Quaternion yy = Quaternion.FromToRotation( Vector3.forward, Vector3.up);
+			Quaternion rotation = Quaternion.LookRotation(hit.normal);
+			end.rotation=rotation;
+		}
 		if(ishit){
 			detectedObj=hit.collider.gameObject;
 			if(pre_obj!=detectedObj){//state change

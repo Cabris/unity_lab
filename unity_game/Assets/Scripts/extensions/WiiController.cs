@@ -106,7 +106,7 @@ public class WiiController : MonoBehaviour {
 					Vector3 vec = new Vector3(p, yaw , -1 * roll);
 					vec = Vector3.Lerp(oldVec, vec, Time.deltaTime * 5);
 					oldVec = vec;
-					GameObject.Find("wiiparent").transform.eulerAngles = vec;
+					//GameObject.Find("wiiparent").transform.eulerAngles = vec;
 				}
 				
 			}
