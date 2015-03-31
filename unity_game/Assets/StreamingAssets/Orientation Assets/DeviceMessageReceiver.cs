@@ -28,17 +28,23 @@ public class DeviceMessageReceiver : MonoBehaviour {
 		this.listenThread = new Thread(new ThreadStart(ListenForClients));
 		this.listenThread.Start();
 		onClientMessage+=clientMsg;
+		from=test.rotation;
+		to=test.rotation;
 	}
-	
-	
+
+	Quaternion from;
+	Quaternion to;
 	// Update is called once per frame
 	void Update () {
 		try{
 			if(orientationStack.Count>0){
 				ort=orientationStack.Pop();
-				Quaternion q=new Quaternion(ort.x,ort.y, ort.z,ort.w);	
-				test.localRotation=q;
+				from=test.rotation;
+				to=new Quaternion(ort.x,ort.y, ort.z,ort.w);	
+				//test.localRotation=to;
 				orientationStack.Clear();
+			}else{
+				test.localRotation = Quaternion.Slerp(from, to, Time.time * .2f);
 			}
 		}
 		catch(Exception e){

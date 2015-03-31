@@ -1,4 +1,8 @@
 com.android.ide.eclipse.adt.fixLegacyEditors=1
+<<<<<<< HEAD
 com.android.ide.eclipse.adt.sdk=D\:\\Development\\Android\\sdk
 com.android.ide.eclipse.adt.xmlEditor=true
+=======
+com.android.ide.eclipse.adt.sdk=D\:\\Development\\Android\\adt-bundle-windows-x86_64-20140702\\sdk
+>>>>>>> 1c952ee9dff418473cf798da790b456e60d0b762
 eclipse.preferences.version=1

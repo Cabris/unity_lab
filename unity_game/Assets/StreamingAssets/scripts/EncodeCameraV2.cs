@@ -137,16 +137,16 @@ public class EncodeCameraV2 : MonoBehaviour {
 		lock (obj) {
 			if (isEncoding) {
 				int size;
-				//WatchStart ();
+				WatchStart ();
 				GetCombinedTexture (srcP, out size);
-				//WatchStop ("GetCombinedTexture");
-				//WatchStart ();
+				WatchStop ("GetCombinedTexture");
+				WatchStart ();
 				byte[] encoded = encoder.Encoding ();
-				//WatchStop ("Encoding");
-				//WatchStart ();
+				WatchStop ("Encoding");
+				WatchStart ();
 				server.Send (encoded);
 				tatol += encoded.Length;
-				//WatchStop ("Send");
+				WatchStop ("Send");
 				//Debug.Log(encoded.Length);
 			}
 		}
@@ -163,7 +163,7 @@ public class EncodeCameraV2 : MonoBehaviour {
 			rightSrc.StopCapture();
 			isEncoding=false;
 			//StopCoroutine ("CallDoEncoding");
-			//timer.Stop();
+			timer.Stop();
 			//thread.Join();
 			timer.Dispose();
 			encoder.StopEncoder();
@@ -181,15 +181,15 @@ public class EncodeCameraV2 : MonoBehaviour {
 
 	void WatchStart ()
 	{
-		stopWatch.Reset ();
-		stopWatch.Start ();
+//		stopWatch.Reset ();
+//		stopWatch.Start ();
 	}
 
 	void WatchStop (string lable)
 	{
-		stopWatch.Stop ();
-		TimeSpan ts = stopWatch.Elapsed;
-		string elapsedTime = String.Format ("{0:00}", ts.Milliseconds);
-		UnityEngine.Debug.Log ("RunTime_"+lable+": " + elapsedTime);
+//		stopWatch.Stop ();
+//		TimeSpan ts = stopWatch.Elapsed;
+//		string elapsedTime = String.Format ("{0:00}", ts.Milliseconds);
+//		UnityEngine.Debug.Log ("RunTime_"+lable+": " + elapsedTime);
 	}
 }

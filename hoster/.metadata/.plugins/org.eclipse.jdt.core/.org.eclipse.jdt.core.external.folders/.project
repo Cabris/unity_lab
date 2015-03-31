@@ -10,9 +10,13 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>.link0</name>
+			<name>.link3</name>
 			<type>2</type>
+<<<<<<< HEAD
 			<location>D:/Development/Android/sdk/sources/android-16</location>
+=======
+			<location>D:/Development/Android/adt-bundle-windows-x86_64-20140702/sdk/sources/android-17</location>
+>>>>>>> 1c952ee9dff418473cf798da790b456e60d0b762
 		</link>
 	</linkedResources>
 </projectDescription>
