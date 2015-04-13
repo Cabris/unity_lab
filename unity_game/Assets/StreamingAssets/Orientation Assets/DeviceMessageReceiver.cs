@@ -23,8 +23,10 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	bool isClose=false;
 	bool HandleClientFlag=true;
 	
+
 	void Start () {
-		this.tcpListener = new TcpListener(IPAddress.Any, 8887);
+		int port=StreamTcpServer.port2;
+		this.tcpListener = new TcpListener(IPAddress.Any, port);
 		this.listenThread = new Thread(new ThreadStart(ListenForClients));
 		this.listenThread.Start();
 		onClientMessage+=clientMsg;
@@ -42,7 +44,7 @@ public class DeviceMessageReceiver : MonoBehaviour {
 			}
 		}
 		catch(Exception e){
-			Debug.LogException(e);
+			//Debug.LogException(e);
 		}
 		if(Input.GetKeyDown(KeyCode.R)){
 			Quaternion inv=Quaternion.Inverse(test.localRotation);

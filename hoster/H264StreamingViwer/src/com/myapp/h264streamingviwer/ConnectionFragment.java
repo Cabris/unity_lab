@@ -1,5 +1,6 @@
 package com.myapp.h264streamingviwer;
 
+import android.R.integer;
 import android.R.string;
 import android.app.Activity;
 import android.app.Fragment;
@@ -30,6 +31,7 @@ class ConnectionFragment extends Fragment implements OnClickListener {
 	IOnConnectedListener connectedListener;
     Spinner typeSpinner;
 	String layoutType;
+	String port2Str="8887";
 	
 	public ConnectionFragment() {
 	}
@@ -85,10 +87,13 @@ class ConnectionFragment extends Fragment implements OnClickListener {
 	                String contents = intent.getStringExtra("SCAN_RESULT");
 	                //TextView textView1 = (TextView) findViewById(R.id.textView1);
 	                String[] data= contents.split(":");
-	                if(data.length==2){
+	                if(data.length==3){
 	                	ipAddressText.setText(data[0]);
 	                	portText.setText(data[1]);
-	                }
+	                	port2Str=data[2];
+	                }else {
+		                Toast.makeText(getActivity(), "未知的格式", Toast.LENGTH_LONG).show();
+					}
 	            }
 	        else
 	            if(resultCode==Activity.RESULT_CANCELED) 
@@ -102,15 +107,16 @@ class ConnectionFragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		String adrs = ipAddressText.getText().toString();
 		//adrs = "192.168.1.47";
-		int port = Integer.parseInt(portText.getText().toString());
+		int port1 = Integer.parseInt(portText.getText().toString());
+		int port2=Integer.parseInt(port2Str);
 		//port = 8888;
 
-		sender = new MessageSender(adrs, 8887);
+		sender = new MessageSender(adrs, port2);
 		sClient = new SensorClient(getActivity(), sender);
-		sClient.onStart();
 		sender.connect();
+		sClient.onStart();
 		if(connectedListener!=null)
-			connectedListener.onConnected(adrs, port);
+			connectedListener.onConnected(adrs, port1);
 	}
 
 	public void setConnectedListener(IOnConnectedListener connectedListener) {

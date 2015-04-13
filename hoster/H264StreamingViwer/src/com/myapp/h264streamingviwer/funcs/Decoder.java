@@ -51,7 +51,7 @@ public class Decoder {
 		public void run() {
 			MediaFormat format = new MediaFormat();
 			format.setString(MediaFormat.KEY_MIME, "video/avc");
-			format.setInteger(MediaFormat.KEY_MAX_INPUT_SIZE, 4000000);
+			format.setInteger(MediaFormat.KEY_MAX_INPUT_SIZE, 0);
 			format.setInteger(MediaFormat.KEY_WIDTH, 1280);
 			format.setInteger(MediaFormat.KEY_HEIGHT, 720);
 			format.setInteger(MediaFormat.KEY_MAX_WIDTH, 1280);

@@ -15,10 +15,17 @@ public class StreamTcpServer : MonoBehaviour {
 	List<BufferedStream> bStreams=new List<BufferedStream>();
 	bool isListening=true;
 	List<string> pathes=new List<string>();
-
+	public static int port1{get; private set;}
+	public static int port2{get; private set;}
 	// Use this for initialization
+
+	void Awake () {
+		port1=FreeTcpPort();
+		port2=FreeTcpPort();
+	}
+
 	void Start () {
-		this.tcpListener = new TcpListener(IPAddress.Any, 8888);
+		this.tcpListener = new TcpListener(IPAddress.Any, port1);
 		this.listenThread = new Thread(new ThreadStart(ListenForClients));
 		this.listenThread.Start();
 	}
@@ -44,7 +51,7 @@ public class StreamTcpServer : MonoBehaviour {
 		IPAddress [] IpA = ipE.AddressList; 
 		for (int i = 0; i < IpA.Length; i++) 
 		{ 
-			string path=IpA[i].ToString ()+":8888";
+			string path=IpA[i].ToString ()+":"+port1+":"+port2;
 			string s= String.Format("IP Address [{0}] {1} ", i, path);
 			Debug.Log(s);
 			pathes.Add(path);
@@ -106,5 +113,14 @@ public class StreamTcpServer : MonoBehaviour {
 	void OnApplicationQuit() {
 		if(isListening)
 			onDestory();
+	}
+
+	static int FreeTcpPort()
+	{
+		TcpListener l = new TcpListener(IPAddress.Loopback, 0);
+		l.Start();
+		int port = ((IPEndPoint)l.LocalEndpoint).Port;
+		l.Stop();
+		return port;
 	}
 }
