@@ -1,6 +1,7 @@
 package com.myapp.h264streamingviwer;
 
 import com.example.h264streamingviwer.R;
+import com.google.vrtoolkit.cardboard.CardboardActivity;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -9,7 +10,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.widget.Button;
 
-public class MainActivity extends Activity implements IOnConnectedListener {
+public class MainActivity extends CardboardActivity  implements IOnConnectedListener {
 
 	ConnectionFragment connectionFragment;
 	VideoFragment videoFragment;
@@ -39,9 +40,9 @@ public class MainActivity extends Activity implements IOnConnectedListener {
 		Resources res = getResources();
 		String[] types = res.getStringArray(R.array.video_types);
 		if (connectionFragment.getLayoutType().equals(types[0]))
-			videoFragment = new CameraVideoFragment(ip, port);
+			videoFragment = new CameraVideoFragment(this,ip, port);
 		else if (connectionFragment.getLayoutType().equals(types[1]))
-			videoFragment = new VideoFragment(ip, port);
+			videoFragment = new VideoFragment(this,ip, port);
 		if (videoFragment != null)
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, videoFragment).commit();

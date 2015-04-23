@@ -3,6 +3,7 @@ package com.myapp.h264streamingviwer;
 import java.io.IOException;
 
 import com.example.h264streamingviwer.R;
+import com.google.vrtoolkit.cardboard.CardboardActivity;
 import com.myapp.h264streamingviwer.funcs.Decoder;
 import com.stream.source.StreamReceiver;
 
@@ -20,8 +21,8 @@ public class CameraVideoFragment extends VideoFragment {
 	Camera myCamera;
 	boolean previewing = false;
 
-	public CameraVideoFragment(String ip, int port) {
-		super(ip, port);
+	public CameraVideoFragment(CardboardActivity a,String ip, int port) {
+		super(a,ip, port);
 	}
 	
 	@Override

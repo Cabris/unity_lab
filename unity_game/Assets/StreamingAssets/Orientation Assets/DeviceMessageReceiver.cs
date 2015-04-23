@@ -38,7 +38,8 @@ public class DeviceMessageReceiver : MonoBehaviour {
 		try{
 			if(orientationStack.Count>0){
 				ort=orientationStack.Pop();
-				Quaternion q=new Quaternion(ort.x,ort.y, ort.z,ort.w);	
+				//Quaternion q=new Quaternion(ort.x,ort.y,ort.z,ort.w);
+				Quaternion q=Quaternion.Euler(ort.w,ort.x,ort.y);
 				test.localRotation=q;
 				orientationStack.Clear();
 			}
@@ -61,7 +62,7 @@ public class DeviceMessageReceiver : MonoBehaviour {
 		float w=Convert.ToSingle( values[0]);
 		float x=Convert.ToSingle( values[1]);
 		float y=Convert.ToSingle( values[2]);
-		float z=Convert.ToSingle( values[3]);
+		float z=Convert.ToSingle( values[0]);
 		Vector4 orientation=new Vector4(x,y,z,w);
 		orientationStack.Push(orientation);
 		if (orientationStack.Count > 2)

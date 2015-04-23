@@ -2,8 +2,16 @@ package com.myapp.h264streamingviwer;
 
 import java.util.logging.Logger;
 
+import javax.microedition.khronos.egl.EGLConfig;
+
 import com.example.h264streamingviwer.R;
+import com.google.vrtoolkit.cardboard.CardboardActivity;
+import com.google.vrtoolkit.cardboard.CardboardView;
+import com.google.vrtoolkit.cardboard.Eye;
+import com.google.vrtoolkit.cardboard.HeadTransform;
+import com.google.vrtoolkit.cardboard.Viewport;
 import com.myapp.h264streamingviwer.funcs.Decoder;
+import com.simpleMessage.sender.MessageSender;
 import com.stream.source.StreamReceiver;
 
 import android.app.Fragment;
@@ -16,18 +24,20 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class VideoFragment extends Fragment implements SurfaceHolder.Callback, IHandleVideoSize{
+public class VideoFragment extends Fragment implements SurfaceHolder.Callback, IHandleVideoSize,CardboardView.StereoRenderer{
+	//private static Logger log = Logger.getLogger(MessageSender.class.getName());
 
 	protected String ip;
 	protected int port;
 	protected Decoder decoder;
 	protected StreamReceiver receiver;
 	protected SurfaceHolder holder;
-	
+	protected CardboardActivity activity;
 
-	public VideoFragment(String ip, int port) {
+	public VideoFragment(CardboardActivity a,String ip, int port) {
 		this.ip = ip;
 		this.port = port;
+		activity=a;
 	}
 
 	@Override
@@ -49,6 +59,14 @@ public class VideoFragment extends Fragment implements SurfaceHolder.Callback, I
 		SurfaceView surfaceView = (SurfaceView) getView().findViewById(R.id.surface);
 		holder=surfaceView.getHolder();
 		holder.addCallback(this);
+		
+		 CardboardView cardboardView = (CardboardView) 
+				 getView().findViewById(R.id.cardboardView);;
+		    // Associate a CardboardView.StereoRenderer with cardboardView.
+		 cardboardView.setRenderer(this);
+		    // Associate the cardboardView with this activity.
+		 activity.setCardboardView(cardboardView);
+		
 	}
 
 	@Override
@@ -112,5 +130,43 @@ public class VideoFragment extends Fragment implements SurfaceHolder.Callback, I
 				surfaceView.setLayoutParams(lp);
 			}
 		};
+	}
+
+	@Override
+	public void onDrawEye(Eye arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onFinishFrame(Viewport arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onNewFrame(HeadTransform arg0) {
+		// TODO Auto-generated method stub
+		float[] d=new float[3];
+		arg0.getEulerAngles(d, 0);
+		Log.d("VideoFragment","getEulerAngles: " +d.toString());
+	}
+
+	@Override
+	public void onRendererShutdown() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSurfaceChanged(int arg0, int arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSurfaceCreated(EGLConfig arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
