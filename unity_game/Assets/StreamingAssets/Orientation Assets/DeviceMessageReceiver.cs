@@ -16,14 +16,14 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	public OnClientMessage onClientMessage;
 	[SerializeField]
 	Vector4 ort;
-	public Transform test;
+	public Transform target;
 	ConcurrentStack<Vector4> orientationStack=new ConcurrentStack<Vector4>();
 	[SerializeField]
 	EncodeCameraV2 encodeCam;
 	bool isClose=false;
 	bool HandleClientFlag=true;
 	
-
+	
 	void Start () {
 		int port=StreamTcpServer.port2;
 		this.tcpListener = new TcpListener(IPAddress.Any, port);
@@ -35,34 +35,46 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		try{
-			if(orientationStack.Count>0){
-				ort=orientationStack.Pop();
-				//Quaternion q=new Quaternion(ort.x,ort.y,ort.z,ort.w);
-				Quaternion q=Quaternion.Euler(ort.w,ort.x,ort.y);
-				test.localRotation=q;
-				orientationStack.Clear();
-			}
-		}
-		catch(Exception e){
-			//Debug.LogException(e);
-		}
-		if(Input.GetKeyDown(KeyCode.R)){
-			Quaternion inv=Quaternion.Inverse(test.localRotation);
-			test.localRotation*=inv;
-		}
 		if(isClose){
 			encodeCam.stopEncoding();
 			isClose=false;
 		}
 	}
+
+	Vector4 smoothedValue=Vector4.zero ;
+	float smoothing=5;
+
+	void FixedUpdate () {
+		try {
+			if (orientationStack.Count > 0) {
+				ort = orientationStack.Pop ();
+				smoothedValue += (ort - smoothedValue) / smoothing;
+				Quaternion q=new Quaternion(ort.x,ort.y,ort.z,ort.w);
+
+				//Quaternion q = Quaternion.Euler (-ort.w,-ort.x, -ort.y);
+				target.localRotation = q;
+				target.Rotate(Vector3.back, 90, Space.Self);
+				target.Rotate(Vector3.up, 180, Space.World);
+				target.Rotate(Vector3.left, 90, Space.World);
+				Quaternion q2=Quaternion.LookRotation(target.forward,-target.up);
+				target.localRotation = q2;
+				//target.Rotate(new Vector3(90,0,0));
+
+				orientationStack.Clear ();
+			}
+		} catch (Exception e) {
+			//Debug.LogException(e);
+		}
+	}
+
+
 	
 	void clientMsg(string msg){
 		string[] values= msg.Split(',');
 		float w=Convert.ToSingle( values[0]);
 		float x=Convert.ToSingle( values[1]);
 		float y=Convert.ToSingle( values[2]);
-		float z=Convert.ToSingle( values[0]);
+		float z=Convert.ToSingle( values[3]);
 		Vector4 orientation=new Vector4(x,y,z,w);
 		orientationStack.Push(orientation);
 		if (orientationStack.Count > 2)

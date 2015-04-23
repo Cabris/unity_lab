@@ -20,6 +20,8 @@ public class OrientationSensor extends BaseSensor {
 	public OrientationSensor(Context context, IOrientationChange orientationChange) {
 		super(context, orientationChange);
 		mHeadTracker =  HeadTracker.createFromContext (context);
+		mHeadTracker.setNeckModelEnabled(true);
+		mHeadTracker.setGyroBiasEstimationEnabled(true);
 		mHeadViewMatrix = new float[16];
 	}
 
@@ -42,20 +44,20 @@ public class OrientationSensor extends BaseSensor {
 	public void onSensorChanged(SensorEvent event) {
 		float[] values=new float[4];
 		SensorManager.getQuaternionFromVector(values, event.values.clone());
-		float mOrientationData[] = new float[3];
+		//float mOrientationData[] = new float[3];
 		//calcOrientation(mOrientationData, event.values.clone());
 		
 		
-		mHeadTracker.getLastHeadView(mHeadViewMatrix, 0);
-		float[] dd=new float[3];
-		SensorManager.getOrientation(mHeadViewMatrix,dd);
-		
-		final float rad2deg = (float)(180.0 / Math.PI);
-		for (int i = 0; i < dd.length; i++) {
-			dd[i]*=rad2deg;
-		}
-		Log.d("OrientationSensor","dd: " +dd[0]+", " +dd[1]+", " +dd[2]);
-		this.orientationChange.onOrientationChange(dd);
+//		mHeadTracker.getLastHeadView(mHeadViewMatrix, 0);
+//		float[] dd=new float[3];
+//		SensorManager.getOrientation(mHeadViewMatrix,dd);
+//		
+//		final float rad2deg = (float)(180.0 / Math.PI);
+//		for (int i = 0; i < dd.length; i++) {
+//			dd[i]*=rad2deg;
+//		}
+//		Log.d("OrientationSensor","dd: " +dd[0]+", " +dd[1]+", " +dd[2]);
+		this.orientationChange.onOrientationChange(values);
 	}
 
 	private void calcOrientation(float[] orientation, float[] incomingValues) {

@@ -8,7 +8,7 @@
     android:id="@+id/surface"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" 
-    android:layout_weight="1" />
+    android:layout_weight="0" />
 <com.google.vrtoolkit.cardboard.CardboardView
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
