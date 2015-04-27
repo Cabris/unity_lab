@@ -25,7 +25,8 @@
                 
             </intent-filter>
         </activity>
-
+		<service android:name="com.myapp.h264streamingviwer.OrientationService" >  
+        </service>  
     </application>
            <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

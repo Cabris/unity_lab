@@ -13,7 +13,8 @@ import android.widget.Button;
 public class MainActivity extends CardboardActivity  implements IOnConnectedListener {
 
 	ConnectionFragment connectionFragment;
-	VideoFragment videoFragment;
+//	OrientationServiceFragment orientationFragment;
+	//VideoFragment videoFragment;
 
 	// CameraVideoFragment cameraVideoFragment;
 
@@ -23,7 +24,7 @@ public class MainActivity extends CardboardActivity  implements IOnConnectedList
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// must 1sf
 		setContentView(R.layout.activity_main);
 		connectionFragment = new ConnectionFragment();
-		connectionFragment.setConnectedListener(this);
+		//connectionFragment.setConnectedListener(this);
 		getFragmentManager().beginTransaction()
 				.add(R.id.container, connectionFragment).commit();
 	}
@@ -36,15 +37,17 @@ public class MainActivity extends CardboardActivity  implements IOnConnectedList
 	public void onConnected(String ip, int port) {
 		// TODO Auto-generated method stub
 		Resources res = getResources();
-		String[] types = res.getStringArray(R.array.video_types);
-		if (connectionFragment.getLayoutType().equals(types[0]))
-			videoFragment = new CameraVideoFragment(this,ip, port);
-		else if (connectionFragment.getLayoutType().equals(types[1]))
-			videoFragment = new VideoFragment(this,ip, port);
-		if (videoFragment != null)
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, videoFragment).commit();
-
+//		String[] types = res.getStringArray(R.array.video_types);
+//		if (connectionFragment.getLayoutType().equals(types[0]))
+//			videoFragment = new CameraVideoFragment(this,ip, port);
+//		else if (connectionFragment.getLayoutType().equals(types[1]))
+//			videoFragment = new VideoFragment(this,ip, port);
+//		if (videoFragment != null)
+//			getFragmentManager().beginTransaction()
+//					.add(R.id.container, videoFragment).commit();
+//		orientationFragment=new OrientationServiceFragment(this, ip, port);
+//		getFragmentManager().beginTransaction()
+//		.add(R.id.container, orientationFragment).commit();
 	}
 
 }

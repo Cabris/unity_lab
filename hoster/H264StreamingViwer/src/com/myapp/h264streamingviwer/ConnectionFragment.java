@@ -1,12 +1,14 @@
 package com.myapp.h264streamingviwer;
 
-import android.R.integer;
-import android.R.string;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,22 +22,28 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.h264streamingviwer.R;
-import com.myapp.h264streamingviwer.funcs.SensorClient;
-import com.simpleMessage.sender.MessageSender;
 
 class ConnectionFragment extends Fragment implements OnClickListener {
-	SensorClient sClient;
-	MessageSender sender;
+
 	EditText ipAddressText;
 	EditText portText;
 	IOnConnectedListener connectedListener;
     Spinner typeSpinner;
 	String layoutType;
 	String port2Str="8887";
+	Intent intent;
+	OrientationService.MyBinder binder;
+	ServiceConnection connection;
 	
 	public ConnectionFragment() {
 	}
 
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		intent = new Intent();
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.connection_main, container, false);
@@ -105,18 +113,40 @@ class ConnectionFragment extends Fragment implements OnClickListener {
 	
 	@Override
 	public void onClick(View v) {
-		String adrs = ipAddressText.getText().toString();
-		//adrs = "192.168.1.47";
+		final String adrs = ipAddressText.getText().toString();
 		int port1 = Integer.parseInt(portText.getText().toString());
-		int port2=Integer.parseInt(port2Str);
-		//port = 8888;
-
-		sender = new MessageSender(adrs, port2);
-		sClient = new SensorClient(getActivity(), sender);
-		sender.connect();
-		sClient.onStart();
+		final int port2=Integer.parseInt(port2Str);
 		if(connectedListener!=null)
 			connectedListener.onConnected(adrs, port1);
+		
+		connection = new ServiceConnection() {  
+			  
+	        @Override  
+	        public void onServiceDisconnected(ComponentName name) {  
+	        }  
+	  
+	        @Override  
+	        public void onServiceConnected(ComponentName name, IBinder service) {  
+	        	binder = (OrientationService.MyBinder) service;  
+	        	binder.initialize(getActivity(), adrs, port2);
+	        }  
+	    };
+	    
+	    Intent bindIntent = new Intent(getActivity(), OrientationService.class);  
+		getActivity().bindService(bindIntent, connection, Context.BIND_AUTO_CREATE);  
+		
+		
+//		Intent intent = new Intent("com.splashtop.remote.pad.v2");
+//	    if(getActivity().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size()==0)
+//	        {
+//	            // 未安裝
+//	            Toast.makeText(getActivity(), "請至 Play 商店安裝 splashtop", Toast.LENGTH_LONG).show();
+//	        }
+//	    else
+//	        {
+//	    		startActivity(intent);
+//	        }
+		
 	}
 
 	public void setConnectedListener(IOnConnectedListener connectedListener) {
@@ -127,10 +157,8 @@ class ConnectionFragment extends Fragment implements OnClickListener {
 	public void onDestroy() {
 		Log.d("ConnectionFragment", "onDestroy");
 		super.onDestroy();
-		if (sClient != null)
-			sClient.onStop();
-		if (sender != null)
-			sender.onStop();
+		if(connection!=null)
+			getActivity().unbindService(connection); 
 	}
 	
 	class CustomOnItemSelectedListener implements OnItemSelectedListener {
@@ -146,7 +174,6 @@ class ConnectionFragment extends Fragment implements OnClickListener {
 	    @Override
 	    public void onNothingSelected(AdapterView<?> arg0) {
 	        // TODO Auto-generated method stub
-	 
 	    }
 	 
 	}
@@ -154,5 +181,6 @@ class ConnectionFragment extends Fragment implements OnClickListener {
 	public String getLayoutType() {
 		return layoutType;
 	}
+	
 
 }
