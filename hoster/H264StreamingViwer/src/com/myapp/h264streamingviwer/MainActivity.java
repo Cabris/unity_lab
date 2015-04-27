@@ -30,8 +30,6 @@ public class MainActivity extends CardboardActivity  implements IOnConnectedList
 
 	protected void onStop() {
 		super.onStop();
-		// connectionFragment.onDestroy();
-		// videoFragment.onDestroy();
 	}
 
 	@Override

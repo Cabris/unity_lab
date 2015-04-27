@@ -26,7 +26,8 @@ public class StreamReceiver extends StreamSource {
 	protected int targetLength = 0;
 	protected int currentLength = 0;
 	int maxBufferSize = 10000000;
-
+	byte[] fillInBuffer = new byte[maxBufferSize];
+	
 //	private static Logger log = Logger
 //			.getLogger(StreamReceiver.class.getName());
 
@@ -76,7 +77,7 @@ public class StreamReceiver extends StreamSource {
 			throw new Exception("negi length");
 	}
 
-	byte[] fillInBuffer = new byte[maxBufferSize];
+	
 
 	protected void fillBuffer() throws Exception {
 		int tryCount = 0;
