@@ -405,9 +405,12 @@ public class RigidbodyPickUp : MonoBehaviour
         /*Finds the next position for the object held to move to, depending on the Camera's position
         ,direction, and distance the object is held between you two.*/
 
-		Vector3 nextPos = playerCam.transform.position + playerAim.direction * distance;
+		Bounds ohb=objectHeld.collider.bounds;
+		float ohbr=Mathf.Sqrt(ohb.size.x*ohb.size.x+ohb.size.y*ohb.size.y+ohb.size.z*ohb.size.z);
+
+		Vector3 nextPos = playerCam.transform.position + playerAim.direction * (distance+ohbr/2);
 		if(customAim.enabled)
-			nextPos = customAim.Aim + playerAim.direction * customAim.distance;
+			nextPos = customAim.Aim + playerAim.direction * (customAim.distance+ohbr/2);
 		//Takes the current position of the object held
         Vector3 currPos = objectHeld.transform.position;
         timeHeld = timeHeld - 0.1f * Time.deltaTime;

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SwitchWall : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class SwitchWall : MonoBehaviour {
 	float duration=.25f;
 	Vector3 wallIniPos;
 	public bool Open=false;
+
 	// Use this for initialization
 	void Start () {
 		wallIniPos=wall.transform.localPosition;
@@ -24,5 +26,7 @@ public class SwitchWall : MonoBehaviour {
 		else{
 			TweenPosition.Begin(wall,duration,wallIniPos);
 		}
+
+
 	}
 }
