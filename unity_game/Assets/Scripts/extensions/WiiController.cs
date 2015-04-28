@@ -96,21 +96,21 @@ public class WiiController : MonoBehaviour {
 
 	private Vector3 oldVec;
 	void FixedUpdate () {
-		int c = wiimote_count();
-		if (c>0) {
-			for (int i=0; i<=c-1; i++) {
-				float roll = Mathf.Round(wiimote_getRoll(i));
-				float p = Mathf.Round(wiimote_getPitch(i));
-				float yaw = Mathf.Round(wiimote_getYaw(i));
-				if (!float.IsNaN(roll) && !float.IsNaN(p) && (i==c-1)) {
-					Vector3 vec = new Vector3(p, yaw , -1 * roll);
-					vec = Vector3.Lerp(oldVec, vec, Time.deltaTime * 5);
-					oldVec = vec;
-					//GameObject.Find("wiiparent").transform.eulerAngles = vec;
-				}
-				
-			}
-		}
+//		int c = wiimote_count();
+//		if (c>0) {
+//			for (int i=0; i<=c-1; i++) {
+//				float roll = Mathf.Round(wiimote_getRoll(i));
+//				float p = Mathf.Round(wiimote_getPitch(i));
+//				float yaw = Mathf.Round(wiimote_getYaw(i));
+//				if (!float.IsNaN(roll) && !float.IsNaN(p) && (i==c-1)) {
+//					Vector3 vec = new Vector3(p, yaw , -1 * roll);
+//					vec = Vector3.Lerp(oldVec, vec, Time.deltaTime * 5);
+//					oldVec = vec;
+//					//GameObject.Find("wiiparent").transform.eulerAngles = vec;
+//				}
+//				
+//			}
+//		}
 	}
 
 	void OnApplicationQuit() {

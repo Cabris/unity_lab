@@ -47,6 +47,7 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	void FixedUpdate () {
 		try {
 			if (orientationStack.Count > 0) {
+				Camera.main.depth=-10;
 				ort = orientationStack.Pop ();
 				smoothedValue += (ort - smoothedValue) / smoothing;
 				Quaternion q=new Quaternion(ort.x,ort.y,ort.z,ort.w);
@@ -110,6 +111,7 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	
 	private void HandleClient(object client)
 	{
+
 		TcpClient tcpClient = (TcpClient)client;
 		tcpClient.NoDelay=true;
 		tcpClient.ReceiveBufferSize=60000;
