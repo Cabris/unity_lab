@@ -1,16 +1,13 @@
-package com.myapp.h264streamingviwer;
+package com.myapp.orientationService;
 
-import com.example.h264streamingviwer.R;
-import com.google.vrtoolkit.cardboard.CardboardActivity;
+import com.example.orientationService.R;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Window;
-import android.widget.Button;
 
-public class MainActivity extends CardboardActivity  implements IOnConnectedListener {
+public class MainActivity extends Activity  implements IOnConnectedListener {
 
 	ConnectionFragment connectionFragment;
 //	OrientationServiceFragment orientationFragment;

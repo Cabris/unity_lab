@@ -1,16 +1,16 @@
-package com.myapp.h264streamingviwer;
+package com.myapp.orientationService;
 
 import java.util.logging.Logger;
 
 import javax.microedition.khronos.egl.EGLConfig;
 
-import com.example.h264streamingviwer.R;
+import com.example.orientationService.R;
 import com.google.vrtoolkit.cardboard.CardboardActivity;
 import com.google.vrtoolkit.cardboard.CardboardView;
 import com.google.vrtoolkit.cardboard.Eye;
 import com.google.vrtoolkit.cardboard.HeadTransform;
 import com.google.vrtoolkit.cardboard.Viewport;
-import com.myapp.h264streamingviwer.funcs.Decoder;
+import com.myapp.orientationService.funcs.Decoder;
 import com.simpleMessage.sender.MessageSender;
 import com.stream.source.StreamReceiver;
 

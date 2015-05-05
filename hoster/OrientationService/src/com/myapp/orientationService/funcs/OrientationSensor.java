@@ -1,4 +1,4 @@
-package com.myapp.h264streamingviwer.funcs;
+package com.myapp.orientationService.funcs;
 
 import com.google.vrtoolkit.cardboard.HeadTransform;
 import com.google.vrtoolkit.cardboard.sensors.HeadTracker;
@@ -30,7 +30,7 @@ public class OrientationSensor extends BaseSensor {
 		super.strat();
 		mHeadTracker.startTracking();
 		mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR),
-				SensorManager.SENSOR_DELAY_FASTEST);
+				SensorManager.SENSOR_DELAY_GAME);
 	}
 
 	@Override

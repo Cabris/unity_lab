@@ -8,7 +8,8 @@ using System.IO;
 
 
 public class StreamTcpServer : MonoBehaviour {
-	
+
+
 	private TcpListener tcpListener;
 	private Thread listenThread;
 	List<TcpClient> clients=new List<TcpClient>();
@@ -19,12 +20,15 @@ public class StreamTcpServer : MonoBehaviour {
 	public static int port2{get; private set;}
 	// Use this for initialization
 
+
+
 	void Awake () {
 		port1=FreeTcpPort();
 		port2=FreeTcpPort();
 	}
 
 	void Start () {
+
 		this.tcpListener = new TcpListener(IPAddress.Any, port1);
 		this.listenThread = new Thread(new ThreadStart(ListenForClients));
 		this.listenThread.Start();
@@ -38,6 +42,8 @@ public class StreamTcpServer : MonoBehaviour {
 						q.CreateCode (p);
 		}
 		pathes.Clear();
+
+
 	}
 
 	void ListenForClients()
@@ -61,6 +67,8 @@ public class StreamTcpServer : MonoBehaviour {
 			//blocks until a client has connected to the server
 			TcpClient client = this.tcpListener.AcceptTcpClient();
 			Debug.Log("StreamTcpServer client:"+clients.Count);
+
+
 			ParameterizedThreadStart tStart=new ParameterizedThreadStart(HandleClientComm);
 			//Thread clientThread=new Thread(tStart);
 			//clientThread.Start(client);

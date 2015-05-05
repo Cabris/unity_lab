@@ -1,10 +1,10 @@
-package com.myapp.h264streamingviwer;
+package com.myapp.orientationService;
 
 import java.io.IOException;
 
-import com.example.h264streamingviwer.R;
+import com.example.orientationService.R;
 import com.google.vrtoolkit.cardboard.CardboardActivity;
-import com.myapp.h264streamingviwer.funcs.Decoder;
+import com.myapp.orientationService.funcs.Decoder;
 import com.stream.source.StreamReceiver;
 
 import android.hardware.Camera;

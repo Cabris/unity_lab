@@ -1,6 +1,6 @@
-package com.myapp.h264streamingviwer;
+package com.myapp.orientationService;
 
-import com.myapp.h264streamingviwer.funcs.SensorClient;
+import com.myapp.orientationService.funcs.SensorClient;
 import com.simpleMessage.sender.MessageSender;
 
 import android.R.string;

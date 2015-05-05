@@ -1,4 +1,4 @@
-package com.myapp.h264streamingviwer.funcs;
+package com.myapp.orientationService.funcs;
 
 import android.content.Context;
 import android.hardware.Sensor;

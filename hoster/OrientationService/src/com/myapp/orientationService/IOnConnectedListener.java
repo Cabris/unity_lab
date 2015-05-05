@@ -1,4 +1,4 @@
-package com.myapp.h264streamingviwer;
+package com.myapp.orientationService;
 
 
 public interface IOnConnectedListener {

@@ -16,10 +16,11 @@ public class PlayerBeheaver : InputListener {
 	PlayerAnimation playerAni;
 	bool isT=false;
 	Vector3 initialPos;
-	
+	[SerializeField]
+	Camera main,left,right,mainSpace,leftSpace,rightSpace,qrC;
 	MonoController monoInput;
 	WiiController wiiInput;
-	
+
 	void Start () {
 		initialPos=transform.position;
 		grapDetector = GetComponent<GrapDetector> ();
@@ -30,15 +31,6 @@ public class PlayerBeheaver : InputListener {
 		kinectModelController = GetComponent<KinectModelControllerV2> ();
 		playerAni=GetComponent<PlayerAnimation>();
 		bool isKinectInited= KinectSensor.IsInitialized;
-		//		IsMouseSelectActive = !KinectSensor.IsInitialized;
-		//		if (kinectModelController != null) {
-		//			if (IsMouseSelectActive) {
-		//				kinectModelController.enabled = false;
-		//				grapDetector.target = grapTarget;
-		//			} else {
-		//				kinectModelController.enabled = true;
-		//			}
-		//		}
 		
 		monoInput=GetComponent<MonoController>();
 		wiiInput=GetComponent<WiiController>();
@@ -47,10 +39,28 @@ public class PlayerBeheaver : InputListener {
 			monoInput.enabled=true;
 			wiiInput.enabled=false;
 			grapDetector.target = corsor;
+
+			left.depth=-50;
+			leftSpace.depth=-50;
+			right.depth=-50;
+			rightSpace.depth=-50;
+			main.depth=10;
+			mainSpace.depth=0;
+			qrC.depth=-50;
+
 		}else{
 			monoInput.enabled=false;
 			wiiInput.enabled=true;
 			grapDetector.target = hand;
+
+			mainSpace.depth=-50;
+			main.depth=-50;
+
+			leftSpace.depth=0;
+			left.depth=10;
+			rightSpace.depth=20;
+			right.depth=30;
+			qrC.depth=40;
 		}
 		
 	}
@@ -109,12 +119,15 @@ public class PlayerBeheaver : InputListener {
 				return detected_object.name;
 		}
 	}
-	
+
+	public void onConnected(){
+		qrC.depth=-50;
+	}
+
 	public void DoDamage(float d){
 		if (d > 0) {
 			isT = true;
 		}
 	}
-	
-	
+		
 }

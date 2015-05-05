@@ -1,8 +1,8 @@
-package com.myapp.h264streamingviwer.funcs;
+package com.myapp.orientationService.funcs;
 
 import java.nio.ByteBuffer;
 
-import com.myapp.h264streamingviwer.IHandleVideoSize;
+import com.myapp.orientationService.IHandleVideoSize;
 import com.stream.source.StreamSource;
 import android.media.MediaCodec;
 import android.media.MediaCodec.BufferInfo;

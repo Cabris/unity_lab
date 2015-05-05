@@ -16,11 +16,11 @@ public class SceneLogic : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		foreach(Transform t in stages){
-			if(Vector3.Distance(player.position,t.position)>30)
-				t.gameObject.SetActive(false);
-			else
-				t.gameObject.SetActive(true);
-		}
+//		foreach(Transform t in stages){
+//			if(Vector3.Distance(player.position,t.position)>30)
+//				t.gameObject.SetActive(false);
+//			else
+//				t.gameObject.SetActive(true);
+//		}
 	}
 }

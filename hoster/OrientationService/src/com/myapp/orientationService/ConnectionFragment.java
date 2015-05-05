@@ -1,4 +1,4 @@
-package com.myapp.h264streamingviwer;
+package com.myapp.orientationService;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -21,7 +21,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.h264streamingviwer.R;
+import com.example.orientationService.R;
 
 class ConnectionFragment extends Fragment implements OnClickListener {
 
@@ -146,6 +146,20 @@ class ConnectionFragment extends Fragment implements OnClickListener {
 //	        {
 //	    		startActivity(intent);
 //	        }
+		
+		   PackageManager manager = getActivity().getPackageManager();
+		    try {
+		        Intent i = manager.getLaunchIntentForPackage("com.splashtop.remote.pad.v2");
+		        if (i == null) {
+		            throw new PackageManager.NameNotFoundException();
+		        }
+		        i.addCategory(Intent.CATEGORY_LAUNCHER);
+		        getActivity().startActivity(i);
+		    } catch (PackageManager.NameNotFoundException e) {
+		    	Toast.makeText(getActivity(), "請至 Play 商店安裝 splashtop", Toast.LENGTH_LONG).show();
+		    }
+		
+		
 		
 	}
 

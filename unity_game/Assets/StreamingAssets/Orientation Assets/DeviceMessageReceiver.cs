@@ -7,7 +7,8 @@ using System.Threading;
 using System.IO;
 
 public class DeviceMessageReceiver : MonoBehaviour {
-	
+
+	PlayerBeheaver player;
 	const string exit_code="ORIENT_EXIT";
 	private TcpListener tcpListener;
 	private Thread listenThread;
@@ -22,9 +23,10 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	EncodeCameraV2 encodeCam;
 	bool isClose=false;
 	bool HandleClientFlag=true;
-	
+	bool isConnected=false;
 	
 	void Start () {
+		player = GameObject.Find ("SceneLogic/local_player_standard").GetComponent<PlayerBeheaver>();
 		int port=StreamTcpServer.port2;
 		this.tcpListener = new TcpListener(IPAddress.Any, port);
 		this.listenThread = new Thread(new ThreadStart(ListenForClients));
@@ -38,6 +40,11 @@ public class DeviceMessageReceiver : MonoBehaviour {
 		if(isClose){
 			encodeCam.stopEncoding();
 			isClose=false;
+		}
+
+		if(isConnected){
+			player.onConnected();
+			isConnected=false;
 		}
 	}
 
@@ -111,7 +118,7 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	
 	private void HandleClient(object client)
 	{
-
+		isConnected = true;
 		TcpClient tcpClient = (TcpClient)client;
 		tcpClient.NoDelay=true;
 		tcpClient.ReceiveBufferSize=60000;

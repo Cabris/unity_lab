@@ -1,4 +1,4 @@
-package com.myapp.h264streamingviwer.funcs;
+package com.myapp.orientationService.funcs;
 
 public interface IOrientationChange {
 	public void onOrientationChange(float[] values);
