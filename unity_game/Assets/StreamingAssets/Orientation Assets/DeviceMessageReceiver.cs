@@ -51,9 +51,13 @@ public class DeviceMessageReceiver : MonoBehaviour {
 	Vector4 smoothedValue=Vector4.zero ;
 	float smoothing=5;
 
+	//[SerializeField]
+	int qSize;
+
 	void FixedUpdate () {
+		qSize = orientationStack.Count;
 		try {
-			if (orientationStack.Count > 0) {
+			if (qSize > 0) {
 				Camera.main.depth=-10;
 				ort = orientationStack.Pop ();
 				smoothedValue += (ort - smoothedValue) / smoothing;
@@ -121,7 +125,7 @@ public class DeviceMessageReceiver : MonoBehaviour {
 		isConnected = true;
 		TcpClient tcpClient = (TcpClient)client;
 		tcpClient.NoDelay=true;
-		tcpClient.ReceiveBufferSize=60000;
+		tcpClient.ReceiveBufferSize=6000000;
 		clients.Add(tcpClient);
 		StreamReader reader=new StreamReader(tcpClient.GetStream());
 		try{
