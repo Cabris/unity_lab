@@ -30,6 +30,7 @@ public class DeviceMessageReceiver : MonoBehaviour {
 		int port=StreamTcpServer.port2;
 		this.tcpListener = new TcpListener(IPAddress.Any, port);
 		this.listenThread = new Thread(new ThreadStart(ListenForClients));
+		if(Extensions.Player.controlType==PlayerBeheaver.ControlType.stereo)
 		this.listenThread.Start();
 		onClientMessage+=clientMsg;
 	}

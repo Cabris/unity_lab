@@ -21,6 +21,7 @@ public class ButtonControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		isPress=colliders.Count>0;
+		if(button!=null)
 		if(IsPress){
 			TweenPosition.Begin(button.gameObject,duration,new Vector3(0,-12,0));
 			//button.localPosition=new Vector3(0,-12,0);

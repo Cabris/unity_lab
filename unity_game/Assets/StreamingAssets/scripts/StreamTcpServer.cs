@@ -28,10 +28,10 @@ public class StreamTcpServer : MonoBehaviour {
 	}
 
 	void Start () {
-
 		this.tcpListener = new TcpListener(IPAddress.Any, port1);
 		this.listenThread = new Thread(new ThreadStart(ListenForClients));
-		this.listenThread.Start();
+		if(Extensions.Player.controlType==PlayerBeheaver.ControlType.stereo)
+			this.listenThread.Start();
 	}
 	
 	// Update is called once per frame
@@ -115,6 +115,7 @@ public class StreamTcpServer : MonoBehaviour {
 			c.Close();
 		clients.Clear();
 		tcpListener.Stop();
+		if(listenThread.IsAlive)
 		listenThread.Join();
 	}
 

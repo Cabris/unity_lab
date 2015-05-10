@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System;
 
 public class PlayerBeheaver : InputListener {
 	
@@ -21,7 +21,12 @@ public class PlayerBeheaver : InputListener {
 	MonoController monoInput;
 	WiiController wiiInput;
 
+	public string playerId;
+
 	void Start () {
+		DateTime now=DateTime.UtcNow;
+
+		playerId="subject-"+now.ToString("yyMMddHHmm");
 		initialPos=transform.position;
 		grapDetector = GetComponent<GrapDetector> ();
 		ikControl=GetComponent<IKController>();

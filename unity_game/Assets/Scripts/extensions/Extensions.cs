@@ -6,6 +6,13 @@ using System.Collections;
 
 public static class Extensions
 {
+
+	public static PlayerBeheaver Player{get{
+			return GameObject.
+				Find ("SceneLogic/local_player_standard").
+					GetComponent<PlayerBeheaver>();
+		} }
+
 	public static String AssetBundleLoaction{
 		get{return "file:///C:/_AssetBundles/{0}.assetBundles";}
 	}
