@@ -72,6 +72,9 @@ public class PlayerBeheaver : InputListener {
 	
 	// Update is called once per frame
 	void Update () {
+		if(controlType==ControlType.stereo)
+			main.depth=-50;
+
 		//base.Update();
 		playerAni.direction=Horizontal;
 		playerAni.speed=Vertical;
