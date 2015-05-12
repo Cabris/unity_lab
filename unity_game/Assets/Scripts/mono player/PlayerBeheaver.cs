@@ -17,7 +17,7 @@ public class PlayerBeheaver : InputListener {
 	bool isT=false;
 	Vector3 initialPos;
 	[SerializeField]
-	Camera main,left,right,mainSpace,leftSpace,rightSpace,qrC;
+	Camera main,left,right,mainSpace,leftSpace,rightSpace;
 	MonoController monoInput;
 	WiiController wiiInput;
 
@@ -51,8 +51,7 @@ public class PlayerBeheaver : InputListener {
 			rightSpace.depth=-50;
 			main.depth=10;
 			mainSpace.depth=0;
-			qrC.depth=-50;
-
+			qr.gameObject.SetActive(false);
 		}else{
 			monoInput.enabled=false;
 			wiiInput.enabled=true;
@@ -65,7 +64,7 @@ public class PlayerBeheaver : InputListener {
 			left.depth=10;
 			rightSpace.depth=20;
 			right.depth=30;
-			qrC.depth=40;
+
 		}
 		
 	}
@@ -129,7 +128,7 @@ public class PlayerBeheaver : InputListener {
 	}
 
 	public void onConnected(){
-		qrC.depth=-50;
+		qr.gameObject.SetActive(false);
 	}
 
 	public void DoDamage(float d){

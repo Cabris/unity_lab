@@ -4,7 +4,8 @@ using System.Collections;
 using System.Runtime.InteropServices;
 
 public class WiiController : MonoBehaviour {
-	
+
+	#if UNITY_ANDROID
 	[DllImport ("UniWii")]
 	private static extern void wiimote_start();
 	[DllImport ("UniWii")]
@@ -54,19 +55,23 @@ public class WiiController : MonoBehaviour {
 	private static extern bool wiimote_getButtonPlus(int which);
 	[DllImport ("UniWii")]
 	private static extern bool wiimote_getButtonMinus(int which);
-	
+	#endif
+
 	//public bool left,right,up,down;
 	public InputListener inputListener;
 	public int userId;
 	public Renderer _renderer;
 	// Use this for initialization
 	void Start () {
+		#if UNITY_ANDROID
 		wiimote_start();
 		inputListener=GetComponent<InputListener>();
+		#endif
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		#if UNITY_ANDROID
 		if(wiimote_count()>0&&inputListener!=null){
 			bool left,right,up,down;
 			left=wiimote_getButtonLeft(userId);
@@ -92,25 +97,11 @@ public class WiiController : MonoBehaviour {
 			inputListener.SetButtonValue("Fire3",temp);
 			//Debug.Log("wii input");
 		}
+		#endif
 	}
 
-	private Vector3 oldVec;
+
 	void FixedUpdate () {
-//		int c = wiimote_count();
-//		if (c>0) {
-//			for (int i=0; i<=c-1; i++) {
-//				float roll = Mathf.Round(wiimote_getRoll(i));
-//				float p = Mathf.Round(wiimote_getPitch(i));
-//				float yaw = Mathf.Round(wiimote_getYaw(i));
-//				if (!float.IsNaN(roll) && !float.IsNaN(p) && (i==c-1)) {
-//					Vector3 vec = new Vector3(p, yaw , -1 * roll);
-//					vec = Vector3.Lerp(oldVec, vec, Time.deltaTime * 5);
-//					oldVec = vec;
-//					//GameObject.Find("wiiparent").transform.eulerAngles = vec;
-//				}
-//				
-//			}
-//		}
 	}
 
 	void OnApplicationQuit() {
