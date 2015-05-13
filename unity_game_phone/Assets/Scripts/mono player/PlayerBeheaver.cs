@@ -7,7 +7,7 @@ public class PlayerBeheaver : InputListener {
 	public enum ControlType{mono,stereo };
 	public ControlType controlType;
 	[SerializeField]
-	Transform corsor,hand, crosshair, qr;
+	Transform corsor,hand, crosshair;
 	SelectController select;
 	IKController ikControl;
 	GameObject detected_object;
@@ -82,7 +82,7 @@ public class PlayerBeheaver : InputListener {
 			Vector3 p= new Vector3(Screen.width/2,
 			                       Screen.height/2, uicamera.nearClipPlane+.1f);
 			crosshair.position = uicamera.ScreenToWorldPoint(p);
-			qr.localScale=Vector3.zero;
+			//qr.localScale=Vector3.zero;
 			crosshair.localScale=new Vector3(.13f,.13f,1);
 		}
 	}
@@ -113,7 +113,7 @@ public class PlayerBeheaver : InputListener {
 	}
 
 	public void onConnected(){
-		qr.gameObject.SetActive(false);
+//		qr.gameObject.SetActive(false);
 	}
 
 	public void DoDamage(float d){

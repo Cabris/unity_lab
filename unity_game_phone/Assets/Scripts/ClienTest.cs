@@ -19,7 +19,7 @@ public class ClienTest : MonoBehaviour {
 	void Update () {
 		//Debug.Log("Update");
 		if(isServer){
-			Debug.Log("isServer");
+			//Debug.Log("isServer");
 		}else{
 			MasterServer.RequestHostList("YourPCRoom");
 			HostData[] data   = MasterServer.PollHostList();

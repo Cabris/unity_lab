@@ -6,8 +6,7 @@ public class MonoController : MonoBehaviour {
 	public float horizontal;
 	public float vertical;
 	private float rotateSpeed = 250.0f;
-	[SerializeField]
-	Transform target;
+
 	// Use this for initialization
 	void Start () {
 		inputListener=GetComponent<InputListener>();
