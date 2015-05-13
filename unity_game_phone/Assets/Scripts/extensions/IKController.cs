@@ -7,7 +7,7 @@ public class IKController : MonoBehaviour {
 	
 	public Animator animator;
 	public bool isActive = false;
-	public Transform rightHandTarget = null;
+	 Transform rightHandTarget = null;
 	
 	void Start () 
 	{

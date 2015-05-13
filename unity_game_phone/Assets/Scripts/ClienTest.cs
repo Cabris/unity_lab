@@ -8,6 +8,10 @@ public class ClienTest : MonoBehaviour {
 	bool showDetail,isConnected=false;
 	// Use this for initialization
 	void Start () {
+		#if UNITY_EDITOR
+		isServer=true;
+		#endif
+
 		if(isServer){
 		Network.InitializeServer(1, 25002, !Network.HavePublicAddress());
 		MasterServer.RegisterHost("YourPCRoom", "PhantasyNan", "alpha 1.0");

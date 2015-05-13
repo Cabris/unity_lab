@@ -60,7 +60,7 @@ public class WiiController : MonoBehaviour {
 	//public bool left,right,up,down;
 	public InputListener inputListener;
 	public int userId;
-	public Renderer _renderer;
+	//public Renderer _renderer;
 	// Use this for initialization
 	void Start () {
 		if(GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer){

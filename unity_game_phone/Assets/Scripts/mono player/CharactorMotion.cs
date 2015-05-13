@@ -26,6 +26,7 @@ public class CharactorMotion : MonoBehaviour {
 		target.position=cameraAvator.position;
 		InputListener inp=GetComponent<InputListener>();
 		Vector3 direction=new Vector3(inp.Horizontal,0,inp.Vertical);
+		if(!GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer)
 		transform.Translate(direction*speed * Time.deltaTime, Space.Self);
 	}
 }

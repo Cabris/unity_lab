@@ -50,7 +50,7 @@ public class PlayerBeheaver : InputListener {
 			//qr.gameObject.SetActive(false);
 		}if(controlType==ControlType.stereo){
 			if(GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer){
-				monoInput.enabled=false;
+				monoInput.enabled=true;
 				wiiInput.enabled=false;
 			}else
 			{
@@ -145,7 +145,7 @@ public class PlayerBeheaver : InputListener {
 	public override void SetButtonValue (string b, bool p)
 	{
 		if(GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer)
-			networkView.RPC("SetButtonValueRPC",RPCMode.All,b,p);
+			networkView.RPC("SetButtonValueRPC",RPCMode.OthersBuffered,b,p);
 		else
 			base.SetButtonValue (b, p);
 	}
