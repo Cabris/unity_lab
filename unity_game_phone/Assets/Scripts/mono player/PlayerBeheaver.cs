@@ -128,7 +128,8 @@ public class PlayerBeheaver : InputListener {
 		//	return;
 		if(controlType==ControlType.mono)
 			return;
-		if (stream.isWriting&&GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer) {//send
+		if (stream.isWriting) 
+		{//send
 			h = Horizontal;
 			stream.Serialize(ref h);
 			v = Vertical;
@@ -143,7 +144,8 @@ public class PlayerBeheaver : InputListener {
 
 	public override void SetButtonValue (string b, bool p)
 	{
-		if(controlType==ControlType.stereo&& GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer)
+		if(controlType==ControlType.stereo&& GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer&&
+		   Network.connections.Length>0)
 			networkView.RPC("SetButtonValueRPC",RPCMode.OthersBuffered,b,p);
 		else
 			base.SetButtonValue (b, p);

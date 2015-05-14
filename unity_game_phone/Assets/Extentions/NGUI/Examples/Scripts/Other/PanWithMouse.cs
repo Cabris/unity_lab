@@ -22,6 +22,7 @@ public class PanWithMouse : IgnoreTimeScale
 
 	void Update ()
 	{
+		return;
 		float delta = UpdateRealTimeDelta();
 		Vector3 pos = Input.mousePosition;
 
@@ -31,7 +32,6 @@ public class PanWithMouse : IgnoreTimeScale
 		float x = Mathf.Clamp((pos.x - halfWidth) / halfWidth / range, -1f, 1f);
 		float y = Mathf.Clamp((pos.y - halfHeight) / halfHeight / range, -1f, 1f);
 		mRot = Vector2.Lerp(mRot, new Vector2(x, y), delta * 5f);
-
 		mTrans.localRotation = mStart * Quaternion.Euler(-mRot.y * degrees.y, mRot.x * degrees.x, 0f);
 	}
 }
