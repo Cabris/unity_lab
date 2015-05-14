@@ -63,12 +63,12 @@ public class WiiController : MonoBehaviour {
 	//public Renderer _renderer;
 	// Use this for initialization
 	void Start () {
-		if(GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer){
+		inputListener=GetComponent<InputListener>();
+		//if(GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer){
 		#if UNITY_EDITOR
 		wiimote_start();
-		inputListener=GetComponent<InputListener>();
-#endif
-		}
+		#endif
+		//}
 	}
 	
 	// Update is called once per frame

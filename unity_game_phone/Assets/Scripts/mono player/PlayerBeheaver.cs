@@ -17,7 +17,7 @@ public class PlayerBeheaver : InputListener {
 	bool isT=false;
 	Vector3 initialPos;
 	[SerializeField]
-	Camera main,left,right;
+	Camera main;
 	MonoController monoInput;
 	WiiController wiiInput;
 
@@ -44,23 +44,21 @@ public class PlayerBeheaver : InputListener {
 			monoInput.enabled=true;
 			wiiInput.enabled=false;
 			grapDetector.target = corsor;
-			left.depth=-50;
-			right.depth=-50;
+
 			main.depth=10;
 			//qr.gameObject.SetActive(false);
 		}if(controlType==ControlType.stereo){
-			if(GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer){
-				monoInput.enabled=true;
-				wiiInput.enabled=false;
-			}else
-			{
-				monoInput.enabled=true;
-				wiiInput.enabled=true;
-			}
+//			if(GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer){
+//				monoInput.enabled=true;
+//				wiiInput.enabled=false;
+//			}else
+//			{
+//				monoInput.enabled=true;
+//				wiiInput.enabled=true;
+//			}
 			grapDetector.target = hand;
 			main.depth=-50;
-			left.depth=10;
-			right.depth=30;
+
 		}
 		
 	}
@@ -122,21 +120,22 @@ public class PlayerBeheaver : InputListener {
 		}
 	}
 
+
+	float v = 0;
+	float h = 0;
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info) {
-		float h = 0;
-		if (stream.isWriting) {
+		//if(GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer)
+		//	return;
+		if(controlType==ControlType.mono)
+			return;
+		if (stream.isWriting&&GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer) {//send
 			h = Horizontal;
 			stream.Serialize(ref h);
-		} else {
-			stream.Serialize(ref h);
-			Horizontal = h;
-		}
-
-		float v = 0;
-		if (stream.isWriting) {
 			v = Vertical;
 			stream.Serialize(ref v);
-		} else {
+		} else {//receive
+			stream.Serialize(ref h);
+			Horizontal = h;
 			stream.Serialize(ref v);
 			Vertical = v;
 		}
@@ -144,7 +143,7 @@ public class PlayerBeheaver : InputListener {
 
 	public override void SetButtonValue (string b, bool p)
 	{
-		if(GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer)
+		if(controlType==ControlType.stereo&& GameObject.Find ("SceneLogic").GetComponent<ClienTest>().isServer)
 			networkView.RPC("SetButtonValueRPC",RPCMode.OthersBuffered,b,p);
 		else
 			base.SetButtonValue (b, p);
